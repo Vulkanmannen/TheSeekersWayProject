@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Entity">
+      <UniqueIdentifier>{f89658db-2628-48c7-8eb3-0f372c506774}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entity\Block">
+      <UniqueIdentifier>{3b19b7dc-3e56-4367-98a1-9e2a65d51cc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entity\Object">
+      <UniqueIdentifier>{c8528ec2-7f67-4f2a-a67d-f7371652c456}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entity\Character">
+      <UniqueIdentifier>{85502b27-eafb-4f38-9a4a-defaaa832b09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entity">
+      <UniqueIdentifier>{a05b7cf7-d011-44ba-83f9-ce31c66b775c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entity\Block">
+      <UniqueIdentifier>{17f5a5cc-6840-4a6a-a1e7-29b114a7cb30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entity\Object">
+      <UniqueIdentifier>{25400fbc-a23a-42fd-85c5-8a4a2ad08090}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entity\Character">
+      <UniqueIdentifier>{c7270a0d-f649-431b-88df-5625cb224a79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers">
+      <UniqueIdentifier>{019553ad-59aa-4887-9e41-4263328089d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Managers">
+      <UniqueIdentifier>{86288091-b871-4d29-9073-f6fa1615e9f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Övrigt">
+      <UniqueIdentifier>{b659be2d-9812-4a05-81be-2176bd3d09cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Övrigt">
+      <UniqueIdentifier>{1e435cce-1f09-436c-9931-2a441022ae9c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Block.h">
+      <Filter>Header Files\Entity\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalBlock.h">
+      <Filter>Header Files\Entity\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="DecorateBlock.h">
+      <Filter>Header Files\Entity\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Header Files\Entity\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Kiba.h">
+      <Filter>Header Files\Entity\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="MapGenerator.h">
+      <Filter>Header Files\Övrigt</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Block.cpp">
+      <Filter>Source Files\Entity\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalBlock.cpp">
+      <Filter>Source Files\Entity\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="DecorateBlock.cpp">
+      <Filter>Source Files\Entity\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files\Entity\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Kiba.cpp">
+      <Filter>Source Files\Entity\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files\Övrigt</Filter>
+    </ClCompile>
+    <ClCompile Include="MapGenerator.cpp">
+      <Filter>Source Files\Övrigt</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
