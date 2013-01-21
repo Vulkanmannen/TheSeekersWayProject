@@ -73,12 +73,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>\\hsnas3\StudentHome\2012\a12aleka\Documents\Visual Studio 2010\Projects\SFML-2.0-rc\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SFML-2.0-rc\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>\\hsnas3\StudentHome\2012\a12aleka\Documents\Visual Studio 2010\Projects\SFML-2.0-rc\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\SFML-2.0-rc\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-window-d.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
