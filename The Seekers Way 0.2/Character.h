@@ -7,20 +7,33 @@
 class Character: public Entity
 {
 public:
-	Character();
+	Character(sf::Vector2f &getPosition);
 	~Character();
 	void update();
 	
 
 private:
 
+	enum Status
+	{
+		IDLE,
+		JUMP,
+		JUMPING,
+		FALL,
+		LANDING,
+		ACTION1,
+		ACTION2,
+		WALK
+	};
+
+	enum Direction
+	{
+		LEFT,
+		RIGHT
+	};
 	sf::Vector2f mMovementSpeed;
 	sf::Vector2f mDirection;
 	sf::Vector2f mPosition;
-	
-	bool mJumping();
-	bool mFalling();
-	bool mAlive();
 
 	void move();
 	void jump();
@@ -29,7 +42,10 @@ private:
 	void jumping();
 	void falling();
 
-	float mAcceleration();
+	bool mAlive;
+	float mAcceleration;
+	float mDecrease;
+	float mGravity;
 
 };
 

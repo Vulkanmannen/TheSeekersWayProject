@@ -6,20 +6,17 @@ const static float MAXRUNSPEED =	0;
 
 
 
-Character::Character():
-	mPosition(),
-	mMovementSpeed(),
+Character::Character(sf::Vector2f &getPosition):
+	mPosition(getPosition),
+	mMovementSpeed(2, 0),
 	mDirection(),
-	mAcceleration(),
-	mJumping(),
-	mFalling(),
-	mAlive()
-{	
+	mAcceleration(0.5),
+	mDecrease(0.5),
+	mAlive(true),
+	mGravity(5.0)
+{
 
-}	
-
-Character::Character()
-	{}
+}
 
 Character::~Character()
 	{}
@@ -33,13 +30,21 @@ void Character::update()
 // Flyttar Character
 void Character::move()
 {
-	mPosition += mMovementSpeed;
+	mPosition	+= mMovementSpeed;
+	mPosition.y	+= mGravity;
 }
 
 // Knapptryck tas in och movementspeed ändras
 void Character::walk()
 {
-
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		mPosition -= mMovementSpeed;
+	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		mPosition += mMovementSpeed;
+	}
 }
 
 // aktiverar så att man kan hoppa
