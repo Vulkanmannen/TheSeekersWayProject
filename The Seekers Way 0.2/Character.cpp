@@ -5,6 +5,7 @@ const static float RUNSPEED =		0;
 const static float MAXRUNSPEED =	0;
 
 
+
 Character::Character():
 	mPosition(),
 	mMovementSpeed(),
@@ -12,9 +13,13 @@ Character::Character():
 	mAcceleration(),
 	mJumping(),
 	mFalling(),
-	mAlive(),
+	mAlive()
 {	
+
 }	
+
+Character::Character()
+	{}
 
 Character::~Character()
 	{}
