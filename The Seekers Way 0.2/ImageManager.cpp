@@ -1,14 +1,24 @@
 #include "ImageManager.h"
 #include "SFML\Graphics.hpp"
+#include <map>
+#include <cassert>
 
 sf::RenderWindow* ImageManager::sWindow;
+std::map<std::string, sf::Image*> ImageManager::sImages;
 
 ImageManager::ImageManager()
-	{}
+	{
 
+	}
 
 ImageManager::~ImageManager()
-	{}
+	{
+		for(ImageMap::iterator i = sImages.begin(); i != sImages.end(); ++i)
+		{
+			delete i->second;
+		}
+		sImages.clear();
+	}
 
 // ritar ut det som skickas in i funktionen i fönstret
 void ImageManager::render(sf::Drawable *drawable)
@@ -22,3 +32,27 @@ void ImageManager::setWindow(sf::RenderWindow *window)
 	sWindow = window;
 }
 
+// hämtar den textur som hör ihop med textsträngen
+sf::Image* ImageManager::getImage(const std::string &fileName)
+{
+	sf::Image* image = sImages[fileName];
+
+	if(image == NULL) // om den inte finns så lodas den
+	{
+		image = ImageManager::loadImage(fileName);
+		sImages[fileName] = image;
+	}
+	
+	return image;
+}
+
+// loadar en image 
+sf::Image* ImageManager::loadImage(const std::string &fileName)
+{
+	sf::Image* image = new sf::Image();
+	image->loadFromFile(fileName);
+
+	assert(image->loadFromFile(fileName));
+
+	return image;
+}

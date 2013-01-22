@@ -16,6 +16,10 @@ Character::Character():
 {	
 }	
 
+Character::Character()
+	{}
+
+
 Character::~Character()
 	{}
 
@@ -29,6 +33,7 @@ void Character::update()
 void Character::move()
 {
 	mPosition += mMovementSpeed;
+
 }
 
 // Knapptryck tas in och movementspeed ändras
