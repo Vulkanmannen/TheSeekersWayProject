@@ -5,12 +5,15 @@ const static float RUNSPEED =		0;
 const static float MAXRUNSPEED =	0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 Character::Character(sf::Vector2f &getPosition):
 	mPosition(getPosition),
 	mMovementSpeed(2, 0),
 =======
+=======
+>>>>>>> master
 Character::Character():
 	mPosition(),
 	mMovementSpeed(),
@@ -42,6 +45,9 @@ void Character::move()
 =======
 	mPosition += mMovementSpeed;
 
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
 }
 
