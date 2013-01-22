@@ -10,8 +10,6 @@ public:
 	Character();
 	~Character();
 	void update();
-	
-
 private:
 
 	sf::Vector2f mMovementSpeed;
