@@ -11,8 +11,9 @@ Character::Character():
 	mAcceleration(),
 	mJumping(),
 	mFalling(),
-	mAlive(),
+	mAlive()
 {	
+
 }	
 
 Character::Character()
