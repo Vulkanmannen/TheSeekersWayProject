@@ -4,11 +4,17 @@
 const static float RUNSPEED =		0;
 const static float MAXRUNSPEED =	0;
 
+<<<<<<< HEAD
 
 
 Character::Character(sf::Vector2f &getPosition):
 	mPosition(getPosition),
 	mMovementSpeed(2, 0),
+=======
+Character::Character():
+	mPosition(),
+	mMovementSpeed(),
+>>>>>>> master
 	mDirection(),
 	mAcceleration(0.5),
 	mDecrease(0.5),
@@ -30,8 +36,13 @@ void Character::update()
 // Flyttar Character
 void Character::move()
 {
+<<<<<<< HEAD
 	mPosition	+= mMovementSpeed;
 	mPosition.y	+= mGravity;
+=======
+	mPosition += mMovementSpeed;
+
+>>>>>>> master
 }
 
 // Knapptryck tas in och movementspeed ändras
