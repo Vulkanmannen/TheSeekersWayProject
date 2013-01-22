@@ -19,6 +19,8 @@ NormalBlock::NormalBlock(sf::Vector2f Position)
 	mSprite.setTexture(mTexture);
 	mSprite.setPosition(Position);
 	mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
+	mSprite.scale(-1,1);
+	mSprite.scale(1,1);
 }
 
 NormalBlock::~NormalBlock()

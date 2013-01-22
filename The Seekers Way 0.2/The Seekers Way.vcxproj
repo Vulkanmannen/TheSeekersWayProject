@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="DecorateBlock.h" />
@@ -22,6 +23,7 @@
     <ClInclude Include="NormalBlock.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="DecorateBlock.cpp" />

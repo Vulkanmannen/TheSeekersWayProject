@@ -78,6 +78,9 @@
     <ClInclude Include="MapGenerator.h">
       <Filter>Header Files\Övrigt</Filter>
     </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files\Övrigt</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp">
@@ -108,6 +111,9 @@
       <Filter>Source Files\Övrigt</Filter>
     </ClCompile>
     <ClCompile Include="MapGenerator.cpp">
+      <Filter>Source Files\Övrigt</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
       <Filter>Source Files\Övrigt</Filter>
     </ClCompile>
   </ItemGroup>
