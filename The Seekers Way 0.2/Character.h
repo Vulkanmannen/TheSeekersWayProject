@@ -10,8 +10,6 @@ public:
 	Character(sf::Vector2f &getPosition);
 	~Character();
 	void update();
-	
-
 private:
 
 	enum Status
