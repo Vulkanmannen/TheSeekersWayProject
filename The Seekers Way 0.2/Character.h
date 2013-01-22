@@ -9,16 +9,28 @@ class Character: public Entity
 public:
 	Character();
 	~Character();
-
-	sf::Vector2f position();
+	void update();
+	
 
 private:
 
-	bool mJumping;
-	bool mFalling;
+	sf::Vector2f mMovementSpeed;
+	sf::Vector2f mDirection;
+	sf::Vector2f mPosition;
+	
+	bool mJumping();
+	bool mFalling();
+	bool mAlive();
 
-	sf::Vector2f mMove();
-	sf::Vector2f mJump();
+	void move();
+	void jump();
+	void fall();
+	void walk();
+	void jumping();
+	void falling();
+
+	float mAcceleration();
+
 };
 
 #endif
