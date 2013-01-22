@@ -81,6 +81,9 @@
     <ClInclude Include="Animation.h">
       <Filter>Header Files\Övrigt</Filter>
     </ClInclude>
+    <ClInclude Include="Sounds.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp">
@@ -115,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files\Övrigt</Filter>
+    </ClCompile>
+    <ClCompile Include="Sounds.cpp">
+      <Filter>Source Files\Managers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
