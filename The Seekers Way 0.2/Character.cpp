@@ -10,7 +10,7 @@ Character::Character():
 	mStatus(IDLE),
 	mDirLeft(false),
 	mJump(10.0),
-	mRun(5.0)
+	mRun(1.0)
 {
 	mAlive = true;
 	mBaseKind = CHARACTER;
@@ -24,7 +24,7 @@ Character::~Character()
 void Character::move()
 {
 	mPosition	+= mMovementSpeed;
-	mPosition.y	+= mGravity;
+	//mPosition.y	+= mGravity;
 }
 
 // Knapptryck tas in och movementspeed ändras
