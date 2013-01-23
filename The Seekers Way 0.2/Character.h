@@ -38,10 +38,6 @@ protected:
 	void jumping();
 	void falling();
 
-<<<<<<< HEAD
-=======
-	
->>>>>>> ameroz
 	float mAcceleration;
 	float mDecrease;
 	float mGravity;

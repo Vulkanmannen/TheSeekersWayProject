@@ -7,19 +7,12 @@ const static float MAXRUNSPEED =	0;
 
 Character::Character():
 	mMovementSpeed(2, 0),
-<<<<<<< HEAD
+	mStatus(IDLE),
+	mDirLeft(false),
 	mAcceleration(0.5),
 	mDecrease(0.5),
 	mGravity(5.0),
-	mStatus(IDLE),
-	mDirLeft(false)
-=======
-	mDirection(),
-	mAcceleration(-0.5),
-	mDecrease(0.5),
-	mGravity(5.0),
 	mJump(10.0)
->>>>>>> ameroz
 {
 	mAlive = true;
 	mBaseKind = CHARACTER;
@@ -52,7 +45,7 @@ void Character::walk()
 // aktiverar så att man kan hoppa
 void Character::jump()
 {
-	if()
+	if(mStatus != FALLING)
 	{
 	
 	}
