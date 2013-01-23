@@ -7,6 +7,7 @@ const static float MAXRUNSPEED =	0;
 
 Character::Character():
 	mMovementSpeed(2, 0),
+<<<<<<< HEAD
 	mAcceleration(0.5),
 	mDecrease(0.5),
 	mGravity(5.0),
@@ -14,6 +15,14 @@ Character::Character():
 	mDirLeft(false),
 	mJump(10.0)
 
+=======
+	mStatus(IDLE),
+	mDirLeft(false),
+	mAcceleration(0.5),
+	mDecrease(0.5),
+	mGravity(5.0),
+	mJump(10.0)
+>>>>>>> 4f96052fc0d2c51f3fef35aebaf8a5dd96e82631
 {
 	mAlive = true;
 	mBaseKind = CHARACTER;
@@ -46,10 +55,17 @@ void Character::walk()
 // aktiverar så att man kan hoppa
 void Character::jump()
 {
+<<<<<<< HEAD
 	//if()
 	//{
 	//
 	//}
+=======
+	if(mStatus != FALLING)
+	{
+	
+	}
+>>>>>>> 4f96052fc0d2c51f3fef35aebaf8a5dd96e82631
 }
 
 // aktiverar så att man faller
