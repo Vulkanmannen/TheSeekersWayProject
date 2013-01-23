@@ -13,6 +13,7 @@ Animation::Animation(std::string fileName, int timePerFrame, int numberOfFrames,
 		mTexture.loadFromImage(*mImage);
 		mSprite.setTexture(mTexture);
 		mSprite.setTextureRect(mTextureRectangle); // ger spriten rätt storlek
+		mSprite.setOrigin(width / 2, height / 2);
 	}
 
 Animation::Animation()

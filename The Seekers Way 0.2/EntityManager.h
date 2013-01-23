@@ -21,6 +21,7 @@ public:
 	void render();
 
 	void addEntity(Entity *e);
+	void addCharacter(Character *c);
 
 private:
 	EntityManager();

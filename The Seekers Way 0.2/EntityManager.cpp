@@ -57,6 +57,12 @@ void EntityManager::addEntity(Entity *e)
 	mEntities.push_back(e);
 }
 
+// lägger till character i charactervectorn
+void EntityManager::addCharacter(Character *c)
+{
+	mCharacters.push_back(c);
+}
+
 // går igenom alla karaktärer och krocktestar dem mot alla entiteter
 void EntityManager::checkCollisions()
 {

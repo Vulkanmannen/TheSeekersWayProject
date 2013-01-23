@@ -11,6 +11,7 @@ Kiba::Kiba(sf::Vector2f &position)
 		mEntityKind = KIBA;
 		mPosition = position;
 		mAnimation = Animation("fenrirspring.png", 10, 7, 128, 128);
+		mAnimation.setPosition(position);
 	}
 
 
