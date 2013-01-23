@@ -12,7 +12,6 @@ MapGenerator::~MapGenerator()
 
 void MapGenerator::generateMap(std::string imageName)
 {
-
 	sf::Image image;
 	image.loadFromFile(imageName);
 
@@ -29,7 +28,7 @@ void MapGenerator::generateMap(std::string imageName)
 			}
 			else if(color == sf::Color(0, 0, 255, 255))
 			{
-				EntityManager::getInstance()->addEntity(new Kiba(position));
+				EntityManager::getInstance()->addCharacter(new Kiba(position));
 			}
 		}
 	}

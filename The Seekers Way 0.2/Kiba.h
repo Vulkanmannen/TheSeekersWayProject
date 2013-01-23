@@ -11,10 +11,7 @@ public:
 	~Kiba();
 	
 	void update();
-
-	static void openTexture();
 private:
-	static sf::Texture sTexture;
 };
 
 #endif

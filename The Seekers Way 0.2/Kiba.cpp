@@ -1,8 +1,6 @@
 #include "Kiba.h"
 #include "Animation.h"
 
-sf::Texture Kiba::sTexture;
-
 const static float HEIGHT = 128;
 const static float WIDTH = 64;
 
@@ -13,6 +11,7 @@ Kiba::Kiba(sf::Vector2f &position)
 		mEntityKind = KIBA;
 		mPosition = position;
 		mAnimation = Animation("fenrirspring.png", 10, 7, 128, 128);
+		mAnimation.setPosition(position);
 	}
 
 
@@ -24,7 +23,8 @@ void Kiba::update()
 	move();
 	walk();
 	mAnimation.update(mStatus, mDirLeft);
-	mSprite.
+	mSprite = mAnimation.getSprite();
+	mSprite.setPosition(mPosition);
 }
 
 

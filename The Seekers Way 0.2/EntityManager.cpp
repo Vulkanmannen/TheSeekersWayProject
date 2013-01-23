@@ -35,6 +35,7 @@ void EntityManager::update()
 	{
 		mCharacters[i]->update();
 	}
+	checkCollisions();
 }
 
 // ritarut alla objekt
@@ -55,6 +56,12 @@ void EntityManager::render()
 void EntityManager::addEntity(Entity *e)
 {
 	mEntities.push_back(e);
+}
+
+// lägger till character i charactervectorn
+void EntityManager::addCharacter(Character *c)
+{
+	mCharacters.push_back(c);
 }
 
 // går igenom alla karaktärer och krocktestar dem mot alla entiteter

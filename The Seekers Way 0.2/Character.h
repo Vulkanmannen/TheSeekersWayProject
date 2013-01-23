@@ -18,7 +18,7 @@ protected:
 		IDLE,
 		JUMP,
 		JUMPING,
-		FALL,
+		FALLING,
 		LANDING,
 		ACTION1,
 		ACTION2,
@@ -41,6 +41,8 @@ protected:
 	float mAcceleration;
 	float mDecrease;
 	float mGravity;
+	float mJump;
+	float mRun;
 
 };
 
