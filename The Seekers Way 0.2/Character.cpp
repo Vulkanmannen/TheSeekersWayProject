@@ -9,7 +9,7 @@ Character::Character():
 	mMovementSpeed(2, 0),
 	mStatus(IDLE),
 	mDirLeft(false),
-	mAcceleration(0.5),
+	mAcceleration(-0.5),
 	mDecrease(0.5),
 	mGravity(5.0),
 	mJump(10.0)
@@ -47,7 +47,7 @@ void Character::jump()
 {
 	if(mStatus != FALLING)
 	{
-	
+		mMovementSpeed.y += mAcceleration;
 	}
 }
 
