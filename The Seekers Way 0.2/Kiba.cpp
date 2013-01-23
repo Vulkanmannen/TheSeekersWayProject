@@ -1,8 +1,6 @@
 #include "Kiba.h"
 #include "Animation.h"
 
-sf::Texture Kiba::sTexture;
-
 const static float HEIGHT = 128;
 const static float WIDTH = 64;
 
@@ -24,7 +22,7 @@ void Kiba::update()
 	move();
 	walk();
 	mAnimation.update(mStatus, mDirLeft);
-	mSprite.
+	mSprite = mAnimation.getSprite();
 }
 
 
