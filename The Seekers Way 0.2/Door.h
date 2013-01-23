@@ -5,8 +5,10 @@
 
 class Door: public DecorateBlock
 {
+public:
 	Door(Block *b);
 	~Door();
+
 };
 
 #endif
