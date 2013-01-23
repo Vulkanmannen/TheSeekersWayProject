@@ -18,7 +18,7 @@ Character::Character():
 =======
 	mStatus(IDLE),
 	mDirLeft(false),
-	mAcceleration(0.5),
+	mAcceleration(-0.5),
 	mDecrease(0.5),
 	mGravity(5.0),
 	mJump(10.0)
@@ -63,7 +63,7 @@ void Character::jump()
 =======
 	if(mStatus != FALLING)
 	{
-	
+		mMovementSpeed.y += mAcceleration;
 	}
 >>>>>>> 4f96052fc0d2c51f3fef35aebaf8a5dd96e82631
 }
