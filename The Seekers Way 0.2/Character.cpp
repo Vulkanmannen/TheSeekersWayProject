@@ -8,7 +8,7 @@ const static float MAXRUNSPEED =	0;
 Character::Character():
 	mMovementSpeed(2, 0),
 	mDirection(),
-	mAcceleration(0.5),
+	mAcceleration(-0.5),
 	mDecrease(0.5),
 	mGravity(5.0),
 	mJump(10.0)
@@ -44,7 +44,10 @@ void Character::walk()
 // aktiverar så att man kan hoppa
 void Character::jump()
 {
-
+	if()
+	{
+	
+	}
 }
 
 // aktiverar så att man faller
@@ -58,7 +61,7 @@ void Character::jumping()
 {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		mPosition.y += mJump;
+		jump();
 	}
 }
 

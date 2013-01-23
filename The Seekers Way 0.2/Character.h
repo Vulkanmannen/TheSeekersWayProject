@@ -18,7 +18,7 @@ protected:
 		IDLE,
 		JUMP,
 		JUMPING,
-		FALL,
+		FALLING,
 		LANDING,
 		ACTION1,
 		ACTION2,
@@ -44,7 +44,7 @@ protected:
 	void jumping();
 	void falling();
 
-	//bool mAlive;
+	
 	float mAcceleration;
 	float mDecrease;
 	float mGravity;
