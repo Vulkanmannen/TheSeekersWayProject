@@ -7,11 +7,19 @@ const static float MAXRUNSPEED =	0;
 
 Character::Character():
 	mMovementSpeed(2, 0),
+<<<<<<< HEAD
 	mAcceleration(0.5),
 	mDecrease(0.5),
 	mGravity(5.0),
 	mStatus(IDLE),
 	mDirLeft(false)
+=======
+	mDirection(),
+	mAcceleration(-0.5),
+	mDecrease(0.5),
+	mGravity(5.0),
+	mJump(10.0)
+>>>>>>> ameroz
 {
 	mAlive = true;
 	mBaseKind = CHARACTER;
@@ -44,7 +52,10 @@ void Character::walk()
 // aktiverar så att man kan hoppa
 void Character::jump()
 {
-
+	if()
+	{
+	
+	}
 }
 
 // aktiverar så att man faller
@@ -56,7 +67,10 @@ void Character::fall()
 // gör så att man hoppar med knapptryck
 void Character::jumping()
 {
-
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		jump();
+	}
 }
 
 // Gör så att man faller vid aktivition av fall
