@@ -17,7 +17,8 @@ int main()
 	std::string map1("map1.png");
 	MapGenerator::generateMap(map1);
 
-	Animation animation("fenrirspring.png", 70, 7, 128, 128);
+	Animation animation;
+	animation = Animation("fenrirspring.png", 70, 7, 128, 128);
 
     while (window.isOpen())
     {

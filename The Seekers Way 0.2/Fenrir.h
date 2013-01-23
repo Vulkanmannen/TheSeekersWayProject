@@ -12,6 +12,7 @@ public:
 	
 	void update();
 private:
+	Animation mAnimation;
 };
 
 #endif

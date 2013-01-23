@@ -27,7 +27,6 @@ protected:
 		WALK
 	};
 
-	Animation mAnimation;
 	Status mStatus;
 	bool mDirLeft;
 
