@@ -49,15 +49,18 @@
     <Filter Include="Header Files\Övrigt">
       <UniqueIdentifier>{1e435cce-1f09-436c-9931-2a441022ae9c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entity\Block\DecorateBlock">
+      <UniqueIdentifier>{d6ea6f4c-953d-42d6-974f-37792854f9db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entity\Block\DecorateBlock">
+      <UniqueIdentifier>{214458f6-a769-4773-96c7-dfc9042a02dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Block.h">
       <Filter>Header Files\Entity\Block</Filter>
     </ClInclude>
     <ClInclude Include="NormalBlock.h">
-      <Filter>Header Files\Entity\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="DecorateBlock.h">
       <Filter>Header Files\Entity\Block</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
@@ -84,15 +87,18 @@
     <ClInclude Include="Sounds.h">
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
+    <ClInclude Include="DecorateBlock.h">
+      <Filter>Header Files\Entity\Block\DecorateBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>Header Files\Entity\Block\DecorateBlock</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp">
       <Filter>Source Files\Entity\Block</Filter>
     </ClCompile>
     <ClCompile Include="NormalBlock.cpp">
-      <Filter>Source Files\Entity\Block</Filter>
-    </ClCompile>
-    <ClCompile Include="DecorateBlock.cpp">
       <Filter>Source Files\Entity\Block</Filter>
     </ClCompile>
     <ClCompile Include="Character.cpp">
@@ -121,6 +127,12 @@
     </ClCompile>
     <ClCompile Include="Sounds.cpp">
       <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="DecorateBlock.cpp">
+      <Filter>Source Files\Entity\Block\DecorateBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="Door.cpp">
+      <Filter>Source Files\Entity\Block\DecorateBlock</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

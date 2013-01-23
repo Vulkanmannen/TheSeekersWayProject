@@ -180,3 +180,38 @@ float Sounds::getMasterVolume()
 {
 	return sf::Listener::getGlobalVolume();
 }
+
+//funktion som lettar efter musikbuffer och returnerar den
+sf::SoundBuffer Sounds::getBuffer(std::string namn)
+{
+	if(bufferlista[namn]!=NULL)
+	{
+		return *bufferlista[namn];
+	}
+	else
+	{
+		//felmedelandet
+		namn = "Failed to load sound file: \n" + namn;
+
+		//convert from string to wstring
+		int len;
+		int slength = (int)namn.length() + 1;
+		len = MultiByteToWideChar(CP_ACP, 0, namn.c_str(), slength, 0, 0); 
+		wchar_t* buf = new wchar_t[len];
+		MultiByteToWideChar(CP_ACP, 0, namn.c_str(), slength, buf, len);
+		std::wstring r(buf);
+		delete[] buf;
+		
+		//convert from wstring to LPCWSTR
+#ifdef UNICODE
+		std::wstring stemp = r; // Temporary buffer is required
+		LPCWSTR result = stemp.c_str();
+#else
+		LPCWSTR result = s.c_str();
+#endif
+
+		//"Failed to load sound file: "
+		MessageBox(NULL, result, (LPCWSTR)L"CANNOT LOAD", MB_OK);
+        std::exit(EXIT_FAILURE);
+	}
+}
