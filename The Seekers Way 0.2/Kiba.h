@@ -11,7 +11,6 @@ public:
 	~Kiba();
 	
 	void update();
-	void render();
 
 	static void openTexture();
 private:

@@ -1,6 +1,7 @@
 #include "MapGenerator.h"
 #include "EntityManager.h"
 #include "NormalBlock.h"
+#include "Kiba.h"
 
 MapGenerator::MapGenerator()
 	{}
@@ -25,6 +26,10 @@ void MapGenerator::generateMap(std::string imageName)
 			if(color == sf::Color(0,0,0,255))
 			{
 				EntityManager::getInstance()->addEntity(new NormalBlock(position));
+			}
+			else if(color == sf::Color(0, 0, 255, 255))
+			{
+				EntityManager::getInstance()->addEntity(new Kiba(position));
 			}
 		}
 	}
