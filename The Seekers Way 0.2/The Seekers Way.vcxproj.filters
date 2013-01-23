@@ -93,9 +93,6 @@
     <ClInclude Include="Door.h">
       <Filter>Header Files\Entity\Block\DecorateBlock</Filter>
     </ClInclude>
-    <ClInclude Include="Fenrir.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp">
@@ -136,9 +133,6 @@
     </ClCompile>
     <ClCompile Include="Door.cpp">
       <Filter>Source Files\Entity\Block\DecorateBlock</Filter>
-    </ClCompile>
-    <ClCompile Include="Fenrir.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

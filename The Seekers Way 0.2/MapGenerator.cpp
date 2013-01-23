@@ -2,7 +2,6 @@
 #include "EntityManager.h"
 #include "NormalBlock.h"
 #include "Kiba.h"
-#include "Fenrir.h"
 
 MapGenerator::MapGenerator()
 	{}
@@ -29,7 +28,7 @@ void MapGenerator::generateMap(std::string imageName)
 			}
 			else if(color == sf::Color(0, 0, 255, 255))
 			{
-				EntityManager::getInstance()->addCharacter(new Fenrir(position));
+				EntityManager::getInstance()->addCharacter(new Kiba(position));
 			}
 		}
 	}

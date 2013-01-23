@@ -15,9 +15,7 @@ public:
 
 	Entity();
 	virtual ~Entity();
-
 	virtual void update() = 0;
-	virtual sf::Sprite getSprite() = 0;
 
 	void render();
 	
@@ -30,14 +28,14 @@ public:
 	float getHeight()const;
 	EntityKind getEntityKind()const;
 	BaseKind getBaseKind()const;
-	
+
 	bool getAliveStatus()const;
 
 	void destroy();
 
 	void setPosition(sf::Vector2f &v);
 protected:
-	
+	sf::Sprite mSprite;
 	sf::Texture mTexture;
 
 	sf::Vector2f mPosition;
