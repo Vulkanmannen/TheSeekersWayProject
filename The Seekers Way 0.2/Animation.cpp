@@ -1,7 +1,7 @@
 #include "Animation.h"
 #include "ImageManager.h"
 
-Animation::Animation(std::string &fileName, int timePerFrame, int numberOfFrames, int height, int width):
+Animation::Animation(std::string fileName, int timePerFrame, int numberOfFrames, int height, int width):
 	mTimePerFrame(timePerFrame),
 	mNumberOfFrames(numberOfFrames),
 	mCurrentFrame(0),
@@ -15,13 +15,16 @@ Animation::Animation(std::string &fileName, int timePerFrame, int numberOfFrames
 		mSprite.setTextureRect(mTextureRectangle); // ger spriten rätt storlek
 	}
 
+Animation::Animation()
+	{}
+
 Animation::~Animation()
 	{}
 
 // uppdaterar spriteframen
 // kollar om det är dags o byta frame
 // byter frame om det är dags
-void Animation::update(int rowOfSprite, Direction direction)
+void Animation::update(int rowOfSprite, bool dirLeft)
 {
 	if(mFrameTimer.getElapsedTime().asMicroseconds() > mTimePerFrame) // kollar om det är dags att byta frame
 	{
@@ -44,12 +47,12 @@ void Animation::update(int rowOfSprite, Direction direction)
 		mTextureRectangle.left = mTextureRectangle.width * mCurrentFrame; // sätter rutan rätt
 		mTextureRectangle.top = mTextureRectangle.height * rowOfSprite;
 	
-		if(direction == LEFT && !mLeftDir) // om gubben är vänd åt ena hållet och animationen åt andra hållet så vänds animationen rätt
+		if(dirLeft && !mLeftDir) // om gubben är vänd åt ena hållet och animationen åt andra hållet så vänds animationen rätt
 		{
 			mSprite.scale(-1.f, 1.f);
 			mLeftDir = true;
 		}
-		else if(direction == RIGHT && mLeftDir)
+		else if(!dirLeft && mLeftDir)
 		{
 			mSprite.scale(-1.f, 1.f);
 			mLeftDir = false;
