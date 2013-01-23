@@ -11,9 +11,11 @@ Animation::Animation(std::string fileName, int timePerFrame, int numberOfFrames,
 	{
 		mImage = ImageManager::getImage(fileName); // hämtar textur
 		mTexture.loadFromImage(*mImage);
+
+		//mTexture.loadFromImage(*ImageManager::getImage(fileName));
+
 		mSprite.setTexture(mTexture);
 		mSprite.setTextureRect(mTextureRectangle); // ger spriten rätt storlek
-		mSprite.setOrigin(width / 2, height / 2);
 	}
 
 Animation::Animation()
@@ -27,7 +29,7 @@ Animation::~Animation()
 // byter frame om det är dags
 void Animation::update(int rowOfSprite, bool dirLeft)
 {
-	if(mFrameTimer.getElapsedTime().asMicroseconds() > mTimePerFrame) // kollar om det är dags att byta frame
+	if(mFrameTimer.getElapsedTime().asMilliseconds() > mTimePerFrame) // kollar om det är dags att byta frame
 	{
 		mFrameTimer.restart();
 
@@ -48,16 +50,16 @@ void Animation::update(int rowOfSprite, bool dirLeft)
 		mTextureRectangle.left = mTextureRectangle.width * mCurrentFrame; // sätter rutan rätt
 		mTextureRectangle.top = mTextureRectangle.height * rowOfSprite;
 	
-		if(dirLeft && !mLeftDir) // om gubben är vänd åt ena hållet och animationen åt andra hållet så vänds animationen rätt
-		{
-			mSprite.scale(-1.f, 1.f);
-			mLeftDir = true;
-		}
-		else if(!dirLeft && mLeftDir)
-		{
-			mSprite.scale(-1.f, 1.f);
-			mLeftDir = false;
-		}
+		//if(dirLeft && !mLeftDir) // om gubben är vänd åt ena hållet och animationen åt andra hållet så vänds animationen rätt
+		//{
+		//	mSprite.scale(-1.f, 1.f);
+		//	mLeftDir = true;
+		//}
+		//else if(!dirLeft && mLeftDir)
+		//{
+		//	mSprite.scale(-1.f, 1.f);
+		//	mLeftDir = false;
+		//}
 
 		mSprite.setTextureRect(mTextureRectangle);
 	}

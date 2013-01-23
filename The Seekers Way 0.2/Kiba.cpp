@@ -24,6 +24,7 @@ void Kiba::update()
 	walk();
 	mAnimation.update(mStatus, mDirLeft);
 	mSprite = mAnimation.getSprite();
+	mSprite.setPosition(mPosition);
 }
 
 

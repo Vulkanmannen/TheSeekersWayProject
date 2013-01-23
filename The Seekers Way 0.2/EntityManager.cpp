@@ -35,6 +35,7 @@ void EntityManager::update()
 	{
 		mCharacters[i]->update();
 	}
+	checkCollisions();
 }
 
 // ritarut alla objekt
