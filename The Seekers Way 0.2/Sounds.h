@@ -20,6 +20,7 @@ public:
 	void UnPauseAll();
 	void setMasterVolume(float volume);
 	float getMasterVolume();
+	sf::SoundBuffer getBuffer(std::string namn);
 
 private:
 	
