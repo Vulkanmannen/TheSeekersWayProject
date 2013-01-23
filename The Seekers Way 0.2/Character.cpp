@@ -5,26 +5,20 @@ const static float RUNSPEED =		0;
 const static float MAXRUNSPEED =	0;
 
 
-Character::Character(sf::Vector2f &getPosition):
-	mPosition(getPosition),
+Character::Character():
 	mMovementSpeed(2, 0),
 	mDirection(),
 	mAcceleration(0.5),
 	mDecrease(0.5),
-	mAlive(true),
 	mGravity(5.0)
 {
-
+	mAlive = true;
+	mBaseKind = CHARACTER;
 }
 
 Character::~Character()
 	{}
 
-
-void Character::update()
-{
-
-}
 
 // Flyttar Character
 void Character::move()

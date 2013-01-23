@@ -1,4 +1,5 @@
 #include "Kiba.h"
+#include "Animation.h"
 
 sf::Texture Kiba::sTexture;
 
@@ -7,17 +8,11 @@ const static float WIDTH = 64;
 
 Kiba::Kiba(sf::Vector2f &position)
 	{
-		mAlive = true;
-		mPosition = position;
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
 		mEntityKind = KIBA;
-		mBaseKind = CHARACTER;
-
-		mTexture.loadFromFile("Block.png");
-		mSprite.setTexture(mTexture);
-		mSprite.setPosition(position);
-		mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
+		mPosition = position;
+		mAnimation = Animation("fenrirspring.png", 10, 7, 128, 128);
 	}
 
 
@@ -26,11 +21,8 @@ Kiba::~Kiba()
 
 void Kiba::update()
 {
-
+	move();
+	walk();
 }
 
-void Kiba::render()
-{
-
-}
 
