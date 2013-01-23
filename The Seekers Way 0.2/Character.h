@@ -48,6 +48,7 @@ protected:
 	float mAcceleration;
 	float mDecrease;
 	float mGravity;
+	float mJump;
 
 };
 
