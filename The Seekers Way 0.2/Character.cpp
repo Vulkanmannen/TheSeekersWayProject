@@ -10,7 +10,8 @@ Character::Character():
 	mDirection(),
 	mAcceleration(0.5),
 	mDecrease(0.5),
-	mGravity(5.0)
+	mGravity(5.0),
+	mJump(10.0)
 {
 	mAlive = true;
 	mBaseKind = CHARACTER;
@@ -55,7 +56,10 @@ void Character::fall()
 // gör så att man hoppar med knapptryck
 void Character::jumping()
 {
-
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		mPosition.y += mJump;
+	}
 }
 
 // Gör så att man faller vid aktivition av fall
