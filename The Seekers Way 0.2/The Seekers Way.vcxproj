@@ -18,7 +18,6 @@
     <ClInclude Include="Door.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
-    <ClInclude Include="Fenrir.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="Kiba.h" />
     <ClInclude Include="MapGenerator.h" />
@@ -33,7 +32,6 @@
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityManager.cpp" />
-    <ClCompile Include="Fenrir.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="Kiba.cpp" />
     <ClCompile Include="Main.cpp" />

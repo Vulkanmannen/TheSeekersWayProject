@@ -22,8 +22,9 @@ void Kiba::update()
 {
 	move();
 	walk();
-	mAnimation.update(mStatus);
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -96));
+	mAnimation.update(mStatus, mDirLeft);
+	mSprite = mAnimation.getSprite();
+	mSprite.setPosition(mPosition);
 }
 
 

@@ -9,8 +9,3 @@ Block::~Block()
 {
 
 }
-
-sf::Sprite Block::getSprite()
-{
-	return mSprite;
-}
