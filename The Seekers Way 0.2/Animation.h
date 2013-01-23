@@ -12,7 +12,7 @@ public:
 	Animation();
 	~Animation();
 
-	void update(int rowOfSprite, bool dirLeft);
+	void update(int rowOfSprite);
 	void setPosition(sf::Vector2f &position);
 	sf::Sprite getSprite()const;
 	bool getEndOfAnimation()const;
