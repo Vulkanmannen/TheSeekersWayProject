@@ -32,7 +32,7 @@ int main()
 		EntityManager::getInstance()->update();
 		EntityManager::getInstance()->render();
 
-		animation.update(0, false);
+		animation.update(0);
 		ImageManager::render(&animation.getSprite());
 
         window.display();

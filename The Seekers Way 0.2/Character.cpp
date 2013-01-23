@@ -19,6 +19,11 @@ Character::Character():
 Character::~Character()
 	{}
 
+// returnerer spriten i animationen
+sf::Sprite Character::getSprite()
+{
+	return mAnimation.getSprite();
+}
 
 // Flyttar Character
 void Character::move()
