@@ -18,7 +18,7 @@ protected:
 		IDLE,
 		JUMP,
 		JUMPING,
-		FALL,
+		FALLING,
 		LANDING,
 		ACTION1,
 		ACTION2,
@@ -38,9 +38,14 @@ protected:
 	void jumping();
 	void falling();
 
+<<<<<<< HEAD
+=======
+	
+>>>>>>> ameroz
 	float mAcceleration;
 	float mDecrease;
 	float mGravity;
+	float mJump;
 
 };
 
