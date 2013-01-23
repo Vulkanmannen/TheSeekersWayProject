@@ -1,16 +1,17 @@
 #ifndef INCLUDED_CHARACTER
 #define INCLUDED_CHARACTER
 
+#include "Animation.h"
 #include "SFML\Graphics.hpp"
 #include "Entity.h"
 
 class Character: public Entity
 {
 public:
-	Character(sf::Vector2f &getPosition);
+	Character();
 	~Character();
-	void update();
-private:
+
+protected:
 
 	enum Status
 	{
@@ -29,9 +30,12 @@ private:
 		LEFT,
 		RIGHT
 	};
+
+	Animation mAnimation;
+
 	sf::Vector2f mMovementSpeed;
 	sf::Vector2f mDirection;
-	sf::Vector2f mPosition;
+	//sf::Vector2f mPosition;
 
 	void move();
 	void jump();
@@ -40,7 +44,7 @@ private:
 	void jumping();
 	void falling();
 
-	bool mAlive;
+	//bool mAlive;
 	float mAcceleration;
 	float mDecrease;
 	float mGravity;
