@@ -53,10 +53,7 @@ void Character::jump()
 // aktiverar så att man faller
 void Character::fall()
 {
-	if()
-	{
-	
-	}
+
 }
 
 // gör så att man hoppar med knapptryck
