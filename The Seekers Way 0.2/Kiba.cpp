@@ -23,6 +23,8 @@ void Kiba::update()
 {
 	move();
 	walk();
+	mAnimation.update(mStatus, mDirLeft);
+	mSprite.
 }
 
 

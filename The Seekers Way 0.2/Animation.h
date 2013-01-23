@@ -7,12 +7,12 @@
 
 class Animation
 {
-	enum Direction {LEFT, RIGHT};
 public:
-	Animation(std::string &fileName, int timePerFrame, int numberOfFrames, int height, int width);
+	Animation(std::string fileName, int timePerFrame, int numberOfFrames, int height, int width);
+	Animation();
 	~Animation();
 
-	void update(int rowOfSprite, Direction direction);
+	void update(int rowOfSprite, bool dirLeft);
 	void setPosition(sf::Vector2f &position);
 	sf::Sprite getSprite()const;
 	bool getEndOfAnimation()const;

@@ -25,17 +25,11 @@ protected:
 		WALK
 	};
 
-	enum Direction
-	{
-		LEFT,
-		RIGHT
-	};
-
 	Animation mAnimation;
+	Status mStatus;
+	bool mDirLeft;
 
 	sf::Vector2f mMovementSpeed;
-	sf::Vector2f mDirection;
-	//sf::Vector2f mPosition;
 
 	void move();
 	void jump();
@@ -44,7 +38,6 @@ protected:
 	void jumping();
 	void falling();
 
-	//bool mAlive;
 	float mAcceleration;
 	float mDecrease;
 	float mGravity;
