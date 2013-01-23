@@ -7,10 +7,11 @@ const static float MAXRUNSPEED =	0;
 
 Character::Character():
 	mMovementSpeed(2, 0),
-	mDirection(),
 	mAcceleration(0.5),
 	mDecrease(0.5),
-	mGravity(5.0)
+	mGravity(5.0),
+	mStatus(IDLE),
+	mDirLeft(false)
 {
 	mAlive = true;
 	mBaseKind = CHARACTER;
