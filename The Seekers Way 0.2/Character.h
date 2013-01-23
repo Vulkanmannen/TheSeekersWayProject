@@ -11,6 +11,8 @@ public:
 	Character();
 	~Character();
 
+	sf::Sprite getSprite();
+
 protected:
 
 	enum Status

@@ -12,7 +12,7 @@ Entity::~Entity()
 // renderar 
 void Entity::render()
 {
-	ImageManager::render(&mSprite);
+	ImageManager::render(&getSprite());
 }
 
 // funktion som returnerar positionen

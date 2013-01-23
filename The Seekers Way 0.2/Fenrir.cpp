@@ -1,10 +1,10 @@
-#include "Kiba.h"
+#include "Fenrir.h"
 #include "Animation.h"
 
 const static float HEIGHT = 128;
 const static float WIDTH = 64;
 
-Kiba::Kiba(sf::Vector2f &position)
+Fenrir::Fenrir(sf::Vector2f &position)
 	{
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
@@ -15,15 +15,13 @@ Kiba::Kiba(sf::Vector2f &position)
 	}
 
 
-Kiba::~Kiba()
+Fenrir::~Fenrir()
 	{}
 
-void Kiba::update()
+void Fenrir::update()
 {
 	move();
 	walk();
-	mAnimation.update(mStatus);
+	mAnimation.update(0);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -96));
 }
-
-
