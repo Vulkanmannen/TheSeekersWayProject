@@ -19,16 +19,11 @@ Character::Character():
 Character::~Character()
 	{}
 
-// returnerer spriten i animationen
-sf::Sprite Character::getSprite()
-{
-	return mAnimation.getSprite();
-}
 
 // Flyttar Character
 void Character::move()
 {
-	//mPosition	+= mMovementSpeed;
+	mPosition	+= mMovementSpeed;
 	//mPosition.y	+= mGravity;
 }
 
@@ -48,11 +43,11 @@ void Character::walk()
 // aktiverar så att man kan hoppa
 void Character::jump()
 {
-	//if(mStatus != FALLING)
-	//{
+	if(mStatus != FALLING)
+	{
 		mMovementSpeed.y += mJump;
-		//mStatus = JUMPING;
-	//}
+		mStatus = JUMPING;
+	}
 }
 
 // aktiverar så att man faller
