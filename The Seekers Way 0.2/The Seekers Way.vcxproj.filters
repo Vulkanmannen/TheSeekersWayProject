@@ -94,7 +94,7 @@
       <Filter>Header Files\Entity\Block\DecorateBlock</Filter>
     </ClInclude>
     <ClInclude Include="Fenrir.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Entity\Character</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -138,7 +138,7 @@
       <Filter>Source Files\Entity\Block\DecorateBlock</Filter>
     </ClCompile>
     <ClCompile Include="Fenrir.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Entity\Character</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
