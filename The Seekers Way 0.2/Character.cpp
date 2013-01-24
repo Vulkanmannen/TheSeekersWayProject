@@ -42,8 +42,11 @@ void Character::walk()
 // aktiverar så att man kan hoppa
 void Character::jump()
 {
-	mStatus = JUMPING;
-	mMovementSpeed.y -= mJump;
+	if(mStatus != JUMPING && mStatus != FALLING)
+	{
+		mStatus = JUMPING;
+		mMovementSpeed.y -= mJump;
+	}
 }
 
 // aktiverar så att man faller
