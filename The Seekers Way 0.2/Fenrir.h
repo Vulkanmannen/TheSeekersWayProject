@@ -11,6 +11,8 @@ public:
 	~Fenrir();
 	
 	void update();
+	sf::Sprite getSprite();
+
 private:
 	Animation mAnimation;
 };

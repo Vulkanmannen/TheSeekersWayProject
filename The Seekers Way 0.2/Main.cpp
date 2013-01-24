@@ -17,9 +17,6 @@ int main()
 	std::string map1("map1.png");
 	MapGenerator::generateMap(map1);
 
-	Animation animation;
-	animation = Animation("fenrirspring.png", 70, 7, 128, 128);
-
     while (window.isOpen())
     {
         sf::Event event;
@@ -32,9 +29,6 @@ int main()
 
 		EntityManager::getInstance()->update();
 		EntityManager::getInstance()->render();
-
-		animation.update(0);
-		ImageManager::render(&animation.getSprite());
 
         window.display();
     }

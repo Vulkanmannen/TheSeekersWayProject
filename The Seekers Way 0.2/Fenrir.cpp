@@ -1,8 +1,8 @@
 #include "Fenrir.h"
 #include "Animation.h"
 
-const static float HEIGHT = 128;
-const static float WIDTH = 64;
+const static float HEIGHT = 64;
+const static float WIDTH = 128;
 
 Fenrir::Fenrir(sf::Vector2f &position):
 	mAnimation("fenrirspring.png", 70, 7, 128, 128)
@@ -25,7 +25,7 @@ void Fenrir::update()
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -96));
 }
 
-sf::Sprite Character::getSprite()
+sf::Sprite Fenrir::getSprite()
 {
 	return mAnimation.getSprite();
 }
