@@ -3,14 +3,14 @@
 
 
 Character::Character():
-	mMovementSpeed(2, 0),
+	mMovementSpeed(0, 0),
 	mAcceleration(-0.5),
 	mDecrease(0.5),
 	mGravity(5.0),
 	mStatus(IDLE),
 	mDirLeft(false),
 	mJump(10.0),
-	mRun(1.0)
+	mRun(0.5)
 {
 	mAlive = true;
 	mBaseKind = CHARACTER;
