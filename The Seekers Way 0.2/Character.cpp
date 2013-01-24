@@ -40,7 +40,7 @@ void Character::walk()
 }
 
 // aktiverar så att man kan hoppa
-/*void Character::jump()
+void Character::jump()
 {
 	mStatus = JUMPING;
 	mMovementSpeed.y -= mJump;
