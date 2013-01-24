@@ -4,7 +4,7 @@
 
 Character::Character():
 	mMovementSpeed(0, 0),
-	mAcceleration(-0.5),
+	mAcceleration(0.5),
 	mDecrease(0.5),
 	mGravity(5.0),
 	mStatus(IDLE),
@@ -40,13 +40,10 @@ void Character::walk()
 }
 
 // aktiverar så att man kan hoppa
-void Character::jump()
+/*void Character::jump()
 {
-	if(mStatus != FALLING)
-	{
-		mMovementSpeed.y += mJump;
-		mStatus = JUMPING;
-	}
+	mStatus = JUMPING;
+	mMovementSpeed.y -= mJump;
 }
 
 // aktiverar så att man faller
@@ -62,20 +59,23 @@ void Character::jumping()
 	{
 		mMovementSpeed.y += mAcceleration;
 	}
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	else if(mStatus != JUMPING && mStatus != FALLING)
 	{
-		jump();
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			jump();
+		}
 	}
 }
 
 // Gör så att man faller vid aktivition av fall
-void Character::falling()
+/*void Character::falling()
 {
 	if(mStatus != JUMPING)
 	{
 		if(mStatus = FALLING)
 		{
-			mMovementSpeed.y += mDecrease;
+			mMovementSpeed.y -= mDecrease;
 		}
 		else if(mStatus = WALK)
 		{

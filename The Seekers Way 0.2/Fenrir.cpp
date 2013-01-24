@@ -1,5 +1,6 @@
 #include "Fenrir.h"
 #include "Animation.h"
+#include "Entity.h"
 
 const static float HEIGHT = 64;
 const static float WIDTH = 128;
@@ -9,7 +10,7 @@ Fenrir::Fenrir(sf::Vector2f &position):
 	{
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
-		mEntityKind = KIBA;
+		mEntityKind = FENRIR;
 		mPosition = position;
 	}
 
@@ -21,6 +22,9 @@ void Fenrir::update()
 {
 	move();
 	walk();
+	jump();
+	jumping();
+	falling();
 	mAnimation.update(0);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -96));
 }
