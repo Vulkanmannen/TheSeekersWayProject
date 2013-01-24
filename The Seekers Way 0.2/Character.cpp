@@ -42,14 +42,11 @@ void Character::walk()
 // aktiverar så att man kan hoppa
 void Character::jump()
 {
-	//if(mStatus != FALLING)
-	//{
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	if(mStatus != FALLING)
 	{
 		mMovementSpeed.y += mJump;
 		mStatus = JUMPING;
 	}
-	//}
 }
 
 // aktiverar så att man faller
@@ -59,7 +56,7 @@ void Character::fall()
 }
 
 // gör så att man hoppar med knapptryck
-/*void Character::jumping()
+void Character::jumping()
 {
 	if(mStatus = JUMPING)
 	{
