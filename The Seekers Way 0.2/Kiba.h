@@ -11,7 +11,10 @@ public:
 	~Kiba();
 	
 	void update();
+	sf::Sprite getSprite();
+
 private:
+	Animation mAnimation;
 };
 
 #endif
