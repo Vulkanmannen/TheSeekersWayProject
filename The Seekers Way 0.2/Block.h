@@ -11,8 +11,12 @@ class Block: public Entity
 public:
 	Block();
 	virtual ~Block();
+	
+	virtual void Activate();
+	virtual void DisActivate();
 
 	sf::Sprite getSprite();
+
 protected:
 	sf::Sprite mSprite;
 };

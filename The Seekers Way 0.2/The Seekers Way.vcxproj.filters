@@ -90,11 +90,17 @@
     <ClInclude Include="DecorateBlock.h">
       <Filter>Header Files\Entity\Block\DecorateBlock</Filter>
     </ClInclude>
-    <ClInclude Include="Door.h">
-      <Filter>Header Files\Entity\Block\DecorateBlock</Filter>
-    </ClInclude>
     <ClInclude Include="Fenrir.h">
       <Filter>Header Files\Entity\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\Entity\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>Header Files\Entity\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Lever.h">
+      <Filter>Header Files\Entity\Block</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -134,11 +140,17 @@
     <ClCompile Include="DecorateBlock.cpp">
       <Filter>Source Files\Entity\Block\DecorateBlock</Filter>
     </ClCompile>
-    <ClCompile Include="Door.cpp">
-      <Filter>Source Files\Entity\Block\DecorateBlock</Filter>
-    </ClCompile>
     <ClCompile Include="Fenrir.cpp">
       <Filter>Source Files\Entity\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Door.cpp">
+      <Filter>Source Files\Entity\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\Entity\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Lever.cpp">
+      <Filter>Source Files\Entity\Block</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

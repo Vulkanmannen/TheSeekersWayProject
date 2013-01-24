@@ -14,3 +14,13 @@ sf::Sprite Block::getSprite()
 {
 	return mSprite;
 }
+
+void Block::Activate()
+{
+
+}
+
+void Block::DisActivate()
+{
+
+}
