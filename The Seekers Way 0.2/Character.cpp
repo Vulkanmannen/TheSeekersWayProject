@@ -3,14 +3,14 @@
 
 
 Character::Character():
-	mMovementSpeed(2, 0),
+	mMovementSpeed(0, 0),
 	mAcceleration(-0.5),
 	mDecrease(0.5),
 	mGravity(5.0),
 	mStatus(IDLE),
 	mDirLeft(false),
 	mJump(10.0),
-	mRun(1.0)
+	mRun(0.5)
 {
 	mAlive = true;
 	mBaseKind = CHARACTER;
@@ -23,7 +23,7 @@ Character::~Character()
 void Character::move()
 {
 	mPosition	+= mMovementSpeed;
-	//mPosition.y	+= mGravity;
+	mPosition.y	+= mGravity;
 }
 
 // Knapptryck tas in och movementspeed ändras
@@ -42,11 +42,11 @@ void Character::walk()
 // aktiverar så att man kan hoppa
 void Character::jump()
 {
-	if(mStatus != FALLING)
-	{
+	//if(mStatus != FALLING)
+	//{
 		mMovementSpeed.y += mJump;
 		mStatus = JUMPING;
-	}
+	//}
 }
 
 // aktiverar så att man faller
