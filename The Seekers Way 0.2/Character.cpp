@@ -82,4 +82,4 @@ void Character::jumping()
 			mMovementSpeed.y = 0;
 		}
 	}
-}
+}*/
