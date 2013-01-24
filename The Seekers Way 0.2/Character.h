@@ -10,9 +10,6 @@ class Character: public Entity
 public:
 	Character();
 	~Character();
-
-	sf::Sprite getSprite();
-
 protected:
 
 	enum Status
@@ -27,7 +24,6 @@ protected:
 		WALK
 	};
 
-	Animation mAnimation;
 	Status mStatus;
 	bool mDirLeft;
 
