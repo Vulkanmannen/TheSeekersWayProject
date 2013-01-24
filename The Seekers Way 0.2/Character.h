@@ -29,19 +29,23 @@ protected:
 
 	sf::Vector2f mMovementSpeed;
 
+	//void onblock();
 	void move();
 	void jump();
-	void fall();
+	//void fall();
 	void walk();
-	void jumping();
+	//void jumping();
 	void falling();
 
+	float mJumpTime;
+	float mMaxRun;
+	float mMaxJump;
 	float mAcceleration;
 	float mDecrease;
 	float mGravity;
 	float mJump;
 	float mRun;
-
+	float mJumping;
 };
 
 #endif
