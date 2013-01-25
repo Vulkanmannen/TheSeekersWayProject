@@ -27,10 +27,10 @@ int main()
         }
 		window.clear(sf::Color::Blue);
 
-		EntityManager::getInstance()->update();
 		EntityManager::getInstance()->render();
-
-        window.display();
+		EntityManager::getInstance()->update();
+      
+		window.display();
     }
 
     return 0;
