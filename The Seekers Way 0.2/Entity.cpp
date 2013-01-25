@@ -24,12 +24,12 @@ sf::Vector2f Entity::getPosition()const
 // fyra funktioner retunerar top bot right o left 
 float Entity::getTop()const
 {
-	return mPosition.y + mHeight / 2;
+	return mPosition.y - mHeight / 2;
 }
 
 float Entity::getBottom()const
 {
-	return mPosition.y - mHeight / 2;
+	return mPosition.y + mHeight / 2;
 }
 
 float Entity::getRight()const
