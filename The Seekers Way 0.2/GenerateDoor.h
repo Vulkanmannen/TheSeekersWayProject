@@ -2,6 +2,7 @@
 #define INCLUDED_GENERATEDOOR
 
 #include "tinyxml.h"
+#include <string>
 
 class GenerateDoor
 {
@@ -10,6 +11,10 @@ public:
 	~GenerateDoor();
 
 	static void GenerateDoors(TiXmlDocument &document);
+
+	static void loadDocument(std::string &s);
+private:
+	static TiXmlDocument sDocument;
 };
 
 #endif

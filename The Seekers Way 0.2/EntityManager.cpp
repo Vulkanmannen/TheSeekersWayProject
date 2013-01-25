@@ -128,14 +128,14 @@ void EntityManager::stopEntity(Character *c, Entity *e)
 		{
 			if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
 			{
-				c->setPosition(sf::Vector2f(e->getPosition().x + xRadius + 1, c->getPosition().y));
+				c->setPosition(sf::Vector2f(e->getPosition().x + xRadius - 3, c->getPosition().y));
 			}
 		}
 		else
 		{
 			if(std::abs(yDif) < yRadius - 10)
 			{
-				c->setPosition(sf::Vector2f(e->getPosition().x - (xRadius + 1), c->getPosition().y));
+				c->setPosition(sf::Vector2f(e->getPosition().x - (xRadius - 3), c->getPosition().y));
 			}
 		}
 	}
@@ -145,14 +145,14 @@ void EntityManager::stopEntity(Character *c, Entity *e)
 		{
 			if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
 			{
-				c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y + yRadius + 1));
+				c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y + yRadius));
 			}
 		}
 		else
 		{
 			if(std::abs(xDif) < xRadius - 10)
 			{
-				c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y - (yRadius + 1)));
+				c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y - (yRadius)));
 				c->onblock();
 			}
 
