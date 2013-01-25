@@ -30,7 +30,7 @@ int main()
 		EntityManager::getInstance()->update();
 		EntityManager::getInstance()->render();
 
-        window.display();
+		window.display();
     }
 
     return 0;

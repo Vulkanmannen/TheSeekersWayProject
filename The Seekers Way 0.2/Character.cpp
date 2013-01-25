@@ -33,17 +33,31 @@ void Character::move()
 // Knapptryck tas in och movementspeed ändras
 void Character::walk()
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && mMovementSpeed.x > -mMaxRun)
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && mMovementSpeed.x > -mMaxRun && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		mMovementSpeed.x -= mRun;
+		if(mStatus == IDLE || mStatus == LANDING || mStatus == WALK)
+		{
+			mStatus = WALK;
+			mDirLeft = true;
+		}
 	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && mMovementSpeed.x < mMaxRun)
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && mMovementSpeed.x < mMaxRun && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		mMovementSpeed.x += mRun;
+		if(mStatus == IDLE || mStatus == LANDING || mStatus == WALK)
+		{
+			mStatus = WALK;
+			mDirLeft = false;
+		}
 	}
-	else
+	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		mMovementSpeed.x = 0;
+		if(mStatus == WALK)
+		{
+			mStatus = IDLE;
+		}
 	}
 }
 

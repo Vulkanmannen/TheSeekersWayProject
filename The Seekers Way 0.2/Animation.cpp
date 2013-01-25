@@ -32,9 +32,9 @@ void Animation::update(int rowOfSprite)
 
 		++mCurrentFrame;
 
-		sf::Color color = mImage->getPixel(mTextureRectangle.width * mCurrentFrame, mTextureRectangle.height * rowOfSprite); // hämtar färgen hoss pixeln i det översta hörnet på framen 
+		//sf::Color color = mImage->getPixel(mTextureRectangle.width * mCurrentFrame, mTextureRectangle.height * rowOfSprite); // hämtar färgen hoss pixeln i det översta hörnet på framen 
 
-		if(mCurrentFrame >= mNumberOfFrames || color == sf::Color(0, 0, 0, 255)) // om färgen e svart så är animationen slut
+		if(mCurrentFrame >= mNumberOfFrames/* || color == sf::Color(0, 0, 0, 255)*/) // om färgen e svart så är animationen slut
 		{
 			mEndOfAnimation = true;
 			mCurrentFrame = 0;

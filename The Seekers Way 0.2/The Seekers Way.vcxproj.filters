@@ -93,12 +93,22 @@
     <ClInclude Include="DecorateBlock.h">
       <Filter>Header Files\Entity\Block\DecorateBlock</Filter>
     </ClInclude>
-    <ClInclude Include="Door.h">
-      <Filter>Header Files\Entity\Block\DecorateBlock</Filter>
-    </ClInclude>
     <ClInclude Include="Fenrir.h">
       <Filter>Header Files\Entity\Character</Filter>
     </ClInclude>
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\Entity\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>Header Files\Entity\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Lever.h">
+      <Filter>Header Files\Entity\Block</Filter>
+=======
+=======
+>>>>>>> origin/master
     <ClInclude Include="MapGenerator.h">
       <Filter>Header Files\MapGenerator</Filter>
     </ClInclude>
@@ -110,6 +120,10 @@
     </ClInclude>
     <ClInclude Include="tinyxml.h">
       <Filter>Header Files\MapGenerator</Filter>
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
+>>>>>>> origin/master
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -146,12 +160,22 @@
     <ClCompile Include="DecorateBlock.cpp">
       <Filter>Source Files\Entity\Block\DecorateBlock</Filter>
     </ClCompile>
-    <ClCompile Include="Door.cpp">
-      <Filter>Source Files\Entity\Block\DecorateBlock</Filter>
-    </ClCompile>
     <ClCompile Include="Fenrir.cpp">
       <Filter>Source Files\Entity\Character</Filter>
     </ClCompile>
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <ClCompile Include="Door.cpp">
+      <Filter>Source Files\Entity\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\Entity\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Lever.cpp">
+      <Filter>Source Files\Entity\Block</Filter>
+=======
+=======
+>>>>>>> origin/master
     <ClCompile Include="MapGenerator.cpp">
       <Filter>Source Files\MapGenerator</Filter>
     </ClCompile>
@@ -169,6 +193,10 @@
     </ClCompile>
     <ClCompile Include="tinyxmlparser.cpp">
       <Filter>Source Files\MapGenerator</Filter>
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
+>>>>>>> origin/master
     </ClCompile>
   </ItemGroup>
 </Project>
