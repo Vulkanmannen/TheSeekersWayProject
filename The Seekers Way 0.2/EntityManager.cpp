@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "Character.h"
 #include <cmath>
+#include "Character.h"
 
 EntityManager* EntityManager::sInstance = 0;
 
@@ -152,7 +153,9 @@ void EntityManager::stopEntity(Character *c, Entity *e)
 			if(std::abs(xDif) < xRadius - 10)
 			{
 				c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y - (yRadius + 1)));
+				c->onblock();
 			}
+
 		}
 	}
 }

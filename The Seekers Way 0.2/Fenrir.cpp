@@ -24,6 +24,7 @@ void Fenrir::update()
 	walk();
 	jump();
 	falling();
+	onblock();
 	mAnimation.update(0);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -96));
 }

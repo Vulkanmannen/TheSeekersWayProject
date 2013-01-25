@@ -4,16 +4,16 @@
 
 Character::Character():
 	mMovementSpeed(0, 0),
-	mAcceleration(0.5),
+	mAcceleration(0.8),
 	mDecrease(0.5),
 	mGravity(5.0),
 	mStatus(IDLE),
 	mDirLeft(false),
-	mJump(6.0),
+	mJump(12.0),
 	mRun(5.0),
-	mMaxRun(6.0),
-	mMaxJump(8.0),
-	mJumpTime(6.0),
+	mMaxRun(3.0),
+	mMaxJump(12.0),
+	mJumpTime(1.0),
 	mJumping(0.0)
 {
 	mAlive = true;
@@ -49,56 +49,39 @@ void Character::jump()
 	if(mStatus == JUMPING)
 	{
 		mMovementSpeed.y += mAcceleration; // om mStatus är JUMPING trycks char ner med värdet på mAcceleration
-		mJumping += mAcceleration;
-		if(mJumping >= mJumpTime)
+		mJumping += mJumpTime;
+		if(mJumping >= mMaxJump) 
 		{
-			//mStatus = LANDING;
+			mJumping = 0;
+			mStatus = FALLING;
+			falling();
 		}
-	}
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mMovementSpeed.y < mMaxJump)
-	{
-		mMovementSpeed.y -= mJump;
-		mStatus = JUMPING;
-	}
-}
-
-// aktiverar så att man faller
-/*void Character::fall()
-{
-	
-}
-
-// gör så att man hoppar med knapptryck
-void Character::jumping()
-{
-	if(mStatus = JUMPING)
-	{
-		mMovementSpeed.y += mAcceleration; // om mStatus är JUMPING trycks char ner med värdet på mAcceleration
 	}
 	else if(mStatus != JUMPING && mStatus != FALLING)
 	{
-
-	}
-}*/
-
-// Gör så att man faller vid aktivition av fall
-void Character::falling()
-{
-	if(mStatus != JUMPING)
-	{
-		if(mStatus == FALLING)
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mMovementSpeed.y < mMaxJump)
 		{
-			mMovementSpeed.y -= mDecrease;
-		}
-		else if(mStatus == WALK)
-		{
-			mMovementSpeed.y = 0;
+			mMovementSpeed.y -= mJump;
+			mStatus = JUMPING;
 		}
 	}
 }
 
-/*void Character::onblock()
-{
-	mStatus = LANDING;
-}*/
 
+void Character::falling()
+{
+	if(mStatus == FALLING)
+	{
+		if(Character::onblock)
+		{
+			onblock();
+			mStatus = LANDING;
+		}
+	}
+}
+
+void Character::onblock()
+{
+	mStatus != FALLING;
+	mStatus != JUMPING;
+}
