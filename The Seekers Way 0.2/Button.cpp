@@ -40,3 +40,4 @@ void Button::ButtonRelease()
 	}
 	isitpressed = false;
 }
+
