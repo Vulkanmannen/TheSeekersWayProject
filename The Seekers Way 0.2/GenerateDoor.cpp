@@ -1,5 +1,6 @@
 #include "GenerateDoor.h"
 
+TiXmlDocument GenerateDoor::sDocument;
 
 GenerateDoor::GenerateDoor()
 	{}
@@ -17,4 +18,9 @@ void GenerateDoors(TiXmlDocument &document)
 	{
 			
 	}
+}
+
+void GenerateDoor::loadDocument(std::string &s)
+{
+
 }
