@@ -55,6 +55,12 @@
     <Filter Include="Header Files\Entity\Block\DecorateBlock">
       <UniqueIdentifier>{214458f6-a769-4773-96c7-dfc9042a02dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\MapGenerator">
+      <UniqueIdentifier>{ca6311e0-da09-401e-be3b-ab6071c3f77a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MapGenerator">
+      <UniqueIdentifier>{953ea935-343c-4d77-99a6-7655fd8283c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Block.h">
@@ -78,9 +84,6 @@
     <ClInclude Include="Entity.h">
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="MapGenerator.h">
-      <Filter>Header Files\Övrigt</Filter>
-    </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Header Files\Övrigt</Filter>
     </ClInclude>
@@ -93,6 +96,7 @@
     <ClInclude Include="Fenrir.h">
       <Filter>Header Files\Entity\Character</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Button.h">
       <Filter>Header Files\Entity\Block</Filter>
     </ClInclude>
@@ -101,6 +105,19 @@
     </ClInclude>
     <ClInclude Include="Lever.h">
       <Filter>Header Files\Entity\Block</Filter>
+=======
+    <ClInclude Include="MapGenerator.h">
+      <Filter>Header Files\MapGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="tinystr.h">
+      <Filter>Header Files\MapGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="GenerateDoor.h">
+      <Filter>Header Files\MapGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml.h">
+      <Filter>Header Files\MapGenerator</Filter>
+>>>>>>> origin/master
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -128,9 +145,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files\Övrigt</Filter>
     </ClCompile>
-    <ClCompile Include="MapGenerator.cpp">
-      <Filter>Source Files\Övrigt</Filter>
-    </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files\Övrigt</Filter>
     </ClCompile>
@@ -143,6 +157,7 @@
     <ClCompile Include="Fenrir.cpp">
       <Filter>Source Files\Entity\Character</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Door.cpp">
       <Filter>Source Files\Entity\Block</Filter>
     </ClCompile>
@@ -151,6 +166,25 @@
     </ClCompile>
     <ClCompile Include="Lever.cpp">
       <Filter>Source Files\Entity\Block</Filter>
+=======
+    <ClCompile Include="MapGenerator.cpp">
+      <Filter>Source Files\MapGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="tinystr.cpp">
+      <Filter>Source Files\MapGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="GenerateDoor.cpp">
+      <Filter>Source Files\MapGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml.cpp">
+      <Filter>Source Files\MapGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxmlerror.cpp">
+      <Filter>Source Files\MapGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxmlparser.cpp">
+      <Filter>Source Files\MapGenerator</Filter>
+>>>>>>> origin/master
     </ClCompile>
   </ItemGroup>
 </Project>

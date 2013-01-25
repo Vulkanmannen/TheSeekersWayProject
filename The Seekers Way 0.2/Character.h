@@ -7,8 +7,11 @@
 
 class Character: public Entity
 {
+
 public:
 	Character();
+		void onblock();
+
 	~Character();
 protected:
 
@@ -29,12 +32,9 @@ protected:
 
 	sf::Vector2f mMovementSpeed;
 
-	//void onblock();
 	void move();
 	void jump();
-	//void fall();
 	void walk();
-	//void jumping();
 	void falling();
 
 	float mJumpTime;
@@ -45,7 +45,7 @@ protected:
 	float mGravity;
 	float mJump;
 	float mRun;
-	float mJumping;
+	float mJumping; 
 };
 
 #endif

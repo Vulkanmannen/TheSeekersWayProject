@@ -20,12 +20,15 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Fenrir.h" />
+    <ClInclude Include="GenerateDoor.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="Kiba.h" />
     <ClInclude Include="Lever.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="NormalBlock.h" />
     <ClInclude Include="Sounds.h" />
+    <ClInclude Include="tinystr.h" />
+    <ClInclude Include="tinyxml.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
@@ -37,6 +40,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="Fenrir.cpp" />
+    <ClCompile Include="GenerateDoor.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="Kiba.cpp" />
     <ClCompile Include="Lever.cpp" />
@@ -44,6 +48,10 @@
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="NormalBlock.cpp" />
     <ClCompile Include="Sounds.cpp" />
+    <ClCompile Include="tinystr.cpp" />
+    <ClCompile Include="tinyxml.cpp" />
+    <ClCompile Include="tinyxmlerror.cpp" />
+    <ClCompile Include="tinyxmlparser.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CDB21BA2-BA69-4E56-9806-D2F4E32A5529}</ProjectGuid>
