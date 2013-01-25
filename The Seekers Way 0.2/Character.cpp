@@ -4,15 +4,15 @@
 
 Character::Character():
 	mMovementSpeed(0, 0),
-	mAcceleration(0.8),
-	mDecrease(0.5),
+	mAcceleration(0.3),
+	mDecrease(0.6),
 	mGravity(5.0),
 	mStatus(IDLE),
 	mDirLeft(false),
-	mJump(12.0),
-	mRun(5.0),
-	mMaxRun(3.0),
-	mMaxJump(12.0),
+	mJump(14.5),
+	mRun(6.0),
+	mMaxRun(6.0),
+	mMaxJump(14.5),
 	mJumpTime(1.0),
 	mJumping(0.0)
 {
@@ -41,6 +41,10 @@ void Character::walk()
 	{
 		mMovementSpeed.x += mRun;
 	}
+	else
+	{
+		mMovementSpeed.x = 0;
+	}
 }
 
 // aktiverar så att man kan hoppa
@@ -50,14 +54,13 @@ void Character::jump()
 	{
 		mMovementSpeed.y += mAcceleration; // om mStatus är JUMPING trycks char ner med värdet på mAcceleration
 		mJumping += mJumpTime;
-		if(mJumping >= mMaxJump) 
+		if(mJumping >= mMaxJump)
 		{
 			mJumping = 0;
 			mStatus = FALLING;
-			falling();
 		}
 	}
-	else if(mStatus != JUMPING && mStatus != FALLING)
+	else if(mStatus != FALLING)
 	{
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mMovementSpeed.y < mMaxJump)
 		{
@@ -72,16 +75,15 @@ void Character::falling()
 {
 	if(mStatus == FALLING)
 	{
-		if(Character::onblock)
-		{
-			onblock();
-			mStatus = LANDING;
-		}
+		mMovementSpeed.y += mDecrease;
 	}
 }
 
 void Character::onblock()
 {
-	mStatus != FALLING;
-	mStatus != JUMPING;
+	if(mStatus == FALLING)
+	{
+		mStatus = LANDING;
+		mMovementSpeed.y = 0;
+	}
 }
