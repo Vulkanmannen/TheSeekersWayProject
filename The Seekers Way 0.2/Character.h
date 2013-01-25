@@ -10,9 +10,6 @@ class Character: public Entity
 public:
 	Character();
 	~Character();
-
-	sf::Sprite getSprite();
-
 protected:
 
 	enum Status
@@ -27,25 +24,28 @@ protected:
 		WALK
 	};
 
-	Animation mAnimation;
 	Status mStatus;
 	bool mDirLeft;
 
 	sf::Vector2f mMovementSpeed;
 
+	//void onblock();
 	void move();
 	void jump();
-	void fall();
+	//void fall();
 	void walk();
-	void jumping();
+	//void jumping();
 	void falling();
 
+	float mJumpTime;
+	float mMaxRun;
+	float mMaxJump;
 	float mAcceleration;
 	float mDecrease;
 	float mGravity;
 	float mJump;
 	float mRun;
-
+	float mJumping;
 };
 
 #endif

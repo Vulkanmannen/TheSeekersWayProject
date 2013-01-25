@@ -35,6 +35,7 @@ void EntityManager::update()
 	{
 		mCharacters[i]->update();
 	}
+
 	checkCollisions();
 }
 
@@ -143,14 +144,14 @@ void EntityManager::stopEntity(Character *c, Entity *e)
 		{
 			if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
 			{
-				c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y + xRadius + 1));
+				c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y + yRadius + 1));
 			}
 		}
 		else
 		{
 			if(std::abs(xDif) < xRadius - 10)
 			{
-				c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y - (xRadius + 1)));
+				c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y - (yRadius + 1)));
 			}
 		}
 	}
