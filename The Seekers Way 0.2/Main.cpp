@@ -27,9 +27,9 @@ int main()
         }
 		window.clear(sf::Color::Blue);
 
-		EntityManager::getInstance()->render();
 		EntityManager::getInstance()->update();
-      
+		EntityManager::getInstance()->render();
+
 		window.display();
     }
 

@@ -19,7 +19,7 @@ public:
 	virtual void update() = 0;
 	virtual sf::Sprite getSprite() = 0;
 
-	void render();
+	virtual void render();
 	
 	sf::Vector2f getPosition()const;
 	float getTop()const;

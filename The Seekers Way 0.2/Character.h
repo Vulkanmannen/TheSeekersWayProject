@@ -18,13 +18,13 @@ protected:
 	enum Status
 	{
 		IDLE,
+		WALK,
 		JUMP,
 		JUMPING,
 		FALLING,
 		LANDING,
 		ACTION1,
-		ACTION2,
-		WALK
+		ACTION2
 	};
 
 	Status mStatus;

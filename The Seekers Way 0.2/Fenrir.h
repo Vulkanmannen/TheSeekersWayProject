@@ -11,6 +11,8 @@ public:
 	~Fenrir();
 	
 	void update();
+	void render();
+
 	sf::Sprite getSprite();
 
 private:
