@@ -46,26 +46,13 @@ Sounds* Sounds::getInstance()
 	return sInstance;
 }
 
-//spelar musik en gång
-void Sounds::Play(std::string namn)
-{
-	Play(namn, 100);
-}
-
-//bestämmer volumen
+//spelar musik en gång och bestämmer volumen
 void Sounds::Play(std::string namn, float volume)
 {
-
 	Playbase(namn, volume, false);
 }
 
-//istället för att det spelas en gång så upprepas det
-void Sounds::Loop(std::string namn)
-{
-	Loop(namn, 100);
-}
-
-//bestämmer volumen
+//istället för att det spelas en gång så upprepas det och bestämmer volumen
 void Sounds::Loop(std::string namn, float volume)
 {
 	Playbase(namn, volume, true);

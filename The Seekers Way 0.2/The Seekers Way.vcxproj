@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Block.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="DecorateBlock.h" />
     <ClInclude Include="Door.h" />
@@ -22,6 +23,7 @@
     <ClInclude Include="GenerateDoor.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="Kiba.h" />
+    <ClInclude Include="Lever.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="NormalBlock.h" />
     <ClInclude Include="Sounds.h" />
@@ -31,6 +33,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Block.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="DecorateBlock.cpp" />
     <ClCompile Include="Door.cpp" />
@@ -40,6 +43,7 @@
     <ClCompile Include="GenerateDoor.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="Kiba.cpp" />
+    <ClCompile Include="Lever.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="NormalBlock.cpp" />

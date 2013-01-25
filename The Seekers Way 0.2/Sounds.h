@@ -11,10 +11,8 @@ public:
 
 	~Sounds();
 	static Sounds* getInstance();
-	void Play(std::string namn);
-	void Play(std::string namn, float volume);
-	void Loop(std::string namn);
-	void Loop(std::string namn, float volume);
+	void Play(std::string namn, float volume = 100);
+	void Loop(std::string namn, float volume = 100);
 	void StopAll();
 	void PauseAll();
 	void UnPauseAll();
