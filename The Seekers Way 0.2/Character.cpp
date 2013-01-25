@@ -4,16 +4,16 @@
 
 Character::Character():
 	mMovementSpeed(0, 0),
-	mAcceleration(0.5),
-	mDecrease(0.5),
+	mAcceleration(0.3),
+	mDecrease(0.6),
 	mGravity(5.0),
 	mStatus(IDLE),
 	mDirLeft(false),
-	mJump(6.0),
-	mRun(5.0),
+	mJump(14.5),
+	mRun(6.0),
 	mMaxRun(6.0),
-	mMaxJump(8.0),
-	mJumpTime(6.0),
+	mMaxJump(14.5),
+	mJumpTime(1.0),
 	mJumping(0.0)
 {
 	mAlive = true;
@@ -41,6 +41,10 @@ void Character::walk()
 	{
 		mMovementSpeed.x += mRun;
 	}
+	else
+	{
+		mMovementSpeed.x = 0;
+	}
 }
 
 // aktiverar så att man kan hoppa
@@ -49,56 +53,37 @@ void Character::jump()
 	if(mStatus == JUMPING)
 	{
 		mMovementSpeed.y += mAcceleration; // om mStatus är JUMPING trycks char ner med värdet på mAcceleration
-		mJumping += mAcceleration;
-		if(mJumping >= mJumpTime)
+		mJumping += mJumpTime;
+		if(mJumping >= mMaxJump)
 		{
-			//mStatus = LANDING;
+			mJumping = 0;
+			mStatus = FALLING;
 		}
 	}
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mMovementSpeed.y < mMaxJump)
+	else if(mStatus != FALLING)
 	{
-		mMovementSpeed.y -= mJump;
-		mStatus = JUMPING;
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mMovementSpeed.y < mMaxJump)
+		{
+			mMovementSpeed.y -= mJump;
+			mStatus = JUMPING;
+		}
 	}
 }
 
-// aktiverar så att man faller
-/*void Character::fall()
-{
-	
-}
 
-// gör så att man hoppar med knapptryck
-void Character::jumping()
-{
-	if(mStatus = JUMPING)
-	{
-		mMovementSpeed.y += mAcceleration; // om mStatus är JUMPING trycks char ner med värdet på mAcceleration
-	}
-	else if(mStatus != JUMPING && mStatus != FALLING)
-	{
-
-	}
-}*/
-
-// Gör så att man faller vid aktivition av fall
 void Character::falling()
 {
-	if(mStatus != JUMPING)
+	if(mStatus == FALLING)
 	{
-		if(mStatus == FALLING)
-		{
-			mMovementSpeed.y -= mDecrease;
-		}
-		else if(mStatus == WALK)
-		{
-			mMovementSpeed.y = 0;
-		}
+		mMovementSpeed.y += mDecrease;
 	}
 }
 
-/*void Character::onblock()
+void Character::onblock()
 {
-	mStatus = LANDING;
-}*/
-
+	if(mStatus == FALLING)
+	{
+		mStatus = LANDING;
+		mMovementSpeed.y = 0;
+	}
+}
