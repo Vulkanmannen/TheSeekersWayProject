@@ -64,6 +64,7 @@
     <ClCompile Include="tinyxmlerror.cpp">
       <Filter>Generators</Filter>
     </ClCompile>
+    <ClCompile Include="Sheeka.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -120,6 +121,7 @@
     <ClInclude Include="tinyxml.h">
       <Filter>Generators</Filter>
     </ClInclude>
+    <ClInclude Include="Sheeka.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">

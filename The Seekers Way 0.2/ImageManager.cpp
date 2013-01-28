@@ -37,7 +37,7 @@ sf::Image* ImageManager::getImage(const std::string &fileName)
 {
 	sf::Image* image = sImages[fileName];
 
-	if(image == NULL) // om den inte finns så lodas den
+	if(image == NULL) // om den inte finns så loadas den
 	{
 		image = ImageManager::loadImage(fileName);
 		sImages[fileName] = image;

@@ -45,7 +45,7 @@ protected:
 	float mGravity;
 	float mJump;
 	float mRun;
-	float mJumping; 
+	float mJumping;
 };
 
 #endif

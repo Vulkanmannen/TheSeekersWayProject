@@ -26,6 +26,7 @@
     <ClInclude Include="Lever.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="NormalBlock.h" />
+    <ClInclude Include="Sheeka.h" />
     <ClInclude Include="Sounds.h" />
     <ClInclude Include="tinystr.h" />
     <ClInclude Include="tinyxml.h" />
@@ -47,6 +48,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="NormalBlock.cpp" />
+    <ClCompile Include="Sheeka.cpp" />
     <ClCompile Include="Sounds.cpp" />
     <ClCompile Include="tinystr.cpp" />
     <ClCompile Include="tinyxml.cpp" />
