@@ -8,13 +8,20 @@ class Button: public Block
 {
 public:
 
-	Button(sf::Vector2f &position,  Block* target);
+	Button(sf::Vector2f &position, Block* target);
 	~Button();
 	Block* mBlock;
 
-	void ButtonPressed();
-	void ButtonRelease();
+	void render();
+	void update();
+	sf::Sprite getSprite();
+
+	void Activate();
+	void DisActivate();
+
 	bool isitpressed;
+private:
+	Animation mAnimation;
 };
 
 #endif

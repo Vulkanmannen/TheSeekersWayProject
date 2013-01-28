@@ -20,9 +20,11 @@ int main()
 	
 	std::string map1("map1.png");
 	MapGenerator::generateMap(map1);
-	EntityManager::getInstance()->addEntity(new Door(sf::Vector2f(5 *64,4 *64)));
+
+	Block *Door1 = new Door(sf::Vector2f(5 *64,4 *64));
+	EntityManager::getInstance()->addEntity(Door1);
 	EntityManager::getInstance()->addEntity(new Door(sf::Vector2f(4 *64 ,4 *64)));
-	//EntityManager::getInstance()->addEntity(new Button(sf::Vector2f(0,0)));
+	EntityManager::getInstance()->addEntity(new Button(sf::Vector2f(2*64,3 *64), Door1));
 	//EntityManager::getInstance()->addEntity(new Lever(sf::Vector2f(0,0)));
 
     while (window.isOpen())
