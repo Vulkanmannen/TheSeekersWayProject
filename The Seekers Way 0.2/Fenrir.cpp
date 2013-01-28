@@ -14,7 +14,6 @@ Fenrir::Fenrir(sf::Vector2f &position):
 		mPosition = position;
 	}
 
-
 Fenrir::~Fenrir()
 	{}
 

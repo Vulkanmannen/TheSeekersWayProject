@@ -4,7 +4,7 @@
 #include "Kiba.h"
 #include "Fenrir.h"
 #include "GenerateDoor.h"
-
+#include "Sheeka.h"
 
 MapGenerator::MapGenerator()
 	{}
@@ -32,6 +32,10 @@ void MapGenerator::generateMap(std::string imageName)
 			else if(color == sf::Color(0, 0, 255, 255))
 			{
 				EntityManager::getInstance()->addCharacter(new Fenrir(position));
+			}
+			else if(color == sf::Color(0, 255, 0, 255))
+			{
+				EntityManager::getInstance()->addCharacter(new Sheeka(position));
 			}
 		}
 	}
