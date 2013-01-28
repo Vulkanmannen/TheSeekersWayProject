@@ -17,12 +17,12 @@ public:
 
 private:
 	Animation mAnimation;
-
-protected:
-
-	void	SheekaDash();
-	float	mDash;
-
+	void SheekaDash();
+	
+	int mDashCount;
+	float mDash;
+	float mDashAcc;
+	float mMaxDashDist;
 };
 
 #endif
