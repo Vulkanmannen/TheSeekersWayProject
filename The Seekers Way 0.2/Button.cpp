@@ -3,7 +3,8 @@
 static const float WIDTH = 64;
 static const float HEIGHT = 64;
 
-Button::Button(sf::Vector2f &position, int id)
+Button::Button(sf::Vector2f &position, Block* target):
+	mBlock(target)
 {
 	isitpressed = false;
 	mPosition = position;
