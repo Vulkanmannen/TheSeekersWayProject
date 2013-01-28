@@ -7,6 +7,10 @@
 
 #include <string>
 
+#include "Door.h"
+#include "Button.h"
+#include "Lever.h"
+
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1024, 720), "The Seekers Way"/*, sf::Style::Fullscreen*/);
@@ -16,6 +20,10 @@ int main()
 	
 	std::string map1("map1.png");
 	MapGenerator::generateMap(map1);
+	EntityManager::getInstance()->addEntity(new Door(sf::Vector2f(5 *64,4 *64)));
+	EntityManager::getInstance()->addEntity(new Door(sf::Vector2f(4 *64 ,4 *64)));
+	//EntityManager::getInstance()->addEntity(new Button(sf::Vector2f(0,0)));
+	//EntityManager::getInstance()->addEntity(new Lever(sf::Vector2f(0,0)));
 
     while (window.isOpen())
     {

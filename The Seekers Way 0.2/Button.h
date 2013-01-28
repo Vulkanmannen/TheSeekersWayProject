@@ -8,7 +8,7 @@ class Button: public Block
 {
 public:
 
-	Button(sf::Vector2f &position, int id);
+	Button(sf::Vector2f &position,  Block* target);
 	~Button();
 	Block* mBlock;
 

@@ -1,6 +1,5 @@
 #include "Fenrir.h"
 #include "Animation.h"
-#include "Entity.h"
 #include "ImageManager.h"
 
 const static float HEIGHT = 64;
