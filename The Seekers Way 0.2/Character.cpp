@@ -14,7 +14,9 @@ Character::Character():
 	mMaxRun(6.0),
 	mMaxJump(14.5),
 	mJumpTime(1.0),
-	mJumping(0.0)
+	mJumping(0.0),
+	mFalling(false),
+	mIsJumping(false)
 {
 	mAlive = true;
 	mBaseKind = CHARACTER;
@@ -33,19 +35,25 @@ void Character::move()
 // Knapptryck tas in och movementspeed ändras
 void Character::walk()
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && mMovementSpeed.x > -mMaxRun && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		mMovementSpeed.x -= mRun;
-		if(mStatus == IDLE || mStatus == LANDING || mStatus == WALK)
+		if(mMovementSpeed.x > -mMaxRun)
+		{
+			mMovementSpeed.x -= mRun;
+		}
+		if(mStatus == IDLE || mStatus == WALK)
 		{
 			mStatus = WALK;
 			mDirLeft = true;
 		}
 	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && mMovementSpeed.x < mMaxRun && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		mMovementSpeed.x += mRun;
-		if(mStatus == IDLE || mStatus == LANDING || mStatus == WALK)
+		if(mMovementSpeed.x < mMaxRun)
+		{
+			mMovementSpeed.x += mRun;
+		}
+		if(mStatus == IDLE || mStatus == WALK)
 		{
 			mStatus = WALK;
 			mDirLeft = false;
@@ -64,22 +72,29 @@ void Character::walk()
 // aktiverar så att man kan hoppa
 void Character::jump()
 {
-	if(mStatus == JUMPING)
+	if(mStatus == JUMP)
+	{
+		mStatus = JUMPING;
+	}
+
+	if(mIsJumping)
 	{
 		mMovementSpeed.y += mAcceleration; // om mStatus är JUMPING trycks char ner med värdet på mAcceleration
 		mJumping += mJumpTime;
 		if(mJumping >= mMaxJump)
 		{
 			mJumping = 0;
-			mStatus = FALLING;
+			mFalling = true;
+			mIsJumping = false;
 		}
 	}
-	else if(mStatus != FALLING)
+	else if(!mFalling)
 	{
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mMovementSpeed.y < mMaxJump)
 		{
 			mMovementSpeed.y -= mJump;
-			mStatus = JUMPING;
+			mStatus = JUMP;
+			mIsJumping = true;
 		}
 	}
 }
@@ -87,7 +102,7 @@ void Character::jump()
 
 void Character::falling()
 {
-	if(mStatus == FALLING)
+	if(mFalling)
 	{
 		mMovementSpeed.y += mDecrease;
 	}
@@ -95,9 +110,10 @@ void Character::falling()
 
 void Character::onblock()
 {
-	if(mStatus == FALLING)
+	if(mFalling)
 	{
-		mStatus = LANDING;
+		mFalling = false;
+		mStatus = IDLE;
 		mMovementSpeed.y = 0;
 	}
 }

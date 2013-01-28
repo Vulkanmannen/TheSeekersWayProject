@@ -14,7 +14,6 @@ Fenrir::Fenrir(sf::Vector2f &position):
 		mPosition = position;
 	}
 
-
 Fenrir::~Fenrir()
 	{}
 
@@ -24,7 +23,6 @@ void Fenrir::update()
 	walk();
 	jump();
 	falling();
-
 }
 
 void Fenrir::render()
