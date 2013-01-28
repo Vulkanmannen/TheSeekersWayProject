@@ -21,23 +21,14 @@ Door::~Door()
 
 }
 
-void Door::open()
-{
-	mBaseKind = OBJECT;
-}
-void Door::close()
-{
-	mBaseKind = BLOCK;
-}
-
 void Door::Activate()
 {
-	open();
+	mBaseKind = OBJECT;
 }
 
 void Door::DisActivate()
 {
-	close();
+	mBaseKind = BLOCK;
 }
 
 void Door::update()

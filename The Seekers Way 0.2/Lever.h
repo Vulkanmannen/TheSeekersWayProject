@@ -12,7 +12,8 @@ public:
 	~Lever();
 	Block* mBlock;
 
-	void LeverDraw();
+	void Activate();
+
 	bool mDrawn;
 };
 

@@ -23,7 +23,7 @@ Lever::~Lever()
 
 }
 
-void Lever::LeverDraw()
+void Lever::Activate()
 {
 	mDrawn = !mDrawn;
 
