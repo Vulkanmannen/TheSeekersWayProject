@@ -25,7 +25,6 @@ void Fenrir::update()
 	walk();
 	jump();
 	falling();
-
 }
 
 void Fenrir::render()

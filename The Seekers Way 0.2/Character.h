@@ -21,11 +21,10 @@ protected:
 		WALK,
 		JUMP,
 		JUMPING,
-		FALLING,
-		LANDING,
 		ACTION1,
 		ACTION2
 	};
+
 
 	Status mStatus;
 	bool mDirLeft;
@@ -46,6 +45,9 @@ protected:
 	float mJump;
 	float mRun;
 	float mJumping; 
+
+	bool mFalling;
+	bool mIsJumping;
 };
 
 #endif
