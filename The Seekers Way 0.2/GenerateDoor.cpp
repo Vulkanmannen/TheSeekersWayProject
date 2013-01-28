@@ -29,7 +29,7 @@ void GenerateDoor::GenerateDoors()
 		{
 			float doorPosX, doorPosY, leverPosX, leverPosY;
 			TiXmlElement* element = root->FirstChildElement("doorPosition");
-			while(element)
+			if(element)
 			{
 				TiXmlAttribute* positionAttribute = element->FirstAttribute();
 				while(positionAttribute)
@@ -43,10 +43,11 @@ void GenerateDoor::GenerateDoors()
 					{
 						doorPosY = static_cast<float>(positionAttribute->IntValue());
 					}
+					positionAttribute = positionAttribute->Next();
 				}
 			}
 			element = root->FirstChildElement("leverPosition");
-			while(element)
+			if(element)
 			{
 				TiXmlAttribute* positionAttribute = element->FirstAttribute();
 				while(positionAttribute)
@@ -60,12 +61,14 @@ void GenerateDoor::GenerateDoors()
 					{
 						leverPosY = static_cast<float>(positionAttribute->IntValue());
 					}
+					positionAttribute = positionAttribute->Next();
 				}
 			}
 			EntityManager* manager = EntityManager::getInstance();
 			manager->addEntity(new Door(sf::Vector2f(doorPosX, doorPosY)));
 			//manager->addEntity(new Lever(sf::Vector2f(leverPosX, leverPosY)));
 		}
+		root = root->NextSiblingElement("Door");
 	}
 }
 

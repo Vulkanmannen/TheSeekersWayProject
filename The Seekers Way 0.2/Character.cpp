@@ -41,11 +41,11 @@ void Character::walk()
 		{
 			mMovementSpeed.x -= mRun;
 		}
-		if(mStatus == IDLE || mStatus == WALK)
+		if(mStatus == IDLE)
 		{
 			mStatus = WALK;
-			mDirLeft = true;
 		}
+		mDirLeft = true;
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
@@ -53,11 +53,13 @@ void Character::walk()
 		{
 			mMovementSpeed.x += mRun;
 		}
-		if(mStatus == IDLE || mStatus == WALK)
+		if(mStatus == IDLE)
 		{
 			mStatus = WALK;
-			mDirLeft = false;
 		}
+
+		mDirLeft = false;
+
 	}
 	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
@@ -72,10 +74,10 @@ void Character::walk()
 // aktiverar så att man kan hoppa
 void Character::jump()
 {
-	//if(mStatus == JUMP)
-	//{
-	//	mStatus = JUMPING;
-	//}
+	if(mStatus == JUMP)
+	{
+		mStatus = JUMPING;
+	}
 
 	if(mIsJumping)
 	{
@@ -115,5 +117,13 @@ void Character::onblock()
 		mFalling = false;
 		mStatus = IDLE;
 		mMovementSpeed.y = 0;
+	}
+}
+
+void Character::fall()
+{
+	if(!mIsJumping)
+	{
+		mFalling = true;
 	}
 }

@@ -35,6 +35,7 @@ protected:
 	void jump();
 	void walk();
 	void falling();
+	void fall();
 
 	float mJumpTime;
 	float mMaxRun;
