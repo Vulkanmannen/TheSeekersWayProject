@@ -3,6 +3,8 @@
 #include "NormalBlock.h"
 #include "Kiba.h"
 #include "Fenrir.h"
+#include "GenerateDoor.h"
+
 
 MapGenerator::MapGenerator()
 	{}
@@ -33,4 +35,6 @@ void MapGenerator::generateMap(std::string imageName)
 			}
 		}
 	}
+	GenerateDoor::loadDocument("config.xml");
+	GenerateDoor::GenerateDoors();
 }

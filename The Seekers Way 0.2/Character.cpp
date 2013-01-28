@@ -72,10 +72,10 @@ void Character::walk()
 // aktiverar så att man kan hoppa
 void Character::jump()
 {
-	if(mStatus == JUMP)
-	{
-		mStatus = JUMPING;
-	}
+	//if(mStatus == JUMP)
+	//{
+	//	mStatus = JUMPING;
+	//}
 
 	if(mIsJumping)
 	{
@@ -88,12 +88,12 @@ void Character::jump()
 			mIsJumping = false;
 		}
 	}
-	else if(!mFalling)
+	else if(!mFalling && !mIsJumping)
 	{
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mMovementSpeed.y < mMaxJump)
 		{
 			mMovementSpeed.y -= mJump;
-			mStatus = JUMP;
+			mStatus = JUMPING;
 			mIsJumping = true;
 		}
 	}

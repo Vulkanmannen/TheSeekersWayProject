@@ -2,8 +2,8 @@
 
   <Body>
 	<Door name="DoorsLevel1">
-		<a doorPositionX="32" doorPositionY="32"
-		<a leverPositionX="96" leverPositionY="32">		
+		<doorPosition X="64" Y="64"/>
+		<leverPosition X="96" Y="32"/>		
 	</Door>
 
   </Body>

@@ -10,9 +10,9 @@ class Character: public Entity
 
 public:
 	Character();
+	~Character();
 		void onblock();
 
-	~Character();
 protected:
 
 	enum Status
