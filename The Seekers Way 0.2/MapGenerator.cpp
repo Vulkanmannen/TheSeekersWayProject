@@ -39,6 +39,6 @@ void MapGenerator::generateMap(std::string imageName)
 			}
 		}
 	}
-	GenerateDoor::loadDocument("config.xml");
-	GenerateDoor::GenerateDoors();
+	//GenerateDoor::loadDocument("config.xml");
+	//GenerateDoor::GenerateDoors();
 }
