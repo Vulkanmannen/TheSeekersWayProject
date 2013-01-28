@@ -3,6 +3,7 @@
 #include "NormalBlock.h"
 #include "Kiba.h"
 #include "Fenrir.h"
+#include "GenerateDoor.h"
 #include "Sheeka.h"
 
 MapGenerator::MapGenerator()
@@ -14,6 +15,9 @@ MapGenerator::~MapGenerator()
 
 void MapGenerator::generateMap(std::string imageName)
 {
+	GenerateDoor::loadDocument("config.xml");
+	GenerateDoor::GenerateDoors();
+
 	sf::Image image;
 	image.loadFromFile(imageName);
 

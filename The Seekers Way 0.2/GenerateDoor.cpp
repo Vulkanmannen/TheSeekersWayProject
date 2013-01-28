@@ -15,9 +15,10 @@ GenerateDoor::GenerateDoor()
 GenerateDoor::~GenerateDoor()
 	{}
 
-void GenerateDoors(TiXmlDocument &document)
+void GenerateDoor::GenerateDoors()
 {
-	TiXmlElement* root = document.FirstChildElement("Body");
+
+	TiXmlElement* root = sDocument.FirstChildElement("Body");
 	root = root->FirstChildElement("Door");
 	
 	while(root)
@@ -42,6 +43,7 @@ void GenerateDoors(TiXmlDocument &document)
 					{
 						doorPosY = static_cast<float>(positionAttribute->IntValue());
 					}
+					positionAttribute = positionAttribute->Next();
 				}
 			}
 			element = root->FirstChildElement("leverPosition");
@@ -59,16 +61,18 @@ void GenerateDoors(TiXmlDocument &document)
 					{
 						leverPosY = static_cast<float>(positionAttribute->IntValue());
 					}
+					positionAttribute = positionAttribute->Next();
 				}
 			}
 			EntityManager* manager = EntityManager::getInstance();
-			//manager->addEntity(new Door(sf::Vector2f(doorPosX, doorPosY)));
+			manager->addEntity(new Door(sf::Vector2f(doorPosX, doorPosY)));
 			//manager->addEntity(new Lever(sf::Vector2f(leverPosX, leverPosY)));
 		}
+		root = root->NextSiblingElement("Door");
 	}
 }
 
-void GenerateDoor::loadDocument(std::string &s)
+void GenerateDoor::loadDocument(std::string s)
 {
-
+	sDocument.LoadFile(s.c_str());
 }
