@@ -18,7 +18,7 @@ int main()
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
 	
-	std::string map1("map1.png");
+	std::string map1("map2.png");
 	MapGenerator::generateMap(map1);
 	EntityManager::getInstance()->addEntity(new Door(sf::Vector2f(5 *64,4 *64)));
 	EntityManager::getInstance()->addEntity(new Door(sf::Vector2f(4 *64 ,4 *64)));

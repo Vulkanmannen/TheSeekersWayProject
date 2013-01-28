@@ -1,6 +1,7 @@
 #ifndef INCLUDED_SHEEKA
 #define INCLUDED_SHEEKA
 
+#include "SFML\System.hpp"
 #include "Character.h"
 #include "SFML\Graphics.hpp"
 
@@ -17,12 +18,17 @@ public:
 
 private:
 	Animation mAnimation;
+
+	sf::Clock mClock;
+
 	void SheekaDash();
 	
 	int mDashCount;
-	float mDash;
+	float mDashTimer;
 	float mDashAcc;
 	float mMaxDashDist;
+
+	bool mDash = false;
 };
 
 #endif

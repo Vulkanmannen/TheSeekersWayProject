@@ -7,9 +7,9 @@ const static float HEIGHT	= 64;
 const static float WIDTH	= 128;
 
 Sheeka::Sheeka(sf::Vector2f &position):
-	mDash(0.0),
+	mDashTimer(0.0),
 	mDashAcc(5),
-	mMaxDashDist(20),
+	mMaxDashDist(1),
 	mDashCount(1),
 	mAnimation("Sheekabebad.png", 60, 7, 128, 128)
 	{
@@ -46,13 +46,20 @@ sf::Sprite Sheeka::getSprite()
 
 void Sheeka::SheekaDash()
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !mDash)
+	{	
+		mClock.restart();
+		mDash = true;
+	}
+
+	if(mDirLeft && mClock.getElapsedTime().asMilliseconds() < 5 && mDash)
+	{
+		mMovementSpeed.x -= mDashAcc;
+		mDash = false;
+	}
+	else if(!mDirLeft && mClock.getElapsedTime().asMilliseconds() < 5 && mDash)
 	{
 		mMovementSpeed.x += mDashAcc;
-		mDashAcc += mDashCount;
-		if(mDashCount = mMaxDashDist)
-		{
-			mDashCount = 0;
-		}
+		mDash = false;
 	}
 }
