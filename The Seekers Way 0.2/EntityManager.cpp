@@ -155,7 +155,7 @@ void EntityManager::stopEntity(Character *c, Entity *e)
 			{
 				c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y - (yRadius)));
 				c->onblock();
-				if(e->getEntityKind()==Entity::BUTTON)
+				if(e->getEntityKind()==Entity::BUTTON || e->getEntityKind()==Entity::LEVER)
 				{
 					Block * tempblock;
 					tempblock = dynamic_cast<Block*> (e);

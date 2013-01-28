@@ -2,7 +2,7 @@
 #define INCLUDED_Button
 
 #include "Block.h"
-#include "Door.h"
+#include "Animation.h"
 
 class Button: public Block
 {

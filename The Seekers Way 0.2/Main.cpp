@@ -22,10 +22,12 @@ int main()
 	MapGenerator::generateMap(map1);
 
 	Block *Door1 = new Door(sf::Vector2f(5 *64,4 *64));
+	Block *Door2 = new Door(sf::Vector2f(4 *64,4 *64));
 	EntityManager::getInstance()->addEntity(Door1);
-	EntityManager::getInstance()->addEntity(new Door(sf::Vector2f(4 *64 ,4 *64)));
+	EntityManager::getInstance()->addEntity(Door2);
 	EntityManager::getInstance()->addEntity(new Button(sf::Vector2f(2*64,3 *64), Door1));
-	//EntityManager::getInstance()->addEntity(new Lever(sf::Vector2f(0,0)));
+	EntityManager::getInstance()->addEntity(new Lever(sf::Vector2f(3*64,3 *64), Door2));
+	//kolla entitymanagaer i colision
 
     while (window.isOpen())
     {

@@ -44,14 +44,11 @@ protected:
 	float mGravity;
 	float mJump;
 	float mRun;
-<<<<<<< HEAD
 	float mJumping; 
 
 	bool mFalling;
 	bool mIsJumping;
-=======
-	float mJumping;
->>>>>>> Ameroz
+
 };
 
 #endif
