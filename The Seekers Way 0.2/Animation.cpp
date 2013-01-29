@@ -58,6 +58,11 @@ void Animation::update(int rowOfSprite)
 				mEndOfAnimation = true;
 				mCurrentFrame = 0;
 			}
+			else if(color == sf::Color(0, 0, 255, 255))
+			{
+				mEndOfAnimation = true;
+				--mCurrentFrame;
+			}
 			else
 			{
 				mEndOfAnimation = false;

@@ -9,18 +9,9 @@ const static float WIDTH	= 128;
 Sheeka::Sheeka(sf::Vector2f &position):
 	mDashPressed(false),
 	mDash(false),
-<<<<<<< HEAD
 	mDashTimer(15),
 	mDashAcc(20),
-	mMaxDashDist(0),
-	mDashCount(0),
-	mAnimation("Sheekabebad.png", 60, 7, 128, 128)
-=======
-	mDashTimer(0.0),
-	mDashAcc(5),
-	mMaxDashDist(1),
-	mDashCount(1)
->>>>>>> 122f0e386436bec4658342c37eb4b612875357fc
+	mDashCount(0)
 	{
 		mAnimation.init("Sheekabebad.png", 60, 7);
 		mHeight = HEIGHT;

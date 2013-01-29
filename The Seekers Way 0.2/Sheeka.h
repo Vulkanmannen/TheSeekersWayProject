@@ -24,7 +24,6 @@ private:
 	int mDashCount;
 	int mDashTimer;
 	float mDashAcc;
-	float mMaxDashDist;
 
 	bool mDash;
 	bool mDashPressed;
