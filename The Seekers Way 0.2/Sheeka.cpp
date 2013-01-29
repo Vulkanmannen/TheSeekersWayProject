@@ -26,14 +26,14 @@ Sheeka::~Sheeka()
 
 void Sheeka::update()
 {
-	if(SheekaDash)
-	{
+	//if(SheekaDash)
+	//{
 	move();
 	walk();
 	jump();
 	falling();
 	SheekaDash();
-	}
+	//}
 }
 
 void Sheeka::render()
@@ -69,4 +69,5 @@ void Sheeka::SheekaDash()
 	{
 		mMovementSpeed.x += mDashAcc;
 		mDash = false;
+	}
 }
