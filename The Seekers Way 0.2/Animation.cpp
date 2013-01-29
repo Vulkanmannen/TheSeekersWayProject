@@ -16,11 +16,27 @@ Animation::Animation(std::string fileName, int timePerFrame, int numberOfFrames,
 		mSprite.setTextureRect(mTextureRectangle); // ger spriten rätt storlek
 	}
 
-Animation::Animation()
+Animation::Animation(int height, int width):
+	mTextureRectangle(0, 0, width, height)
 	{}
 
 Animation::~Animation()
 	{}
+
+void Animation::init(std::string fileName, int timePerFrame, int numberOfFrames)
+{
+	mTimePerFrame		= timePerFrame;
+	mNumberOfFrames		= numberOfFrames;
+	mCurrentFrame		= 0;
+	mEndOfAnimation		= false;
+	mLeftDir			= false;
+	mLastRow			= 0;
+	
+	mImage = ImageManager::getImage(fileName); // hämtar textur
+	mTexture.loadFromImage(*mImage);
+	mSprite.setTexture(mTexture);
+	mSprite.setTextureRect(mTextureRectangle); // ger spriten rätt storlek
+}
 
 // uppdaterar spriteframen
 // kollar om det är dags o byta frame
@@ -50,6 +66,7 @@ void Animation::update(int rowOfSprite)
 		else
 		{
 			mCurrentFrame = 0;
+			mEndOfAnimation = false;
 		}
 
 		mTextureRectangle.left = mTextureRectangle.width * mCurrentFrame; // sätter rutan rätt
@@ -83,3 +100,5 @@ void Animation::setAnimationToBegining()
 {
 	mCurrentFrame = 0;
 }
+
+

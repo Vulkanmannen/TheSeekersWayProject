@@ -73,6 +73,9 @@
     <ClCompile Include="Sheeka.cpp">
       <Filter>Entities\Character</Filter>
     </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -137,6 +140,9 @@
     </ClInclude>
     <ClInclude Include="Sheeka.h">
       <Filter>Entities\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Entities\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
