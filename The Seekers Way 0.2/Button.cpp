@@ -1,10 +1,12 @@
 #include "Button.h"
+#include "ImageManager.h"
 
 static const float WIDTH = 64;
 static const float HEIGHT = 64;
 
 Button::Button(sf::Vector2f &position, Block* target):
-	mBlock(target)
+	mBlock(target),
+	mAnimation("Button.png", 60, 1, HEIGHT, WIDTH)
 {
 	isitpressed = false;
 	mPosition = position;
@@ -12,11 +14,7 @@ Button::Button(sf::Vector2f &position, Block* target):
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = BUTTON;
-
-	mTexture.loadFromFile("Button.png");
-	mSprite.setTexture(mTexture);
-	mSprite.setPosition(position);
-	mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
 }
 
 Button::~Button()
@@ -24,7 +22,7 @@ Button::~Button()
 
 }
 
-void Button::ButtonPressed()
+void Button::Activate()
 {
 	if(isitpressed == false)
 	{
@@ -33,7 +31,7 @@ void Button::ButtonPressed()
 	isitpressed = true;
 }
 
-void Button::ButtonRelease()
+void Button::DisActivate()
 {
 	if(isitpressed == false)
 	{
@@ -42,3 +40,15 @@ void Button::ButtonRelease()
 	isitpressed = false;
 }
 
+void Button::update()
+{
+	DisActivate();
+}
+
+void Button::render()
+{
+	
+	mAnimation.update(isitpressed);
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
+	ImageManager::render(&mAnimation.getSprite());
+}

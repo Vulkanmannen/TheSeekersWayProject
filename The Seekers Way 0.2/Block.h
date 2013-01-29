@@ -16,9 +16,6 @@ public:
 	virtual void DisActivate();
 
 	sf::Sprite getSprite();
-
-protected:
-	sf::Sprite mSprite;
 };
 
 #endif

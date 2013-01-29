@@ -2,18 +2,25 @@
 #define INCLUDED_Lever
 
 #include "Block.h"
-#include "Door.h"
+#include "Animation.h"
 
 class Lever: public Block
 {
 public:
 
-	Lever(sf::Vector2f &position, int id);
+	Lever(sf::Vector2f &position, Block* target);
 	~Lever();
 	Block* mBlock;
 
-	void LeverDraw();
+	void render();
+	void update();
+	sf::Sprite getSprite();
+
+	void Activate();
+
 	bool mDrawn;
+private:
+	Animation mAnimation;
 };
 
 #endif

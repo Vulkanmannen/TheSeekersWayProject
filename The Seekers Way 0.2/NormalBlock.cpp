@@ -1,6 +1,5 @@
 #include "NormalBlock.h"
 #include "ImageManager.h"
-#include "EntityManager.h"
 
 static const float WIDTH = 64;
 static const float HEIGHT = 64;

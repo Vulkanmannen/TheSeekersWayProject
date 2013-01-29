@@ -11,7 +11,6 @@ public:
 	NormalBlock(sf::Vector2f Position);
 	~NormalBlock();
 	void update();
-private:
 };
 
 #endif

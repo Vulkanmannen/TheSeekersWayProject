@@ -3,10 +3,13 @@
 #include "Character.h"
 #include <cmath>
 #include "Character.h"
+#include "Door.h"
+
 
 EntityManager* EntityManager::sInstance = 0;
 
-EntityManager::EntityManager()
+EntityManager::EntityManager():
+	mPrimaryCharacter(0)
 	{}
 
 
@@ -32,10 +35,7 @@ void EntityManager::update()
 		mEntities[i]->update();
 	}
 
-	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
-	{
-		mCharacters[i]->update();
-	}
+	mCharacters[mPrimaryCharacter]->update();
 
 	checkCollisions();
 }
@@ -141,7 +141,7 @@ void EntityManager::stopEntity(Character *c, Entity *e)
 	}
 	else
 	{
-		if(yDif > 0) // kollar om karaktären är under ellr över
+		if(yDif > 0) // kollar om karaktären är under eller över
 		{
 			if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
 			{
@@ -154,8 +154,34 @@ void EntityManager::stopEntity(Character *c, Entity *e)
 			{
 				c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y - (yRadius)));
 				c->onblock();
+				if(e->getEntityKind()==Entity::BUTTON || e->getEntityKind()==Entity::LEVER)
+				{
+					Block * tempblock;
+					tempblock = dynamic_cast<Block*> (e);
+					tempblock->Activate();
+				}
 			}
 
 		}
+	}
+}
+
+void EntityManager::primaryCharacter()
+{
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+	{
+		mPrimaryCharacter = 0;
+	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+	{
+		mPrimaryCharacter = 1;
+	}
+}
+
+sf::Vector2f EntityManager::getCharacterPos()const
+{
+	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
+	{
+		return mCharacters[mPrimaryCharacter]->getPosition();
 	}
 }

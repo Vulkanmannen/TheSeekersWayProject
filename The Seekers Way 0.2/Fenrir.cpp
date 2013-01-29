@@ -28,9 +28,9 @@ void Fenrir::update()
 
 void Fenrir::render()
 {
-	ImageManager::render(&getSprite());
 	mAnimation.update(mStatus * 2 + mDirLeft);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -96));
+	ImageManager::render(&getSprite());
 }
 
 sf::Sprite Fenrir::getSprite()

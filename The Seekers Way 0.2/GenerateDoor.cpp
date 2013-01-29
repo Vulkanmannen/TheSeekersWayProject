@@ -65,8 +65,9 @@ void GenerateDoor::GenerateDoors()
 				}
 			}
 			EntityManager* manager = EntityManager::getInstance();
-			manager->addEntity(new Door(sf::Vector2f(doorPosX, doorPosY)));
-			//manager->addEntity(new Lever(sf::Vector2f(leverPosX, leverPosY)));
+			Door* door = new Door(sf::Vector2f(doorPosX, doorPosY));
+			manager->addEntity(door);
+			manager->addEntity(new Button(sf::Vector2f(leverPosX, leverPosY), door));
 		}
 		root = root->NextSiblingElement("Door");
 	}

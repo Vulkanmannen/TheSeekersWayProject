@@ -2,19 +2,25 @@
 #define INCLUDED_Button
 
 #include "Block.h"
-#include "Door.h"
+#include "Animation.h"
 
 class Button: public Block
 {
 public:
 
-	Button(sf::Vector2f &position,  Block* target);
+	Button(sf::Vector2f &position, Block* target);
 	~Button();
 	Block* mBlock;
 
-	void ButtonPressed();
-	void ButtonRelease();
+	void render();
+	void update();
+
+	void Activate();
+	void DisActivate();
+
 	bool isitpressed;
+private:
+	Animation mAnimation;
 };
 
 #endif

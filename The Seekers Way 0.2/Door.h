@@ -9,14 +9,13 @@ public:
 	Door(sf::Vector2f &position);
 	~Door();
 
-
+	void render();	
 	void update();
 	sf::Sprite getSprite();
 
-	void open();
-	void close();
 	void Activate();
 	void DisActivate();
+	
 private:
 	Animation mAnimation;
 };

@@ -1,9 +1,12 @@
 #include "Lever.h"
+#include "ImageManager.h"
 
 static const float WIDTH = 64;
 static const float HEIGHT = 64;
 
-Lever::Lever(sf::Vector2f &position, int id)
+Lever::Lever(sf::Vector2f &position, Block* target):
+	mBlock(target),
+	mAnimation("Lever.png", 60, 1, HEIGHT, WIDTH)
 {
 	mDrawn = false;
 	mPosition = position;
@@ -12,10 +15,7 @@ Lever::Lever(sf::Vector2f &position, int id)
 	mWidth = WIDTH;
 	mEntityKind = LEVER;
 
-	mTexture.loadFromFile("Lever.png");
-	mSprite.setTexture(mTexture);
-	mSprite.setPosition(position);
-	mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
 }
 
 Lever::~Lever()
@@ -23,17 +23,29 @@ Lever::~Lever()
 
 }
 
-void Lever::LeverDraw()
+void Lever::Activate()
 {
-	mDrawn = !mDrawn;
-
-	if(mDrawn == true)	
+	if(mDrawn == false)
 	{
 		mBlock->Activate();
 	}
+	mDrawn = true;
+}
 
-	else		
-	{
-		mBlock->DisActivate();
-	}
+
+void Lever::update()
+{
+}
+
+void Lever::render()
+{
+	
+	mAnimation.update(mDrawn);
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
+	ImageManager::render(&getSprite());
+}
+
+sf::Sprite Lever::getSprite()
+{
+	return mAnimation.getSprite();
 }
