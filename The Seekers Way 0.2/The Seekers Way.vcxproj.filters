@@ -70,13 +70,8 @@
     <ClCompile Include="Arrow.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="Object.cpp">
-      <Filter>Entities\Object</Filter>
-=======
     <ClCompile Include="Sheeka.cpp">
       <Filter>Entities\Character</Filter>
->>>>>>> origin/master
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,13 +135,8 @@
     <ClInclude Include="Arrow.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="Object.h">
-      <Filter>Entities\Object</Filter>
-=======
     <ClInclude Include="Sheeka.h">
       <Filter>Entities\Character</Filter>
->>>>>>> origin/master
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
