@@ -7,6 +7,7 @@ Animation::Animation(std::string fileName, int timePerFrame, int numberOfFrames,
 	mCurrentFrame(0),
 	mEndOfAnimation(false),
 	mLeftDir(false),
+	mLastRow(0),
 	mTextureRectangle(0, 0, width, height)
 	{
 		mImage = ImageManager::getImage(fileName); // hämtar textur
@@ -30,24 +31,32 @@ void Animation::update(int rowOfSprite)
 	{
 		mFrameTimer.restart();
 
-		++mCurrentFrame;
-
-		sf::Color color = mImage->getPixel(mTextureRectangle.width * mCurrentFrame, mTextureRectangle.height * rowOfSprite); // hämtar färgen hoss pixeln i det översta hörnet på framen 
-
-		if(mCurrentFrame >= mNumberOfFrames || color == sf::Color(0, 0, 0, 255)) // om färgen e svart så är animationen slut
+		if(mLastRow == rowOfSprite)
 		{
-			mEndOfAnimation = true;
-			mCurrentFrame = 0;
+			++mCurrentFrame;
+
+			sf::Color color = mImage->getPixel(mTextureRectangle.width * mCurrentFrame, mTextureRectangle.height * rowOfSprite); // hämtar färgen hoss pixeln i det översta hörnet på framen 
+
+			if(mCurrentFrame >= mNumberOfFrames || color == sf::Color(0, 0, 0, 255)) // om färgen e svart så är animationen slut
+			{
+				mEndOfAnimation = true;
+				mCurrentFrame = 0;
+			}
+			else
+			{
+				mEndOfAnimation = false;
+			}
 		}
 		else
 		{
-			mEndOfAnimation = false;
+			mCurrentFrame = 0;
 		}
 
 		mTextureRectangle.left = mTextureRectangle.width * mCurrentFrame; // sätter rutan rätt
 		mTextureRectangle.top = mTextureRectangle.height * rowOfSprite;
-	
 		mSprite.setTextureRect(mTextureRectangle);
+
+		mLastRow = rowOfSprite;
 	}
 }
 

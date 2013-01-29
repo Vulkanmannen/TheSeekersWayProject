@@ -10,9 +10,9 @@ public:
 	GenerateDoor();
 	~GenerateDoor();
 
-	static void GenerateDoors(TiXmlDocument &document);
+	static void GenerateDoors();
 
-	static void loadDocument(std::string &s);
+	static void loadDocument(std::string s);
 private:
 	static TiXmlDocument sDocument;
 };

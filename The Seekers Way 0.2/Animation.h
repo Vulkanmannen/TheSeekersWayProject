@@ -22,6 +22,7 @@ private:
 	int mNumberOfFrames;
 	int mTimePerFrame;
 	int mCurrentFrame;
+	int mLastRow;
 	bool mEndOfAnimation;
 	bool mLeftDir;
 	sf::Clock mFrameTimer;
