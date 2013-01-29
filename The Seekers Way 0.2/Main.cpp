@@ -23,8 +23,8 @@ int main()
 	sf::View view;
 	view.setSize(1024, 720);
 
-	//std::string map1("map1.PNG");
-	//MapGenerator::generateMap(map1);
+	std::string map1("map1.PNG");
+	MapGenerator::generateMap(map1);
 
 	//Block *Door1 = new Door(sf::Vector2f(5 *64,4 *64));
 	//Block *Door2 = new Door(sf::Vector2f(4 *64,4 *64));
