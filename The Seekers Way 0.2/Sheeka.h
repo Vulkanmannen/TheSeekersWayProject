@@ -17,8 +17,6 @@ public:
 	sf::Sprite getSprite();
 
 private:
-	Animation mAnimation;
-
 	sf::Clock mClock;
 
 	void SheekaDash();

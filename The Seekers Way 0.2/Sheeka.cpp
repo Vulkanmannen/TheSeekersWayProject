@@ -12,9 +12,9 @@ Sheeka::Sheeka(sf::Vector2f &position):
 	mDashTimer(0.0),
 	mDashAcc(5),
 	mMaxDashDist(1),
-	mDashCount(1),
-	mAnimation("Sheekabebad.png", 60, 7, 128, 128)
+	mDashCount(1)
 	{
+		mAnimation.init("Sheekabebad.png", 60, 7);
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
 		mEntityKind = SHEEKA;
