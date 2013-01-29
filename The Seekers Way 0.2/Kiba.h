@@ -14,7 +14,7 @@ public:
 	sf::Sprite getSprite();
 
 private:
-	Animation mAnimation;
+
 };
 
 #endif

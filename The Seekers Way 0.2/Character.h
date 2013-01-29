@@ -11,7 +11,7 @@ class Character: public Entity
 public:
 	Character();
 	~Character();
-		void onblock();
+	void onblock();
 
 protected:
 
@@ -29,6 +29,8 @@ protected:
 	bool mDirLeft;
 
 	sf::Vector2f mMovementSpeed;
+
+	Animation mAnimation;
 
 	void move();
 	void jump();
