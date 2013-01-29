@@ -19,15 +19,7 @@ int main()
 	ImageManager::setWindow(&window);
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
-	
-<<<<<<< HEAD
-	std::string map1("Map2.png");
-	MapGenerator::generateMap(map1);
-	//EntityManager::getInstance()->addEntity(new Door(sf::Vector2f(5 *64,4 *64)));
-	//EntityManager::getInstance()->addEntity(new Door(sf::Vector2f(4 *64 ,4 *64)));
-	//EntityManager::getInstance()->addEntity(new Button(sf::Vector2f(0,0)));
-	//EntityManager::getInstance()->addEntity(new Lever(sf::Vector2f(0,0)));
-=======
+
 	sf::View view;
 	view.setSize(1024, 720);
 
@@ -42,7 +34,6 @@ int main()
 	//EntityManager::getInstance()->addEntity(new Lever(sf::Vector2f(3*64,3 *64), Door2));
 	//kolla entitymanagaer i colision
 	Sounds::getInstance()->Loop("Levelkoncept 2.wav");
->>>>>>> 19b9601d2dbc174ffc90bc278e2702e5bbc3f5cb
 
     while (window.isOpen())
     {
