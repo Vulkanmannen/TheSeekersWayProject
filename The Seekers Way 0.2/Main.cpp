@@ -19,7 +19,7 @@ int main()
 	ImageManager::setWindow(&window);
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
-	
+
 	sf::View view;
 	view.setSize(1024, 720);
 
