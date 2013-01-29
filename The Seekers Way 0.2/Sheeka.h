@@ -18,13 +18,13 @@ public:
 
 private:
 	Animation mAnimation;
-	
+
 	sf::Clock mClock;
 
 	void SheekaDash();
 	
 	int mDashCount;
-	float mDashTimer;
+	int mDashTimer;
 	float mDashAcc;
 	float mMaxDashDist;
 
