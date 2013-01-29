@@ -7,7 +7,7 @@
 class ShottingTrap: public Block
 {
 public:
-	ShottingTrap(sf::Vector2f &position);
+	ShottingTrap(sf::Vector2f &position,bool dirleft = true);
 	~ShottingTrap();
 
 	void update();
@@ -15,6 +15,8 @@ public:
 
 	void Activate();
 	void DisActivate();
+	bool mDirLeft;
+	bool Shotting;
 };
 
 #endif
