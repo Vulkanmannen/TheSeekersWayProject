@@ -9,12 +9,20 @@ const static float WIDTH	= 128;
 Sheeka::Sheeka(sf::Vector2f &position):
 	mDashPressed(false),
 	mDash(false),
+<<<<<<< HEAD
 	mDashTimer(15),
 	mDashAcc(20),
 	mMaxDashDist(0),
 	mDashCount(0),
 	mAnimation("Sheekabebad.png", 60, 7, 128, 128)
+=======
+	mDashTimer(0.0),
+	mDashAcc(5),
+	mMaxDashDist(1),
+	mDashCount(1)
+>>>>>>> origin/master
 	{
+		mAnimation.init("Sheekabebad.png", 60, 7);
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
 		mEntityKind = SHEEKA;
@@ -26,6 +34,7 @@ Sheeka::~Sheeka()
 
 void Sheeka::update()
 {
+<<<<<<< HEAD
 	move();
 
 	if(mDash == false)
@@ -36,6 +45,16 @@ void Sheeka::update()
 	}
 
 	SheekaDash();
+=======
+	//if(SheekaDash)
+	//{
+	move();
+	walk();
+	jump();
+	falling();
+	SheekaDash();
+	//}
+>>>>>>> origin/master
 }
 
 void Sheeka::render()
@@ -86,4 +105,12 @@ void Sheeka::SheekaDash()
 			mGravity = 5;
 		}
 	}
+<<<<<<< HEAD
+=======
+	else if(!mDirLeft && mClock.getElapsedTime().asMilliseconds() < 5 && mDash)
+	{
+		mMovementSpeed.x += mDashAcc;
+		mDash = false;
+	}
+>>>>>>> origin/master
 }

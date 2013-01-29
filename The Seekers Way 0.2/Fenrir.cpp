@@ -5,9 +5,10 @@
 const static float HEIGHT = 64;
 const static float WIDTH = 128;
 
-Fenrir::Fenrir(sf::Vector2f &position):
-	mAnimation("fenrir.png", 60, 7, 128, 128)
+Fenrir::Fenrir(sf::Vector2f &position)
 	{
+		mAnimation.init("fenrir.png", 60, 7);
+
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
 		mEntityKind = FENRIR;

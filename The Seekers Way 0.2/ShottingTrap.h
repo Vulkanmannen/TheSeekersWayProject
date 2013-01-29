@@ -3,20 +3,24 @@
 #include "Animation.h"
 #include "Block.h"
 #include "EntityManager.h"
+#include "Arrow.h"
 
 class ShottingTrap: public Block
 {
 public:
-	ShottingTrap(sf::Vector2f &position,bool dirleft = true);
+	ShottingTrap(sf::Vector2f &position, bool shot = true, bool dirleft = true);
 	~ShottingTrap();
 
 	void update();
-	sf::Sprite getSprite();
 
 	void Activate();
 	void DisActivate();
+
+private:
+	sf::Clock mShottingTimer;
+
 	bool mDirLeft;
-	bool Shotting;
+	bool mShotting;
 };
 
 #endif

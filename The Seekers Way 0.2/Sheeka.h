@@ -17,8 +17,11 @@ public:
 	sf::Sprite getSprite();
 
 private:
+<<<<<<< HEAD
 	Animation mAnimation;
 
+=======
+>>>>>>> origin/master
 	sf::Clock mClock;
 
 	void SheekaDash();
