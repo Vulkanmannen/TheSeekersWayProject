@@ -1,4 +1,5 @@
 #include "Door.h"
+#include "ImageManager.h"
 
 static const float WIDTH = 64;
 static const float HEIGHT = 128;
@@ -36,7 +37,8 @@ void Door::update()
 
 }
 
-sf::Sprite Door::getSprite()
+void Door::render()
 {
-	return mAnimation.getSprite();
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
+	ImageManager::render(&mAnimation.getSprite());
 }

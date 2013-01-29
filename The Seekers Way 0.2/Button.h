@@ -14,7 +14,6 @@ public:
 
 	void render();
 	void update();
-	sf::Sprite getSprite();
 
 	void Activate();
 	void DisActivate();

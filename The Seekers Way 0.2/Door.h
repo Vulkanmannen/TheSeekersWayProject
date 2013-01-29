@@ -9,6 +9,7 @@ public:
 	Door(sf::Vector2f &position);
 	~Door();
 
+	void render();	
 	void update();
 	sf::Sprite getSprite();
 

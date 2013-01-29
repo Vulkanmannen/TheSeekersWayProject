@@ -50,10 +50,5 @@ void Button::render()
 	
 	mAnimation.update(isitpressed);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
-	ImageManager::render(&getSprite());
-}
-
-sf::Sprite Button::getSprite()
-{
-	return mAnimation.getSprite();
+	ImageManager::render(&mAnimation.getSprite());
 }

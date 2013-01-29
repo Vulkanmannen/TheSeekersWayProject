@@ -10,6 +10,7 @@
 #include "Door.h"
 #include "Button.h"
 #include "Lever.h"
+#include "ShottingTrap.h"
 
 int main()
 {

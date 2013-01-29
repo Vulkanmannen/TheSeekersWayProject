@@ -17,7 +17,6 @@ public:
 	virtual ~Entity();
 
 	virtual void update() = 0;
-	virtual sf::Sprite getSprite() = 0;
 
 	virtual void render();
 	
@@ -48,6 +47,7 @@ protected:
 	BaseKind mBaseKind;
 
 	bool mAlive;
+	sf::Sprite mSprite;
 };
 
 #endif
