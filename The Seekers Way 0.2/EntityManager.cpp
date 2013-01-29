@@ -177,3 +177,11 @@ void EntityManager::primaryCharacter()
 		mPrimaryCharacter = 1;
 	}
 }
+
+sf::Vector2f EntityManager::getCharacterPos()const
+{
+	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
+	{
+		return mCharacters[mPrimaryCharacter]->getPosition();
+	}
+}

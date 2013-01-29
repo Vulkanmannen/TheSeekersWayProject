@@ -25,7 +25,8 @@ public:
 	void addCharacter(Character *c);
 
 	void primaryCharacter();
-	sf::Vector2f getCharacterPos();
+	sf::Vector2f getCharacterPos()const;
+
 private:
 	EntityManager();
 	EntityManager(const EntityManager &e);

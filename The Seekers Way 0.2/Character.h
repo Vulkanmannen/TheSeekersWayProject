@@ -25,7 +25,6 @@ protected:
 		ACTION2
 	};
 
-
 	Status mStatus;
 	bool mDirLeft;
 
