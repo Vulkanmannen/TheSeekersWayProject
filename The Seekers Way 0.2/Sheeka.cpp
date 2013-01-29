@@ -26,7 +26,7 @@ Sheeka::~Sheeka()
 
 void Sheeka::update()
 {
-	if(!SheekaDash)
+	if(SheekaDash)
 	{
 	move();
 	walk();
