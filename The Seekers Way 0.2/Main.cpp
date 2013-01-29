@@ -18,10 +18,10 @@ int main()
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
 	
-	std::string map1("map2.png");
+	std::string map1("Map2.png");
 	MapGenerator::generateMap(map1);
-	EntityManager::getInstance()->addEntity(new Door(sf::Vector2f(5 *64,4 *64)));
-	EntityManager::getInstance()->addEntity(new Door(sf::Vector2f(4 *64 ,4 *64)));
+	//EntityManager::getInstance()->addEntity(new Door(sf::Vector2f(5 *64,4 *64)));
+	//EntityManager::getInstance()->addEntity(new Door(sf::Vector2f(4 *64 ,4 *64)));
 	//EntityManager::getInstance()->addEntity(new Button(sf::Vector2f(0,0)));
 	//EntityManager::getInstance()->addEntity(new Lever(sf::Vector2f(0,0)));
 

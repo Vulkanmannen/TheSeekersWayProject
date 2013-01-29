@@ -18,7 +18,7 @@ public:
 
 private:
 	Animation mAnimation;
-
+	
 	sf::Clock mClock;
 
 	void SheekaDash();
