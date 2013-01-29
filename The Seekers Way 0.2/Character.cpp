@@ -16,7 +16,8 @@ Character::Character():
 	mJumpTime(1.0),
 	mJumping(0.0),
 	mFalling(false),
-	mIsJumping(false)
+	mIsJumping(false),
+	mAnimation(128, 128)
 {
 	mAlive = true;
 	mBaseKind = CHARACTER;
@@ -74,12 +75,14 @@ void Character::walk()
 // aktiverar så att man kan hoppa
 void Character::jump()
 {
-	if(mStatus == JUMP)
+	if(mStatus == JUMP && mAnimation.getEndOfAnimation())
 	{
 		mStatus = JUMPING;
+		mMovementSpeed.y -= mJump;
+		mIsJumping = true;
 	}
 
-	if(mIsJumping)
+	if(mIsJumping && mStatus == JUMPING)
 	{
 		mMovementSpeed.y += mAcceleration; // om mStatus är JUMPING trycks char ner med värdet på mAcceleration
 		mJumping += mJumpTime;
@@ -94,9 +97,7 @@ void Character::jump()
 	{
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mMovementSpeed.y < mMaxJump)
 		{
-			mMovementSpeed.y -= mJump;
-			mStatus = JUMPING;
-			mIsJumping = true;
+			mStatus = JUMP;
 		}
 	}
 }
