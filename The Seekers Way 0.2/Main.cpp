@@ -38,6 +38,8 @@ int main()
 		EntityManager::getInstance()->update();
 		EntityManager::getInstance()->render();
 
+		EntityManager::getInstance()->primaryCharacter();
+
 		window.display();
     }
 

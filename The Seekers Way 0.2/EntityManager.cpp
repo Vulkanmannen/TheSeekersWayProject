@@ -4,9 +4,11 @@
 #include <cmath>
 #include "Character.h"
 
+
 EntityManager* EntityManager::sInstance = 0;
 
-EntityManager::EntityManager()
+EntityManager::EntityManager():
+	mPrimaryCharacter(0)
 	{}
 
 
@@ -32,10 +34,7 @@ void EntityManager::update()
 		mEntities[i]->update();
 	}
 
-	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
-	{
-		mCharacters[i]->update();
-	}
+	mCharacters[mPrimaryCharacter]->update();
 
 	checkCollisions();
 }
@@ -157,5 +156,17 @@ void EntityManager::stopEntity(Character *c, Entity *e)
 			}
 
 		}
+	}
+}
+
+void EntityManager::primaryCharacter()
+{
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+	{
+		mPrimaryCharacter = 0;
+	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+	{
+		mPrimaryCharacter = 1;
 	}
 }
