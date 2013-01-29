@@ -29,6 +29,7 @@ private:
 	float mMaxDashDist;
 
 	bool mDash;
+	bool mDashPressed;
 };
 
 #endif
