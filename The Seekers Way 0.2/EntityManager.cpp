@@ -5,9 +5,11 @@
 #include "Character.h"
 #include "Door.h"
 
+
 EntityManager* EntityManager::sInstance = 0;
 
-EntityManager::EntityManager()
+EntityManager::EntityManager():
+	mPrimaryCharacter(0)
 	{}
 
 
@@ -33,10 +35,8 @@ void EntityManager::update()
 		mEntities[i]->update();
 	}
 
-	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
-	{
-		mCharacters[i]->update();
-	}
+	mCharacters[mPrimaryCharacter]->update();
+
 	killEntity();
 	checkCollisions();
 }
@@ -184,5 +184,25 @@ void EntityManager::killEntity()
 			mEntities[j] = mEntities.back();
 			mEntities.pop_back();
 		}
+	}
+}
+
+void EntityManager::primaryCharacter()
+{
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+	{
+		mPrimaryCharacter = 0;
+	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+	{
+		mPrimaryCharacter = 1;
+	}
+}
+
+sf::Vector2f EntityManager::getCharacterPos()const
+{
+	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
+	{
+		return mCharacters[mPrimaryCharacter]->getPosition();
 	}
 }

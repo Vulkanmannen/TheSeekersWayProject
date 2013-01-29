@@ -19,8 +19,11 @@ int main()
 	ImageManager::setWindow(&window);
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
+	
+	sf::View view;
+	view.setSize(1024, 720);
 
-	std::string map1("map2.png");
+	std::string map1("map1.PNG");
 	MapGenerator::generateMap(map1);
 	
 	Block *Dor = new Door(sf::Vector2f(5 *64,4 *64));
@@ -44,6 +47,11 @@ int main()
 
 		EntityManager::getInstance()->update();
 		EntityManager::getInstance()->render();
+
+		view.setCenter(EntityManager::getInstance()->getCharacterPos());
+		window.setView(view);
+
+		EntityManager::getInstance()->primaryCharacter();
 
 		window.display();
     }
