@@ -71,6 +71,9 @@
     <ClCompile Include="Arrow.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -132,6 +135,9 @@
       <Filter>Entities\Block</Filter>
     </ClInclude>
     <ClInclude Include="Arrow.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
   </ItemGroup>

@@ -14,8 +14,6 @@ public:
 	
 	virtual void Activate();
 	virtual void DisActivate();
-
-	sf::Sprite getSprite();
 };
 
 #endif

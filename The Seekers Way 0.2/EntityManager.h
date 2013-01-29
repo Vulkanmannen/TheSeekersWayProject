@@ -33,6 +33,7 @@ private:
 	void checkCollisions();
 	bool isColliding(Character *c, Entity *e);
 	void stopEntity(Character *c, Entity *e);
+	void killEntity();
 
 	EntityVector mEntities;
 	CharacterVector mCharacters;

@@ -19,16 +19,16 @@ int main()
 	ImageManager::setWindow(&window);
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
-	
+
 	std::string map1("map2.png");
 	MapGenerator::generateMap(map1);
-
-	Block *Door1 = new Door(sf::Vector2f(5 *64,4 *64));
-	Block *Door2 = new Door(sf::Vector2f(4 *64,4 *64));
-	EntityManager::getInstance()->addEntity(Door1);
-	EntityManager::getInstance()->addEntity(Door2);
-	EntityManager::getInstance()->addEntity(new Button(sf::Vector2f(2*64,3 *64), Door1));
-	EntityManager::getInstance()->addEntity(new Lever(sf::Vector2f(3*64,3 *64), Door2));
+	
+	Block *Dor = new Door(sf::Vector2f(5 *64,4 *64));
+	Block *Trap = new ShottingTrap(sf::Vector2f(10 *64,2 *64),true);
+	EntityManager::getInstance()->addEntity(Dor);
+	EntityManager::getInstance()->addEntity(Trap);
+	EntityManager::getInstance()->addEntity(new Button(sf::Vector2f(2*64,3 *64), Dor));
+	EntityManager::getInstance()->addEntity(new Lever(sf::Vector2f(3*64,3 *64), Trap));
 	//kolla entitymanagaer i colision
 	Sounds::getInstance()->Loop("Levelkoncept 2.wav");
 

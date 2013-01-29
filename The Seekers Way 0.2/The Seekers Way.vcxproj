@@ -27,6 +27,7 @@
     <ClInclude Include="Lever.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="NormalBlock.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="Sheeka.h" />
     <ClInclude Include="ShottingTrap.h" />
     <ClInclude Include="Sounds.h" />
@@ -51,6 +52,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="NormalBlock.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="Sheeka.cpp" />
     <ClCompile Include="ShottingTrap.cpp" />
     <ClCompile Include="Sounds.cpp" />
