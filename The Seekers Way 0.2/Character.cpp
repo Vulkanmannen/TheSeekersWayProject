@@ -78,11 +78,9 @@ void Character::jump()
 	if(mStatus == JUMP && mAnimation.getEndOfAnimation())
 	{
 		mStatus = JUMPING;
-		mMovementSpeed.y -= mJump;
-		mIsJumping = true;
 	}
 
-	if(mIsJumping && mStatus == JUMPING)
+	if(mIsJumping)
 	{
 		mMovementSpeed.y += mAcceleration; // om mStatus är JUMPING trycks char ner med värdet på mAcceleration
 		mJumping += mJumpTime;
@@ -98,6 +96,8 @@ void Character::jump()
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mMovementSpeed.y < mMaxJump)
 		{
 			mStatus = JUMP;
+			mIsJumping = true;
+			mMovementSpeed.y -= mJump;
 		}
 	}
 }

@@ -9,10 +9,9 @@ const static float WIDTH	= 128;
 Sheeka::Sheeka(sf::Vector2f &position):
 	mDashPressed(false),
 	mDash(false),
-	mDashTimer(0.0),
-	mDashAcc(5),
-	mMaxDashDist(1),
-	mDashCount(1)
+	mDashTimer(15),
+	mDashAcc(20),
+	mDashCount(0)
 	{
 		mAnimation.init("Sheekabebad.png", 60, 7);
 		mHeight = HEIGHT;
@@ -26,14 +25,16 @@ Sheeka::~Sheeka()
 
 void Sheeka::update()
 {
-	//if(SheekaDash)
-	//{
 	move();
-	walk();
-	jump();
-	falling();
+
+	if(mDash == false)
+	{
+		walk();
+		jump();
+		falling();
+	}
+
 	SheekaDash();
-	//}
 }
 
 void Sheeka::render()
@@ -50,9 +51,20 @@ sf::Sprite Sheeka::getSprite()
 
 void Sheeka::SheekaDash()
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !mDash && !mDashPressed)
-	{	
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !mDash && !mDashPressed && mClock.getElapsedTime().asSeconds() >=2)
+	{
 		mClock.restart();
+		mMovementSpeed.y = 0;
+		mMovementSpeed.x = 0;
+		mGravity = 0;
+		if(mDirLeft)
+		{
+			mMovementSpeed.x -= mDashAcc;
+		}
+		else if(mDirLeft == false)
+		{
+			mMovementSpeed.x += mDashAcc;
+		}
 		mDash = true;
 		mDashPressed = true;
 	}
@@ -60,10 +72,18 @@ void Sheeka::SheekaDash()
 	{
 		mDashPressed = false;
 	}
-	if(mDirLeft && mClock.getElapsedTime().asMilliseconds() < 5 && mDash)
+
+	if(mDash)
 	{
-		mMovementSpeed.x -= mDashAcc;
-		mDash = false;
+		mDashCount++;
+		if(mDashCount >= mDashTimer)
+		{
+			mDash = false;
+			mDashCount = 0;
+			mMovementSpeed.y = 0;
+			mMovementSpeed.x = 0;
+			mGravity = 5;
+		}
 	}
 	else if(!mDirLeft && mClock.getElapsedTime().asMilliseconds() < 5 && mDash)
 	{

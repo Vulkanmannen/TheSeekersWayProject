@@ -22,9 +22,8 @@ private:
 	void SheekaDash();
 	
 	int mDashCount;
-	float mDashTimer;
+	int mDashTimer;
 	float mDashAcc;
-	float mMaxDashDist;
 
 	bool mDash;
 	bool mDashPressed;

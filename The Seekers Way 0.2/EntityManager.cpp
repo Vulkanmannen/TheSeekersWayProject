@@ -37,6 +37,7 @@ void EntityManager::update()
 
 	mCharacters[mPrimaryCharacter]->update();
 
+	killEntity();
 	checkCollisions();
 }
 
@@ -162,6 +163,26 @@ void EntityManager::stopEntity(Character *c, Entity *e)
 				}
 			}
 
+		}
+	}
+}
+
+void EntityManager::killEntity()
+{
+	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
+	{
+		if(mCharacters[i]->getAliveStatus() == false)
+		{
+			
+		}
+	}
+	for(EntityVector::size_type j = 0; j < mEntities.size(); ++j)
+	{
+		if(mEntities[j]->getAliveStatus() == false)
+		{
+			delete mEntities[j];
+			mEntities[j] = mEntities.back();
+			mEntities.pop_back();
 		}
 	}
 }

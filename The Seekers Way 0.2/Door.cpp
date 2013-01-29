@@ -8,7 +8,7 @@ Door::Door(sf::Vector2f &position):
 	mAnimation("Door1.png", 60, 1, HEIGHT, WIDTH)
 {
 	
-	mPosition = position - sf::Vector2f(0,32);
+	mPosition = position + sf::Vector2f(0,32);
 	mAlive = true;
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
