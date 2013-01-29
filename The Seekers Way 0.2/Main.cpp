@@ -11,6 +11,7 @@
 #include "Button.h"
 #include "Lever.h"
 #include "ShottingTrap.h"
+#include "Sounds.h"
 
 int main()
 {
@@ -29,6 +30,7 @@ int main()
 	EntityManager::getInstance()->addEntity(new Button(sf::Vector2f(2*64,3 *64), Door1));
 	EntityManager::getInstance()->addEntity(new Lever(sf::Vector2f(3*64,3 *64), Door2));
 	//kolla entitymanagaer i colision
+	Sounds::getInstance()->Loop("Levelkoncept 2.wav");
 
     while (window.isOpen())
     {
