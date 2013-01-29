@@ -2,6 +2,7 @@
 #define INCLUDED_ENTITYMANAGER
 
 #include <vector>
+#include "SFML\Graphics.hpp"
 
 class Entity;
 class Block;
@@ -23,6 +24,8 @@ public:
 	void addEntity(Entity *e);
 	void addCharacter(Character *c);
 
+	void primaryCharacter();
+	sf::Vector2f getCharacterPos();
 private:
 	EntityManager();
 	EntityManager(const EntityManager &e);
@@ -33,6 +36,8 @@ private:
 	void checkCollisions();
 	bool isColliding(Character *c, Entity *e);
 	void stopEntity(Character *c, Entity *e);
+
+	int mPrimaryCharacter;
 
 	EntityVector mEntities;
 	CharacterVector mCharacters;
