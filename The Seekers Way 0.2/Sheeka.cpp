@@ -25,15 +25,11 @@ Sheeka::~Sheeka()
 
 void Sheeka::update()
 {
-	move();
-
 	if(mDash == false)
 	{
 		walk();
 		jump();
-		falling();
 	}
-
 	SheekaDash();
 }
 
