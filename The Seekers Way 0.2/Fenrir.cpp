@@ -22,11 +22,9 @@ Fenrir::~Fenrir()
 
 void Fenrir::update()
 {
-	move();
 	walk();
 	jump();
-	falling();
-	//fall();
+
 }
 
 void Fenrir::render()

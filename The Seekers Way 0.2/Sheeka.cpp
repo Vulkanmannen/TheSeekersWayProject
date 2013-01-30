@@ -25,15 +25,11 @@ Sheeka::~Sheeka()
 
 void Sheeka::update()
 {
-	move();
-
 	if(mDash == false)
 	{
 		walk();
 		jump();
-		falling();
 	}
-
 	SheekaDash();
 }
 
@@ -84,5 +80,10 @@ void Sheeka::SheekaDash()
 			mMovementSpeed.x = 0;
 			mGravity = 5;
 		}
+	}
+	else if(!mDirLeft && mClock.getElapsedTime().asMilliseconds() < 5 && mDash)
+	{
+		mMovementSpeed.x += mDashAcc;
+		mDash = false;
 	}
 }
