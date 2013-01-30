@@ -13,7 +13,7 @@ Sheeka::Sheeka(sf::Vector2f &position):
 	mDashAcc(20),
 	mDashCount(0)
 	{
-		mAnimation.init("Sheekabebad.png", 60, 7);
+		mAnimation.init("sheeka.PNG", 60, 7);
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
 		mEntityKind = SHEEKA;
@@ -40,7 +40,7 @@ void Sheeka::update()
 void Sheeka::render()
 {
 	ImageManager::render(&getSprite());
-	mAnimation.update(mStatus * 2 + mDirLeft);
+	mAnimation.update(/*mStatus * 2 +*/mDirLeft);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x -64, mPosition.y -96));
 }
 
