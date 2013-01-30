@@ -3,8 +3,8 @@
 
 #include <vector>
 #include "SFML\Graphics.hpp"
+#include "Entity.h"
 
-class Entity;
 class Block;
 class Character;
 
@@ -39,7 +39,7 @@ private:
 	void stopEntity(Entity *c, Entity *e);
 	void killEntity();
 
-	int mPrimaryCharacter;
+	Entity::EntityKind mPrimaryCharacter;
 
 	EntityVector mEntities;
 	CharacterVector mCharacters;

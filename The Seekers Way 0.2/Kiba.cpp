@@ -18,14 +18,14 @@ Kiba::~Kiba()
 
 void Kiba::update()
 {
-	move();
 	walk();
-	mAnimation.update(0);
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -96));
+	jump();
 }
 
 sf::Sprite Kiba::getSprite()
 {
+	mAnimation.update(0);
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -96));
 	return mAnimation.getSprite();
 }
 

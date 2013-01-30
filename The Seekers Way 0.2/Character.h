@@ -13,6 +13,8 @@ public:
 	~Character();
 	void onblock();
 
+	static void characterUpdate(Character* character, EntityKind &entityKind);
+
 protected:
 
 	enum Status
@@ -20,11 +22,11 @@ protected:
 		IDLE,
 		WALK,
 		JUMP,
-		JUMPING,
+		INAIR,
 		ACTION1,
 		ACTION2
 	};
-
+	
 	Status mStatus;
 	bool mDirLeft;
 
@@ -32,7 +34,7 @@ protected:
 
 	Animation mAnimation;
 
-	void move();
+	void move(EntityKind &e);
 	void jump();
 	void walk();
 	void falling();

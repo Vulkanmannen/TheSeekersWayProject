@@ -76,6 +76,9 @@
     <ClCompile Include="Object.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Charlotte.cpp">
+      <Filter>Entities\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -143,6 +146,9 @@
     </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Charlotte.h">
+      <Filter>Entities\Character</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

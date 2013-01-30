@@ -10,7 +10,7 @@
 EntityManager* EntityManager::sInstance = 0;
 
 EntityManager::EntityManager():
-	mPrimaryCharacter(0)
+	mPrimaryCharacter(Entity::SHEEKA)
 	{}
 
 
@@ -37,6 +37,11 @@ void EntityManager::update()
 	}
 
 	mCharacters[mPrimaryCharacter]->update();
+
+	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
+	{
+		Character::characterUpdate(mCharacters[i], mPrimaryCharacter);
+	}
 
 	killEntity();
 	checkCollisions();
@@ -211,11 +216,15 @@ void EntityManager::primaryCharacter()
 {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
-		mPrimaryCharacter = 0;
+		mPrimaryCharacter = Entity::SHEEKA;
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 	{
-		mPrimaryCharacter = 1;
+		mPrimaryCharacter = Entity::FENRIR;
+	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+	{
+		mPrimaryCharacter = 2;
 	}
 }
 
