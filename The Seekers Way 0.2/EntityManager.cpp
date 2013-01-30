@@ -4,6 +4,7 @@
 #include <cmath>
 #include "Character.h"
 #include "Door.h"
+#include <algorithm>
 
 
 EntityManager* EntityManager::sInstance = 0;
@@ -76,17 +77,31 @@ void EntityManager::checkCollisions()
 		{
 			if(mEntities[j]->getBaseKind() == Entity::BLOCK)
 			{
-				if(isColliding(mCharacters[i], mEntities[j]))
+				if(isColliding(static_cast<Entity*>(mCharacters[i]), mEntities[j]))
 				{
-					stopEntity(mCharacters[i], mEntities[j]);
+					stopEntity(static_cast<Entity*>(mCharacters[i]), mEntities[j]);
 				}
 			}
 		}
 	}
+	for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
+	{
+		for(EntityVector::size_type j = 0; j < mEntities.size(); ++j)
+		{
+			if(mEntities[i]->getEntityKind() == Entity::ARROW && mEntities[j]->getBaseKind() == Entity::BLOCK)
+			{
+				if(isColliding(mEntities[i], mEntities[j]))
+				{
+					stopEntity(mEntities[i], mEntities[j]);
+				}
+			}
+		}
+	}
+	
 }
 
 // kollar om en karaktär kolliderar
-bool EntityManager::isColliding(Character *c, Entity *e)
+bool EntityManager::isColliding(Entity *c, Entity *e)
 {
 	if(c->getTop() > e->getBottom())
 	{
@@ -112,8 +127,10 @@ bool EntityManager::isColliding(Character *c, Entity *e)
 
 
 // flyttar ut objekt som kolliderat med block
-void EntityManager::stopEntity(Character *c, Entity *e)
+void EntityManager::stopEntity(Entity *c, Entity *e)
 {
+	
+	
 	// räknar ut objektens radier och lägger ihop dem
 	float xRadius = c->getWidth() / 2 + e->getWidth() / 2;
 	float yRadius = c->getHeight() / 2 + e->getHeight() / 2;
@@ -141,6 +158,7 @@ void EntityManager::stopEntity(Character *c, Entity *e)
 		}
 	}
 	else
+	
 	{
 		if(yDif > 0) // kollar om karaktären är under eller över
 		{
@@ -154,17 +172,19 @@ void EntityManager::stopEntity(Character *c, Entity *e)
 			if(std::abs(xDif) < xRadius - 10)
 			{
 				c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y - (yRadius)));
-				c->onblock();
-				if(e->getEntityKind()==Entity::BUTTON || e->getEntityKind()==Entity::LEVER)
+				if(c->getBaseKind() == Entity::CHARACTER)
 				{
-					Block * tempblock;
-					tempblock = dynamic_cast<Block*> (e);
-					tempblock->Activate();
+					dynamic_cast<Character*> (c)->onblock();
 				}
-			}
+				if(c->getBaseKind() == Entity::CHARACTER && (e->getEntityKind() == Entity::BUTTON || e->getEntityKind()==Entity::LEVER))
+				{
+					dynamic_cast<Block*> (e)->Activate();
+				}
 
+			}
 		}
 	}
+	
 }
 
 void EntityManager::killEntity()

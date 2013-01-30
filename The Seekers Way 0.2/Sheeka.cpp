@@ -2,6 +2,7 @@
 #include "Animation.h"
 #include "Entity.h"
 #include "ImageManager.h"
+#include "Sounds.h"
 
 const static float HEIGHT	= 64;
 const static float WIDTH	= 128;
@@ -53,6 +54,7 @@ void Sheeka::SheekaDash()
 {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !mDash && !mDashPressed && mClock.getElapsedTime().asSeconds() >=2)
 	{
+		Sounds::getInstance()->Play("dash 1.1.wav");
 		mClock.restart();
 		mMovementSpeed.y = 0;
 		mMovementSpeed.x = 0;
