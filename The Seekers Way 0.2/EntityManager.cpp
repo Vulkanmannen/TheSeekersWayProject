@@ -224,7 +224,7 @@ void EntityManager::primaryCharacter()
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
 	{
-		mPrimaryCharacter = 2;
+		mPrimaryCharacter = Entity::CHARLOTTE;
 	}
 }
 
