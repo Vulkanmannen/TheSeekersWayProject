@@ -197,6 +197,10 @@ void EntityManager::primaryCharacter()
 	{
 		mPrimaryCharacter = 1;
 	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+	{
+		mPrimaryCharacter = 2;
+	}
 }
 
 sf::Vector2f EntityManager::getCharacterPos()const

@@ -5,6 +5,7 @@
 #include "Fenrir.h"
 #include "GenerateDoor.h"
 #include "Sheeka.h"
+#include "Charlotte.h"
 
 MapGenerator::MapGenerator()
 	{}
@@ -32,13 +33,17 @@ void MapGenerator::generateMap(std::string imageName)
 			{
 				EntityManager::getInstance()->addEntity(new NormalBlock(position));
 			}
-			else if(color == sf::Color(0, 0, 255, 255))
+			else if(color == sf::Color(0, 200, 0, 255))
 			{
 				EntityManager::getInstance()->addCharacter(new Fenrir(position));
 			}
 			else if(color == sf::Color(0, 255, 0, 255))
 			{
 				EntityManager::getInstance()->addCharacter(new Sheeka(position));
+			}
+			else if(color == sf::Color(0, 0, 200, 255))
+			{
+				EntityManager::getInstance()->addCharacter(new Charlotte(position));
 			}
 		}
 	}
