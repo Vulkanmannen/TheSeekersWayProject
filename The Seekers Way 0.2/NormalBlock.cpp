@@ -4,7 +4,7 @@
 static const float WIDTH = 64;
 static const float HEIGHT = 64;
 
-NormalBlock::NormalBlock(sf::Vector2f Position)
+NormalBlock::NormalBlock(sf::Vector2f Position, unsigned char spriteNumber)
 {
 	mPosition = Position;
 	mAlive = true;
@@ -16,6 +16,9 @@ NormalBlock::NormalBlock(sf::Vector2f Position)
 	mSprite.setTexture(mTexture);
 	mSprite.setPosition(Position);
 	mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
+
+	sf::IntRect textureRect(spriteNumber * 64, 0, mWidth, mHeight);
+	mSprite.setTextureRect(textureRect);
 }
 
 NormalBlock::~NormalBlock()
@@ -23,7 +26,7 @@ NormalBlock::~NormalBlock()
 
 }
 
-void NormalBlock::update()
+void NormalBlock::update(EntityKind &currentEntity)
 {
 
 }
