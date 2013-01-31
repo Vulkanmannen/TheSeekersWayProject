@@ -9,7 +9,7 @@ public:
 	Arrow(sf::Vector2f &position, bool dirleft = true);
 	~Arrow();
 
-	void update();
+	void update(EntityKind &currentEntity);
 
 private:
 	sf::Clock mShottingTime;

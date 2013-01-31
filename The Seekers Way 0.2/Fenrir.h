@@ -10,7 +10,7 @@ public:
 	Fenrir(sf::Vector2f &position);
 	~Fenrir();
 	
-	void update();
+	void update(EntityKind &currentEntity);
 	void render();
 
 	sf::Sprite getSprite();

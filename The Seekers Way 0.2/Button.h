@@ -13,7 +13,7 @@ public:
 	Block* mBlock;
 
 	void render();
-	void update();
+	void update(EntityKind &currentEntity);
 
 	void Activate();
 	void DisActivate();

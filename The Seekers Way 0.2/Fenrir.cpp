@@ -20,10 +20,17 @@ Fenrir::Fenrir(sf::Vector2f &position)
 Fenrir::~Fenrir()
 	{}
 
-void Fenrir::update()
+void Fenrir::update(EntityKind &currentEntity)
 {
-	walk();
-	jump();
+	if(currentEntity == mEntityKind)
+	{
+		walk();
+		jump();
+	}
+	dontWalk(currentEntity);
+	move();
+	falling();
+	fall();
 
 }
 

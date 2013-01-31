@@ -8,9 +8,9 @@
 class NormalBlock: public Block
 {
 public:
-	NormalBlock(sf::Vector2f Position);
+	NormalBlock(sf::Vector2f Position, unsigned char spriteNumber);
 	~NormalBlock();
-	void update();
+	void update(EntityKind &currentEntity);
 };
 
 #endif
