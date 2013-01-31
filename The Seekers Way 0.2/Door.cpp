@@ -1,11 +1,11 @@
 #include "Door.h"
 #include "ImageManager.h"
 
-static const float WIDTH = 64;
+static const float WIDTH = 32;
 static const float HEIGHT = 128;
 
 Door::Door(sf::Vector2f &position):
-	mAnimation("Door1.png", 60, 1, HEIGHT, WIDTH)
+	mAnimation("Door2.png", 60, 1, HEIGHT, WIDTH)
 {
 	
 	mPosition = position + sf::Vector2f(0,32);

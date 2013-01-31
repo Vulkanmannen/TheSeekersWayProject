@@ -13,6 +13,7 @@ public:
 	~Character();
 	void onblock();
 
+	virtual void interact(Entity* e);
 	static void characterUpdate(Character* character, EntityKind &entityKind);
 
 protected:

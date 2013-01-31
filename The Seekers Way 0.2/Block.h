@@ -12,6 +12,7 @@ public:
 	Block();
 	virtual ~Block();
 	
+	virtual void interact(Entity* e);
 	virtual void Activate();
 	virtual void DisActivate();
 };

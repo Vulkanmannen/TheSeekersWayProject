@@ -235,3 +235,26 @@ sf::Vector2f EntityManager::getCharacterPos()const
 		return mCharacters[mPrimaryCharacter]->getPosition();
 	}
 }
+
+void EntityManager::interact()
+{
+	//samlar alla saker i en lista
+	EntityVector temp;
+	for(CharacterVector::size_type i = 0; i < mCharacters.size(); i++)
+	{
+		temp.push_back(static_cast<Entity*>(mCharacters[i]));
+	}
+	temp.insert(temp.end(), mEntities.begin(), mEntities.end());
+	
+	for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
+	{
+		for(EntityVector::size_type j = i+1; j < mEntities.size(); ++j)
+		{
+			
+			temp[i]->interact(temp[j]);
+			temp[j]->interact(temp[i]);
+
+		}
+	}
+
+}

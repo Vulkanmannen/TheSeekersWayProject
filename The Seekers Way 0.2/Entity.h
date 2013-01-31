@@ -16,6 +16,7 @@ public:
 	Entity();
 	virtual ~Entity();
 
+	virtual void interact(Entity* e) = 0;
 	virtual void update() = 0;
 
 	virtual void render();
