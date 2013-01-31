@@ -1,9 +1,8 @@
 #include "Charlotte.h"
 #include "Animation.h"
-#include "Entity.h"
 #include "ImageManager.h"
-#include "Door.h"
 #include "EntityManager.h"
+#include "Shield.h"
 
 const static float HEIGHT = 64;
 const static float WIDTH = 128;
@@ -23,11 +22,12 @@ Charlotte::~Charlotte()
 
 void Charlotte::update(EntityKind &currentEntity)
 {
+
 	if(currentEntity == mEntityKind)
 	{
 		walk();
 		jump();
-		Shield();
+		SetShield();
 	}
 	dontWalk(currentEntity);
 	move();
@@ -45,20 +45,22 @@ void Charlotte::render()
 sf::Sprite Charlotte::getSprite()
 {
 	return mAnimation.getSprite();
+
 }
 
-void Charlotte::Shield()
+void Charlotte::SetShield()
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && mClock.getElapsedTime().asSeconds() >=1)
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && mClock.getElapsedTime().asSeconds() >=1) // tryck "Q" för att aktivera en sköld (1 sec cd)
 	{
 		mClock.restart();
 		if(mDirLeft)
 		{
-			EntityManager::getInstance()->addEntity(new Door(sf::Vector2f(mPosition.x - 100, mPosition.y -64)));
+			EntityManager::getInstance()->addEntity(new Shield(sf::Vector2f(mPosition.x - 100, mPosition.y - 20)));
 		}
 		else if(mDirLeft == false)
 		{
-			EntityManager::getInstance()->addEntity(new Door(sf::Vector2f(mPosition.x + 100, mPosition.y -64)));
+			EntityManager::getInstance()->addEntity(new Shield(sf::Vector2f(mPosition.x + 100, mPosition.y - 20)));
+			
 		}
 	}
 }
