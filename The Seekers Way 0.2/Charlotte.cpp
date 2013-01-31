@@ -2,7 +2,7 @@
 #include "Animation.h"
 #include "Entity.h"
 #include "ImageManager.h"
-
+#include "Door.h"
 
 const static float HEIGHT = 64;
 const static float WIDTH = 128;
@@ -26,6 +26,7 @@ void Charlotte::update()
 	walk();
 	jump();
 	falling();
+	Shield();
 }
 
 void Charlotte::render()
@@ -38,4 +39,12 @@ void Charlotte::render()
 sf::Sprite Charlotte::getSprite()
 {
 	return mAnimation.getSprite();
+}
+
+void Charlotte::Shield()
+{
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	{
+		
+	}
 }

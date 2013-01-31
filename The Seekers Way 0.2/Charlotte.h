@@ -15,6 +15,10 @@ public:
 
 	sf::Sprite getSprite();
 
+private:
+
+	void Shield();
+
 };
 
 #endif
