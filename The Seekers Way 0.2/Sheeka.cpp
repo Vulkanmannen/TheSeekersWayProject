@@ -83,9 +83,4 @@ void Sheeka::SheekaDash()
 			mGravity = 5;
 		}
 	}
-	else if(!mDirLeft && mClock.getElapsedTime().asMilliseconds() < 5 && mDash)
-	{
-		mMovementSpeed.x += mDashAcc;
-		mDash = false;
-	}
 }
