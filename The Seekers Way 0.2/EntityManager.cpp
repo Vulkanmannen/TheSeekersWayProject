@@ -235,7 +235,7 @@ void EntityManager::interact()
 {
 	//samlar alla saker i en lista
 	EntityVector temp;
-	for(CharacterVector::size_type i = 0; i < sizeof(mCharacters) / sizeof(mCharacters[0]); i++)
+	for(int i = 0; i < sizeof(mCharacters) / sizeof(mCharacters[0]); i++)
 	{
 		temp.push_back(static_cast<Entity*>(mCharacters[i]));
 	}

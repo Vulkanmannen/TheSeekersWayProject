@@ -12,7 +12,7 @@ class EntityManager
 {
 public:
 	typedef std::vector<Entity*> EntityVector;
-	typedef std::vector<Character*> CharacterVector;
+	typedef std::vector<Entity*> DynamicEntityVector;
 
 	static EntityManager* getInstance();
 
@@ -42,8 +42,9 @@ private:
 
 	Entity::EntityKind mPrimaryCharacter;
 
-	EntityVector mEntities;
-	Character* mCharacters[4];
+	EntityVector		mEntities;
+	DynamicEntityVector mDynamicEntities;
+	Character*			mCharacters[4];
 };
 
 #endif 
