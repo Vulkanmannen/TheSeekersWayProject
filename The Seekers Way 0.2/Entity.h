@@ -16,7 +16,7 @@ public:
 	Entity();
 	virtual ~Entity();
 
-	virtual void update() = 0;
+	virtual void update(EntityKind &currentEntity) = 0;
 
 	virtual void render();
 	

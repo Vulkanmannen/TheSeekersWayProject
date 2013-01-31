@@ -13,7 +13,7 @@ public:
 	~Character();
 	void onblock();
 
-	static void characterUpdate(Character* character, EntityKind &entityKind);
+	//static void characterUpdate(Character* character, EntityKind &entityKind);
 
 protected:
 
@@ -34,9 +34,10 @@ protected:
 
 	Animation mAnimation;
 
-	void move(EntityKind &e);
+	void move();
 	void jump();
 	void walk();
+	void dontWalk(EntityKind &currentEntity);
 	void falling();
 	void fall();
 

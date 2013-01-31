@@ -51,7 +51,7 @@ int main()
 		view.setCenter(EntityManager::getInstance()->getCharacterPos());
 		window.setView(view);
 
-		EntityManager::getInstance()->primaryCharacter();
+		EntityManager::getInstance()->updatePrimaryCharacter();
 
 		window.display();
     }

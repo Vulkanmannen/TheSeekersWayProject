@@ -10,7 +10,7 @@ public:
 	Kiba(sf::Vector2f &position);
 	~Kiba();
 	
-	void update();
+	void update(EntityKind &currentEntity);
 	sf::Sprite getSprite();
 
 private:
