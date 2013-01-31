@@ -60,7 +60,7 @@ void Sheeka::SheekaDash()
 {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !mDash && !mDashPressed && mClock.getElapsedTime().asSeconds() >=2)
 	{
-		Sounds::getInstance()->Play("dash 1.1.wav");
+		Sounds::getInstance()->Play("dash.wav");
 		mClock.restart();
 		mMovementSpeed.y = 0;
 		mMovementSpeed.x = 0;

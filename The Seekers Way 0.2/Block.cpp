@@ -19,3 +19,8 @@ void Block::DisActivate()
 {
 
 }
+
+void Block::interact(Entity* e)
+{
+
+}

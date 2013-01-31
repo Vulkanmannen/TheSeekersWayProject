@@ -145,3 +145,8 @@ void Character::fall()
 		mFalling = true;
 	}
 }
+
+void Character::interact(Entity* e)
+{
+
+}

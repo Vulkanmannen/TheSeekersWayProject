@@ -18,6 +18,8 @@ public:
 
 	virtual void update(EntityKind &currentEntity) = 0;
 
+	virtual void interact(Entity* e) = 0;
+
 	virtual void render();
 	
 	sf::Vector2f getPosition()const;

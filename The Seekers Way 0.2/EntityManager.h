@@ -34,6 +34,7 @@ private:
 
 	static EntityManager *sInstance;
 
+	void interact();
 	void checkCollisions();
 	bool isColliding(Entity *c, Entity *e);
 	void stopEntity(Entity *c, Entity *e);
