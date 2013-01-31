@@ -17,6 +17,8 @@ public:
 
 private:
 
+	sf::Clock mClock;
+
 	void Shield();
 
 };

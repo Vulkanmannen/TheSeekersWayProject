@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "ImageManager.h"
 #include "Door.h"
+#include "EntityManager.h"
 
 const static float HEIGHT = 64;
 const static float WIDTH = 128;
@@ -41,8 +42,16 @@ sf::Sprite Charlotte::getSprite()
 
 void Charlotte::Shield()
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && mClock.getElapsedTime().asSeconds() >=1)
 	{
-		
+		mClock.restart();
+		if(mDirLeft)
+		{
+			EntityManager::getInstance()->addEntity(new Door(sf::Vector2f(mPosition.x - 100, mPosition.y -64)));
+		}
+		else if(mDirLeft == false)
+		{
+			EntityManager::getInstance()->addEntity(new Door(sf::Vector2f(mPosition.x + 100, mPosition.y -64)));
+		}
 	}
 }
