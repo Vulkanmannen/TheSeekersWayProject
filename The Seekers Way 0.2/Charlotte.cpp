@@ -50,7 +50,7 @@ sf::Sprite Charlotte::getSprite()
 
 void Charlotte::SetShield()
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && mClock.getElapsedTime().asSeconds() >=1) // tryck "Q" för att aktivera en sköld (1 sec cd)
+	if((sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) && mClock.getElapsedTime().asSeconds() >=1) // tryck "Q" för att aktivera en sköld (1 sec cd)
 	{
 		mClock.restart();
 		if(mDirLeft)
@@ -59,8 +59,7 @@ void Charlotte::SetShield()
 		}
 		else if(mDirLeft == false)
 		{
-			EntityManager::getInstance()->addEntity(new Shield(sf::Vector2f(mPosition.x + 100, mPosition.y - 20)));
-			
+			EntityManager::getInstance()->addEntity(new Shield(sf::Vector2f(mPosition.x + 100, mPosition.y - 20)));	
 		}
 	}
 }

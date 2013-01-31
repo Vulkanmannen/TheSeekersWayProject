@@ -5,7 +5,8 @@ static const float WIDTH = 64;
 static const float HEIGHT = 128;
 
 Shield::Shield(sf::Vector2f &position):
-	mAnimation("shield.png", 60, 1, HEIGHT, WIDTH)
+	mAnimation("shield.png", 60, 1, HEIGHT, WIDTH),
+	ShieldCount(5)
 {
 	mPosition = position;
 	mHeight = HEIGHT;
@@ -30,3 +31,18 @@ void Shield::render()
 	ImageManager::render(&mAnimation.getSprite());
 }
 
+void Shield::ShieldLife()
+{
+	if(ShieldCount == 0)
+	{
+		destroy();
+	}
+}
+
+void Shield::interact(Entity* e)
+{
+	if(e->getEntityKind() == ARROW)
+	{
+		ShieldCount--;
+	}
+}
