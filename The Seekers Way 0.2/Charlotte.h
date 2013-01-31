@@ -15,6 +15,12 @@ public:
 
 	sf::Sprite getSprite();
 
+private:
+
+	sf::Clock mClock;
+
+	void Shield();
+
 };
 
 #endif
