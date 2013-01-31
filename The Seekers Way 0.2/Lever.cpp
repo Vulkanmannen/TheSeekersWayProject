@@ -33,7 +33,7 @@ void Lever::Activate()
 }
 
 
-void Lever::update()
+void Lever::update(EntityKind &currentEntity)
 {
 }
 

@@ -26,7 +26,7 @@ Arrow::~Arrow()
 
 }
 
-void Arrow::update()
+void Arrow::update(EntityKind &currentEntity)
 {
 	if(mShottingTime.getElapsedTime().asSeconds() > 2)
 	{

@@ -10,7 +10,7 @@ public:
 	~Door();
 
 	void render();	
-	void update();
+	void update(EntityKind &currentEntity);
 	sf::Sprite getSprite();
 
 	void Activate();

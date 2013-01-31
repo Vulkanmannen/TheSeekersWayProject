@@ -14,7 +14,6 @@ public:
 	void onblock();
 
 	virtual void interact(Entity* e);
-	static void characterUpdate(Character* character, EntityKind &entityKind);
 
 protected:
 
@@ -35,9 +34,10 @@ protected:
 
 	Animation mAnimation;
 
-	void move(EntityKind &e);
+	void move();
 	void jump();
 	void walk();
+	void dontWalk(EntityKind &currentEntity);
 	void falling();
 	void fall();
 

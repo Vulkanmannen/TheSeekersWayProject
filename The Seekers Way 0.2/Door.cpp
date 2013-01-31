@@ -32,7 +32,7 @@ void Door::DisActivate()
 	mBaseKind = BLOCK;
 }
 
-void Door::update()
+void Door::update(EntityKind &currentEntity)
 {
 
 }

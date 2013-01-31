@@ -1,8 +1,10 @@
 #ifndef INCLUDED_SHIELD
 #define INCLUDED_SHIELD
 #include "Animation.h"
+#include "Object.h"
 
-class Shield
+
+class Shield: public Object
 {
 public:
 	Shield(sf::Vector2f &position);
@@ -11,8 +13,6 @@ public:
 
 	void render();
 	void update();
-
-	sf::Sprite getSprite();
 
 private:
 	Animation mAnimation;
