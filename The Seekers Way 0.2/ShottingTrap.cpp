@@ -8,6 +8,7 @@ ShottingTrap::ShottingTrap(sf::Vector2f &position, bool shot, bool dirleft):
 	mDirLeft(dirleft),
 	mShotting(shot)
 {
+	mEntityKind = SHOTTINGTRAP;
 	mAlive = true;
 	mHeight = HEIGHT;
 	mWidth = WIDTH;

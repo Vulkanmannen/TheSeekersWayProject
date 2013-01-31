@@ -43,6 +43,7 @@ void EntityManager::update()
 
 	killEntity();
 	checkCollisions();
+	interact();
 }
 
 // ritarut alla objekt
@@ -241,14 +242,16 @@ void EntityManager::interact()
 	}
 	temp.insert(temp.end(), mEntities.begin(), mEntities.end());
 	
-	for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
+	//kör interact mot alla som krockar
+	for(EntityVector::size_type i = 0; i < temp.size(); ++i)
 	{
-		for(EntityVector::size_type j = i+1; j < mEntities.size(); ++j)
+		for(EntityVector::size_type j = 0; j < temp.size(); ++j)
 		{
-			
-			temp[i]->interact(temp[j]);
-			temp[j]->interact(temp[i]);
-
+			if(isColliding(temp[i], temp[j]))
+			{
+				temp[i]->interact(temp[j]);
+				temp[j]->interact(temp[i]);
+			}
 		}
 	}
 }

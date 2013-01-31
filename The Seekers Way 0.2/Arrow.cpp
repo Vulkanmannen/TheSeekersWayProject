@@ -8,7 +8,7 @@ Arrow::Arrow(sf::Vector2f &position, bool dirleft):
 	mDirLeft(dirleft),
 	mMovementSpeed(10*((0.5-dirleft)*2),0)
 {
-
+	mEntityKind = ARROW;
 	mAlive = true;
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
@@ -35,4 +35,13 @@ void Arrow::update(EntityKind &currentEntity)
 	
 	mPosition	+= mMovementSpeed;
 	mSprite.setPosition(mPosition);
+}
+
+void Arrow::interact(Entity* e)
+{
+	destroy();
+	if(e->getBaseKind() == Entity::BLOCK || e->getBaseKind() == Entity::CHARACTER)
+	{
+		destroy();
+	}
 }
