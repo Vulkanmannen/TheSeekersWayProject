@@ -20,11 +20,24 @@ Charlotte::Charlotte(sf::Vector2f &position)
 Charlotte::~Charlotte()
 	{}
 
-void Charlotte::update()
+void Charlotte::update(EntityKind &currentEntity)
 {
+<<<<<<< HEAD
 	walk();
 	jump();
 	SetShield();
+=======
+	if(currentEntity == mEntityKind)
+	{
+		walk();
+		jump();
+		Shield();
+	}
+	dontWalk(currentEntity);
+	move();
+	falling();
+	fall();
+>>>>>>> 1b171f5f25b860cdad9eaac767258f9fe1f8b960
 }
 
 void Charlotte::render()

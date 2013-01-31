@@ -33,14 +33,12 @@ void EntityManager::update()
 {
 	for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
 	{
-		mEntities[i]->update();
+		mEntities[i]->update(mPrimaryCharacter);
 	}
 
-	mCharacters[mPrimaryCharacter]->update();
-
-	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
+	for(int i = 0; i < sizeof(mCharacters) / sizeof(mCharacters[0]); ++i)
 	{
-		Character::characterUpdate(mCharacters[i], mPrimaryCharacter);
+		mCharacters[i]->update(mPrimaryCharacter);
 	}
 
 	killEntity();
@@ -55,7 +53,7 @@ void EntityManager::render()
 		mEntities[i]->render();
 	}
 
-	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
+	for(int i = 0; i < sizeof(mCharacters) / sizeof(mCharacters[0]); ++i)
 	{
 		mCharacters[i]->render();
 	}
@@ -68,15 +66,15 @@ void EntityManager::addEntity(Entity *e)
 }
 
 // lägger till character i charactervectorn
-void EntityManager::addCharacter(Character *c)
+void EntityManager::addCharacter(Character *character, int placeInVector)
 {
-	mCharacters.push_back(c);
+	mCharacters[placeInVector] = character;
 }
 
 // går igenom alla karaktärer och krocktestar dem mot alla entiteter
 void EntityManager::checkCollisions()
 {
-	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
+	for(int i = 0; i < sizeof(mCharacters) / sizeof(mCharacters[0]); ++i)
 	{
 		for(EntityVector::size_type j = 0; j < mEntities.size(); ++j)
 		{
@@ -194,7 +192,7 @@ void EntityManager::stopEntity(Entity *c, Entity *e)
 
 void EntityManager::killEntity()
 {
-	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
+	for(int i = 0; i < sizeof(mCharacters) / sizeof(mCharacters[0]); ++i)
 	{
 		if(mCharacters[i]->getAliveStatus() == false)
 		{
@@ -212,7 +210,7 @@ void EntityManager::killEntity()
 	}
 }
 
-void EntityManager::primaryCharacter()
+void EntityManager::updatePrimaryCharacter()
 {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
@@ -230,8 +228,27 @@ void EntityManager::primaryCharacter()
 
 sf::Vector2f EntityManager::getCharacterPos()const
 {
-	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
+	return mCharacters[mPrimaryCharacter]->getPosition();
+}
+
+void EntityManager::interact()
+{
+	//samlar alla saker i en lista
+	EntityVector temp;
+	for(CharacterVector::size_type i = 0; i < sizeof(mCharacters) / sizeof(mCharacters[0]); i++)
 	{
-		return mCharacters[mPrimaryCharacter]->getPosition();
+		temp.push_back(static_cast<Entity*>(mCharacters[i]));
+	}
+	temp.insert(temp.end(), mEntities.begin(), mEntities.end());
+	
+	for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
+	{
+		for(EntityVector::size_type j = i+1; j < mEntities.size(); ++j)
+		{
+			
+			temp[i]->interact(temp[j]);
+			temp[j]->interact(temp[i]);
+
+		}
 	}
 }

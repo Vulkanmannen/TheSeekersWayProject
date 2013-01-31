@@ -11,6 +11,7 @@ class Object: public Entity
 public:
 	Object();
 	virtual ~Object();
+	virtual void interact(Entity* e);
 };
 
 #endif

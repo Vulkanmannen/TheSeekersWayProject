@@ -39,27 +39,18 @@ void Character::onblock()
 	}
 }
 
-void Character::characterUpdate(Character* character, EntityKind &entityKind)
-{
-	character->move(entityKind);
-	character->falling();
-	character->fall();
-}
+//void Character::characterUpdate(Character* character, EntityKind &entityKind)
+//{
+//	character->move(entityKind);
+//	character->falling();
+//	character->fall();
+//}
 
 // Flyttar Character
-void Character::move(EntityKind &entityKind)
+void Character::move()
 {
 	mPosition	+= mMovementSpeed;
 	mPosition.y	+= mGravity;
-
-	if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || mEntityKind != entityKind)
-	{
-		mMovementSpeed.x = 0;
-		if(mStatus == WALK)
-		{
-			mStatus = IDLE;
-		}
-	}
 }
 
 // Knapptryck tas in och movementspeed ändras
@@ -88,6 +79,19 @@ void Character::walk()
 			mStatus = WALK;
 		}
 		mDirLeft = false;
+	}
+}
+
+// stoppar en gubbe
+void Character::dontWalk(EntityKind &currentEntity)
+{
+	if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || currentEntity != mEntityKind)
+	{
+		mMovementSpeed.x = 0;
+		if(mStatus == WALK)
+		{
+			mStatus = IDLE;
+		}
 	}
 }
 
@@ -140,4 +144,9 @@ void Character::fall()
 		}
 		mFalling = true;
 	}
+}
+
+void Character::interact(Entity* e)
+{
+
 }

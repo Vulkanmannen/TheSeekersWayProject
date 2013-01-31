@@ -24,14 +24,24 @@ Sheeka::Sheeka(sf::Vector2f &position):
 Sheeka::~Sheeka()
 	{}
 
-void Sheeka::update()
+void Sheeka::update(EntityKind &currentEntity)
 {
+	move();
 	if(mDash == false)
 	{
-		walk();
-		jump();
+		if(currentEntity == mEntityKind)
+		{
+			walk();
+			jump();
+		}
+		dontWalk(currentEntity);
+		falling();
+		fall();
 	}
-	SheekaDash();
+	if(currentEntity == mEntityKind)
+	{
+		SheekaDash();
+	}
 }
 
 void Sheeka::render()
@@ -50,7 +60,7 @@ void Sheeka::SheekaDash()
 {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !mDash && !mDashPressed && mClock.getElapsedTime().asSeconds() >=2)
 	{
-		Sounds::getInstance()->Play("dash 1.1.wav");
+		Sounds::getInstance()->Play("dash.wav");
 		mClock.restart();
 		mMovementSpeed.y = 0;
 		mMovementSpeed.x = 0;

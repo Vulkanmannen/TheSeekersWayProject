@@ -175,6 +175,7 @@ sf::SoundBuffer Sounds::getBuffer(std::string namn)
 	{
 		return *bufferlista[namn];
 	}
+
 	else
 	{
 		//felmedelandet

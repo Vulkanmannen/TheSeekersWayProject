@@ -9,3 +9,8 @@ Object::~Object()
 {
 
 }
+
+void Object::interact(Entity* e)
+{
+
+}

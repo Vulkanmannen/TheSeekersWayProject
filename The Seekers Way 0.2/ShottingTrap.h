@@ -11,7 +11,7 @@ public:
 	ShottingTrap(sf::Vector2f &position, bool shot = true, bool dirleft = true);
 	~ShottingTrap();
 
-	void update();
+	void update(EntityKind &currentEntity);
 
 	void Activate();
 	void DisActivate();

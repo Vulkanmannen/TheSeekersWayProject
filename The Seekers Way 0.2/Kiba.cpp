@@ -6,6 +6,8 @@ const static float WIDTH = 64;
 
 Kiba::Kiba(sf::Vector2f &position)
 	{
+		mAnimation.init("fenrir.png", 60, 7);
+
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
 		mEntityKind = KIBA;
@@ -16,10 +18,17 @@ Kiba::Kiba(sf::Vector2f &position)
 Kiba::~Kiba()
 	{}
 
-void Kiba::update()
+void Kiba::update(EntityKind &currentEntity)
 {
-	walk();
-	jump();
+	if(currentEntity == mEntityKind)
+	{
+		walk();
+		jump();
+	}
+	dontWalk(currentEntity);
+	move();
+	falling();
+	fall();
 }
 
 sf::Sprite Kiba::getSprite()

@@ -22,9 +22,9 @@ public:
 	void render();
 
 	void addEntity(Entity *e);
-	void addCharacter(Character *c);
+	void addCharacter(Character *c, int placeInVector);
 
-	void primaryCharacter();
+	void updatePrimaryCharacter();
 	sf::Vector2f getCharacterPos()const;
 
 private:
@@ -34,6 +34,7 @@ private:
 
 	static EntityManager *sInstance;
 
+	void interact();
 	void checkCollisions();
 	bool isColliding(Entity *c, Entity *e);
 	void stopEntity(Entity *c, Entity *e);
@@ -42,7 +43,7 @@ private:
 	Entity::EntityKind mPrimaryCharacter;
 
 	EntityVector mEntities;
-	CharacterVector mCharacters;
+	Character* mCharacters[4];
 };
 
 #endif 

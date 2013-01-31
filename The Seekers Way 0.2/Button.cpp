@@ -40,7 +40,7 @@ void Button::DisActivate()
 	isitpressed = false;
 }
 
-void Button::update()
+void Button::update(EntityKind &currentEntity)
 {
 	DisActivate();
 }
