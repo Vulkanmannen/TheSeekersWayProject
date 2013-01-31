@@ -1,10 +1,18 @@
 #include "Arrow.h"
 #include "ImageManager.h"
 
+static const float WIDTH = 64;
+static const float HEIGHT = 12;
+
 Arrow::Arrow(sf::Vector2f &position, bool dirleft):
 	mDirLeft(dirleft),
 	mMovementSpeed(10*((0.5-dirleft)*2),0)
 {
+
+	mAlive = true;
+	mHeight = HEIGHT;
+	mWidth = WIDTH;
+	mEntityKind = Entity::ARROW;
 	mPosition = position;
 	mTexture.loadFromImage(*ImageManager::getImage("arrow.png"));
 	mSprite.setTexture(mTexture);

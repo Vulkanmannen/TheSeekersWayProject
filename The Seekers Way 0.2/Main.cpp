@@ -26,14 +26,11 @@ int main()
 	std::string map1("Tottemaptest.PNG");
 	MapGenerator::generateMap(map1);
 	
-	Block *Dor = new Door(sf::Vector2f(5 *64,4 *64));
-	Block *Trap = new ShottingTrap(sf::Vector2f(10 *64,2 *64),true);
-	EntityManager::getInstance()->addEntity(Dor);
+	Block *Trap = new ShottingTrap(sf::Vector2f(21 *64,14 *64));
 	EntityManager::getInstance()->addEntity(Trap);
-	EntityManager::getInstance()->addEntity(new Button(sf::Vector2f(2*64,3 *64), Dor));
 	EntityManager::getInstance()->addEntity(new Lever(sf::Vector2f(3*64,3 *64), Trap));
 	//kolla entitymanagaer i colision
-	Sounds::getInstance()->Loop("Levelkoncept 2.wav");
+	Sounds::getInstance()->Loop("Levelkoncept 3.wav", 30);
 
     while (window.isOpen())
     {

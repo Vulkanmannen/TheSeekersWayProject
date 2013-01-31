@@ -2,6 +2,7 @@
 #include "Animation.h"
 #include "Entity.h"
 #include "ImageManager.h"
+#include "Sounds.h"
 
 const static float HEIGHT	= 64;
 const static float WIDTH	= 128;
@@ -25,15 +26,11 @@ Sheeka::~Sheeka()
 
 void Sheeka::update()
 {
-	move();
-
 	if(mDash == false)
 	{
 		walk();
 		jump();
-		falling();
 	}
-
 	SheekaDash();
 }
 
@@ -53,6 +50,7 @@ void Sheeka::SheekaDash()
 {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !mDash && !mDashPressed && mClock.getElapsedTime().asSeconds() >=2)
 	{
+		Sounds::getInstance()->Play("dash 1.1.wav");
 		mClock.restart();
 		mMovementSpeed.y = 0;
 		mMovementSpeed.x = 0;
@@ -84,5 +82,10 @@ void Sheeka::SheekaDash()
 			mMovementSpeed.x = 0;
 			mGravity = 5;
 		}
+	}
+	else if(!mDirLeft && mClock.getElapsedTime().asMilliseconds() < 5 && mDash)
+	{
+		mMovementSpeed.x += mDashAcc;
+		mDash = false;
 	}
 }

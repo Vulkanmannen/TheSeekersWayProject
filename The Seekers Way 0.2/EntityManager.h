@@ -3,8 +3,8 @@
 
 #include <vector>
 #include "SFML\Graphics.hpp"
+#include "Entity.h"
 
-class Entity;
 class Block;
 class Character;
 
@@ -35,11 +35,11 @@ private:
 	static EntityManager *sInstance;
 
 	void checkCollisions();
-	bool isColliding(Character *c, Entity *e);
-	void stopEntity(Character *c, Entity *e);
+	bool isColliding(Entity *c, Entity *e);
+	void stopEntity(Entity *c, Entity *e);
 	void killEntity();
 
-	int mPrimaryCharacter;
+	Entity::EntityKind mPrimaryCharacter;
 
 	EntityVector mEntities;
 	CharacterVector mCharacters;

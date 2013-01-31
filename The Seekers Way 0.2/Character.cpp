@@ -26,11 +26,40 @@ Character::Character():
 Character::~Character()
 	{}
 
+void Character::onblock()
+{
+	if(mFalling)
+	{
+		mFalling = false;
+		if(mStatus == INAIR)
+		{
+			mStatus = IDLE;
+		}
+		mMovementSpeed.y = 0;
+	}
+}
+
+void Character::characterUpdate(Character* character, EntityKind &entityKind)
+{
+	character->move(entityKind);
+	character->falling();
+	character->fall();
+}
+
 // Flyttar Character
-void Character::move()
+void Character::move(EntityKind &entityKind)
 {
 	mPosition	+= mMovementSpeed;
 	mPosition.y	+= mGravity;
+
+	if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || mEntityKind != entityKind)
+	{
+		mMovementSpeed.x = 0;
+		if(mStatus == WALK)
+		{
+			mStatus = IDLE;
+		}
+	}
 }
 
 // Knapptryck tas in och movementspeed ändras
@@ -58,17 +87,7 @@ void Character::walk()
 		{
 			mStatus = WALK;
 		}
-
 		mDirLeft = false;
-
-	}
-	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-		mMovementSpeed.x = 0;
-		if(mStatus == WALK)
-		{
-			mStatus = IDLE;
-		}
 	}
 }
 
@@ -77,7 +96,7 @@ void Character::jump()
 {
 	if(mStatus == JUMP && mAnimation.getEndOfAnimation())
 	{
-		mStatus = JUMPING;
+		mStatus = INAIR;
 	}
 
 	if(mIsJumping)
@@ -111,20 +130,14 @@ void Character::falling()
 	}
 }
 
-void Character::onblock()
-{
-	if(mFalling)
-	{
-		mFalling = false;
-		mStatus = IDLE;
-		mMovementSpeed.y = 0;
-	}
-}
-
 void Character::fall()
 {
 	if(!mIsJumping)
 	{
+		if(mFalling)
+		{
+			mStatus = INAIR;
+		}
 		mFalling = true;
 	}
 }

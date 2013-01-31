@@ -22,10 +22,8 @@ Charlotte::~Charlotte()
 
 void Charlotte::update()
 {
-	move();
 	walk();
 	jump();
-	falling();
 	Shield();
 }
 
