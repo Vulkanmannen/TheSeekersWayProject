@@ -29,21 +29,29 @@ void MapGenerator::generateMap(std::string imageName)
 			sf::Color color = image.getPixel(i ,j);
 			sf::Vector2f position = sf::Vector2f(i * 64.f, j *64.f);
 
-			if(color == sf::Color(0,0,0,255))
+			if(color.r == 0 && color.a == 255)
 			{
-				EntityManager::getInstance()->addEntity(new NormalBlock(position));
+				EntityManager::getInstance()->addEntity(new NormalBlock(position, color.b));
 			}
-			else if(color == sf::Color(0, 200, 0, 255))
-			{
-				EntityManager::getInstance()->addCharacter(new Fenrir(position));
-			}
-			else if(color == sf::Color(0, 255, 0, 255))
-			{
-				EntityManager::getInstance()->addCharacter(new Sheeka(position));
-			}
-			else if(color == sf::Color(0, 0, 200, 255))
-			{
-				EntityManager::getInstance()->addCharacter(new Charlotte(position));
+
+			else if(color.r == 100 && color.a == 255)
+			{	
+				if(color.g == 0)
+				{
+					EntityManager::getInstance()->addCharacter(new Fenrir(position), 1);
+				}
+				else if(color.g == 100)
+				{
+					EntityManager::getInstance()->addCharacter(new Sheeka(position), 0);
+				}
+				else if(color.g == 200)
+				{
+					EntityManager::getInstance()->addCharacter(new Charlotte(position), 2);
+				}
+				else if(color.g == 255)
+				{
+					EntityManager::getInstance()->addCharacter(new Kiba(position), 3);
+				}
 			}
 		}
 	}

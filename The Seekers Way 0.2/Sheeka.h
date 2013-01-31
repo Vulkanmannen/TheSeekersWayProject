@@ -11,7 +11,7 @@ public:
 	Sheeka(sf::Vector2f &position);
 	~Sheeka();
 		
-	void update();
+	void update(EntityKind &currentEntity);
 	void render();
 
 	sf::Sprite getSprite();

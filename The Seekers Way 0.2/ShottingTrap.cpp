@@ -24,7 +24,7 @@ ShottingTrap::~ShottingTrap()
 
 }
 
-void ShottingTrap::update()
+void ShottingTrap::update(EntityKind &currentEntity)
 {
 	if(mShotting)
 	{

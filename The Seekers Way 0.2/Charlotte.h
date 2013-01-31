@@ -10,7 +10,7 @@ public:
 	Charlotte(sf::Vector2f &position);
 	~Charlotte();
 	
-	void update();
+	void update(EntityKind &currentEntity);
 	void render();
 
 	sf::Sprite getSprite();

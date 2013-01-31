@@ -24,14 +24,24 @@ Sheeka::Sheeka(sf::Vector2f &position):
 Sheeka::~Sheeka()
 	{}
 
-void Sheeka::update()
+void Sheeka::update(EntityKind &currentEntity)
 {
+	move();
 	if(mDash == false)
 	{
-		walk();
-		jump();
+		if(currentEntity == mEntityKind)
+		{
+			walk();
+			jump();
+		}
+		dontWalk(currentEntity);
+		falling();
+		fall();
 	}
-	SheekaDash();
+	if(currentEntity == mEntityKind)
+	{
+		SheekaDash();
+	}
 }
 
 void Sheeka::render()
