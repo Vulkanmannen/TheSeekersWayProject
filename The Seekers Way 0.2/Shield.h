@@ -12,7 +12,7 @@ public:
 	~Shield();
 
 	void render();
-	void update();
+	void update(EntityKind &currentEntity);
 
 private:
 	Animation mAnimation;
