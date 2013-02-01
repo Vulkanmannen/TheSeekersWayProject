@@ -98,6 +98,20 @@ void Character::dontWalk(EntityKind &currentEntity)
 // aktiverar så att man kan hoppa
 void Character::jump()
 {
+	if(!mFalling && !mIsJumping)
+	{
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mMovementSpeed.y < mMaxJump)
+		{
+			mStatus = JUMP;
+			mIsJumping = true;
+			mMovementSpeed.y -= mJump;
+		}
+	}
+}
+
+// uppdaterar hoppet
+void Character::jumping()
+{
 	if(mStatus == JUMP && mAnimation.getEndOfAnimation())
 	{
 		mStatus = INAIR;
@@ -112,15 +126,6 @@ void Character::jump()
 			mJumping = 0;
 			mFalling = true;
 			mIsJumping = false;
-		}
-	}
-	else if(!mFalling && !mIsJumping)
-	{
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mMovementSpeed.y < mMaxJump)
-		{
-			mStatus = JUMP;
-			mIsJumping = true;
-			mMovementSpeed.y -= mJump;
 		}
 	}
 }
