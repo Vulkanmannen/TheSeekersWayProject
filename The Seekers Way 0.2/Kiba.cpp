@@ -27,6 +27,7 @@ void Kiba::update(EntityKind &currentEntity)
 	}
 	dontWalk(currentEntity);
 	move();
+	jumping();
 	falling();
 	fall();
 }

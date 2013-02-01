@@ -27,6 +27,7 @@ Sheeka::~Sheeka()
 void Sheeka::update(EntityKind &currentEntity)
 {
 	move();
+
 	if(mDash == false)
 	{
 		if(currentEntity == mEntityKind)
@@ -35,6 +36,7 @@ void Sheeka::update(EntityKind &currentEntity)
 			jump();
 		}
 		dontWalk(currentEntity);
+		jumping();
 		falling();
 		fall();
 	}

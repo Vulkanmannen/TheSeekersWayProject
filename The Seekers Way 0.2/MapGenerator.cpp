@@ -61,7 +61,6 @@ void MapGenerator::generateMap(std::string imageName)
 					entityManager->addCharacter(static_cast<Character*>(entity), 3);
 				}
 				
-				entityManager->addCharacter(static_cast<Character*>(entity), 1);
 				entityManager->addEntity(entity);
 				entityManager->addDynamicEntity(entity);
 			}
