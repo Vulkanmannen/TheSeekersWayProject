@@ -2,12 +2,14 @@
 #include "Animation.h"
 #include "ImageManager.h"
 #include "EntityManager.h"
-#include "Shield.h"
+
+#include "Sounds.h"
 
 const static float HEIGHT = 64;
 const static float WIDTH = 128;
 
-Charlotte::Charlotte(sf::Vector2f &position)
+Charlotte::Charlotte(sf::Vector2f &position):
+	mIsShield(false)
 	{
 		mAnimation.init("Sheekabebad.png", 60, 7);
 
@@ -49,18 +51,25 @@ sf::Sprite Charlotte::getSprite()
 
 }
 
+void Charlotte::GetShieldLife()
+{
+	if(mShield->GetShieldCount() <= 0)
+	{
+		mShield->destroy();
+		mIsShield = false;
+	}
+}
+
 void Charlotte::SetShield()
 {
 	if((sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) && mClock.getElapsedTime().asSeconds() >=1) // tryck "Q" för att aktivera en sköld (1 sec cd)
 	{
+		if(mIsShield == true)
+		{
+			mShield->destroy();
+		}
 		mClock.restart();
-		if(mDirLeft)
-		{
-			EntityManager::getInstance()->addEntity(new Shield(sf::Vector2f(mPosition.x - 100, mPosition.y - 20)));
-		}
-		else if(mDirLeft == false)
-		{
-			EntityManager::getInstance()->addEntity(new Shield(sf::Vector2f(mPosition.x + 100, mPosition.y - 20)));	
-		}
+		mShield = new Shield(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 100, mPosition.y - 20), mDirLeft);
+		mIsShield = true;
 	}
 }

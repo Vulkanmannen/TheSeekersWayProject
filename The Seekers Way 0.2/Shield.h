@@ -13,13 +13,12 @@ public:
 
 	void render();
 	void update(EntityKind &currentEntity);
-
-	int ShieldCount;
-	void ShieldLife();
+	 int GetShieldCount()const;
 	void interact(Entity* e);
 
 private:
 	Animation mAnimation;
+	int mShieldCount;
 };
 
 #endif

@@ -3,7 +3,7 @@
 
 #include "Character.h"
 #include "SFML\Graphics.hpp"
-
+#include "Shield.h"
 class Charlotte: public Character
 {
 public:
@@ -17,10 +17,12 @@ public:
 
 private:
 
+	Shield* mShield;
 	sf::Clock mClock;
 
 	void SetShield();
-
+	void GetShieldLife();
+	bool mIsShield;
 };
 
 #endif

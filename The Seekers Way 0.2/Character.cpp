@@ -39,12 +39,6 @@ void Character::onblock()
 	}
 }
 
-//void Character::characterUpdate(Character* character, EntityKind &entityKind)
-//{
-//	character->move(entityKind);
-//	character->falling();
-//	character->fall();
-//}
 
 // Flyttar Character
 void Character::move()
