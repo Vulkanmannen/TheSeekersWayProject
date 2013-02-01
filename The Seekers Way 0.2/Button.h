@@ -14,6 +14,7 @@ public:
 
 	void render();
 	void update(EntityKind &currentEntity);
+	void interact(Entity* e);
 
 	void Activate();
 	void DisActivate();
