@@ -14,6 +14,10 @@ public:
 	void render();
 	void update(EntityKind &currentEntity);
 
+	int ShieldCount;
+	void ShieldLife();
+	void interact(Entity* e);
+
 private:
 	Animation mAnimation;
 };

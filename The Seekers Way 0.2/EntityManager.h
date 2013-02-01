@@ -22,6 +22,7 @@ public:
 	void render();
 
 	void addEntity(Entity *e);
+	void addDynamicEntity(Entity *e);
 	void addCharacter(Character *c, int placeInVector);
 
 	void updatePrimaryCharacter();

@@ -27,6 +27,7 @@ Sheeka::~Sheeka()
 void Sheeka::update(EntityKind &currentEntity)
 {
 	move();
+
 	if(mDash == false)
 	{
 		if(currentEntity == mEntityKind)
@@ -35,6 +36,7 @@ void Sheeka::update(EntityKind &currentEntity)
 			jump();
 		}
 		dontWalk(currentEntity);
+		jumping();
 		falling();
 		fall();
 	}
@@ -58,7 +60,7 @@ sf::Sprite Sheeka::getSprite()
 
 void Sheeka::SheekaDash()
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !mDash && !mDashPressed && mClock.getElapsedTime().asSeconds() >=2)
+	if((sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) && !mDash && !mDashPressed && mClock.getElapsedTime().asSeconds() >=2)
 	{
 		Sounds::getInstance()->Play("dash.wav");
 		mClock.restart();
