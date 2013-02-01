@@ -7,19 +7,18 @@
 class Shield: public Object
 {
 public:
-	Shield(sf::Vector2f &position);
+	Shield(sf::Vector2f &position, bool dirLeft);
 
 	~Shield();
 
 	void render();
 	void update(EntityKind &currentEntity);
-
-	int ShieldCount;
-	void ShieldLife();
+	 int GetShieldCount()const;
 	void interact(Entity* e);
 
 private:
 	Animation mAnimation;
+	int mShieldCount;
 };
 
 #endif

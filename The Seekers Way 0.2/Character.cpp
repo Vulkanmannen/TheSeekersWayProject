@@ -39,12 +39,6 @@ void Character::onblock()
 	}
 }
 
-//void Character::characterUpdate(Character* character, EntityKind &entityKind)
-//{
-//	character->move(entityKind);
-//	character->falling();
-//	character->fall();
-//}
 
 // Flyttar Character
 void Character::move()
@@ -153,5 +147,60 @@ void Character::fall()
 
 void Character::interact(Entity* e)
 {
+	if(e->getBaseKind() == Entity::BLOCK)
+	{
+		// räknar ut objektens radier och lägger ihop dem
+		float xRadius = mWidth / 2 + e->getWidth() / 2;
+		float yRadius = mHeight / 2 + e->getHeight() / 2;
 
+		// beräknar differansen mellan två objekt
+		float xDif = mPosition.x - e->getPosition().x;
+		float yDif = mPosition.y - e->getPosition().y;
+
+		// fråga vilken sida caraktären finns på.
+		if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius)) // är karaktären höger/vänster eller över/under om blocket
+		{
+			if(xDif > 0) // kollar om karaktären är höger eller vänster
+			{
+				if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
+				{
+					mPosition = sf::Vector2f(e->getPosition().x + xRadius - 3, mPosition.y);
+				}
+			}
+			else
+			{
+				if(std::abs(yDif) < yRadius - 10)
+				{
+					mPosition = sf::Vector2f(e->getPosition().x - (xRadius - 3), mPosition.y);
+				}
+			}
+		}
+		else
+		{
+			if(yDif > 0) // kollar om karaktären är under eller över
+			{
+				if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
+				{
+					mPosition = sf::Vector2f(mPosition.x, e->getPosition().y + yRadius);
+					mJumping = 0;
+					mFalling = true;
+					mIsJumping = false;
+					mMovementSpeed.y = 0;
+				}
+			}
+			else
+			{
+				if(std::abs(xDif) < xRadius - 10)
+				{
+					mPosition = sf::Vector2f(mPosition.x, e->getPosition().y - yRadius);
+					onblock();
+				}
+			}
+		}
+		
+		if(e->getEntityKind() == Entity::ARROW)
+		{
+		
+		}
+	}
 }

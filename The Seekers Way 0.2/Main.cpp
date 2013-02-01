@@ -23,15 +23,14 @@ int main()
 	sf::View view;
 	view.setSize(1024, 720);
 
-	std::string map1("Tottemaptest.PNG");
+	std::string map1("map1.PNG");
 	MapGenerator::generateMap(map1);
-	
+
 	Block *Trap = new ShottingTrap(sf::Vector2f(19 *64,14 *64));
 	EntityManager::getInstance()->addEntity(Trap);
 	EntityManager::getInstance()->addEntity(new Button(sf::Vector2f(21 *64,13 *64), Trap));
 	//kolla entitymanagaer i colision
-	Sounds::getInstance()->Loop("Levelkoncept.wav", 30);
-
+	//Sounds::getInstance()->Loop("Levelkoncept.wav", 30);
     while (window.isOpen())
     {
         sf::Event event;

@@ -42,27 +42,21 @@ void MapGenerator::generateMap(std::string imageName)
 				
 				if(color.g == 0)
 				{	
-					entity = new Sheeka(position);
-					entityManager->addCharacter(static_cast<Character*>(entity), 0);
+					entityManager->addEntity(new Sheeka(position));
 				}
 				else if(color.g == 100)
 				{
-					entity = new Fenrir(position);
-					entityManager->addCharacter(static_cast<Character*>(entity), 1);
+					entityManager->addEntity(new Fenrir(position));
 				}
 				else if(color.g == 200)
 				{
-					entity = new Charlotte(position);
-					entityManager->addCharacter(static_cast<Character*>(entity), 2);
+					entityManager->addEntity(new Charlotte(position));
 				}
 				else if(color.g == 255)
 				{
-					entity = new Kiba(position);
-					entityManager->addCharacter(static_cast<Character*>(entity), 3);
+					entityManager->addEntity(new Kiba(position));
 				}
 				
-				entityManager->addEntity(entity);
-				entityManager->addDynamicEntity(entity);
 			}
 		}
 	}
