@@ -49,3 +49,20 @@ sf::Sprite Lever::getSprite()
 {
 	return mAnimation.getSprite();
 }
+
+void Lever::interact(Entity* e)
+{
+	if(getPosition().y - e->getPosition().y > (e->getHeight() / 2 + mHeight / 2) - 7)
+	{
+		switch(e->getEntityKind())
+		{
+		case CHARLOTTE:
+		case KIBA:
+		case FENRIR:
+		case SHEEKA:
+		case STONE:
+			 Activate();
+			break;
+		}
+	}
+}

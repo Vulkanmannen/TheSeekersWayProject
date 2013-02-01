@@ -66,7 +66,15 @@ void Charlotte::SetShield()
 	{
 		if(mIsShield == true)
 		{
+<<<<<<< HEAD
 			mShield->destroy();
+=======
+			EntityManager::getInstance()->addEntity(new Shield(sf::Vector2f(mPosition.x - 100, mPosition.y - 20), mDirLeft));
+		}
+		else if(mDirLeft == false)
+		{
+			EntityManager::getInstance()->addEntity(new Shield(sf::Vector2f(mPosition.x + 100, mPosition.y - 20), mDirLeft));	
+>>>>>>> 88feaf0560902fbf06e8a8fa37a0bdedf431bcce
 		}
 		mClock.restart();
 		mShield = new Shield(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 100, mPosition.y - 20), mDirLeft);
