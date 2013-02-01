@@ -6,6 +6,7 @@
 #include "GenerateDoor.h"
 #include "Sheeka.h"
 #include "Charlotte.h"
+#include "ShottingTrap.h"
 
 MapGenerator::MapGenerator()
 	{}
@@ -37,9 +38,7 @@ void MapGenerator::generateMap(std::string imageName)
 			}
 
 			else if(color.r == 100 && color.a == 255)
-			{	
-				Entity* entity; 
-				
+			{			
 				if(color.g == 0)
 				{	
 					entityManager->addEntity(new Sheeka(position));
@@ -57,6 +56,13 @@ void MapGenerator::generateMap(std::string imageName)
 					entityManager->addEntity(new Kiba(position));
 				}
 				
+			}
+			else if(color.r == 200 && color.a == 255)
+			{
+				if(color.g == 0 && (color.b == 0 || color.b == 1))
+				{
+					entityManager->addEntity(new ShottingTrap(position, true, color.b));
+				}
 			}
 		}
 	}

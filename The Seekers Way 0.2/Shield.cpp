@@ -35,7 +35,7 @@ void Shield::render()
 
 void Shield::interact(Entity* e)
 {
-	if(e->getEntityKind() == ARROW)
+	if(e->getEntityKind() == ARROW && e->getAliveStatus())
 	{
 		mShieldCount++;
 	}
