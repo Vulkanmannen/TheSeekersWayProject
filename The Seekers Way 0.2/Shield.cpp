@@ -4,9 +4,10 @@
 static const float WIDTH = 64;
 static const float HEIGHT = 128;
 
-Shield::Shield(sf::Vector2f &position):
+Shield::Shield(sf::Vector2f &position, bool dirLeft):
 	mAnimation("shield.png", 60, 1, HEIGHT, WIDTH),
-	ShieldCount(5)
+	ShieldCount(5),
+	mDirLeft(dirLeft)
 {
 	mPosition = position;
 	mHeight = HEIGHT;
@@ -22,18 +23,19 @@ Shield::~Shield()
 
 void Shield::update(EntityKind &currentEntity)
 {
-
+	ShieldLife();
 }
 
 void Shield::render()
 {
+	mAnimation.update(5 - ShieldCount + mDirLeft);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
 	ImageManager::render(&mAnimation.getSprite());
 }
 
 void Shield::ShieldLife()
 {
-	if(ShieldCount == 0)
+	if(ShieldCount <= 0)
 	{
 		destroy();
 	}

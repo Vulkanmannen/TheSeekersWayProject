@@ -37,7 +37,7 @@ void EntityManager::update()
 	}
 
 	killEntity();
-	checkCollisions();
+	//checkCollisions();
 	interact();
 }
 
@@ -50,23 +50,25 @@ void EntityManager::render()
 	}
 }
 
-// lägger till en entitet i vecktorn
+// lägger till en entiteter i de vectorer de ska va i.
 void EntityManager::addEntity(Entity *e)
 {
 	mEntities.push_back(e);
+
+	switch(e->getEntityKind())
+	{
+	case Entity::ARROW:
+		mDynamicEntities.push_back(e);
+		break;
+	}
+
+	if(e->getBaseKind() == Entity::CHARACTER)
+	{
+		mDynamicEntities.push_back(e);
+		mCharacters[e->getEntityKind()] = static_cast<Character*>(e);
+	}
 }
 
-// lägger till en entitet i dynamicvectorn
-void EntityManager::addDynamicEntity(Entity *e)
-{
-	mDynamicEntities.push_back(e);
-}
-
-// lägger till character i charactervectorn
-void EntityManager::addCharacter(Character *character, int placeInVector)
-{
-	mCharacters[placeInVector] = character;
-}
 
 // går igenom alla karaktärer och krocktestar dem mot alla entiteter
 void EntityManager::checkCollisions()
@@ -142,49 +144,48 @@ void EntityManager::stopEntity(Entity *c, Entity *e)
 	// fråga vilken sida caraktären finns på.
 	if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius)) // är karaktären höger/vänster eller över/under om blocket
 	{
-		if(xDif > 0) // kollar om karaktären är höger eller vänster
-		{
-			if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
-			{
-				c->setPosition(sf::Vector2f(e->getPosition().x + xRadius - 3, c->getPosition().y));
-			}
-		}
-		else
-		{
-			if(std::abs(yDif) < yRadius - 10)
-			{
-				c->setPosition(sf::Vector2f(e->getPosition().x - (xRadius - 3), c->getPosition().y));
-			}
-		}
+		//if(xDif > 0) // kollar om karaktären är höger eller vänster
+		//{
+		//	if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
+		//	{
+		//		c->setPosition(sf::Vector2f(e->getPosition().x + xRadius - 3, c->getPosition().y));
+		//	}
+		//}
+		//else
+		//{
+		//	if(std::abs(yDif) < yRadius - 10)
+		//	{
+		//		c->setPosition(sf::Vector2f(e->getPosition().x - (xRadius - 3), c->getPosition().y));
+		//	}
+		//}
 	}
 	else
 	
 	{
-		if(yDif > 0) // kollar om karaktären är under eller över
-		{
-			if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
-			{
-				c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y + yRadius));
-			}
-		}
-		else
-		{
-			if(std::abs(xDif) < xRadius - 10)
-			{
-				c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y - (yRadius)));
-				if(c->getBaseKind() == Entity::CHARACTER)
-				{
-					dynamic_cast<Character*> (c)->onblock();
-				}
-				if(c->getBaseKind() == Entity::CHARACTER && (e->getEntityKind() == Entity::BUTTON || e->getEntityKind()==Entity::LEVER))
-				{
-					dynamic_cast<Block*> (e)->Activate();
-				}
+		//if(yDif > 0) // kollar om karaktären är under eller över
+		//{
+		//	if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
+		//	{
+		//		c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y + yRadius));
+		//	}
+		//}
+		//else
+		//{
+		//	if(std::abs(xDif) < xRadius - 10)
+		//	{
+		//		c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y - (yRadius)));
+		//		if(c->getBaseKind() == Entity::CHARACTER)
+		//		{
+		//			dynamic_cast<Character*> (c)->onblock();
+		//		}
+		//		if(c->getBaseKind() == Entity::CHARACTER && (e->getEntityKind() == Entity::BUTTON || e->getEntityKind()==Entity::LEVER))
+		//		{
+		//			dynamic_cast<Block*> (e)->Activate();
+		//		}
 
-			}
-		}
+		//	}
+		//}
 	}
-	
 }
 
 void EntityManager::killEntity()

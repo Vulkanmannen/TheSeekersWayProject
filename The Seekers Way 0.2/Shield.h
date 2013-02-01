@@ -7,7 +7,7 @@
 class Shield: public Object
 {
 public:
-	Shield(sf::Vector2f &position);
+	Shield(sf::Vector2f &position, bool dirLeft);
 
 	~Shield();
 
@@ -20,6 +20,7 @@ public:
 
 private:
 	Animation mAnimation;
+	bool mDirLeft;
 };
 
 #endif

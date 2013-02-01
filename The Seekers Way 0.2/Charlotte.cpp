@@ -56,11 +56,11 @@ void Charlotte::SetShield()
 		mClock.restart();
 		if(mDirLeft)
 		{
-			EntityManager::getInstance()->addEntity(new Shield(sf::Vector2f(mPosition.x - 100, mPosition.y - 20)));
+			EntityManager::getInstance()->addEntity(new Shield(sf::Vector2f(mPosition.x - 100, mPosition.y - 20), mDirLeft));
 		}
 		else if(mDirLeft == false)
 		{
-			EntityManager::getInstance()->addEntity(new Shield(sf::Vector2f(mPosition.x + 100, mPosition.y - 20)));	
+			EntityManager::getInstance()->addEntity(new Shield(sf::Vector2f(mPosition.x + 100, mPosition.y - 20), mDirLeft));	
 		}
 	}
 }
