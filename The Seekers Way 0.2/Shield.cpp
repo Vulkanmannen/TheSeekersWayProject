@@ -27,7 +27,7 @@ void Shield::update(EntityKind &currentEntity)
 
 void Shield::render()
 {
-	mAnimation.update(/*5 - mShieldCount + mDirLeft*/);
+	//mAnimation.update(/*5 - mShieldCount + mDirLeft*/);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
 	ImageManager::render(&mAnimation.getSprite());
 }
