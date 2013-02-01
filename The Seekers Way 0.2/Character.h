@@ -36,6 +36,7 @@ protected:
 
 	void move();
 	void jump();
+	void jumping();
 	void walk();
 	void dontWalk(EntityKind &currentEntity);
 	void falling();

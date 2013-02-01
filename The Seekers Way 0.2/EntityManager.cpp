@@ -36,11 +36,6 @@ void EntityManager::update()
 		mEntities[i]->update(mPrimaryCharacter);
 	}
 
-	for(int i = 0; i < sizeof(mCharacters) / sizeof(mCharacters[0]); ++i)
-	{
-		mCharacters[i]->update(mPrimaryCharacter);
-	}
-
 	killEntity();
 	checkCollisions();
 	interact();
@@ -53,17 +48,18 @@ void EntityManager::render()
 	{
 		mEntities[i]->render();
 	}
-
-	for(int i = 0; i < sizeof(mCharacters) / sizeof(mCharacters[0]); ++i)
-	{
-		mCharacters[i]->render();
-	}
 }
 
 // lägger till en entitet i vecktorn
 void EntityManager::addEntity(Entity *e)
 {
 	mEntities.push_back(e);
+}
+
+// lägger till en entitet i dynamicvectorn
+void EntityManager::addDynamicEntity(Entity *e)
+{
+	mDynamicEntities.push_back(e);
 }
 
 // lägger till character i charactervectorn
@@ -193,13 +189,6 @@ void EntityManager::stopEntity(Entity *c, Entity *e)
 
 void EntityManager::killEntity()
 {
-	for(int i = 0; i < sizeof(mCharacters) / sizeof(mCharacters[0]); ++i)
-	{
-		if(mCharacters[i]->getAliveStatus() == false)
-		{
-			
-		}
-	}
 	for(EntityVector::size_type j = 0; j < mEntities.size(); ++j)
 	{
 		if(mEntities[j]->getAliveStatus() == false)
@@ -224,6 +213,10 @@ void EntityManager::updatePrimaryCharacter()
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
 	{
 		mPrimaryCharacter = Entity::CHARLOTTE;
+	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
+	{
+		mPrimaryCharacter = Entity::KIBA;
 	}
 }
 
