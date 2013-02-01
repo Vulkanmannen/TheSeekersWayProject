@@ -65,7 +65,7 @@ void EntityManager::addEntity(Entity *e)
 	if(e->getBaseKind() == Entity::CHARACTER)
 	{
 		mDynamicEntities.push_back(e);
-		mCharacters[e->getEntityKind()] = static_cast<Character*>(e);
+		mCharacters[e->getEntityKind()] = e;
 	}
 }
 
@@ -131,61 +131,61 @@ bool EntityManager::isColliding(Entity *c, Entity *e)
 // flyttar ut objekt som kolliderat med block
 void EntityManager::stopEntity(Entity *c, Entity *e)
 {
-	
-	
-	// räknar ut objektens radier och lägger ihop dem
-	float xRadius = c->getWidth() / 2 + e->getWidth() / 2;
-	float yRadius = c->getHeight() / 2 + e->getHeight() / 2;
+	//
+	//
+	//// räknar ut objektens radier och lägger ihop dem
+	//float xRadius = c->getWidth() / 2 + e->getWidth() / 2;
+	//float yRadius = c->getHeight() / 2 + e->getHeight() / 2;
 
-	// beräknar differansen mellan två objekt
-	float xDif = c->getPosition().x - e->getPosition().x;
-	float yDif = c->getPosition().y - e->getPosition().y;
+	//// beräknar differansen mellan två objekt
+	//float xDif = c->getPosition().x - e->getPosition().x;
+	//float yDif = c->getPosition().y - e->getPosition().y;
 
-	// fråga vilken sida caraktären finns på.
-	if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius)) // är karaktären höger/vänster eller över/under om blocket
-	{
-		//if(xDif > 0) // kollar om karaktären är höger eller vänster
-		//{
-		//	if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
-		//	{
-		//		c->setPosition(sf::Vector2f(e->getPosition().x + xRadius - 3, c->getPosition().y));
-		//	}
-		//}
-		//else
-		//{
-		//	if(std::abs(yDif) < yRadius - 10)
-		//	{
-		//		c->setPosition(sf::Vector2f(e->getPosition().x - (xRadius - 3), c->getPosition().y));
-		//	}
-		//}
-	}
-	else
-	
-	{
-		//if(yDif > 0) // kollar om karaktären är under eller över
-		//{
-		//	if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
-		//	{
-		//		c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y + yRadius));
-		//	}
-		//}
-		//else
-		//{
-		//	if(std::abs(xDif) < xRadius - 10)
-		//	{
-		//		c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y - (yRadius)));
-		//		if(c->getBaseKind() == Entity::CHARACTER)
-		//		{
-		//			dynamic_cast<Character*> (c)->onblock();
-		//		}
-		//		if(c->getBaseKind() == Entity::CHARACTER && (e->getEntityKind() == Entity::BUTTON || e->getEntityKind()==Entity::LEVER))
-		//		{
-		//			dynamic_cast<Block*> (e)->Activate();
-		//		}
+	//// fråga vilken sida caraktären finns på.
+	//if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius)) // är karaktären höger/vänster eller över/under om blocket
+	//{
+	//	if(xDif > 0) // kollar om karaktären är höger eller vänster
+	//	{
+	//		if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
+	//		{
+	//			c->setPosition(sf::Vector2f(e->getPosition().x + xRadius - 3, c->getPosition().y));
+	//		}
+	//	}
+	//	else
+	//	{
+	//		if(std::abs(yDif) < yRadius - 10)
+	//		{
+	//			c->setPosition(sf::Vector2f(e->getPosition().x - (xRadius - 3), c->getPosition().y));
+	//		}
+	//	}
+	//}
+	//else
+	//
+	//{
+	//	if(yDif > 0) // kollar om karaktären är under eller över
+	//	{
+	//		if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
+	//		{
+	//			c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y + yRadius));
+	//		}
+	//	}
+	//	else
+	//	{
+	//		if(std::abs(xDif) < xRadius - 10)
+	//		{
+	//			c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y - (yRadius)));
+	//			if(c->getBaseKind() == Entity::CHARACTER)
+	//			{
+	//				dynamic_cast<Character*> (c)->onblock();
+	//			}
+	//			if(c->getBaseKind() == Entity::CHARACTER && (e->getEntityKind() == Entity::BUTTON || e->getEntityKind()==Entity::LEVER))
+	//			{
+	//				dynamic_cast<Block*> (e)->Activate();
+	//			}
 
-		//	}
-		//}
-	}
+	//		}
+	//	}
+	//}
 }
 
 void EntityManager::killEntity()
@@ -232,7 +232,7 @@ void EntityManager::interact()
 	EntityVector temp;
 	for(int i = 0; i < sizeof(mCharacters) / sizeof(mCharacters[0]); i++)
 	{
-		temp.push_back(static_cast<Entity*>(mCharacters[i]));
+		temp.push_back(mCharacters[i]);
 	}
 	temp.insert(temp.end(), mEntities.begin(), mEntities.end());
 	

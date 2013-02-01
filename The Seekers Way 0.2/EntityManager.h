@@ -22,8 +22,6 @@ public:
 	void render();
 
 	void addEntity(Entity *e);
-	void addDynamicEntity(Entity *e);
-	void addCharacter(Character *c, int placeInVector);
 
 	void updatePrimaryCharacter();
 	sf::Vector2f getCharacterPos()const;
@@ -45,7 +43,7 @@ private:
 
 	EntityVector		mEntities;
 	DynamicEntityVector mDynamicEntities;
-	Character*			mCharacters[4];
+	Entity*				mCharacters[4];
 };
 
 #endif 

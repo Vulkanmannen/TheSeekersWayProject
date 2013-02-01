@@ -24,7 +24,6 @@ Charlotte::~Charlotte()
 
 void Charlotte::update(EntityKind &currentEntity)
 {
-
 	if(currentEntity == mEntityKind)
 	{
 		walk();
@@ -36,6 +35,7 @@ void Charlotte::update(EntityKind &currentEntity)
 	jumping();
 	falling();
 	fall();
+	GetShieldLife();
 }
 
 void Charlotte::render()
@@ -48,15 +48,17 @@ void Charlotte::render()
 sf::Sprite Charlotte::getSprite()
 {
 	return mAnimation.getSprite();
-
 }
 
 void Charlotte::GetShieldLife()
 {
-	if(mShield->GetShieldCount() <= 0)
+	if(mIsShield)
 	{
-		mShield->destroy();
-		mIsShield = false;
+		if(mShield->GetShieldCount() >= 5)
+		{
+			mShield->destroy();
+			mIsShield = false;
+		}
 	}
 }
 
@@ -64,13 +66,15 @@ void Charlotte::SetShield()
 {
 	if((sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) && mClock.getElapsedTime().asSeconds() >=1) // tryck "Q" för att aktivera en sköld (1 sec cd)
 	{	
-		mClock.restart();
-		mShield = new Shield(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 100, mPosition.y - 20), mDirLeft);
-		mIsShield = true;
 		if(mIsShield == true)
 		{
-			mShield->destroy();
-			EntityManager::getInstance()->addEntity(new Shield(sf::Vector2f(mPosition.x - 100, mPosition.y - 20), mDirLeft));
+			mShield->destroy();	
 		}
+		mClock.restart();
+		mShield = new Shield(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 100, mPosition.y - 20), mDirLeft);
+			
+		EntityManager::getInstance()->addEntity(mShield);
+
+		mIsShield = true;
 	}
 }
