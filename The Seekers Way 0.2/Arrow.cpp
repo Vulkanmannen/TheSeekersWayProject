@@ -28,10 +28,6 @@ Arrow::~Arrow()
 
 void Arrow::update(EntityKind &currentEntity)
 {
-	if(mShottingTime.getElapsedTime().asSeconds() > 2)
-	{
-		destroy();
-	}
 	
 	mPosition	+= mMovementSpeed;
 	mSprite.setPosition(mPosition);
@@ -39,9 +35,11 @@ void Arrow::update(EntityKind &currentEntity)
 
 void Arrow::interact(Entity* e)
 {
-	destroy();
-	if(e->getBaseKind() == Entity::BLOCK || e->getBaseKind() == Entity::CHARACTER)
+	if(e->getEntityKind() != Entity::SHOTTINGTRAP)
 	{
-		destroy();
+		if(e->getBaseKind() == Entity::BLOCK || e->getBaseKind() == Entity::CHARACTER || e->getEntityKind() == Entity::SHIELD)
+		{
+			destroy();
+		}
 	}
 }
