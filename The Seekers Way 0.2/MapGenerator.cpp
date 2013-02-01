@@ -37,9 +37,7 @@ void MapGenerator::generateMap(std::string imageName)
 			}
 
 			else if(color.r == 100 && color.a == 255)
-			{	
-				Entity* entity; 
-				
+			{			
 				if(color.g == 0)
 				{	
 					entityManager->addEntity(new Sheeka(position));
