@@ -63,21 +63,14 @@ void Charlotte::GetShieldLife()
 void Charlotte::SetShield()
 {
 	if((sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) && mClock.getElapsedTime().asSeconds() >=1) // tryck "Q" för att aktivera en sköld (1 sec cd)
-	{
-		if(mIsShield == true)
-		{
-<<<<<<< HEAD
-			mShield->destroy();
-=======
-			EntityManager::getInstance()->addEntity(new Shield(sf::Vector2f(mPosition.x - 100, mPosition.y - 20), mDirLeft));
-		}
-		else if(mDirLeft == false)
-		{
-			EntityManager::getInstance()->addEntity(new Shield(sf::Vector2f(mPosition.x + 100, mPosition.y - 20), mDirLeft));	
->>>>>>> 88feaf0560902fbf06e8a8fa37a0bdedf431bcce
-		}
+	{	
 		mClock.restart();
 		mShield = new Shield(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 100, mPosition.y - 20), mDirLeft);
 		mIsShield = true;
+		if(mIsShield == true)
+		{
+			mShield->destroy();
+			EntityManager::getInstance()->addEntity(new Shield(sf::Vector2f(mPosition.x - 100, mPosition.y - 20), mDirLeft));
+		}
 	}
 }

@@ -18,11 +18,7 @@ public:
 
 private:
 	Animation mAnimation;
-<<<<<<< HEAD
 	int mShieldCount;
-=======
-	bool mDirLeft;
->>>>>>> 88feaf0560902fbf06e8a8fa37a0bdedf431bcce
 };
 
 #endif
