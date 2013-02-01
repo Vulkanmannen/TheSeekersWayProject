@@ -17,7 +17,7 @@ MapGenerator::~MapGenerator()
 void MapGenerator::generateMap(std::string imageName)
 {
 	GenerateDoor::loadDocument("config.xml");
-	//GenerateDoor::GenerateDoors();
+	GenerateDoor::GenerateDoors();
 
 	sf::Image image;
 	image.loadFromFile(imageName);

@@ -52,3 +52,20 @@ void Button::render()
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
 	ImageManager::render(&mAnimation.getSprite());
 }
+
+void Button::interact(Entity* e)
+{
+	if(getPosition().y - e->getPosition().y > (e->getHeight() / 2 + mHeight / 2) - 7)
+	{
+		switch(e->getEntityKind())
+		{
+		case CHARLOTTE:
+		case KIBA:
+		case FENRIR:
+		case SHEEKA:
+		case STONE:
+			Activate();
+			break;
+		}
+	}
+}
