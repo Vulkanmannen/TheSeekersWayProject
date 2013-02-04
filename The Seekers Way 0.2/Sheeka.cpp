@@ -10,11 +10,11 @@ const static float WIDTH	= 128;
 Sheeka::Sheeka(sf::Vector2f &position):
 	mDashPressed(false),
 	mDash(false),
-	mDashTimer(15),
-	mDashAcc(20),
+	mDashTimer(30),
+	mDashAcc(10),
 	mDashCount(0)
 	{
-		mAnimation.init("sheeka.PNG", 60, 7);
+		mAnimation.init("sheeka.PNG", 60, 8);
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
 		mEntityKind = SHEEKA;
@@ -49,7 +49,7 @@ void Sheeka::update(EntityKind &currentEntity)
 void Sheeka::render()
 {
 	ImageManager::render(&getSprite());
-	mAnimation.update(/*mStatus * 2 +*/mDirLeft);
+	mAnimation.update(mStatus * 2 + mDirLeft);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x -64, mPosition.y -96));
 }
 
@@ -62,6 +62,7 @@ void Sheeka::SheekaDash()
 {
 	if((sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) && !mDash && !mDashPressed && mClock.getElapsedTime().asSeconds() >=2)
 	{
+		mStatus = ACTION1;
 		Sounds::getInstance()->Play("dash.wav");
 		mClock.restart();
 		mMovementSpeed.y = 0;
@@ -88,6 +89,7 @@ void Sheeka::SheekaDash()
 		mDashCount++;
 		if(mDashCount >= mDashTimer)
 		{
+			mStatus = IDLE;
 			mDash = false;
 			mDashCount = 0;
 			mMovementSpeed.y = 0;
@@ -96,3 +98,4 @@ void Sheeka::SheekaDash()
 		}
 	}
 }
+

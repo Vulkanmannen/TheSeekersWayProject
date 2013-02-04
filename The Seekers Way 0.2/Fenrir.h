@@ -13,7 +13,19 @@ public:
 	void update(EntityKind &currentEntity);
 	void render();
 
+	void interact(Entity *e);
+
 	sf::Sprite getSprite();
+private:
+	enum JumpStatus {RIGHT, LEFT, GROUND};
+
+	void wallJump();
+	void isWallJumping();
+
+	bool mWallJumping;
+	JumpStatus mLastJumpDir;
+	int mWallJumpCount;
+	int mWallJumpTime;
 
 };
 

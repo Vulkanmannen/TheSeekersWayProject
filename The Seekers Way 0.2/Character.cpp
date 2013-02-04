@@ -98,7 +98,7 @@ void Character::jump()
 		{
 			mStatus = JUMP;
 			mIsJumping = true;
-			mMovementSpeed.y -= mJump;
+			mMovementSpeed.y = -mJump;
 		}
 	}
 }
@@ -197,10 +197,10 @@ void Character::interact(Entity* e)
 				}
 			}
 		}
+	}
 		
-		if(e->getEntityKind() == Entity::ARROW)
-		{
+	if(e->getEntityKind() == Entity::ARROW)
+	{
 		
-		}
 	}
 }
