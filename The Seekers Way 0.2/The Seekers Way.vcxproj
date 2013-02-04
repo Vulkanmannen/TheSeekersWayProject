@@ -13,7 +13,9 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Arrow.h" />
+    <ClInclude Include="BigBridge.h" />
     <ClInclude Include="Block.h" />
+    <ClInclude Include="Bridge.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Charlotte.h" />
@@ -33,13 +35,16 @@
     <ClInclude Include="Shield.h" />
     <ClInclude Include="ShottingTrap.h" />
     <ClInclude Include="Sounds.h" />
+    <ClInclude Include="Stone.h" />
     <ClInclude Include="tinystr.h" />
     <ClInclude Include="tinyxml.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Arrow.cpp" />
+    <ClCompile Include="BigBridge.cpp" />
     <ClCompile Include="Block.cpp" />
+    <ClCompile Include="Bridge.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Charlotte.cpp" />
@@ -60,6 +65,7 @@
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="ShottingTrap.cpp" />
     <ClCompile Include="Sounds.cpp" />
+    <ClCompile Include="Stone.cpp" />
     <ClCompile Include="tinystr.cpp" />
     <ClCompile Include="tinyxml.cpp" />
     <ClCompile Include="tinyxmlerror.cpp" />

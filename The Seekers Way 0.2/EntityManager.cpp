@@ -15,7 +15,12 @@ EntityManager::EntityManager():
 
 
 EntityManager::~EntityManager()
-	{}
+{
+	for(EntityVector::size_type j = 0; j < mEntities.size(); ++j)
+	{
+		delete mEntities[j];
+	}
+}
 
 // returnerar den enda instancen av managern
 EntityManager* EntityManager::getInstance()
@@ -35,10 +40,10 @@ void EntityManager::update()
 	{
 		mEntities[i]->update(mPrimaryCharacter);
 	}
-
+	interact();
 	killEntity();
 	//checkCollisions();
-	interact();
+	
 }
 
 // ritarut alla objekt
@@ -239,7 +244,7 @@ void EntityManager::interact()
 	//kör interact mot alla som krockar
 	for(EntityVector::size_type i = 0; i < temp.size(); ++i)
 	{
-		for(EntityVector::size_type j = 0; j < temp.size(); ++j)
+		for(EntityVector::size_type j = i + 1; j < temp.size(); ++j)
 		{
 			if(isColliding(temp[i], temp[j]))
 			{

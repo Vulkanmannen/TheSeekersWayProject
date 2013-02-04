@@ -12,6 +12,8 @@
 #include "Lever.h"
 #include "ShottingTrap.h"
 #include "Sounds.h"
+#include "BigBridge.h"
+#include "Stone.h"
 
 int main()
 {
@@ -26,16 +28,24 @@ int main()
 	std::string map1("Tottemaptest.PNG");
 	MapGenerator::generateMap(map1);
 
-	//kolla entitymanagaer i colision
+	EntityManager::getInstance()->addEntity(new Stone(sf::Vector2f(17 *64, 12 *64)));
+
 	//Sounds::getInstance()->Loop("Levelkoncept.wav", 30);
     while (window.isOpen())
     {
         sf::Event event;
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+		{	
+			window.close();
+		}
+
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
+		
 		window.clear(sf::Color::Blue);
 
 		EntityManager::getInstance()->update();
@@ -48,6 +58,6 @@ int main()
 
 		window.display();
     }
-
+	delete EntityManager::getInstance();
     return 0;
 }

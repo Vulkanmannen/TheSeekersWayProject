@@ -3,6 +3,7 @@
 
 #include "Character.h"
 #include "SFML\Graphics.hpp"
+#include "Stone.h"
 
 class Kiba: public Character
 {
@@ -10,11 +11,12 @@ public:
 	Kiba(sf::Vector2f &position);
 	~Kiba();
 	
+	void telekinesis();
 	void update(EntityKind &currentEntity);
-	sf::Sprite getSprite();
+	void render();
 
 private:
-
+	Stone *mStone;
 };
 
 #endif
