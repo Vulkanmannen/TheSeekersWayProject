@@ -7,6 +7,7 @@
 #include "Sheeka.h"
 #include "Charlotte.h"
 #include "ShottingTrap.h"
+#include "Spiketrap.h"
 
 MapGenerator::MapGenerator()
 	{}
@@ -34,8 +35,16 @@ void MapGenerator::generateMap(std::string imageName)
 
 			if(color.r == 0 && color.a == 255)
 			{
-				entityManager->addEntity(new NormalBlock(position, color.b));
+				if(color.g == 0)
+				{
+					entityManager->addEntity(new NormalBlock(position, color.b));
+				}
+				else if(color.g == 100)
+				{
+					entityManager->addEntity(new Spiketrap(position));
+				}
 			}
+
 
 			else if(color.r == 100 && color.a == 255)
 			{			
@@ -55,8 +64,9 @@ void MapGenerator::generateMap(std::string imageName)
 				{
 					entityManager->addEntity(new Kiba(position));
 				}
-				
 			}
+
+
 			else if(color.r == 200 && color.a == 255)
 			{
 				if(color.g == 0 && (color.b == 0 || color.b == 1))
