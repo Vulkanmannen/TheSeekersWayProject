@@ -13,7 +13,7 @@ public:
 
 	void render();
 	void update(EntityKind &currentEntity);
-	 int GetShieldCount()const;
+	int GetShieldCount()const;
 	void interact(Entity* e);
 
 private:
