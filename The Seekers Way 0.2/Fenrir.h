@@ -23,7 +23,9 @@ private:
 	void isWallJumping();
 
 	bool mWallJumping;
+	bool mCanWallJump;
 	JumpStatus mLastJumpDir;
+
 	int mWallJumpCount;
 	int mWallJumpTime;
 

@@ -9,6 +9,7 @@ const static float WIDTH = 128;
 
 Fenrir::Fenrir(sf::Vector2f &position):
 	mWallJumping(false),
+	mCanWallJump(true),
 	mWallJumpCount(0),
 	mWallJumpTime(15),
 	mLastJumpDir(GROUND)
@@ -130,8 +131,9 @@ void Fenrir::isWallJumping()
 // sätter igång walljumpen
 void Fenrir::wallJump() 
 {
-	if(!mWallJumping && sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	if(!mWallJumping && sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mCanWallJump)
 	{  
+		mCanWallJump = false;
 		if(mDirLeft == mLastJumpDir || mLastJumpDir == GROUND && mMovementSpeed.y < 0.4)
 		{
 			mWallJumping = true;
@@ -152,5 +154,9 @@ void Fenrir::wallJump()
 			mIsJumping = true;
 			mMovementSpeed.y = -(mJump);
 		}
+	}
+	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		mCanWallJump = true;
 	}
 }
