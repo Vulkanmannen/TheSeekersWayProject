@@ -33,6 +33,7 @@
     <ClInclude Include="Shield.h" />
     <ClInclude Include="ShottingTrap.h" />
     <ClInclude Include="Sounds.h" />
+    <ClInclude Include="Spiketrap.h" />
     <ClInclude Include="tinystr.h" />
     <ClInclude Include="tinyxml.h" />
   </ItemGroup>
@@ -60,6 +61,7 @@
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="ShottingTrap.cpp" />
     <ClCompile Include="Sounds.cpp" />
+    <ClCompile Include="Spiketrap.cpp" />
     <ClCompile Include="tinystr.cpp" />
     <ClCompile Include="tinyxml.cpp" />
     <ClCompile Include="tinyxmlerror.cpp" />

@@ -1,5 +1,6 @@
 #include "Shield.h"
 #include "ImageManager.h"
+#include "Charlotte.h"
 
 static const float WIDTH = 64;
 static const float HEIGHT = 128;
@@ -27,7 +28,7 @@ void Shield::update(EntityKind &currentEntity)
 
 void Shield::render()
 {
-	mAnimation.update(/*5 - mShieldCount + mDirLeft*/);
+	mAnimation.update(/*5 - mShieldCount + */mDirLeft);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
 	ImageManager::render(&mAnimation.getSprite());
 }
