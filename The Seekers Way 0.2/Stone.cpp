@@ -8,19 +8,19 @@ Stone::Stone(sf::Vector2f Position):
 	mMovementSpeed(0,0),
 	mGravity(5),
 	mDecrease(0.6),
-	mFalling(false)
+	mFalling(false),
+	mtelekinesis(false)
 {
-	mPosition = Position;
+	mPosition = Position + sf::Vector2f(WIDTH/2 - 32, HEIGHT/2 - 32);
 	mAlive = true;
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = STONE;
-
 	mTexture.loadFromImage(*ImageManager::getImage("crashstone.png"));
 	mSprite.setTexture(mTexture);
 	mSprite.setPosition(Position);
-	mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
 	mSprite.scale(WIDTH/mSprite.getTexture()->getSize().x,HEIGHT/mSprite.getTexture()->getSize().y);
+	mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
 }
 
 Stone::~Stone()
@@ -31,17 +31,50 @@ Stone::~Stone()
 void Stone::update(EntityKind &currentEntity)
 {
 	move();
-	falling();
+
+	mtelekinesis ? telekinesis(), mBaseKind = OBJECT : falling(), mBaseKind = BLOCK;
+
+	mFalling = true;
+}
+
+void Stone::render()
+{
+	mSprite.setPosition(sf::Vector2f(mPosition.x, mPosition.y));
+	ImageManager::render(&mSprite);
+}
+
+void Stone::telekinesis()
+{
+	if(mMovementSpeed.x*mMovementSpeed.x+mMovementSpeed.y*mMovementSpeed.y < 10)
+	{
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		{
+			mMovementSpeed.x -= 1;
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		{
+			mMovementSpeed.x += 1;
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		{
+			mMovementSpeed.y -= 1;
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		{
+			mMovementSpeed.y += 1;
+		}
+	}
 }
 
 void Stone::move()	   
 {
 	mPosition	+= mMovementSpeed;
-	mPosition.y	+= mGravity;
+	mMovementSpeed -= sf::Vector2f( 0.1*mMovementSpeed.x, 0.1*mMovementSpeed.y);
 }
 
 void Stone::falling() 
 {
+	mPosition.y	+= mGravity;
 	if(mFalling)
 	{
 		mMovementSpeed.y += mDecrease;
@@ -50,9 +83,56 @@ void Stone::falling()
 
 void Stone::interact(Entity* e)
 {
-	if(e->getBaseKind() == BLOCK && getPosition().y - e->getPosition().y < (e->getHeight() / 2 + mHeight / 2) - 7) 
+	if(e->getBaseKind() == Entity::BLOCK || (e->getBaseKind() == Entity::CHARACTER && mtelekinesis ))
 	{
-		mFalling = true;
-		mMovementSpeed.y = 0;
+
+		// räknar ut objektens radier och lägger ihop dem
+		float xRadius = mWidth / 2 + e->getWidth() / 2;
+		float yRadius = mHeight / 2 + e->getHeight() / 2;
+
+		// beräknar differansen mellan två objekt
+		float xDif = mPosition.x - e->getPosition().x;
+		float yDif = mPosition.y - e->getPosition().y;
+
+		// fråga vilken sida caraktären finns på.
+		if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius)) // är karaktären höger/vänster eller över/under om blocket
+		{
+			if(xDif > 0) // kollar om karaktären är höger eller vänster
+			{
+				if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
+				{
+					mPosition -= sf::Vector2f(mPosition.x - (e->getPosition().x + xRadius - 3), 0);
+				}
+			}
+			else
+			{
+				if(std::abs(yDif) < yRadius - 10)
+				{
+					mPosition -= sf::Vector2f(mPosition.x - (e->getPosition().x - (xRadius - 3)), 0);
+				}
+			}
+		}
+		else
+		{
+			if(yDif > 0) // kollar om karaktären är under eller över
+			{
+				if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
+				{
+					mPosition -= sf::Vector2f( 0,mPosition.y - (e->getPosition().y + yRadius));
+					//mJumping = 0;
+					//mIsJumping = false;
+				}
+			}
+			else
+			{
+				if(std::abs(xDif) < xRadius - 10)
+				{
+					mPosition -= sf::Vector2f(0, mPosition.y - (e->getPosition().y - yRadius ));
+					//mMovementSpeed.y = 0;
+					//onblock();
+					mFalling = false;
+				}
+			}
+		}
 	}
 }

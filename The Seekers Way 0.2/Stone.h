@@ -11,10 +11,14 @@ public:
 	Stone(sf::Vector2f Position);
 	~Stone();
 	void update(EntityKind &currentEntity);
+	void render();
 	void interact(Entity* e);
 
 	void move();
 	void falling();
+	void telekinesis();
+
+	bool mtelekinesis;
 
 private:
 	sf::Vector2f mMovementSpeed;
