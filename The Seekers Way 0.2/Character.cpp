@@ -4,15 +4,15 @@
 
 Character::Character():
 	mMovementSpeed(0, 0),
-	mAcceleration(0.3),
-	mDecrease(0.6),
+	mAcceleration(0.38),
+	mDecrease(0.4),
 	mGravity(5.0),
 	mStatus(IDLE),
 	mDirLeft(false),
 	mJump(14.5),
 	mRun(6.0),
 	mMaxRun(6.0),
-	mMaxJump(14.5),
+	mMaxJump(30),
 	mJumpTime(1.0),
 	mJumping(0.0),
 	mFalling(false),
@@ -120,6 +120,7 @@ void Character::jumping()
 			mJumping = 0;
 			mFalling = true;
 			mIsJumping = false;
+			mMovementSpeed.y = 0;
 		}
 	}
 }

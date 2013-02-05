@@ -10,7 +10,7 @@ const static float WIDTH	= 128;
 Sheeka::Sheeka(sf::Vector2f &position):
 	mDashPressed(false),
 	mDash(false),
-	mDashTimer(30),
+	mDashTimer(38),
 	mDashAcc(10),
 	mDashCount(0)
 	{

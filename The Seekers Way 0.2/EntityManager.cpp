@@ -37,7 +37,6 @@ void EntityManager::update()
 	}
 
 	killEntity();
-	//checkCollisions();
 	interact();
 }
 
@@ -69,39 +68,6 @@ void EntityManager::addEntity(Entity *e)
 	}
 }
 
-
-// går igenom alla karaktärer och krocktestar dem mot alla entiteter
-void EntityManager::checkCollisions()
-{
-	for(int i = 0; i < sizeof(mCharacters) / sizeof(mCharacters[0]); ++i)
-	{
-		for(EntityVector::size_type j = 0; j < mEntities.size(); ++j)
-		{
-			if(mEntities[j]->getBaseKind() == Entity::BLOCK)
-			{
-				if(isColliding(static_cast<Entity*>(mCharacters[i]), mEntities[j]))
-				{
-					stopEntity(static_cast<Entity*>(mCharacters[i]), mEntities[j]);
-				}
-			}
-		}
-	}
-	for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
-	{
-		for(EntityVector::size_type j = 0; j < mEntities.size(); ++j)
-		{
-			if(mEntities[i]->getEntityKind() == Entity::ARROW && mEntities[j]->getBaseKind() == Entity::BLOCK)
-			{
-				if(isColliding(mEntities[i], mEntities[j]))
-				{
-					stopEntity(mEntities[i], mEntities[j]);
-				}
-			}
-		}
-	}
-	
-}
-
 // kollar om en karaktär kolliderar
 bool EntityManager::isColliding(Entity *c, Entity *e)
 {
@@ -128,72 +94,20 @@ bool EntityManager::isColliding(Entity *c, Entity *e)
 }
 
 
-// flyttar ut objekt som kolliderat med block
-void EntityManager::stopEntity(Entity *c, Entity *e)
-{
-	//
-	//
-	//// räknar ut objektens radier och lägger ihop dem
-	//float xRadius = c->getWidth() / 2 + e->getWidth() / 2;
-	//float yRadius = c->getHeight() / 2 + e->getHeight() / 2;
-
-	//// beräknar differansen mellan två objekt
-	//float xDif = c->getPosition().x - e->getPosition().x;
-	//float yDif = c->getPosition().y - e->getPosition().y;
-
-	//// fråga vilken sida caraktären finns på.
-	//if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius)) // är karaktären höger/vänster eller över/under om blocket
-	//{
-	//	if(xDif > 0) // kollar om karaktären är höger eller vänster
-	//	{
-	//		if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
-	//		{
-	//			c->setPosition(sf::Vector2f(e->getPosition().x + xRadius - 3, c->getPosition().y));
-	//		}
-	//	}
-	//	else
-	//	{
-	//		if(std::abs(yDif) < yRadius - 10)
-	//		{
-	//			c->setPosition(sf::Vector2f(e->getPosition().x - (xRadius - 3), c->getPosition().y));
-	//		}
-	//	}
-	//}
-	//else
-	//
-	//{
-	//	if(yDif > 0) // kollar om karaktären är under eller över
-	//	{
-	//		if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
-	//		{
-	//			c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y + yRadius));
-	//		}
-	//	}
-	//	else
-	//	{
-	//		if(std::abs(xDif) < xRadius - 10)
-	//		{
-	//			c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y - (yRadius)));
-	//			if(c->getBaseKind() == Entity::CHARACTER)
-	//			{
-	//				dynamic_cast<Character*> (c)->onblock();
-	//			}
-	//			if(c->getBaseKind() == Entity::CHARACTER && (e->getEntityKind() == Entity::BUTTON || e->getEntityKind()==Entity::LEVER))
-	//			{
-	//				dynamic_cast<Block*> (e)->Activate();
-	//			}
-
-	//		}
-	//	}
-	//}
-}
-
 void EntityManager::killEntity()
 {
 	for(EntityVector::size_type j = 0; j < mEntities.size(); ++j)
 	{
 		if(mEntities[j]->getAliveStatus() == false)
 		{
+			for(EntityVector::size_type i = 0; i < mDynamicEntities.size(); ++i)
+			{
+				if(mDynamicEntities[i] == mEntities[j])
+				{
+					mDynamicEntities[i] = mDynamicEntities.back();
+					mDynamicEntities.pop_back();
+				}
+			}
 			delete mEntities[j];
 			mEntities[j] = mEntities.back();
 			mEntities.pop_back();
@@ -237,14 +151,18 @@ void EntityManager::interact()
 	temp.insert(temp.end(), mEntities.begin(), mEntities.end());
 	
 	//kör interact mot alla som krockar
-	for(EntityVector::size_type i = 0; i < temp.size(); ++i)
+	for(EntityVector::size_type i = 0; i < mDynamicEntities.size(); ++i)
 	{
-		for(EntityVector::size_type j = 0; j < temp.size(); ++j)
+		for(EntityVector::size_type j = 0; j < mEntities.size(); ++j)
 		{
-			if(isColliding(temp[i], temp[j]))
+			if(mDynamicEntities[i] != mEntities[j])
 			{
-				temp[i]->interact(temp[j]);
-				temp[j]->interact(temp[i]);
+				if(isColliding(mDynamicEntities[i], mEntities[j]))
+				{
+					mDynamicEntities[i]->interact(mEntities[j]);
+
+					mEntities[j]->interact(mDynamicEntities[i]);
+				}
 			}
 		}
 	}

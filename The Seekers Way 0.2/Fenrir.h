@@ -21,9 +21,15 @@ private:
 
 	void wallJump();
 	void isWallJumping();
+	void canWallJump();
+	void hitWall();
+
 
 	bool mWallJumping;
 	bool mCanWallJump;
+	bool mCanPressWallJump;
+	bool mHitWall;
+	bool mFenrirCanJump;
 	JumpStatus mLastJumpDir;
 
 	int mWallJumpCount;
