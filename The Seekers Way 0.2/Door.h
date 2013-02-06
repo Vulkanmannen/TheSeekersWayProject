@@ -9,7 +9,7 @@ public:
 	Door(sf::Vector2f &position);
 	~Door();
 
-	void render();	
+	void render();
 	void update(EntityKind &currentEntity);
 	sf::Sprite getSprite();
 

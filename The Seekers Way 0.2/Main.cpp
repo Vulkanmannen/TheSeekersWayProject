@@ -29,8 +29,7 @@ int main()
 	MapGenerator::generateMap(map1);
 
 	//kolla entitymanagaer i colision
-	Sounds::getInstance()->Loop("Levelkoncept.wav", 30);
-
+	//Sounds::getInstance()->Loop("Levelkoncept.wav", 30);
     while (window.isOpen())
     {
         sf::Event event;

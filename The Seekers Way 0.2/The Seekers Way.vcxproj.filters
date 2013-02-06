@@ -82,6 +82,11 @@
     <ClCompile Include="Shield.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Spiketrap.cpp">
+      <Filter>Entities\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="FireBall.cpp" />
+    <ClCompile Include="FireRune.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -156,6 +161,11 @@
     <ClInclude Include="Shield.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Spiketrap.h">
+      <Filter>Entities\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="FireBall.h" />
+    <ClInclude Include="FireRune.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">

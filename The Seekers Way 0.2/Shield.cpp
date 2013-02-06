@@ -1,5 +1,6 @@
 #include "Shield.h"
 #include "ImageManager.h"
+#include "Charlotte.h"
 
 static const float WIDTH = 20;
 static const float HEIGHT = 120;
