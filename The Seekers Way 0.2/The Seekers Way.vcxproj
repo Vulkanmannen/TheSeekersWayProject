@@ -17,6 +17,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Charlotte.h" />
+    <ClInclude Include="DarkBinding.h" />
     <ClInclude Include="DecorateBlock.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Entity.h" />
@@ -28,6 +29,7 @@
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="Kiba.h" />
     <ClInclude Include="Lever.h" />
+    <ClInclude Include="MagicSwitch.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="NormalBlock.h" />
     <ClInclude Include="Object.h" />
@@ -46,6 +48,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Charlotte.cpp" />
+    <ClCompile Include="DarkBinding.cpp" />
     <ClCompile Include="DecorateBlock.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -57,6 +60,7 @@
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="Kiba.cpp" />
     <ClCompile Include="Lever.cpp" />
+    <ClCompile Include="MagicSwitch.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="NormalBlock.cpp" />
