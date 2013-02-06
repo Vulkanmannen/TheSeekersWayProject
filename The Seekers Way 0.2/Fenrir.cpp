@@ -123,6 +123,11 @@ void Fenrir::interact(Entity *e)
 			}
 		}
 	}
+	
+	if(e->getEntityKind() == Entity::ARROW)
+	{
+		mIsHit = true;
+	}
 }
 
 // körs när walljumpen är igång, och stänger av den när den är klar 
@@ -151,7 +156,7 @@ void Fenrir::wallJump()
 	{  
 		mCanPressWallJump = false;
 		
-		if(mCanWallJump && mHitWall)
+		if(/*mCanWallJump && */mHitWall)
 		{
 			if(mDirLeft == mLastJumpDir || mLastJumpDir == GROUND)
 			{
@@ -159,7 +164,7 @@ void Fenrir::wallJump()
 				mHitWall = false;
 				mWallJumpCount = 0;
 
-				mStatus = IDLE;
+				mStatus = ACTION1;
 		
 				mDirLeft = !mDirLeft;
 
@@ -173,7 +178,6 @@ void Fenrir::wallJump()
 					mMovementSpeed.x = +6;
 					mLastJumpDir = RIGHT;
 				}
-				//mIsJumping = true;
 				mMovementSpeed.y = -(mJump);
 			}
 		}
@@ -186,13 +190,9 @@ void Fenrir::wallJump()
 // reglerar om karaktären har rätt hastighet för att få walljumpa
 void Fenrir::canWallJump()
 {
-	if(mMovementSpeed.y < 32 && mMovementSpeed.y > -22.3)
+	if(mMovementSpeed.y > 2)
 	{
-		mCanWallJump = true;
-	}
-	else
-	{
-		mCanWallJump = false;
+		mHitWall = false;
 	}
 }
 
@@ -209,6 +209,7 @@ void Fenrir::hitWall()
 			if(!mIsJumping)
 			{
 				mMovementSpeed.y = 0.3;
+				mStatus = ACTION2;
 			}
 			mHitWall = true;
 		}

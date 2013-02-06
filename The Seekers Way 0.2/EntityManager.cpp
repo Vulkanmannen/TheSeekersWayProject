@@ -5,13 +5,18 @@
 #include "Character.h"
 #include "Door.h"
 #include <algorithm>
+#include "ImageManager.h"
 
 
 EntityManager* EntityManager::sInstance = 0;
 
 EntityManager::EntityManager():
-	mPrimaryCharacter(Entity::SHEEKA)
-	{}
+	mPrimaryCharacter(Entity::SHEEKA),
+	mPlayerLife(3)
+	{
+		mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
+		mLifeSprite.setTexture(mLifeTexture);
+	}
 
 
 EntityManager::~EntityManager()
@@ -38,6 +43,27 @@ void EntityManager::update()
 
 	killEntity();
 	interact();
+	lifePosition();
+	updatePlayerLife();
+}
+
+// uppdaterar lifeposition
+void EntityManager::lifePosition()
+{
+	mLifeSprite.setPosition(mView->getCenter() - sf::Vector2f(512, 360));
+}
+
+// uppdaterar hur mycket liv spelaren har
+void EntityManager::updatePlayerLife()
+{
+	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
+	{
+		if(mCharacters[i]->getIsHit())
+		{
+			mCharacters[i]->setIsHitToFalse();
+			mPlayerLife--;
+		}
+	}
 }
 
 // ritarut alla objekt
@@ -46,6 +72,17 @@ void EntityManager::render()
 	for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
 	{
 		mEntities[i]->render();
+	}
+	renderLife();
+}
+
+// renderar livet
+void EntityManager::renderLife()
+{
+	for(int i = 0; i < mPlayerLife; ++i)
+	{
+		ImageManager::render(&mLifeSprite);
+		mLifeSprite.setPosition(mLifeSprite.getPosition() + sf::Vector2f(50, 0));
 	}
 }
 
@@ -57,6 +94,7 @@ void EntityManager::addEntity(Entity *e)
 	switch(e->getEntityKind())
 	{
 	case Entity::ARROW:
+	case Entity::SHIELD:
 		mDynamicEntities.push_back(e);
 		break;
 	}
@@ -64,7 +102,7 @@ void EntityManager::addEntity(Entity *e)
 	if(e->getBaseKind() == Entity::CHARACTER)
 	{
 		mDynamicEntities.push_back(e);
-		mCharacters[e->getEntityKind()] = e;
+		mCharacters.push_back(static_cast<Character*>(e));
 	}
 }
 
@@ -93,7 +131,7 @@ bool EntityManager::isColliding(Entity *c, Entity *e)
 	}
 }
 
-
+// tar bort entiterter som är döda i både entityvectorn och dynamicentityvektorn
 void EntityManager::killEntity()
 {
 	for(EntityVector::size_type j = 0; j < mEntities.size(); ++j)
@@ -115,6 +153,7 @@ void EntityManager::killEntity()
 	}
 }
 
+// uppdaterar vilken som är den primära karaktären
 void EntityManager::updatePrimaryCharacter()
 {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
@@ -135,21 +174,20 @@ void EntityManager::updatePrimaryCharacter()
 	}
 }
 
+// returnerar possitione till den primära karaktären
 sf::Vector2f EntityManager::getCharacterPos()const
 {
-	return mCharacters[mPrimaryCharacter]->getPosition();
+	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
+	{
+		if(mCharacters[i]->getEntityKind() == mPrimaryCharacter)
+		{
+			return mCharacters[i]->getPosition();
+		}
+	}
 }
 
 void EntityManager::interact()
 {
-	//samlar alla saker i en lista
-	EntityVector temp;
-	for(int i = 0; i < sizeof(mCharacters) / sizeof(mCharacters[0]); i++)
-	{
-		temp.push_back(mCharacters[i]);
-	}
-	temp.insert(temp.end(), mEntities.begin(), mEntities.end());
-	
 	//kör interact mot alla som krockar
 	for(EntityVector::size_type i = 0; i < mDynamicEntities.size(); ++i)
 	{
@@ -160,10 +198,15 @@ void EntityManager::interact()
 				if(isColliding(mDynamicEntities[i], mEntities[j]))
 				{
 					mDynamicEntities[i]->interact(mEntities[j]);
-
 					mEntities[j]->interact(mDynamicEntities[i]);
 				}
 			}
 		}
 	}
+}
+
+// sätter viewn
+void EntityManager::setView(sf::View* view)
+{
+	mView = view;
 }

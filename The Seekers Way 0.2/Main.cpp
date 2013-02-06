@@ -23,6 +23,8 @@ int main()
 	sf::View view;
 	view.setSize(1024, 720);
 
+	EntityManager::getInstance()->setView(&view);
+
 	std::string map1("Tottemaptest.PNG");
 	MapGenerator::generateMap(map1);
 

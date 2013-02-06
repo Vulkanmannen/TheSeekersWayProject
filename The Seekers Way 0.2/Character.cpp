@@ -4,7 +4,7 @@
 
 Character::Character():
 	mMovementSpeed(0, 0),
-	mAcceleration(0.38),
+	mAcceleration(0.33),
 	mDecrease(0.4),
 	mGravity(5.0),
 	mStatus(IDLE),
@@ -17,7 +17,8 @@ Character::Character():
 	mJumping(0.0),
 	mFalling(false),
 	mIsJumping(false),
-	mAnimation(128, 128)
+	mAnimation(128, 128),
+	mIsHit(false)
 {
 	mAlive = true;
 	mBaseKind = CHARACTER;
@@ -202,6 +203,18 @@ void Character::interact(Entity* e)
 		
 	if(e->getEntityKind() == Entity::ARROW)
 	{
-		
+		mIsHit = true;
 	}
+}
+
+// funktion som sätter is hit till false
+void Character::setIsHitToFalse()
+{
+	mIsHit = false;
+}
+
+// returnerar ishit status
+bool Character::getIsHit()const
+{
+	return mIsHit;
 }

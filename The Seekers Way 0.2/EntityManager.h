@@ -13,6 +13,7 @@ class EntityManager
 public:
 	typedef std::vector<Entity*> EntityVector;
 	typedef std::vector<Entity*> DynamicEntityVector;
+	typedef std::vector<Character*> CharacterVector;
 
 	static EntityManager* getInstance();
 
@@ -25,6 +26,8 @@ public:
 
 	void updatePrimaryCharacter();
 	sf::Vector2f getCharacterPos()const;
+
+	void setView(sf::View* view);
 
 private:
 	EntityManager();
@@ -43,7 +46,17 @@ private:
 
 	EntityVector		mEntities;
 	DynamicEntityVector mDynamicEntities;
-	Entity*				mCharacters[4];
+	CharacterVector		mCharacters;
+
+	//--------------life
+	int mPlayerLife;
+	sf::Texture mLifeTexture;
+	sf::Sprite mLifeSprite;
+	void renderLife();
+	void lifePosition();
+	void updatePlayerLife();
+
+	sf::View* mView;
 };
 
 #endif 
