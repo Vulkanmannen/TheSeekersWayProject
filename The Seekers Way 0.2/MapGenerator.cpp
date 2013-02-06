@@ -7,7 +7,7 @@
 #include "Sheeka.h"
 #include "Charlotte.h"
 #include "ShottingTrap.h"
-#include "Spiketrap.h"
+#include "SpikeBlock.h"
 #include "FireBall.h"
 #include "FireRune.h"
 
@@ -44,7 +44,7 @@ void MapGenerator::generateMap(std::string imageName)
 				}
 				else if(color.g == 50)
 				{
-					entityManager->addEntity(new Spiketrap(position));
+					entityManager->addEntity(new SpikeBlock(position));
 				}
 				else if(color.g == 100)
 				{

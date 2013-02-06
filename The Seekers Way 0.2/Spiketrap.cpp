@@ -9,9 +9,9 @@ Spiketrap::Spiketrap(sf::Vector2f &position):
 	mSpikeAcc(2),
 	mSpikeStatus(START)
 {
-	mPosition = position + sf::Vector2f(0,32);
+	mPosition = position + sf::Vector2f(0, + 32);
 	mMaxSpikeHeight = position.y - 96;
-	mMinSpikeHeight = position.y + 32;
+	mMinSpikeHeight = position.y - 32;
 	mWidth = WIDTH;
 	mHeight = HEIGHT;
 	mEntityKind = SPIKETRAP;
@@ -21,7 +21,7 @@ Spiketrap::Spiketrap(sf::Vector2f &position):
 
 Spiketrap::~Spiketrap()
 {
-
+	
 }
 
 void Spiketrap::update(EntityKind &currentEntity)

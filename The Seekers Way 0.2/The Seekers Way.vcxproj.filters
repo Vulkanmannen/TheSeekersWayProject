@@ -82,11 +82,16 @@
     <ClCompile Include="Shield.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Spiketrap.cpp">
-      <Filter>Entities\Block</Filter>
+    <ClCompile Include="FireBall.cpp">
+      <Filter>Entities\Object</Filter>
     </ClCompile>
-    <ClCompile Include="FireBall.cpp" />
-    <ClCompile Include="FireRune.cpp" />
+    <ClCompile Include="FireRune.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Spiketrap.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="SpikeBlock.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -161,11 +166,16 @@
     <ClInclude Include="Shield.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Spiketrap.h">
-      <Filter>Entities\Block</Filter>
+    <ClInclude Include="FireRune.h">
+      <Filter>Entities\Object</Filter>
     </ClInclude>
-    <ClInclude Include="FireBall.h" />
-    <ClInclude Include="FireRune.h" />
+    <ClInclude Include="FireBall.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Spiketrap.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="SpikeBlock.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">

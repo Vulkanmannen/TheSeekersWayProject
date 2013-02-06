@@ -1,9 +1,9 @@
 #ifndef INCLUDED_SPIKETRAP
 #define INCLUDED_SPIKETRAP
-#include "Block.h"
+#include "Object.h"
 #include "Animation.h"
 
-class Spiketrap: public Block
+class Spiketrap: public Object
 {
 public: 
 	Spiketrap(sf::Vector2f &position);
