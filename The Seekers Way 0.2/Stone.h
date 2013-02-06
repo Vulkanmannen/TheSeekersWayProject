@@ -26,6 +26,10 @@ private:
 	float mGravity;
 
 	bool mFalling;
+	bool mRblock;
+	bool mLblock;
+	bool mUblock;
+	bool mDblock;
 };
 
 #endif

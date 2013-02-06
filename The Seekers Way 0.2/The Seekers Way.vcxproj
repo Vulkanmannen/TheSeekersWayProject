@@ -36,6 +36,7 @@
     <ClInclude Include="ShottingTrap.h" />
     <ClInclude Include="Sounds.h" />
     <ClInclude Include="Stone.h" />
+    <ClInclude Include="TelekinesisBox.h" />
     <ClInclude Include="tinystr.h" />
     <ClInclude Include="tinyxml.h" />
   </ItemGroup>
@@ -66,6 +67,7 @@
     <ClCompile Include="ShottingTrap.cpp" />
     <ClCompile Include="Sounds.cpp" />
     <ClCompile Include="Stone.cpp" />
+    <ClCompile Include="Telekinesisbox.cpp" />
     <ClCompile Include="tinystr.cpp" />
     <ClCompile Include="tinyxml.cpp" />
     <ClCompile Include="tinyxmlerror.cpp" />

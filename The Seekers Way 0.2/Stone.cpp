@@ -32,7 +32,16 @@ void Stone::update(EntityKind &currentEntity)
 {
 	move();
 
-	mtelekinesis ? telekinesis(), mBaseKind = OBJECT : falling(), mBaseKind = BLOCK;
+	if(mtelekinesis)
+	{
+		telekinesis();
+	}
+
+	else 
+	{
+		falling();
+	}
+
 
 	mFalling = true;
 }
@@ -68,8 +77,18 @@ void Stone::telekinesis()
 
 void Stone::move()	   
 {
+	mRblock ? (mMovementSpeed.x > 0 ? mMovementSpeed.x = 0 : NULL ) : NULL;
+	mLblock ? (mMovementSpeed.x < 0 ? mMovementSpeed.x = 0 : NULL ) : NULL;
+	mUblock ? (mMovementSpeed.y < 0 ? mMovementSpeed.y = 0 : NULL ) : NULL;
+	mDblock ? (mMovementSpeed.y > 0 ? mMovementSpeed.y = 0 : NULL ) : NULL;
+
 	mPosition	+= mMovementSpeed;
 	mMovementSpeed -= sf::Vector2f( 0.1*mMovementSpeed.x, 0.1*mMovementSpeed.y);
+
+	mRblock	= false;
+	mLblock	= false;
+	mUblock	= false;
+	mDblock	= false;
 }
 
 void Stone::falling() 
@@ -85,7 +104,6 @@ void Stone::interact(Entity* e)
 {
 	if(e->getBaseKind() == Entity::BLOCK || (e->getBaseKind() == Entity::CHARACTER && mtelekinesis ))
 	{
-
 		// räknar ut objektens radier och lägger ihop dem
 		float xRadius = mWidth / 2 + e->getWidth() / 2;
 		float yRadius = mHeight / 2 + e->getHeight() / 2;
@@ -102,6 +120,7 @@ void Stone::interact(Entity* e)
 				if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
 				{
 					mPosition -= sf::Vector2f(mPosition.x - (e->getPosition().x + xRadius - 3), 0);
+					mLblock = true;
 				}
 			}
 			else
@@ -109,6 +128,7 @@ void Stone::interact(Entity* e)
 				if(std::abs(yDif) < yRadius - 10)
 				{
 					mPosition -= sf::Vector2f(mPosition.x - (e->getPosition().x - (xRadius - 3)), 0);
+					mRblock = true;
 				}
 			}
 		}
@@ -118,7 +138,13 @@ void Stone::interact(Entity* e)
 			{
 				if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
 				{
-					mPosition -= sf::Vector2f( 0,mPosition.y - (e->getPosition().y + yRadius));
+					mPosition -= sf::Vector2f( 0,mPosition.y - (e->getPosition().y + yRadius - 3));
+					mUblock = true;
+					if(e->getBaseKind() == CHARACTER || e->getEntityKind() == STONE)
+					{
+						mRblock = true; 
+						mLblock = true;
+					}
 					//mJumping = 0;
 					//mIsJumping = false;
 				}
@@ -127,7 +153,9 @@ void Stone::interact(Entity* e)
 			{
 				if(std::abs(xDif) < xRadius - 10)
 				{
-					mPosition -= sf::Vector2f(0, mPosition.y - (e->getPosition().y - yRadius ));
+					mPosition -= sf::Vector2f(0, mPosition.y - (e->getPosition().y - (yRadius - 3)));
+					mDblock = true;
+					
 					//mMovementSpeed.y = 0;
 					//onblock();
 					mFalling = false;

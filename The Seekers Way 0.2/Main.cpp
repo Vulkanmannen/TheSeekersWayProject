@@ -25,12 +25,11 @@ int main()
 	sf::View view;
 	view.setSize(1024, 720);
 
-	std::string map1("Tottemaptest.PNG");
+	std::string map1("Pettemaptest.PNG");
 	MapGenerator::generateMap(map1);
 
-	Stone* stone = new Stone(sf::Vector2f(17 *64, 0 *64));
-	EntityManager::getInstance()->addEntity(new Stone(sf::Vector2f(17 *64, 0 *64)));
-	EntityManager::getInstance()->addEntity(stone);
+	EntityManager::getInstance()->addEntity(new Stone(sf::Vector2f(17 *64, 13 *64)));
+	EntityManager::getInstance()->addEntity(new Stone(sf::Vector2f(9 *64, 8 *64)));
 	sf::Clock clock;
 	//Sounds::getInstance()->Loop("Levelkoncept.wav", 30);
     while (window.isOpen())
@@ -40,12 +39,6 @@ int main()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
 		{	
 			window.close();
-		}
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && clock.getElapsedTime().asSeconds() > 1)
-		{	
-			stone->mtelekinesis = !stone->mtelekinesis;
-			clock.restart();
 		}
 
         while (window.pollEvent(event))

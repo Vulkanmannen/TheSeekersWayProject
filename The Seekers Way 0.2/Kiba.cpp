@@ -5,14 +5,15 @@
 const static float HEIGHT = 128;
 const static float WIDTH = 64;
 
-Kiba::Kiba(sf::Vector2f &position)
-	{
-		mAnimation.init("fenrir.png", 60, 7);
-		mHeight = HEIGHT;
-		mWidth = WIDTH;
-		mEntityKind = KIBA;
-		mPosition = position;
-	}
+Kiba::Kiba(sf::Vector2f &position):
+	telestate(free)
+{
+	mAnimation.init("fenrir.png", 60, 7);
+	mHeight = HEIGHT;
+	mWidth = WIDTH;
+	mEntityKind = KIBA;
+	mPosition = position;
+}
 
 
 Kiba::~Kiba()
@@ -20,11 +21,33 @@ Kiba::~Kiba()
 
 void Kiba::update(EntityKind &currentEntity)
 {
-	if(currentEntity == mEntityKind)
+	if(currentEntity == mEntityKind && telestate == free)
 	{
 		walk();
 		jump();
+
+		// en function
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q) && teletimer.getElapsedTime().asMilliseconds() > 500)
+		{
+			telestate = tele((int(telestate) + 1) % 3);
+			teletimer.restart();
+
+			telestate == choice ? mTeleBox = new TelekinesisBox(mPosition) : NULL ;
+		}
+
 	}
+
+	else if(telestate == moving)
+	{
+		telekinesis();
+	}
+
+	else if(telestate == choice)
+	{
+		getStone();
+	}
+	
+
 	dontWalk(currentEntity);
 	move();
 	jumping();
@@ -41,6 +64,11 @@ void Kiba::render()
 }
 
 void Kiba::telekinesis()
+{
+
+}
+
+void Kiba::getStone()
 {
 
 }

@@ -3,20 +3,26 @@
 
 #include "Character.h"
 #include "SFML\Graphics.hpp"
-#include "Stone.h"
+#include "TeleKinesisBox.h"
 
 class Kiba: public Character
 {
 public:
 	Kiba(sf::Vector2f &position);
 	~Kiba();
-	
+
+	enum tele {choice, moving, free};
+	tele telestate;
+
 	void telekinesis();
 	void update(EntityKind &currentEntity);
 	void render();
+	void getStone();
 
 private:
 	Stone *mStone;
+	TelekinesisBox *mTeleBox;
+	sf::Clock teletimer;
 };
 
 #endif

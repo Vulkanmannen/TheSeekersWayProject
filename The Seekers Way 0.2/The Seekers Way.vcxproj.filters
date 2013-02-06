@@ -91,6 +91,9 @@
     <ClCompile Include="Stone.cpp">
       <Filter>Entities\Block</Filter>
     </ClCompile>
+    <ClCompile Include="Telekinesisbox.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -173,6 +176,9 @@
     </ClInclude>
     <ClInclude Include="Stone.h">
       <Filter>Entities\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="TelekinesisBox.h">
+      <Filter>Entities\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
