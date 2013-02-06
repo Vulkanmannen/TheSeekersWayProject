@@ -5,13 +5,18 @@
 #include "Character.h"
 #include "Door.h"
 #include <algorithm>
+#include "ImageManager.h"
 
 
 EntityManager* EntityManager::sInstance = 0;
 
 EntityManager::EntityManager():
-	mPrimaryCharacter(Entity::SHEEKA)
-	{}
+	mPrimaryCharacter(Entity::SHEEKA),
+	mPlayerLife(3)
+	{
+		mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
+		mLifeSprite.setTexture(mLifeTexture);
+	}
 
 
 EntityManager::~EntityManager()
@@ -37,8 +42,28 @@ void EntityManager::update()
 	}
 
 	killEntity();
-	//checkCollisions();
 	interact();
+	lifePosition();
+	updatePlayerLife();
+}
+
+// uppdaterar lifeposition
+void EntityManager::lifePosition()
+{
+	mLifeSprite.setPosition(mView->getCenter() - sf::Vector2f(512, 360));
+}
+
+// uppdaterar hur mycket liv spelaren har
+void EntityManager::updatePlayerLife()
+{
+	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
+	{
+		if(mCharacters[i]->getIsHit())
+		{
+			mCharacters[i]->setIsHitToFalse();
+			mPlayerLife--;
+		}
+	}
 }
 
 // ritarut alla objekt
@@ -47,6 +72,17 @@ void EntityManager::render()
 	for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
 	{
 		mEntities[i]->render();
+	}
+	renderLife();
+}
+
+// renderar livet
+void EntityManager::renderLife()
+{
+	for(int i = 0; i < mPlayerLife; ++i)
+	{
+		ImageManager::render(&mLifeSprite);
+		mLifeSprite.setPosition(mLifeSprite.getPosition() + sf::Vector2f(50, 0));
 	}
 }
 
@@ -58,6 +94,7 @@ void EntityManager::addEntity(Entity *e)
 	switch(e->getEntityKind())
 	{
 	case Entity::ARROW:
+	case Entity::SHIELD:
 		mDynamicEntities.push_back(e);
 		break;
 	}
@@ -65,41 +102,8 @@ void EntityManager::addEntity(Entity *e)
 	if(e->getBaseKind() == Entity::CHARACTER)
 	{
 		mDynamicEntities.push_back(e);
-		mCharacters[e->getEntityKind()] = e;
+		mCharacters.push_back(static_cast<Character*>(e));
 	}
-}
-
-
-// går igenom alla karaktärer och krocktestar dem mot alla entiteter
-void EntityManager::checkCollisions()
-{
-	for(int i = 0; i < sizeof(mCharacters) / sizeof(mCharacters[0]); ++i)
-	{
-		for(EntityVector::size_type j = 0; j < mEntities.size(); ++j)
-		{
-			if(mEntities[j]->getBaseKind() == Entity::BLOCK)
-			{
-				if(isColliding(static_cast<Entity*>(mCharacters[i]), mEntities[j]))
-				{
-					stopEntity(static_cast<Entity*>(mCharacters[i]), mEntities[j]);
-				}
-			}
-		}
-	}
-	for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
-	{
-		for(EntityVector::size_type j = 0; j < mEntities.size(); ++j)
-		{
-			if(mEntities[i]->getEntityKind() == Entity::ARROW && mEntities[j]->getBaseKind() == Entity::BLOCK)
-			{
-				if(isColliding(mEntities[i], mEntities[j]))
-				{
-					stopEntity(mEntities[i], mEntities[j]);
-				}
-			}
-		}
-	}
-	
 }
 
 // kollar om en karaktär kolliderar
@@ -127,73 +131,21 @@ bool EntityManager::isColliding(Entity *c, Entity *e)
 	}
 }
 
-
-// flyttar ut objekt som kolliderat med block
-void EntityManager::stopEntity(Entity *c, Entity *e)
-{
-	//
-	//
-	//// räknar ut objektens radier och lägger ihop dem
-	//float xRadius = c->getWidth() / 2 + e->getWidth() / 2;
-	//float yRadius = c->getHeight() / 2 + e->getHeight() / 2;
-
-	//// beräknar differansen mellan två objekt
-	//float xDif = c->getPosition().x - e->getPosition().x;
-	//float yDif = c->getPosition().y - e->getPosition().y;
-
-	//// fråga vilken sida caraktären finns på.
-	//if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius)) // är karaktären höger/vänster eller över/under om blocket
-	//{
-	//	if(xDif > 0) // kollar om karaktären är höger eller vänster
-	//	{
-	//		if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
-	//		{
-	//			c->setPosition(sf::Vector2f(e->getPosition().x + xRadius - 3, c->getPosition().y));
-	//		}
-	//	}
-	//	else
-	//	{
-	//		if(std::abs(yDif) < yRadius - 10)
-	//		{
-	//			c->setPosition(sf::Vector2f(e->getPosition().x - (xRadius - 3), c->getPosition().y));
-	//		}
-	//	}
-	//}
-	//else
-	//
-	//{
-	//	if(yDif > 0) // kollar om karaktären är under eller över
-	//	{
-	//		if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
-	//		{
-	//			c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y + yRadius));
-	//		}
-	//	}
-	//	else
-	//	{
-	//		if(std::abs(xDif) < xRadius - 10)
-	//		{
-	//			c->setPosition(sf::Vector2f(c->getPosition().x, e->getPosition().y - (yRadius)));
-	//			if(c->getBaseKind() == Entity::CHARACTER)
-	//			{
-	//				dynamic_cast<Character*> (c)->onblock();
-	//			}
-	//			if(c->getBaseKind() == Entity::CHARACTER && (e->getEntityKind() == Entity::BUTTON || e->getEntityKind()==Entity::LEVER))
-	//			{
-	//				dynamic_cast<Block*> (e)->Activate();
-	//			}
-
-	//		}
-	//	}
-	//}
-}
-
+// tar bort entiterter som är döda i både entityvectorn och dynamicentityvektorn
 void EntityManager::killEntity()
 {
 	for(EntityVector::size_type j = 0; j < mEntities.size(); ++j)
 	{
 		if(mEntities[j]->getAliveStatus() == false)
 		{
+			for(EntityVector::size_type i = 0; i < mDynamicEntities.size(); ++i)
+			{
+				if(mDynamicEntities[i] == mEntities[j])
+				{
+					mDynamicEntities[i] = mDynamicEntities.back();
+					mDynamicEntities.pop_back();
+				}
+			}
 			delete mEntities[j];
 			mEntities[j] = mEntities.back();
 			mEntities.pop_back();
@@ -201,6 +153,7 @@ void EntityManager::killEntity()
 	}
 }
 
+// uppdaterar vilken som är den primära karaktären
 void EntityManager::updatePrimaryCharacter()
 {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
@@ -221,31 +174,39 @@ void EntityManager::updatePrimaryCharacter()
 	}
 }
 
+// returnerar possitione till den primära karaktären
 sf::Vector2f EntityManager::getCharacterPos()const
 {
-	return mCharacters[mPrimaryCharacter]->getPosition();
+	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
+	{
+		if(mCharacters[i]->getEntityKind() == mPrimaryCharacter)
+		{
+			return mCharacters[i]->getPosition();
+		}
+	}
 }
 
 void EntityManager::interact()
 {
-	//samlar alla saker i en lista
-	EntityVector temp;
-	for(int i = 0; i < sizeof(mCharacters) / sizeof(mCharacters[0]); i++)
-	{
-		temp.push_back(mCharacters[i]);
-	}
-	temp.insert(temp.end(), mEntities.begin(), mEntities.end());
-	
 	//kör interact mot alla som krockar
-	for(EntityVector::size_type i = 0; i < temp.size(); ++i)
+	for(EntityVector::size_type i = 0; i < mDynamicEntities.size(); ++i)
 	{
-		for(EntityVector::size_type j = 0; j < temp.size(); ++j)
+		for(EntityVector::size_type j = 0; j < mEntities.size(); ++j)
 		{
-			if(isColliding(temp[i], temp[j]))
+			if(mDynamicEntities[i] != mEntities[j])
 			{
-				temp[i]->interact(temp[j]);
-				temp[j]->interact(temp[i]);
+				if(isColliding(mDynamicEntities[i], mEntities[j]))
+				{
+					mDynamicEntities[i]->interact(mEntities[j]);
+					mEntities[j]->interact(mDynamicEntities[i]);
+				}
 			}
 		}
 	}
+}
+
+// sätter viewn
+void EntityManager::setView(sf::View* view)
+{
+	mView = view;
 }

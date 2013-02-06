@@ -13,6 +13,7 @@ class EntityManager
 public:
 	typedef std::vector<Entity*> EntityVector;
 	typedef std::vector<Entity*> DynamicEntityVector;
+	typedef std::vector<Character*> CharacterVector;
 
 	static EntityManager* getInstance();
 
@@ -26,6 +27,8 @@ public:
 	void updatePrimaryCharacter();
 	sf::Vector2f getCharacterPos()const;
 
+	void setView(sf::View* view);
+
 private:
 	EntityManager();
 	EntityManager(const EntityManager &e);
@@ -34,16 +37,26 @@ private:
 	static EntityManager *sInstance;
 
 	void interact();
-	void checkCollisions();
+
 	bool isColliding(Entity *c, Entity *e);
-	void stopEntity(Entity *c, Entity *e);
+
 	void killEntity();
 
 	Entity::EntityKind mPrimaryCharacter;
 
 	EntityVector		mEntities;
 	DynamicEntityVector mDynamicEntities;
-	Entity*				mCharacters[4];
+	CharacterVector		mCharacters;
+
+	//--------------life
+	int mPlayerLife;
+	sf::Texture mLifeTexture;
+	sf::Sprite mLifeSprite;
+	void renderLife();
+	void lifePosition();
+	void updatePlayerLife();
+
+	sf::View* mView;
 };
 
 #endif 

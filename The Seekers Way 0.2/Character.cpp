@@ -4,20 +4,21 @@
 
 Character::Character():
 	mMovementSpeed(0, 0),
-	mAcceleration(0.3),
-	mDecrease(0.6),
+	mAcceleration(0.33),
+	mDecrease(0.4),
 	mGravity(5.0),
 	mStatus(IDLE),
 	mDirLeft(false),
 	mJump(14.5),
 	mRun(6.0),
 	mMaxRun(6.0),
-	mMaxJump(14.5),
+	mMaxJump(30),
 	mJumpTime(1.0),
 	mJumping(0.0),
 	mFalling(false),
 	mIsJumping(false),
-	mAnimation(128, 128)
+	mAnimation(128, 128),
+	mIsHit(false)
 {
 	mAlive = true;
 	mBaseKind = CHARACTER;
@@ -98,7 +99,7 @@ void Character::jump()
 		{
 			mStatus = JUMP;
 			mIsJumping = true;
-			mMovementSpeed.y -= mJump;
+			mMovementSpeed.y = -mJump;
 		}
 	}
 }
@@ -120,6 +121,7 @@ void Character::jumping()
 			mJumping = 0;
 			mFalling = true;
 			mIsJumping = false;
+			mMovementSpeed.y = 0;
 		}
 	}
 }
@@ -197,10 +199,22 @@ void Character::interact(Entity* e)
 				}
 			}
 		}
-		
-		if(e->getEntityKind() == Entity::ARROW)
-		{
-		
-		}
 	}
+		
+	if(e->getEntityKind() == Entity::ARROW)
+	{
+		mIsHit = true;
+	}
+}
+
+// funktion som sätter is hit till false
+void Character::setIsHitToFalse()
+{
+	mIsHit = false;
+}
+
+// returnerar ishit status
+bool Character::getIsHit()const
+{
+	return mIsHit;
 }

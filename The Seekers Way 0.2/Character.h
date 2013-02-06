@@ -15,6 +15,8 @@ public:
 
 	virtual void interact(Entity* e);
 
+	bool getIsHit()const;
+	void setIsHitToFalse();
 protected:
 
 	enum Status
@@ -51,9 +53,10 @@ protected:
 	float mJump;
 	float mRun;
 	float mJumping; 
-
 	bool mFalling;
 	bool mIsJumping;
+
+	bool mIsHit;
 };
 
 #endif
