@@ -3,7 +3,6 @@
 #include "Block.h"
 #include "Animation.h"
 
-
 class Spiketrap: public Block
 {
 public: 
@@ -13,9 +12,7 @@ public:
 	void render();
 	void update(EntityKind &currentEntity);
 
-
-
-private:
+protected:
 
 	enum SpikeStatus
 	{
