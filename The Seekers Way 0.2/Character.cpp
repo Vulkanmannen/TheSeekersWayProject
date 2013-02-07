@@ -141,7 +141,7 @@ void Character::fall()
 	{
 		if(mFalling)
 		{
-			mStatus = INAIR;
+  			mStatus = INAIR;
 		}
 		mFalling = true;
 	}
@@ -160,7 +160,7 @@ void Character::interact(Entity* e)
 		float yDif = mPosition.y - e->getPosition().y;
 
 		// fråga vilken sida caraktären finns på.
-		if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius)) // är karaktären höger/vänster eller över/under om blocket
+		if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius) || e->getEntityKind() == DOOR) // är karaktären höger/vänster eller över/under om blocket
 		{
 			if(xDif > 0) // kollar om karaktären är höger eller vänster
 			{

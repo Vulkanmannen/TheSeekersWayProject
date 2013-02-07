@@ -3,6 +3,8 @@
 #include "Entity.h"
 #include "ImageManager.h"
 #include "Sounds.h"
+#include "DarkBinding.h"
+#include "EntityManager.h"
 
 const static float HEIGHT	= 64;
 const static float WIDTH	= 128;
@@ -12,7 +14,8 @@ Sheeka::Sheeka(sf::Vector2f &position):
 	mDash(false),
 	mDashTimer(38),
 	mDashAcc(10),
-	mDashCount(0)
+	mDashCount(0),
+	mCanPressDarkBinding(true)
 	{
 		mAnimation.init("sheeka.PNG", 60, 8);
 		mHeight = HEIGHT;
@@ -34,6 +37,7 @@ void Sheeka::update(EntityKind &currentEntity)
 		{
 			walk();
 			jump();
+			darkBinding();
 		}
 		dontWalk(currentEntity);
 		jumping();
@@ -58,13 +62,14 @@ sf::Sprite Sheeka::getSprite()
 	return mAnimation.getSprite();
 }
 
+// sätter igång dashen
 void Sheeka::SheekaDash()
 {
-	if((sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) && !mDash && !mDashPressed && mClock.getElapsedTime().asSeconds() >=2)
+	if((sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) && !mDash && !mDashPressed && mDashClock.getElapsedTime().asSeconds() >=2)
 	{
 		mStatus = ACTION1;
 		Sounds::getInstance()->Play("dash.wav");
-		mClock.restart();
+		mDashClock.restart();
 		mMovementSpeed.y = 0;
 		mMovementSpeed.x = 0;
 		mGravity = 0;
@@ -96,6 +101,21 @@ void Sheeka::SheekaDash()
 			mMovementSpeed.x = 0;
 			mGravity = 5;
 		}
+	}
+}
+
+// sheeka skjuter en projektil
+void Sheeka::darkBinding()
+{
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) && mCanPressDarkBinding && mDarkBindingClock.getElapsedTime().asSeconds() >= 0.3)
+	{
+		mDarkBindingClock.restart();
+		mCanPressDarkBinding = false;
+		EntityManager::getInstance()->addEntity(new DarkBinding(mPosition, mDirLeft));
+	}
+	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		mCanPressDarkBinding = true;
 	}
 }
 
