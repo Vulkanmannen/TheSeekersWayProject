@@ -4,6 +4,7 @@
 #include "Character.h"
 #include "SFML\Graphics.hpp"
 #include "TeleKinesisBox.h"
+#include "EntityManager.h"
 
 class Kiba: public Character
 {

@@ -1,5 +1,5 @@
-#ifndef INCLUDED_SHIELD
-#define INCLUDED_SHIELD
+#ifndef INCLUDED_TelekinesisBox
+#define INCLUDED_TelekinesisBox
 #include "Animation.h"
 #include "Object.h"
 #include "Stone.h"
@@ -15,12 +15,12 @@ public:
 	void render();
 	void update(EntityKind &currentEntity);
 	void interact(Entity* e);
-	Stone* getStone(int a);
-
-
-private:
+	Stone* getStone(int a = 0);
 	int b;
 	std::vector<Stone*> stone;
+
+private:
+	
 };
 
 #endif

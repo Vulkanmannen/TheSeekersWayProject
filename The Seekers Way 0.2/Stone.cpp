@@ -44,6 +44,7 @@ void Stone::update(EntityKind &currentEntity)
 
 
 	mFalling = true;
+	mtelekinesis = false;
 }
 
 void Stone::render()
