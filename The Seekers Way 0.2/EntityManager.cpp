@@ -20,7 +20,12 @@ EntityManager::EntityManager():
 
 
 EntityManager::~EntityManager()
-	{}
+{
+	for(EntityVector::size_type j = 0; j < mEntities.size(); ++j)
+	{
+		delete mEntities[j];
+	}
+}
 
 // returnerar den enda instancen av managern
 EntityManager* EntityManager::getInstance()
@@ -40,9 +45,8 @@ void EntityManager::update()
 	{
 		mEntities[i]->update(mPrimaryCharacter);
 	}
-
-	killEntity();
 	interact();
+	killEntity();
 	lifePosition();
 	updatePlayerLife();
 }
@@ -64,6 +68,7 @@ void EntityManager::updatePlayerLife()
 			mPlayerLife--;
 		}
 	}
+	//checkCollisions();
 }
 
 // ritarut alla objekt
