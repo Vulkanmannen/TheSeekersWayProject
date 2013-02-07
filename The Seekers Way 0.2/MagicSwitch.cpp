@@ -4,10 +4,11 @@
 static const float WIDTH = 64;
 static const float HEIGHT = 64;
 
-MagicSwitch::MagicSwitch(sf::Vector2f &position, float timeOpen):
+MagicSwitch::MagicSwitch(sf::Vector2f &position, Block* door, float timeOpen):
 	mIsPressed(false),
 	mAnimation("magicswitch.png", 60, 1, HEIGHT, WIDTH),
-	mTimeOpen(timeOpen)
+	mTimeOpen(timeOpen),
+	mBlock(door)
 	{
 		mPosition = position;
 		mAlive = true;

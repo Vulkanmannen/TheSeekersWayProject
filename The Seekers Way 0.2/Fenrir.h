@@ -22,15 +22,17 @@ private:
 	void wallJump();
 	void isWallJumping();
 	void canWallJump();
-	void hitWall();
+	bool hitWall();
 
 
 	bool mWallJumping;
-	bool mCanWallJump;
 	bool mCanPressWallJump;
 	bool mHitWall;
 	bool mFenrirCanJump;
+	bool mSliding;
+	bool mWallJumpDirLeft;
 	JumpStatus mLastJumpDir;
+	sf::Clock mCanHitWallClock;
 
 	int mWallJumpCount;
 	int mWallJumpTime;

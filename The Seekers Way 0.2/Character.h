@@ -25,6 +25,7 @@ protected:
 		WALK,
 		JUMP,
 		INAIR,
+		HURT,
 		ACTION1,
 		ACTION2
 	};

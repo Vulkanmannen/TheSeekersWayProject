@@ -7,7 +7,7 @@
 class MagicSwitch : public Block
 {
 public:
-	MagicSwitch(sf::Vector2f &position, float timeOpen);
+	MagicSwitch(sf::Vector2f &position, Block* door, float timeOpen);
 	~MagicSwitch();
 
 	void render();
