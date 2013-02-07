@@ -17,9 +17,11 @@ public:
 	sf::Sprite getSprite();
 
 private:
-	sf::Clock mClock;
+	sf::Clock mDashClock;
+	sf::Clock mDarkBindingClock;
 
 	void SheekaDash();
+	void darkBinding();
 	
 	int mDashCount;
 	int mDashTimer;
@@ -27,6 +29,8 @@ private:
 
 	bool mDash;
 	bool mDashPressed;
+
+	bool mCanPressDarkBinding;
 };
 
 #endif

@@ -10,7 +10,6 @@ public:
 
 	Button(sf::Vector2f &position, Block* target);
 	~Button();
-	Block* mBlock;
 
 	void render();
 	void update(EntityKind &currentEntity);
@@ -19,9 +18,11 @@ public:
 	void Activate();
 	void DisActivate();
 
-	bool isitpressed;
 private:
 	Animation mAnimation;
+
+	Block* mBlock;
+	bool isitpressed;
 };
 
 #endif

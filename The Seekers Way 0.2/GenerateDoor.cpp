@@ -5,6 +5,7 @@
 #include "Lever.h"
 #include "Button.h"
 #include "SFML\Graphics.hpp"
+#include "MagicSwitch.h"
 
 TiXmlDocument GenerateDoor::sDocument;
 
@@ -20,6 +21,7 @@ void GenerateDoor::GenerateDoors()
 
 	TiXmlElement* root = sDocument.FirstChildElement("Body");
 	root = root->FirstChildElement("Door");
+	enum DoorWith {LEVER, BUTTON, MAGICSWITCH};
 	
 	while(root)
 	{
@@ -28,11 +30,12 @@ void GenerateDoor::GenerateDoors()
 		//
 		TiXmlAttribute* attribute = root->FirstAttribute();
 		std::string string = attribute->Name();
-		bool doorWhitLever;
+		
+		DoorWith doorWith;
 
 		if(string == "name")
 		{
-			float doorPosX, doorPosY, leverPosX, leverPosY;
+			float doorPosX, doorPosY, leverPosX, leverPosY, timeOpen;
 			TiXmlElement* element = root->FirstChildElement("doorPosition");
 			if(element)
 			{
@@ -57,7 +60,7 @@ void GenerateDoor::GenerateDoors()
 			element = root->FirstChildElement("leverPosition");
 			if(element)
 			{
-				doorWhitLever = true;
+				doorWith = LEVER;
 
 				TiXmlAttribute* positionAttribute = element->FirstAttribute();
 				while(positionAttribute)
@@ -80,7 +83,7 @@ void GenerateDoor::GenerateDoors()
 			element = root->FirstChildElement("buttonPosition");
 			if(element)
 			{
-				doorWhitLever = false;
+				doorWith = BUTTON;
 
 				TiXmlAttribute* positionAttribute = element->FirstAttribute();
 				while(positionAttribute)
@@ -97,18 +100,50 @@ void GenerateDoor::GenerateDoors()
 					positionAttribute = positionAttribute->Next();
 				}
 			}
+			//
+			//--------------------------------------------------------------------magic switch
+			//
+			element = root->FirstChildElement("magicSwitchPosition");
+			if(element)
+			{
+				doorWith = MAGICSWITCH;
+
+				TiXmlAttribute* positionAttribute = element->FirstAttribute();
+				while(positionAttribute)
+				{
+					std::string name = positionAttribute->Name();
+					if(name == "X")
+					{
+						leverPosX = static_cast<float>(positionAttribute->IntValue());
+					}
+					if(name == "Y")
+					{
+						leverPosY = static_cast<float>(positionAttribute->IntValue());
+					}
+					if(name == "timeOpen")
+					{
+						timeOpen = static_cast<float>(positionAttribute->IntValue());
+					}
+
+					positionAttribute = positionAttribute->Next();
+				}
+			}
 
 			// skapar dörren
 			EntityManager* manager = EntityManager::getInstance();
 			Door* door = new Door(sf::Vector2f(doorPosX, doorPosY));
 			manager->addEntity(door);
-			if(doorWhitLever)
+			if(doorWith == LEVER)
 			{
 				manager->addEntity(new Lever(sf::Vector2f(leverPosX, leverPosY), door));
 			}
-			else if(!doorWhitLever)
+			else if(doorWith == BUTTON)
 			{
 				manager->addEntity(new Button(sf::Vector2f(leverPosX, leverPosY), door));
+			}		
+			else if(doorWith == MAGICSWITCH)
+			{
+				manager->addEntity(new MagicSwitch(sf::Vector2f(leverPosX, leverPosY), door, timeOpen));
 			}
 		}
 		root = root->NextSiblingElement("Door");

@@ -47,7 +47,6 @@ void Button::update(EntityKind &currentEntity)
 
 void Button::render()
 {
-	
 	mAnimation.update(isitpressed);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
 	ImageManager::render(&mAnimation.getSprite());

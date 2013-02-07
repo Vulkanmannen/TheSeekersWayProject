@@ -10,4 +10,9 @@
 		<doorPosition X="704" Y="832"/>
 		<buttonPosition X="768" Y="896"/>		
 	</Door>
+
+	<Door name="DoorsLevel1">
+		<doorPosition X="1536" Y="832"/>
+		<magicSwitchPosition X="704" Y="704" timeOpen="10"/>		
+	</Door>
   </Body>

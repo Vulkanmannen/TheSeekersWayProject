@@ -2,7 +2,7 @@
 #include "Animation.h"
 #include "Entity.h"
 #include "ImageManager.h"
-
+#include <iostream>
 
 const static float HEIGHT = 64;
 const static float WIDTH = 128;
@@ -10,12 +10,12 @@ const static float WIDTH = 128;
 Fenrir::Fenrir(sf::Vector2f &position):
 	mWallJumping(false),
 	mCanPressWallJump(true),
-	mCanWallJump(true),
 	mHitWall(false),
 	mFenrirCanJump(true),
 	mWallJumpCount(0),
 	mWallJumpTime(20),
-	mLastJumpDir(GROUND)
+	mLastJumpDir(GROUND),
+	mSliding(false)
 	{
 		mAnimation.init("fenrir.png", 60, 7);
 
@@ -32,7 +32,8 @@ void Fenrir::update(EntityKind &currentEntity)
 {
 	move();
 	isWallJumping();
-
+	wallJump();
+	
 	if(!mWallJumping)
 	{
 		canWallJump();
@@ -40,7 +41,8 @@ void Fenrir::update(EntityKind &currentEntity)
 		if(currentEntity == mEntityKind)
 		{
 			walk();
-			wallJump();
+
+			
 
 			if(mFenrirCanJump)
 			{
@@ -58,8 +60,17 @@ void Fenrir::update(EntityKind &currentEntity)
 void Fenrir::render()
 {
 	mAnimation.update(mStatus * 2 + mDirLeft);
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -96));
+	if(!mSliding)
+	{
+		mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -96));
+	}
+	else 
+	{
+		mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -64));
+	}
 	ImageManager::render(&getSprite());
+
+	std::cout << mStatus << std::endl;
 }
 
 sf::Sprite Fenrir::getSprite()
@@ -83,17 +94,33 @@ void Fenrir::interact(Entity *e)
 		if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius)) // är karaktären höger/vänster eller över/under om blocket
 		{
 			if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
-			{
-				if(xDif > 0) // kollar om karaktären är höger eller vänster
+			{	
+				if(xDif > 0)
 				{
-					mPosition = sf::Vector2f(e->getPosition().x + xRadius + 2, mPosition.y);
+					mWallJumpDirLeft = false;
+
+					if(hitWall()) // kollar om karaktären är höger eller vänster
+					{
+						mPosition = sf::Vector2f(e->getPosition().x + xRadius - 3, mPosition.y);
+					}
+					else
+					{	
+						mPosition = sf::Vector2f(e->getPosition().x + xRadius + 2, mPosition.y);
+					}
 				}
 				else
 				{
-					mPosition = sf::Vector2f(e->getPosition().x - (xRadius + 2), mPosition.y);
-				}	
+					mWallJumpDirLeft = true;
 
-				hitWall();
+					if(hitWall()) // kollar om karaktären är höger eller vänster
+					{
+						mPosition = sf::Vector2f(e->getPosition().x - (xRadius - 3), mPosition.y);
+					}
+					else
+					{
+						mPosition = sf::Vector2f(e->getPosition().x - (xRadius + 2), mPosition.y);
+					}
+				}
 			}
 		}
 		else
@@ -117,8 +144,14 @@ void Fenrir::interact(Entity *e)
 					onblock();
 					mLastJumpDir = GROUND;
 					mFenrirCanJump = true;
-					mCanWallJump = false;
-					mHitWall = false;
+					mHitWall = false;		
+					mSliding = false;
+					mCanHitWallClock.restart();
+
+					if(mStatus == ACTION2)
+					{
+						mStatus = IDLE;
+					}
 				}
 			}
 		}
@@ -142,6 +175,12 @@ void Fenrir::isWallJumping()
 			mWallJumpCount = 0;
 		}
 	}
+
+	if(!mSliding/* || mStatus == INAIR*/)
+	{
+		mHeight = 64;
+		mWidth = 128;
+	}
 }
 
 // sätter igång walljumpen
@@ -156,7 +195,7 @@ void Fenrir::wallJump()
 	{  
 		mCanPressWallJump = false;
 		
-		if(/*mCanWallJump && */mHitWall)
+		if(mHitWall)
 		{
 			if(mDirLeft == mLastJumpDir || mLastJumpDir == GROUND)
 			{
@@ -165,20 +204,25 @@ void Fenrir::wallJump()
 				mWallJumpCount = 0;
 
 				mStatus = ACTION1;
-		
-				mDirLeft = !mDirLeft;
 
-				if(mDirLeft)
+				mMovementSpeed = sf::Vector2f(0,0);
+				
+				mMovementSpeed.y = -(mJump);
+				
+				if(mWallJumpDirLeft)
 				{
+					mDirLeft = true;
 					mMovementSpeed.x = -6;
 					mLastJumpDir = LEFT;
 				}
 				else
 				{
-					mMovementSpeed.x = +6;
+					mDirLeft = false;
+					mMovementSpeed.x = 6;
 					mLastJumpDir = RIGHT;
 				}
-				mMovementSpeed.y = -(mJump);
+
+				
 			}
 		}
 	}
@@ -197,9 +241,9 @@ void Fenrir::canWallJump()
 }
 
 // kollar om fenrir träffat en vägg
-void Fenrir::hitWall()
+bool Fenrir::hitWall()
 {
-	if(mStatus != WALK)
+	if(mStatus != WALK && mStatus != IDLE && (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) ||sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) && mCanHitWallClock.getElapsedTime().asSeconds() > 0.1)
 	{
 		mFalling = false;
 		mFenrirCanJump = false;
@@ -210,8 +254,15 @@ void Fenrir::hitWall()
 			{
 				mMovementSpeed.y = 0.3;
 				mStatus = ACTION2;
+
+				mHeight = 128;
+				mWidth = 64;
+
+				mSliding = true;
 			}
 			mHitWall = true;
 		}
+		return true;
 	}
+	return false;
 }

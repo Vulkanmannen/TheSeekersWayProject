@@ -91,7 +91,22 @@
     <ClCompile Include="Spiketrap.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="SpikeBlock.cpp" />
+=======
+    <ClCompile Include="DarkBinding.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="FireBall.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="FireRune.cpp">
+      <Filter>Entities\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicSwitch.cpp">
+      <Filter>Entities\Block</Filter>
+    </ClCompile>
+>>>>>>> origin/Vulkanmannen
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -175,7 +190,22 @@
     <ClInclude Include="Spiketrap.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="SpikeBlock.h" />
+=======
+    <ClInclude Include="DarkBinding.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="FireBall.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicSwitch.h">
+      <Filter>Entities\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="FireRune.h">
+      <Filter>Entities\Block</Filter>
+    </ClInclude>
+>>>>>>> origin/Vulkanmannen
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">

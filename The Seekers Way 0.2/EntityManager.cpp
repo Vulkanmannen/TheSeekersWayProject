@@ -95,6 +95,7 @@ void EntityManager::addEntity(Entity *e)
 	{
 	case Entity::ARROW:
 	case Entity::SHIELD:
+	case Entity::DARKBINDING:
 		mDynamicEntities.push_back(e);
 		break;
 	}
