@@ -19,6 +19,7 @@ public:
 	sf::Sprite getSprite()const;
 	bool getEndOfAnimation()const;
 	void setAnimationToBegining();
+	void RotateAnimation(float angle);
 
 	void operator=(const Animation &animation);
 

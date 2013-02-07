@@ -1,9 +1,9 @@
 #ifndef INCLUDED_FIREBALL
 #define INCLUDED_FIREBALL
-#include "Block.h"
+#include "Object.h"
 #include "Animation.h"
 
-class FireBall: public Block
+class FireBall: public Object
 {
 public:
 	FireBall(sf::Vector2f &position);
@@ -15,6 +15,17 @@ public:
 protected:
 
 	Animation mAnimation;
+
+	sf::Sprite mSprite;
+
+	void FireBallRot();
+	void updateAngle();
+
+	sf::Vector2f mCenterPos;
+	sf::Vector2f mNewpos;
+
+	float mRadius;
+	float mAngle;
 };
 
 #endif

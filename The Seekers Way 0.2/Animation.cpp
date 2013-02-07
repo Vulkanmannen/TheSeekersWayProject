@@ -106,4 +106,8 @@ void Animation::setAnimationToBegining()
 	mCurrentFrame = 0;
 }
 
-
+void Animation::RotateAnimation(float angle)
+{
+	mSprite.setOrigin(32 + 64 * mCurrentFrame, 32);
+	mSprite.rotate(angle);
+}
