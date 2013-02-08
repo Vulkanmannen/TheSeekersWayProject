@@ -32,3 +32,8 @@ void SpikeBlock::render()
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
 	ImageManager::render(&mAnimation.getSprite());
 }
+
+void SpikeBlock::interact(Entity* e)
+{
+
+}

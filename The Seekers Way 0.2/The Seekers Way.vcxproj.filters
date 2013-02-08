@@ -91,7 +91,6 @@
     <ClCompile Include="Spiketrap.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
-    <ClCompile Include="SpikeBlock.cpp" />
     <ClCompile Include="DarkBinding.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
@@ -115,6 +114,9 @@
     </ClCompile>
     <ClCompile Include="Telekinesisbox.cpp">
       <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="SpikeBlock.cpp">
+      <Filter>Entities\Block</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -199,7 +201,6 @@
     <ClInclude Include="Spiketrap.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
-    <ClInclude Include="SpikeBlock.h" />
     <ClInclude Include="DarkBinding.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
@@ -223,6 +224,9 @@
     </ClInclude>
     <ClInclude Include="TelekinesisBox.h">
       <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="SpikeBlock.h">
+      <Filter>Entities\Block</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
