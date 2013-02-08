@@ -2,11 +2,14 @@
 #include "ImageManager.h"
 #include <cmath>
 
-static const float HEIGHT = 64;
-static const float WIDTH = 64;
+static const float HEIGHT = 30;
+static const float WIDTH = 30;
+
+static const float SPRITEHEIGHT = 64;
+static const float SPRITEWIDTH = 64;
 
 FireBall::FireBall(sf::Vector2f &position):
-	mAnimation("FireBall.png", 60, 4, HEIGHT, WIDTH),
+	mAnimation("FireBall.png", 60, 4, SPRITEHEIGHT, SPRITEWIDTH),
 	mCenterPos(position),
 	mAngle(0),
 	mRadius(64)
@@ -15,7 +18,7 @@ FireBall::FireBall(sf::Vector2f &position):
 	mWidth = WIDTH;
 	mHeight = HEIGHT;
 	mEntityKind = FIREBALL;
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH/ 2, mPosition.y - SPRITEHEIGHT/ 2));
 }
 
 
@@ -32,7 +35,7 @@ void FireBall::update(EntityKind &currentEntity)
 void FireBall::render()
 {
 	mAnimation.update(0);
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH/ 2, mPosition.y - SPRITEHEIGHT/ 2));
 	ImageManager::render(&mAnimation.getSprite());
 }
 

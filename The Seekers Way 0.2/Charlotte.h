@@ -16,7 +16,7 @@ public:
 	sf::Sprite getSprite();
 
 private:
-
+	
 	Shield* mShield;
 	sf::Clock mClock;
 

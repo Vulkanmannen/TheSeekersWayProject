@@ -5,17 +5,17 @@ static const float HEIGHT = 128;
 static const float WIDTH = 64;
 
 Spiketrap::Spiketrap(sf::Vector2f &position):
-	mAnimation("Door1.png", 60, 1, HEIGHT, WIDTH),
-	mSpikeAcc(2),
-	mSpikeStatus(START)
+	mAnimation("spiketrap.png", 60, 1, HEIGHT, WIDTH),
+	mSpikeCount(0),
+	mCountDirectionUpp(true),
+	mWait(false),
+	mStartYValue(position.y - 32)
 {
-	mPosition = position;
-	mMaxSpikeHeight = position.y - 96;
-	mMinSpikeHeight = position.y - 32;
+	mPosition = position - sf::Vector2f(0, 32);
 	mWidth = WIDTH;
-	mHeight = HEIGHT;
+	mHeight = 0;
 	mEntityKind = SPIKETRAP;
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - 128));
 }
 
 
@@ -27,32 +27,63 @@ Spiketrap::~Spiketrap()
 void Spiketrap::update(EntityKind &currentEntity)
 {
 	SpikeMove();
+	spikeCount();
 }
 
 void Spiketrap::render()
 {
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
+	mAnimation.update(mSpikeCount);
 	ImageManager::render(&mAnimation.getSprite());
+}
+
+void Spiketrap::spikeCount()
+{
+
+
+	if(mClockFrame.getElapsedTime().asSeconds() > 0.5 && !mWait)
+	{
+		if(mCountDirectionUpp)
+		{
+			mSpikeCount++;
+		}
+		else if(!mCountDirectionUpp)
+		{
+			mSpikeCount--;
+		}
+
+		mClockFrame.restart();
+
+		if(mSpikeCount == 0)
+		{
+			mWait = true;
+			mClockWait.restart();
+		}
+	}
+	
+	if(mClockWait.getElapsedTime().asSeconds() > 2)
+	{
+		mWait = false;
+	}
+
+
+	if(mSpikeCount > 3)
+	{
+		mCountDirectionUpp = false;
+	}
+	else if(mSpikeCount < 1)
+	{
+		mCountDirectionUpp = true;		
+	}
 }
 
 void Spiketrap::SpikeMove()
 {
-	if(mSpikeStatus == START && mClock.getElapsedTime().asSeconds() > 2 && mPosition.y != mMaxSpikeHeight)
-	{
-		mPosition.y -= mSpikeAcc;
-		if(mPosition.y == mMaxSpikeHeight)
-		{
-			mSpikeStatus = DOWN;
-			mClock.restart();
-		}
-	}
-	if(mSpikeStatus == DOWN && mClock.getElapsedTime().asSeconds() > 2)
-	{
-		mPosition.y += mSpikeAcc;
-		if(mPosition.y == mMinSpikeHeight)
-		{
-			mSpikeStatus = START;
-			mClock.restart();
-		}
-	}
+	mHeight =  mSpikeCount * 26;
+	
+	mPosition.y = mStartYValue - mSpikeCount * 13;
+}
+
+void Spiketrap::interact(Entity* e)
+{
+
 }

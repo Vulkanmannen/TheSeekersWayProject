@@ -149,15 +149,18 @@ void Character::fall()
 
 void Character::interact(Entity* e)
 {
+	// räknar ut objektens radier och lägger ihop dem
+	float xRadius = mWidth / 2 + e->getWidth() / 2;
+	float yRadius = mHeight / 2 + e->getHeight() / 2;
+
+	// beräknar differansen mellan två objekt
+	float xDif = mPosition.x - e->getPosition().x;
+	float yDif = mPosition.y - e->getPosition().y;
+
+
 	if(e->getBaseKind() == Entity::BLOCK)
 	{
-		// räknar ut objektens radier och lägger ihop dem
-		float xRadius = mWidth / 2 + e->getWidth() / 2;
-		float yRadius = mHeight / 2 + e->getHeight() / 2;
 
-		// beräknar differansen mellan två objekt
-		float xDif = mPosition.x - e->getPosition().x;
-		float yDif = mPosition.y - e->getPosition().y;
 
 		// fråga vilken sida caraktären finns på.
 		if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius) || e->getEntityKind() == DOOR) // är karaktären höger/vänster eller över/under om blocket
@@ -203,6 +206,25 @@ void Character::interact(Entity* e)
 		
 	if(e->getEntityKind() == Entity::ARROW)
 	{
+		mIsHit = true;
+	}
+
+	if(e->getEntityKind() == SPIKETRAP || e->getEntityKind() == FIREBALL)
+	{
+		if(xDif > 0) // kollar om karaktären är höger eller vänster
+		{
+			if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
+			{
+				mPosition = sf::Vector2f(e->getPosition().x + xRadius - 3, mPosition.y);
+			}
+		}
+		else
+		{
+			if(std::abs(yDif) < yRadius - 10)
+			{
+				mPosition = sf::Vector2f(e->getPosition().x - (xRadius - 3), mPosition.y);
+			}
+		}
 		mIsHit = true;
 	}
 }

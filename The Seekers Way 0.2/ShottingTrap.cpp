@@ -17,7 +17,6 @@ ShottingTrap::ShottingTrap(sf::Vector2f &position, bool shot, bool dirleft):
 	mSprite.setPosition(position);
 	mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
 	mPosition = position;
-	mEntityKind = SHOTTINGTRAP;
 }
 
 ShottingTrap::~ShottingTrap()
