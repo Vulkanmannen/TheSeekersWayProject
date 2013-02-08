@@ -12,7 +12,7 @@ public:
 	void render();
 	void update(EntityKind &currentEntity);
 
-protected:
+private:
 
 	enum FireTrapStatus
 	{
