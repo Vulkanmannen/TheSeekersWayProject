@@ -18,9 +18,12 @@ public:
 	void falling();
 	void telekinesis();
 	void attraction();
+	
+	bool onblock();
 
 	bool mtelekinesis;
 	bool mtelemove;
+	
 	sf::Vector2f mKibaPos;
 
 private:
@@ -33,6 +36,8 @@ private:
 	bool mLblock;
 	bool mUblock;
 	bool mDblock;
+
+	bool mOnBlock;
 };
 
 #endif

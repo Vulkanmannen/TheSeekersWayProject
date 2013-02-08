@@ -77,7 +77,7 @@ void Kiba::update(EntityKind &currentEntity)
 					}
 				}
 
-				else if(telestate == moving)
+				else if(telestate == moving && mStone->onblock())
 				{
 					telestate = free;
 					if(mStone->mtelekinesis != false)

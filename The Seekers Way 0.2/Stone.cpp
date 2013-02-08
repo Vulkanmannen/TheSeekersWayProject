@@ -11,7 +11,8 @@ Stone::Stone(sf::Vector2f Position):
 	mDecrease(0.6),
 	mFalling(false),
 	mtelekinesis(false),
-	mtelemove(false)
+	mtelemove(false),
+	mOnBlock(false)
 {
 	mPosition = Position + sf::Vector2f(WIDTH/2 - 32, HEIGHT/2 - 32);
 	mAlive = true;
@@ -61,18 +62,22 @@ void Stone::telekinesis()
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
 			mMovementSpeed.x -= 1;
+			mOnBlock = false;
 		}
 		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
 			mMovementSpeed.x += 1;
+			mOnBlock = false;
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 		{
 			mMovementSpeed.y -= 1;
+			mOnBlock = false;
 		}
 		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		{
 			mMovementSpeed.y += 1;
+			mOnBlock = false;
 		}
 	}
 }
@@ -160,7 +165,10 @@ void Stone::interact(Entity* e)
 				{
 					mPosition -= sf::Vector2f(0, mPosition.y - (e->getPosition().y - (yRadius - 3)));
 					mDblock = true;
-					
+					if(e->getBaseKind() == BLOCK)
+					{
+						mOnBlock = true;
+					}
 					//mMovementSpeed.y = 0;
 					//onblock();
 					mFalling = false;
@@ -181,4 +189,9 @@ void Stone::attraction()
 										mKibaPos.y + r*sin(atan2(mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x)));
 		}
 	}
+}
+
+bool Stone::onblock()
+{
+	return mOnBlock;
 }
