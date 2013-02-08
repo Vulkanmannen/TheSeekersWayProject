@@ -101,6 +101,7 @@ void EntityManager::addEntity(Entity *e)
 	case Entity::ARROW:
 	case Entity::SHIELD:
 	case Entity::DARKBINDING:
+	case Entity::STONE:
 	case Entity::SPIKETRAP:
 		mDynamicEntities.push_back(e);
 		break;

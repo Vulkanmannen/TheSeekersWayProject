@@ -2,7 +2,7 @@
 #define INCLUDED_DARKBINDING
 
 #include "Object.h"
-#include "SFML\Graphics.hpp"
+//#include "SFML\Graphics.hpp"
 #include "Animation.h"
 
 class DarkBinding : public Object
