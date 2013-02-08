@@ -50,7 +50,7 @@ void MapGenerator::generateMap(std::string imageName)
 				{
 					entityManager->addEntity(new FireRune(position));
 				}
-				else if(color.g == 150 && (color.b == 0 || color.b == 1))
+				else if(color.g == 150 && (color.b == 0 || color.b == 1)) // 1 ger vänster 0 ger höger :-P
 				{
 					entityManager->addEntity(new ShottingTrap(position, true, color.b));
 				}

@@ -11,7 +11,7 @@ const static float WIDTH = 128;
 Charlotte::Charlotte(sf::Vector2f &position):
 	mIsShield(false)
 	{
-		mAnimation.init("Sheekabebad.png", 60, 7);
+		mAnimation.init("sheeka.png", 60, 7);
 
 		mHeight = HEIGHT;
 		mWidth = WIDTH;

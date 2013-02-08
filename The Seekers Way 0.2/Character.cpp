@@ -207,6 +207,7 @@ void Character::interact(Entity* e)
 	if(e->getEntityKind() == Entity::ARROW)
 	{
 		mIsHit = true;
+		mStatus = HURT;
 	}
 
 	if(e->getEntityKind() == SPIKETRAP || e->getEntityKind() == FIREBALL)
@@ -226,6 +227,7 @@ void Character::interact(Entity* e)
 			}
 		}
 		mIsHit = true;
+		mStatus = HURT;
 	}
 }
 

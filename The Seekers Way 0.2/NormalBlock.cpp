@@ -15,7 +15,7 @@ NormalBlock::NormalBlock(sf::Vector2f Position, unsigned char spriteNumber)
 	mTexture.loadFromImage(*ImageManager::getImage("Block.png"));
 	mSprite.setTexture(mTexture);
 	mSprite.setPosition(Position);
-	mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
+	mSprite.setOrigin(32/* + spriteNumber * 64*/, mSprite.getLocalBounds().height / 2);
 
 	sf::IntRect textureRect(spriteNumber * 64, 0, mWidth, mHeight);
 	mSprite.setTextureRect(textureRect);

@@ -13,7 +13,7 @@ FireRune::FireRune(sf::Vector2f &position):
 	mPosition = position + sf::Vector2f(0,0);
 	mWidth = WIDTH;
 	mHeight = HEIGHT;
-	mEntityKind = FIREBALL;
+	mEntityKind = FIRERUNE;
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
 	EntityManager::getInstance()->addEntity(new FireBall(mPosition));
 }
