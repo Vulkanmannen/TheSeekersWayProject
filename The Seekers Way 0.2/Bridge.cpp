@@ -8,7 +8,7 @@ Bridge::Bridge(sf::Vector2f &position, bool closed):
 	mAnimation("Door2.png", 60, 1, HEIGHT, WIDTH),
 	isitclosed(closed)
 {
-	
+	isitclosed? mBaseKind = BLOCK : mBaseKind = OBJECT; 
 	mPosition = position + sf::Vector2f(32, 0);
 	mAlive = true;
 	mHeight = HEIGHT;
@@ -25,12 +25,12 @@ Bridge::~Bridge()
 
 void Bridge::Activate()
 {
-	mBaseKind = OBJECT;
+	!isitclosed? mBaseKind = BLOCK : mBaseKind = OBJECT; 
 }
 
 void Bridge::DisActivate()
 {
-	mBaseKind = BLOCK;
+	isitclosed? mBaseKind = BLOCK : mBaseKind = OBJECT; 
 }
 
 void Bridge::update(EntityKind &currentEntity)

@@ -17,8 +17,11 @@ public:
 	void move();
 	void falling();
 	void telekinesis();
+	void attraction();
 
 	bool mtelekinesis;
+	bool mtelemove;
+	sf::Vector2f mKibaPos;
 
 private:
 	sf::Vector2f mMovementSpeed;
