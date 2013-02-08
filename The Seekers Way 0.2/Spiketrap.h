@@ -1,5 +1,7 @@
 #ifndef INCLUDED_SPIKETRAP
 #define INCLUDED_SPIKETRAP
+
+#include "Block.h"
 #include "Object.h"
 #include "Animation.h"
 
@@ -12,26 +14,21 @@ public:
 	void render();
 	void update(EntityKind &currentEntity);
 
-protected:
+	void interact(Entity* e);
 
-	enum SpikeStatus
-	{
-		START,
-		DOWN
-	};
-
-	SpikeStatus mSpikeStatus;
-
+private:
 	Animation mAnimation;
 
-	sf::Clock mClock;
+	sf::Clock mClockFrame;
+	sf::Clock mClockWait;
 
 	void SpikeMove();
+	void spikeCount();
 
-	int mSpikeAcc;
-	float mMaxSpikeHeight;
-	float mMinSpikeHeight;
-
+	int mSpikeCount;
+	bool mCountDirectionUpp;
+	bool mWait;
+	float mStartYValue;
 };
 
 #endif
