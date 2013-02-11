@@ -103,6 +103,7 @@ void EntityManager::addEntity(Entity *e)
 	case Entity::DARKBINDING:
 	case Entity::STONE:
 	case Entity::SPIKETRAP:
+	case Entity::SLASH:
 		mDynamicEntities.push_back(e);
 		break;
 	}
