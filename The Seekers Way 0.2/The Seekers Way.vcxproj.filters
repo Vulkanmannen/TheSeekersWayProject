@@ -124,6 +124,9 @@
     <ClCompile Include="Slash.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Portal.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -238,6 +241,9 @@
       <Filter>Entities\Block</Filter>
     </ClInclude>
     <ClInclude Include="Slash.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Portal.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
   </ItemGroup>

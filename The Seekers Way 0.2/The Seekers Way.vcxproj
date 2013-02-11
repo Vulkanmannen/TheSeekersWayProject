@@ -35,6 +35,7 @@
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="NormalBlock.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Portal.h" />
     <ClInclude Include="Sheeka.h" />
     <ClInclude Include="Shield.h" />
     <ClInclude Include="ShottingTrap.h" />
@@ -74,6 +75,7 @@
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="NormalBlock.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Portal.cpp" />
     <ClCompile Include="Sheeka.cpp" />
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="ShottingTrap.cpp" />
