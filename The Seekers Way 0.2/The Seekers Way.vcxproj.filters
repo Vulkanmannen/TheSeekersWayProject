@@ -118,6 +118,12 @@
     <ClCompile Include="SpikeBlock.cpp">
       <Filter>Entities\Block</Filter>
     </ClCompile>
+    <ClCompile Include="WoodenWall.cpp">
+      <Filter>Entities\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Slash.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -227,6 +233,12 @@
     </ClInclude>
     <ClInclude Include="SpikeBlock.h">
       <Filter>Entities\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="WoodenWall.h">
+      <Filter>Entities\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Slash.h">
+      <Filter>Entities\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -38,6 +38,7 @@
     <ClInclude Include="Sheeka.h" />
     <ClInclude Include="Shield.h" />
     <ClInclude Include="ShottingTrap.h" />
+    <ClInclude Include="Slash.h" />
     <ClInclude Include="Sounds.h" />
     <ClInclude Include="SpikeBlock.h" />
     <ClInclude Include="Spiketrap.h" />
@@ -45,6 +46,7 @@
     <ClInclude Include="TelekinesisBox.h" />
     <ClInclude Include="tinystr.h" />
     <ClInclude Include="tinyxml.h" />
+    <ClInclude Include="WoodenWall.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
@@ -75,6 +77,7 @@
     <ClCompile Include="Sheeka.cpp" />
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="ShottingTrap.cpp" />
+    <ClCompile Include="Slash.cpp" />
     <ClCompile Include="Sounds.cpp" />
     <ClCompile Include="SpikeBlock.cpp" />
     <ClCompile Include="Spiketrap.cpp" />
@@ -84,6 +87,7 @@
     <ClCompile Include="tinyxml.cpp" />
     <ClCompile Include="tinyxmlerror.cpp" />
     <ClCompile Include="tinyxmlparser.cpp" />
+    <ClCompile Include="WoodenWall.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CDB21BA2-BA69-4E56-9806-D2F4E32A5529}</ProjectGuid>
