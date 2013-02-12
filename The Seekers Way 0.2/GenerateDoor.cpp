@@ -6,6 +6,8 @@
 #include "Button.h"
 #include "SFML\Graphics.hpp"
 #include "MagicSwitch.h"
+#include "BigBridge.h"
+#include "Bridge.h"
 
 TiXmlDocument GenerateDoor::sDocument;
 
@@ -21,24 +23,34 @@ void GenerateDoor::GenerateDoors()
 
 	TiXmlElement* root = sDocument.FirstChildElement("Body");
 	root = root->FirstChildElement("Door");
+
 	enum DoorWith {LEVER, BUTTON, MAGICSWITCH};
+	enum BrigeOrDoor {DOOR, BIGBRIDGE, SMALBRIDGE};
 	
 	while(root)
 	{
-		//
-		//-------------------------------------------------------------------- door
-		//
+
 		TiXmlAttribute* attribute = root->FirstAttribute();
 		std::string string = attribute->Name();
 		
 		DoorWith doorWith;
+		BrigeOrDoor brigeOrDoor;
 
 		if(string == "name")
 		{
 			float doorPosX, doorPosY, leverPosX, leverPosY, timeOpen;
-			TiXmlElement* element = root->FirstChildElement("doorPosition");
+			bool closed = true;
+			
+			//
+			//-------------------------------------------------------------------- door
+			//
+			TiXmlElement* element;
+
+			element = root->FirstChildElement("doorPosition");
 			if(element)
 			{
+				brigeOrDoor = DOOR;
+
 				TiXmlAttribute* positionAttribute = element->FirstAttribute();
 				while(positionAttribute)
 				{
@@ -54,6 +66,63 @@ void GenerateDoor::GenerateDoors()
 					positionAttribute = positionAttribute->Next();
 				}
 			}
+
+			//
+			//---------------------------------------------------------bigbrige
+			//
+			element = root->FirstChildElement("bigBridgePosition");
+			if(element)
+			{
+				brigeOrDoor = BIGBRIDGE;
+
+				TiXmlAttribute* positionAttribute = element->FirstAttribute();
+				while(positionAttribute)
+				{
+					std::string name = positionAttribute->Name();
+					if(name == "X")
+					{
+						doorPosX = static_cast<float>(positionAttribute->IntValue());
+					}
+					if(name == "Y")
+					{
+						doorPosY = static_cast<float>(positionAttribute->IntValue());
+					}
+					if(name == "Closed")
+					{
+						closed = positionAttribute->IntValue();
+					}
+					positionAttribute = positionAttribute->Next();
+				}
+			}
+
+			//
+			//---------------------------------------------------------smalbrige
+			//
+			element = root->FirstChildElement("smalBridgePosition");
+			if(element)
+			{
+				brigeOrDoor = SMALBRIDGE;
+
+				TiXmlAttribute* positionAttribute = element->FirstAttribute();
+				while(positionAttribute)
+				{
+					std::string name = positionAttribute->Name();
+					if(name == "X")
+					{
+						doorPosX = static_cast<float>(positionAttribute->IntValue());
+					}
+					if(name == "Y")
+					{
+						doorPosY = static_cast<float>(positionAttribute->IntValue());
+					}
+					if(name == "Closed")
+					{
+						closed = positionAttribute->IntValue();
+					}
+					positionAttribute = positionAttribute->Next();
+				}
+			}
+
 			//
 			//-------------------------------------------------------------------- lever
 			//
@@ -131,19 +200,34 @@ void GenerateDoor::GenerateDoors()
 
 			// skapar dörren
 			EntityManager* manager = EntityManager::getInstance();
-			Door* door = new Door(sf::Vector2f(doorPosX, doorPosY));
-			manager->addEntity(door);
+			Entity* block;
+			if(brigeOrDoor == DOOR)
+			{
+				block = new Door(sf::Vector2f(doorPosX, doorPosY));
+			}
+			else if(brigeOrDoor == BIGBRIDGE)
+			{
+				block = new BigBridge(sf::Vector2f(doorPosX, doorPosY), closed);
+			}
+			else if(brigeOrDoor == SMALBRIDGE)
+			{
+				block = new Bridge(sf::Vector2f(doorPosX, doorPosY), closed);
+			}
+			
+			manager->addEntity(block);
+
+			// skapar spak
 			if(doorWith == LEVER)
 			{
-				manager->addEntity(new Lever(sf::Vector2f(leverPosX, leverPosY), door));
+				manager->addEntity(new Lever(sf::Vector2f(leverPosX, leverPosY), static_cast<Block*>(block)));
 			}
 			else if(doorWith == BUTTON)
 			{
-				manager->addEntity(new Button(sf::Vector2f(leverPosX, leverPosY), door));
+				manager->addEntity(new Button(sf::Vector2f(leverPosX, leverPosY), static_cast<Block*>(block)));
 			}		
 			else if(doorWith == MAGICSWITCH)
 			{
-				manager->addEntity(new MagicSwitch(sf::Vector2f(leverPosX, leverPosY), door, timeOpen));
+				manager->addEntity(new MagicSwitch(sf::Vector2f(leverPosX, leverPosY), static_cast<Block*>(block), timeOpen));
 			}
 		}
 		root = root->NextSiblingElement("Door");

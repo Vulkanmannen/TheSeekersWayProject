@@ -14,7 +14,6 @@ Portal::Portal(sf::Vector2f position1, sf::Vector2f position2):
 	mPosition = position1 + sf::Vector2f(WIDTH/2 - 32, HEIGHT/2 - 32);
 	Portal *iportal = new Portal(position2, this);
 	mPortal = iportal;
-	EntityManager::getInstance()->addEntity(this);
 }
 
 Portal::Portal(sf::Vector2f position, Portal *p):

@@ -85,9 +85,6 @@
     <ClCompile Include="FireBall.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
-    <ClCompile Include="FireRune.cpp">
-      <Filter>Entities\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Spiketrap.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
@@ -116,6 +113,15 @@
       <Filter>Entities\Object</Filter>
     </ClCompile>
     <ClCompile Include="SpikeBlock.cpp">
+      <Filter>Entities\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="FireRune.cpp">
+      <Filter>Entities\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Lava.cpp">
+      <Filter>Entities\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Vine.cpp">
       <Filter>Entities\Block</Filter>
     </ClCompile>
     <ClCompile Include="WoodenWall.cpp">
@@ -201,9 +207,6 @@
     <ClInclude Include="Shield.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
-    <ClInclude Include="FireRune.h">
-      <Filter>Entities\Object</Filter>
-    </ClInclude>
     <ClInclude Include="FireBall.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
@@ -235,6 +238,15 @@
       <Filter>Entities\Object</Filter>
     </ClInclude>
     <ClInclude Include="SpikeBlock.h">
+      <Filter>Entities\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="FireRune.h">
+      <Filter>Entities\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Vine.h">
+      <Filter>Entities\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Lava.h">
       <Filter>Entities\Block</Filter>
     </ClInclude>
     <ClInclude Include="WoodenWall.h">
