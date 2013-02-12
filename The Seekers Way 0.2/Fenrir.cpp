@@ -15,7 +15,12 @@ Fenrir::Fenrir(sf::Vector2f &position):
 	mWallJumpCount(0),
 	mWallJumpTime(20),
 	mLastJumpDir(GROUND),
-	mSliding(false)
+	mSliding(false),
+	mCanPressSnowMist(true),
+	mInSnowMist(false),
+	mMoveSpeedInMist(0.5),
+	mMaxMoveSpeedInMist(2),
+	mCanSnowMist(true)
 	{
 		mAnimation.init("fenrir.png", 60, 7);
 
@@ -32,29 +37,43 @@ void Fenrir::update(EntityKind &currentEntity)
 {
 	move();
 	isWallJumping();
-	wallJump();
+
 	
+	snowMistCountdown();
+
 	if(!mWallJumping)
 	{
 		canWallJump();
-		
+	
 		if(currentEntity == mEntityKind)
 		{
-			walk();
-
-			
-
-			if(mFenrirCanJump)
+			if(mInSnowMist)
 			{
-				jump();
+				moveInSnowMist();
 			}
+			else
+			{
+				walk();
+
+				if(mFenrirCanJump)
+				{
+					jump();
+				}
+			}
+			
+			snowMist();
 		}
 
-		dontWalk(currentEntity);
-		jumping();
-		falling();
-		fall();
+		if(!mInSnowMist)
+		{
+			wallJump();
+			dontWalk(currentEntity);
+			jumping();
+			falling();
+			fall();
+		}
 	}
+	mHitVine = false;
 }
 
 void Fenrir::render()
@@ -80,6 +99,22 @@ sf::Sprite Fenrir::getSprite()
 
 void Fenrir::interact(Entity *e)
 {
+	EntityKind entityKind = e->getEntityKind();
+
+	// kollar om vi är i snowmist mode
+	if(mInSnowMist)
+	{
+		if(entityKind == VINE)
+		{
+			mHitVine = true;
+		}
+		if(entityKind == VINE || entityKind == ARROW || entityKind == SPIKETRAP)
+		{
+			return;
+		}
+	}
+
+
 	// räknar ut objektens radier och lägger ihop dem
 	float xRadius = mWidth / 2 + e->getWidth() / 2;
 	float yRadius = mHeight / 2 + e->getHeight() / 2;
@@ -90,8 +125,6 @@ void Fenrir::interact(Entity *e)
 
 	if(e->getBaseKind() == Entity::BLOCK)
 	{
-
-
 		// fråga vilken sida caraktären finns på.
 		if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius) || e->getEntityKind() == DOOR) // är karaktären höger/vänster eller över/under om blocket
 		{
@@ -144,11 +177,16 @@ void Fenrir::interact(Entity *e)
 				{
 					mPosition = sf::Vector2f(mPosition.x, e->getPosition().y - yRadius);
 					onblock();
+					
+					// walljump
 					mLastJumpDir = GROUND;
 					mFenrirCanJump = true;
 					mHitWall = false;		
 					mSliding = false;
 					mCanHitWallClock.restart();
+
+					// snowmist
+					mCanSnowMist = true;
 
 					if(mStatus == ACTION2)
 					{
@@ -163,6 +201,16 @@ void Fenrir::interact(Entity *e)
 	{
 		mIsHit = true;
 		mStatus = HURT;
+		e->destroy();
+	}
+	if(e->getEntityKind() == Entity::VINE)
+	{
+		mIsHit = true;
+		mStatus = HURT;
+	}
+	if(e->getEntityKind() == Entity::LAVA)
+	{
+		// die
 	}
 
 	if(e->getEntityKind() == SPIKETRAP || e->getEntityKind() == FIREBALL)
@@ -185,6 +233,21 @@ void Fenrir::interact(Entity *e)
 		mStatus = HURT;
 	}
 }
+
+// omdefinerar movefunktion
+void Fenrir::move()
+{
+	mPosition	+= mMovementSpeed;
+	
+	if(!mInSnowMist)
+	{
+		mPosition.y	+= mGravity;
+	}
+}
+
+//
+//--------------------------------------------------------------------------walljump
+//
 
 // körs när walljumpen är igång, och stänger av den när den är klar 
 void Fenrir::isWallJumping()
@@ -288,4 +351,71 @@ bool Fenrir::hitWall()
 		return true;
 	}
 	return false;
+}
+
+//
+// ------------------------------------------------------------------snowmist
+//
+
+// kollar om man activerar snowmist
+void Fenrir::snowMist()
+{
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && mCanPressSnowMist && !mInSnowMist && mCanSnowMist)
+	{
+		mCanPressSnowMist = false;
+		mInSnowMist = true;
+		mSnowMistTime.restart();
+		mFenrirCanJump = false;
+		mCanSnowMist = false;
+		
+		mStatus = ACTION3;
+		mMovementSpeed = sf::Vector2f(0, 0);
+	}
+	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	{
+		mCanPressSnowMist = true;
+	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && mCanPressSnowMist && mInSnowMist && !mHitVine)
+	{
+		mInSnowMist = false;
+		mCanPressSnowMist = false;
+	}
+}
+
+// när tiden gått så tar misten slut
+void Fenrir::snowMistCountdown()
+{
+	if(mSnowMistTime.getElapsedTime().asSeconds() > 3 && mInSnowMist && !mHitVine)
+	{
+		mInSnowMist = false;	
+		mFenrirCanJump = true;
+	}
+}
+
+// flyttar på fenrir i snomistmode
+void Fenrir::moveInSnowMist()
+{
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mMovementSpeed.y > -mMaxMoveSpeedInMist)
+	{
+		mMovementSpeed.y -= mMoveSpeedInMist;
+	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mMovementSpeed.y < mMaxMoveSpeedInMist)
+	{
+		mMovementSpeed.y += mMoveSpeedInMist;
+	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && mMovementSpeed.x < mMaxMoveSpeedInMist)
+	{
+		mMovementSpeed.x += mMoveSpeedInMist;
+	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && mMovementSpeed.x > -mMaxMoveSpeedInMist)
+	{
+		mMovementSpeed.x -= mMoveSpeedInMist;
+	}
+	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && 
+			!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && 
+			!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) &&
+			!sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		mMovementSpeed = sf::Vector2f(0, 0);
+	}
 }

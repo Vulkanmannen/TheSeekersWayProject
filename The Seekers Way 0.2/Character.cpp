@@ -204,10 +204,15 @@ void Character::interact(Entity* e)
 		}
 	}
 		
-	if(e->getEntityKind() == Entity::ARROW)
+	if(e->getEntityKind() == Entity::ARROW || e->getEntityKind() == Entity::VINE)
 	{
 		mIsHit = true;
 		mStatus = HURT;
+	}
+	
+	if(e->getEntityKind() == Entity::LAVA)
+	{
+		// die
 	}
 
 	if(e->getEntityKind() == SPIKETRAP || e->getEntityKind() == FIREBALL)

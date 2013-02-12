@@ -118,6 +118,12 @@
     <ClCompile Include="FireRune.cpp">
       <Filter>Entities\Block</Filter>
     </ClCompile>
+    <ClCompile Include="Lava.cpp">
+      <Filter>Entities\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Vine.cpp">
+      <Filter>Entities\Block</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -226,6 +232,12 @@
       <Filter>Entities\Block</Filter>
     </ClInclude>
     <ClInclude Include="FireRune.h">
+      <Filter>Entities\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Vine.h">
+      <Filter>Entities\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Lava.h">
       <Filter>Entities\Block</Filter>
     </ClInclude>
   </ItemGroup>

@@ -10,6 +10,9 @@
 #include "SpikeBlock.h"
 #include "FireBall.h"
 #include "FireRune.h"
+#include "Vine.h"
+#include "Stone.h"
+#include "Lava.h"
 
 MapGenerator::MapGenerator()
 	{}
@@ -53,6 +56,18 @@ void MapGenerator::generateMap(std::string imageName)
 				else if(color.g == 150 && (color.b == 0 || color.b == 1)) // 1 ger vänster 0 ger höger :-P
 				{
 					entityManager->addEntity(new ShottingTrap(position, true, color.b));
+				}
+				else if(color.g == 200)
+				{
+					entityManager->addEntity(new Vine(position));
+				}
+				else if(color.g == 250)
+				{
+					entityManager->addEntity(new Stone(position));
+				}
+				else if(color.g == 255)
+				{
+					entityManager->addEntity(new Lava(position));
 				}
 			}
 

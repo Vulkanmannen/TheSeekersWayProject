@@ -39,7 +39,10 @@ void Arrow::interact(Entity* e)
 	{
 		if(e->getBaseKind() == Entity::BLOCK || e->getBaseKind() == Entity::CHARACTER || e->getEntityKind() == Entity::SHIELD)
 		{
-			destroy();
+			if(e->getEntityKind() != FENRIR)
+			{
+				destroy();
+			}
 		}
 	}
 }
