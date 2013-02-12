@@ -4,9 +4,10 @@
 static const float WIDTH = 64;
 static const float HEIGHT = 64;
 
-ShottingTrap::ShottingTrap(sf::Vector2f &position, bool shot, bool dirleft):
+ShottingTrap::ShottingTrap(sf::Vector2f &position, int time, bool shot, bool dirleft):
 	mDirLeft(dirleft),
-	mShotting(shot)
+	mShotting(shot),
+	mTimeToShot(time * 100)
 {
 	mEntityKind = SHOTTINGTRAP;
 	mAlive = true;
@@ -28,7 +29,7 @@ void ShottingTrap::update(EntityKind &currentEntity)
 {
 	if(mShotting)
 	{
-		if(mShottingTimer.getElapsedTime().asSeconds() > 3)
+		if(mShottingTimer.getElapsedTime().asMilliseconds() > mTimeToShot)
 		{
 			EntityManager::getInstance()->addEntity(new Arrow(mPosition, mDirLeft));
 			mShottingTimer.restart();

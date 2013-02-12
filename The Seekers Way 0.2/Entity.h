@@ -42,6 +42,11 @@ public:
 	void destroy();
 
 	void setPosition(sf::Vector2f &v);
+
+	bool operator==(EntityKind entityKind);
+	bool operator!=(EntityKind entityKind);
+	bool operator==(BaseKind baseKind);
+	bool operator!=(BaseKind baseKind);
 protected:
 	
 	sf::Texture mTexture;

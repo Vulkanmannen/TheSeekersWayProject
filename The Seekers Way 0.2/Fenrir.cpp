@@ -5,7 +5,7 @@
 #include <iostream>
 
 const static float HEIGHT = 64;
-const static float WIDTH = 128;
+const static float WIDTH = 110;
 
 Fenrir::Fenrir(sf::Vector2f &position):
 	mWallJumping(false),
@@ -92,6 +92,26 @@ void Fenrir::render()
 	std::cout << mStatus << std::endl;
 }
 
+void Fenrir::onblock()
+{
+	Character::onblock();
+	
+	// walljump
+	mLastJumpDir = GROUND;
+	mFenrirCanJump = true;
+	mHitWall = false;		
+	mSliding = false;
+	mCanHitWallClock.restart();
+
+	// snowmist
+	mCanSnowMist = true;
+
+	if(mStatus == ACTION2)
+	{
+		mStatus = IDLE;
+	}
+}
+
 sf::Sprite Fenrir::getSprite()
 {
 	return mAnimation.getSprite();
@@ -123,10 +143,10 @@ void Fenrir::interact(Entity *e)
 	float xDif = mPosition.x - e->getPosition().x;
 	float yDif = mPosition.y - e->getPosition().y;
 
-	if(e->getBaseKind() == Entity::BLOCK)
+	if((*e) == BLOCK && (*e) != DOOR && (*e) != BRIDGE && (*e) != BIGBRIDGE)
 	{
 		// fråga vilken sida caraktären finns på.
-		if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius) || e->getEntityKind() == DOOR) // är karaktären höger/vänster eller över/under om blocket
+		if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius)) // är karaktären höger/vänster eller över/under om blocket
 		{
 			if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
 			{	
@@ -165,10 +185,11 @@ void Fenrir::interact(Entity *e)
 				if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
 				{
 					mPosition = sf::Vector2f(mPosition.x, e->getPosition().y + yRadius);
-					mJumping = 0;
-					mFalling = true;
-					mIsJumping = false;
-					mMovementSpeed.y = 0;
+					//mJumping = 0;
+					//mFalling = true;
+					//mIsJumping = false;
+					//mMovementSpeed.y = 0;
+					hitBlockFromBelow();
 				}
 			}
 			else
@@ -177,21 +198,6 @@ void Fenrir::interact(Entity *e)
 				{
 					mPosition = sf::Vector2f(mPosition.x, e->getPosition().y - yRadius);
 					onblock();
-					
-					// walljump
-					mLastJumpDir = GROUND;
-					mFenrirCanJump = true;
-					mHitWall = false;		
-					mSliding = false;
-					mCanHitWallClock.restart();
-
-					// snowmist
-					mCanSnowMist = true;
-
-					if(mStatus == ACTION2)
-					{
-						mStatus = IDLE;
-					}
 				}
 			}
 		}
@@ -264,8 +270,8 @@ void Fenrir::isWallJumping()
 
 	if(!mSliding/* || mStatus == INAIR*/)
 	{
-		mHeight = 64;
-		mWidth = 128;
+		mHeight = HEIGHT;
+		mWidth = WIDTH;
 	}
 }
 
@@ -341,8 +347,8 @@ bool Fenrir::hitWall()
 				mMovementSpeed.y = 0.3;
 				mStatus = ACTION2;
 
-				mHeight = 128;
-				mWidth = 64;
+				mHeight = WIDTH;
+				mWidth = HEIGHT;
 
 				mSliding = true;
 			}

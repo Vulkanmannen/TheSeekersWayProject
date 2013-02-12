@@ -13,6 +13,8 @@ public:
 	void update(EntityKind &currentEntity);
 	void render();
 
+	void onblock();
+
 	void interact(Entity *e);
 
 	sf::Sprite getSprite();

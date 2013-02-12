@@ -7,7 +7,7 @@
 #include "EntityManager.h"
 
 const static float HEIGHT	= 64;
-const static float WIDTH	= 128;
+const static float WIDTH	= 110;
 
 Sheeka::Sheeka(sf::Vector2f &position):
 	mDashPressed(false),

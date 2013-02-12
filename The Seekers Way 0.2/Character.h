@@ -11,7 +11,9 @@ class Character: public Entity
 public:
 	Character();
 	~Character();
-	void onblock();
+
+	virtual void onblock();
+	void hitBlockFromBelow();
 
 	virtual void interact(Entity* e);
 

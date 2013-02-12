@@ -2,8 +2,8 @@
 
   <Body>
 	<Door name="DoorsLevel1">
-		<bigBridgePosition X="1152" Y="640" Closed="0"/>
-		<buttonPosition X="1024" Y="896"/>		
+		<bigBridgePosition X="1408" Y="768" Closed="0"/>
+		<buttonPosition X="1220" Y="896"/>		
 	</Door>
 
 	<Door name="DoorsLevel1">
@@ -13,7 +13,7 @@
 
 	<Door name="DoorsLevel1">
 		<doorPosition X="256" Y="832"/>
-		<magicSwitchPosition X="64" Y="256" timeOpen="10"/>		
+		<buttonPosition X="704" Y="896"/>		
 	</Door>
 	
 

@@ -8,7 +8,7 @@
 class ShottingTrap: public Block
 {
 public:
-	ShottingTrap(sf::Vector2f &position, bool shot = true, bool dirleft = true);
+	ShottingTrap(sf::Vector2f &position, int time, bool shot = true, bool dirleft = true);
 	~ShottingTrap();
 
 	void update(EntityKind &currentEntity);
@@ -21,6 +21,8 @@ private:
 
 	bool mDirLeft;
 	bool mShotting;
+
+	int mTimeToShot;
 };
 
 #endif

@@ -5,8 +5,9 @@
 
 #include "Sounds.h"
 
-const static float HEIGHT = 128;
-const static float WIDTH = 64;
+const static float HEIGHT = 115;
+const static float WIDTH = 60;
+
 
 Charlotte::Charlotte(sf::Vector2f &position):
 	mIsShield(false)
@@ -41,7 +42,7 @@ void Charlotte::update(EntityKind &currentEntity)
 void Charlotte::render()
 {
 	mAnimation.update(/*mStatus * 2 + !mDirLeft*/0);
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y - 64));
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y - 71));
 	ImageManager::render(&getSprite());
 }
 
@@ -71,7 +72,7 @@ void Charlotte::SetShield()
 			mShield->destroy();	
 		}
 		mClock.restart();
-		mShield = new Shield(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 100, mPosition.y - 30), mDirLeft);
+		mShield = new Shield(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 100, mPosition.y - 7), mDirLeft);
 			
 		EntityManager::getInstance()->addEntity(mShield);
 

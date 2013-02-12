@@ -204,10 +204,13 @@ void EntityManager::interact()
 		{
 			if(mDynamicEntities[i] != mEntities[j])
 			{
-				if(isColliding(mDynamicEntities[i], mEntities[j]))
+				if(mDynamicEntities[i]->getAliveStatus() && mEntities[j]->getAliveStatus())
 				{
-					mDynamicEntities[i]->interact(mEntities[j]);
-					mEntities[j]->interact(mDynamicEntities[i]);
+					if(isColliding(mDynamicEntities[i], mEntities[j]))
+					{
+						mDynamicEntities[i]->interact(mEntities[j]);
+						mEntities[j]->interact(mDynamicEntities[i]);
+					}
 				}
 			}
 		}

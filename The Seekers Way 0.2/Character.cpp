@@ -40,6 +40,14 @@ void Character::onblock()
 	}
 }
 
+void Character::hitBlockFromBelow()
+{
+	mJumping = 0;
+	mFalling = true;
+	mIsJumping = false;
+	mMovementSpeed.y = 0;
+}
+
 
 // Flyttar Character
 void Character::move()
@@ -149,6 +157,7 @@ void Character::fall()
 
 void Character::interact(Entity* e)
 {
+
 	// räknar ut objektens radier och lägger ihop dem
 	float xRadius = mWidth / 2 + e->getWidth() / 2;
 	float yRadius = mHeight / 2 + e->getHeight() / 2;
@@ -158,12 +167,12 @@ void Character::interact(Entity* e)
 	float yDif = mPosition.y - e->getPosition().y;
 
 
-	if(e->getBaseKind() == Entity::BLOCK)
+	if((*e) == BLOCK && (*e) != DOOR && (*e) != BRIDGE && (*e) != BIGBRIDGE)
 	{
 
 
 		// fråga vilken sida caraktären finns på.
-		if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius) || e->getEntityKind() == DOOR) // är karaktären höger/vänster eller över/under om blocket
+		if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius)) // är karaktären höger/vänster eller över/under om blocket
 		{
 			if(xDif > 0) // kollar om karaktären är höger eller vänster
 			{
@@ -187,10 +196,7 @@ void Character::interact(Entity* e)
 				if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
 				{
 					mPosition = sf::Vector2f(mPosition.x, e->getPosition().y + yRadius);
-					mJumping = 0;
-					mFalling = true;
-					mIsJumping = false;
-					mMovementSpeed.y = 0;
+					hitBlockFromBelow();
 				}
 			}
 			else
@@ -204,13 +210,13 @@ void Character::interact(Entity* e)
 		}
 	}
 		
-	if(e->getEntityKind() == Entity::ARROW || e->getEntityKind() == Entity::VINE)
+	if(e->getEntityKind() == ARROW || e->getEntityKind() == Entity::VINE)
 	{
 		mIsHit = true;
 		mStatus = HURT;
 	}
 	
-	if(e->getEntityKind() == Entity::LAVA)
+	if(e->getEntityKind() == LAVA)
 	{
 		// die
 	}
