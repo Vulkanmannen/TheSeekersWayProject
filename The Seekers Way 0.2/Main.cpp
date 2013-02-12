@@ -16,21 +16,23 @@
 #include "Stone.h"
 #include "WoodenWall.h"
 #include "Portal.h"
+#include "Dialogue.h"
 
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1024, 720), "The Seekers Way"/*, sf::Style::Fullscreen*/);
 	ImageManager::setWindow(&window);
+	Dialogue::getInstance()->setWindow(&window);
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
 	
-	sf::View view;
-	view.setSize(1024, 720);
+	//sf::View view;
+	//view.setSize(1024, 720);
 
-	EntityManager::getInstance()->setView(&view);
+	//EntityManager::getInstance()->setView(&view);
 
-	std::string map1("Tottemaptest.PNG");
-	MapGenerator::generateMap(map1);
+	//std::string map1("Tottemaptest.PNG");
+	//MapGenerator::generateMap(map1);
 
 	//EntityManager::getInstance()->addEntity(new WoodenWall(sf::Vector2f(17 *64, 13 *64)));
 
@@ -53,16 +55,20 @@ int main()
 		
 		window.clear(sf::Color::Blue);
 
-		EntityManager::getInstance()->update();
-		EntityManager::getInstance()->render();
+		//EntityManager::getInstance()->update();
+		//EntityManager::getInstance()->render();
 
-		view.setCenter(EntityManager::getInstance()->getCharacterPos());
-		window.setView(view);
+		Dialogue::getInstance()->update();
+		Dialogue::getInstance()->render();
 
-		EntityManager::getInstance()->updatePrimaryCharacter();
+		//view.setCenter(EntityManager::getInstance()->getCharacterPos());
+		//window.setView(view);
+
+		//EntityManager::getInstance()->updatePrimaryCharacter();
 
 		window.display();
     }
 	delete EntityManager::getInstance();
+	delete Dialogue::getInstance();
     return 0;
 }

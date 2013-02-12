@@ -21,6 +21,7 @@
     <ClInclude Include="Charlotte.h" />
     <ClInclude Include="DarkBinding.h" />
     <ClInclude Include="DecorateBlock.h" />
+    <ClInclude Include="Dialogue.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
@@ -62,6 +63,7 @@
     <ClCompile Include="Charlotte.cpp" />
     <ClCompile Include="DarkBinding.cpp" />
     <ClCompile Include="DecorateBlock.cpp" />
+    <ClCompile Include="Dialogue.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityManager.cpp" />

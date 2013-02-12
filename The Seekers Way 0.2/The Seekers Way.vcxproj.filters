@@ -133,6 +133,9 @@
     <ClCompile Include="Portal.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Dialogue.cpp">
+      <Filter>More</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -257,6 +260,9 @@
     </ClInclude>
     <ClInclude Include="Portal.h">
       <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Dialogue.h">
+      <Filter>More</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
