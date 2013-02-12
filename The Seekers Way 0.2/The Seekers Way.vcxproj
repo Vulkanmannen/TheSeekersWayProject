@@ -48,11 +48,8 @@
     <ClInclude Include="TelekinesisBox.h" />
     <ClInclude Include="tinystr.h" />
     <ClInclude Include="tinyxml.h" />
-<<<<<<< HEAD
     <ClInclude Include="Vine.h" />
-=======
     <ClInclude Include="WoodenWall.h" />
->>>>>>> origin/master
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
@@ -95,11 +92,8 @@
     <ClCompile Include="tinyxml.cpp" />
     <ClCompile Include="tinyxmlerror.cpp" />
     <ClCompile Include="tinyxmlparser.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="Vine.cpp" />
-=======
     <ClCompile Include="WoodenWall.cpp" />
->>>>>>> origin/master
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CDB21BA2-BA69-4E56-9806-D2F4E32A5529}</ProjectGuid>

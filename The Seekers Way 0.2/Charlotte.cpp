@@ -11,11 +11,7 @@ const static float WIDTH = 64;
 Charlotte::Charlotte(sf::Vector2f &position):
 	mIsShield(false)
 	{
-<<<<<<< HEAD
-		mAnimation.init("sheeka.png", 60, 7);
-=======
-		mAnimation.init("Charlotte Sprite1_1.png", 60, 7);
->>>>>>> origin/master
+		mAnimation.init("Charlotte Sprite1_1.png", 60, 12);
 
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
@@ -44,7 +40,7 @@ void Charlotte::update(EntityKind &currentEntity)
 
 void Charlotte::render()
 {
-	mAnimation.update(mStatus * 2 + !mDirLeft);
+	mAnimation.update(/*mStatus * 2 + !mDirLeft*/0);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y - 64));
 	ImageManager::render(&getSprite());
 }
