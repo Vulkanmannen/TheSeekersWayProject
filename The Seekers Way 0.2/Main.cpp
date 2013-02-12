@@ -31,7 +31,7 @@ int main()
 	std::string map1("Tottemaptest.PNG");
 	MapGenerator::generateMap(map1);
 
-	EntityManager::getInstance()->addEntity(new WoodenWall(sf::Vector2f(17 *64, 13 *64)));
+	//EntityManager::getInstance()->addEntity(new WoodenWall(sf::Vector2f(17 *64, 13 *64)));
 
 	sf::Clock clock;
 	//Sounds::getInstance()->Loop("Levelkoncept.wav", 30);

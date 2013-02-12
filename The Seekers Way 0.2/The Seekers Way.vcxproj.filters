@@ -115,7 +115,6 @@
     <ClCompile Include="SpikeBlock.cpp">
       <Filter>Entities\Block</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="FireRune.cpp">
       <Filter>Entities\Block</Filter>
     </ClCompile>
@@ -124,7 +123,7 @@
     </ClCompile>
     <ClCompile Include="Vine.cpp">
       <Filter>Entities\Block</Filter>
-=======
+    </ClCompile>
     <ClCompile Include="WoodenWall.cpp">
       <Filter>Entities\Block</Filter>
     </ClCompile>
@@ -133,7 +132,6 @@
     </ClCompile>
     <ClCompile Include="Portal.cpp">
       <Filter>Entities\Object</Filter>
->>>>>>> origin/master
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -242,7 +240,6 @@
     <ClInclude Include="SpikeBlock.h">
       <Filter>Entities\Block</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="FireRune.h">
       <Filter>Entities\Block</Filter>
     </ClInclude>
@@ -251,7 +248,7 @@
     </ClInclude>
     <ClInclude Include="Lava.h">
       <Filter>Entities\Block</Filter>
-=======
+    </ClInclude>
     <ClInclude Include="WoodenWall.h">
       <Filter>Entities\Block</Filter>
     </ClInclude>
@@ -260,7 +257,6 @@
     </ClInclude>
     <ClInclude Include="Portal.h">
       <Filter>Entities\Object</Filter>
->>>>>>> origin/master
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

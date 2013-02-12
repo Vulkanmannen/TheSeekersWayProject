@@ -13,6 +13,7 @@
 #include "Vine.h"
 #include "Stone.h"
 #include "Lava.h"
+#include "WoodenWall.h"
 
 MapGenerator::MapGenerator()
 	{}
@@ -61,13 +62,17 @@ void MapGenerator::generateMap(std::string imageName)
 				{
 					entityManager->addEntity(new Vine(position));
 				}
-				else if(color.g == 250)
+				else if(color.g == 220)
 				{
 					entityManager->addEntity(new Stone(position));
 				}
-				else if(color.g == 255)
+				else if(color.g == 240)
 				{
 					entityManager->addEntity(new Lava(position));
+				}
+				else if(color.g == 255)
+				{
+					entityManager->addEntity(new WoodenWall(position));
 				}
 			}
 
