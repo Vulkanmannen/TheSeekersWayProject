@@ -31,6 +31,7 @@ void Kiba::update(EntityKind &currentEntity)
 		{
 			walk();
 			jump();
+			slash();
 		}
 
 		else if(telestate == moving)
@@ -150,4 +151,15 @@ void Kiba::telekinesis()
 void Kiba::getStone()
 {
 
+}
+
+void Kiba::slash()
+{ 
+	// tryck "Q" för att aktivera en sköld (1 sec cd)
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) && mslashtimer.getElapsedTime().asSeconds() >= 1)
+	{	
+		mslashtimer.restart();
+		Slash *slash = new Slash(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 32, mPosition.y - 30), mDirLeft);
+		EntityManager::getInstance()->addEntity(slash);
+	}
 }

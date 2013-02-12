@@ -36,9 +36,11 @@
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="NormalBlock.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Portal.h" />
     <ClInclude Include="Sheeka.h" />
     <ClInclude Include="Shield.h" />
     <ClInclude Include="ShottingTrap.h" />
+    <ClInclude Include="Slash.h" />
     <ClInclude Include="Sounds.h" />
     <ClInclude Include="SpikeBlock.h" />
     <ClInclude Include="Spiketrap.h" />
@@ -46,7 +48,11 @@
     <ClInclude Include="TelekinesisBox.h" />
     <ClInclude Include="tinystr.h" />
     <ClInclude Include="tinyxml.h" />
+<<<<<<< HEAD
     <ClInclude Include="Vine.h" />
+=======
+    <ClInclude Include="WoodenWall.h" />
+>>>>>>> origin/master
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
@@ -75,9 +81,11 @@
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="NormalBlock.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Portal.cpp" />
     <ClCompile Include="Sheeka.cpp" />
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="ShottingTrap.cpp" />
+    <ClCompile Include="Slash.cpp" />
     <ClCompile Include="Sounds.cpp" />
     <ClCompile Include="SpikeBlock.cpp" />
     <ClCompile Include="Spiketrap.cpp" />
@@ -87,7 +95,11 @@
     <ClCompile Include="tinyxml.cpp" />
     <ClCompile Include="tinyxmlerror.cpp" />
     <ClCompile Include="tinyxmlparser.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Vine.cpp" />
+=======
+    <ClCompile Include="WoodenWall.cpp" />
+>>>>>>> origin/master
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CDB21BA2-BA69-4E56-9806-D2F4E32A5529}</ProjectGuid>
