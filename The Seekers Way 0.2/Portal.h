@@ -4,6 +4,7 @@
 #include "Object.h"
 #include "SFML\Graphics.hpp"
 #include "EntityManager.h"
+#include "Animation.h"
 
 
 class Portal : public Object
@@ -14,8 +15,10 @@ public:
 	void interact(Entity* e);
 	void update(EntityKind &currentEntity);
 	void render();
+	sf::Vector2f getDestination();
 
 private:	
+	Animation mAnimation;
 	Portal(sf::Vector2f position, Portal *p);
 	Portal *mPortal;
 };

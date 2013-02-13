@@ -79,3 +79,16 @@ void Charlotte::SetShield()
 		mIsShield = true;
 	}
 }
+
+void Charlotte::interact(Entity* e)
+{
+	Character::interact(e);
+	if(e->getEntityKind() == PORTAL)
+	{
+		if((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::X)) && mClock.getElapsedTime().asSeconds() >=1) // tryck "Q" för att aktivera en sköld (1 sec cd)
+		{	
+			mClock.restart();
+			mPosition = static_cast<Portal*>(e)->getDestination();
+		}
+	}
+}

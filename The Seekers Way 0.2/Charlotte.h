@@ -4,6 +4,8 @@
 #include "Character.h"
 #include "SFML\Graphics.hpp"
 #include "Shield.h"
+#include "Portal.h"
+
 class Charlotte: public Character
 {
 public:
@@ -12,6 +14,7 @@ public:
 	
 	void update(EntityKind &currentEntity);
 	void render();
+	void interact(Entity* e);
 
 	sf::Sprite getSprite();
 
