@@ -210,7 +210,7 @@ void Character::interact(Entity* e)
 		}
 	}
 		
-	if(e->getEntityKind() == ARROW || e->getEntityKind() == Entity::VINE)
+	if(e->getEntityKind() == ARROW || e->getEntityKind() == Entity::VINE || (*e) == SPIKETRAP || (*e) == FIREBALL)
 	{
 		mIsHit = true;
 		mStatus = HURT;
@@ -221,25 +221,25 @@ void Character::interact(Entity* e)
 		// die
 	}
 
-	if(e->getEntityKind() == SPIKETRAP || e->getEntityKind() == FIREBALL)
-	{
-		if(xDif > 0) // kollar om karaktären är höger eller vänster
-		{
-			if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
-			{
-				mPosition = sf::Vector2f(e->getPosition().x + xRadius - 3, mPosition.y);
-			}
-		}
-		else
-		{
-			if(std::abs(yDif) < yRadius - 10)
-			{
-				mPosition = sf::Vector2f(e->getPosition().x - (xRadius - 3), mPosition.y);
-			}
-		}
-		mIsHit = true;
-		mStatus = HURT;
-	}
+	//if(e->getEntityKind() == SPIKETRAP || e->getEntityKind() == FIREBALL)
+	//{
+	//	if(xDif > 0) // kollar om karaktären är höger eller vänster
+	//	{
+	//		if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
+	//		{
+	//			mPosition = sf::Vector2f(e->getPosition().x + xRadius - 3, mPosition.y);
+	//		}
+	//	}
+	//	else
+	//	{
+	//		if(std::abs(yDif) < yRadius - 10)
+	//		{
+	//			mPosition = sf::Vector2f(e->getPosition().x - (xRadius - 3), mPosition.y);
+	//		}
+	//	}
+	//	mIsHit = true;
+	//	mStatus = HURT;
+	//}
 }
 
 // funktion som sätter is hit till false

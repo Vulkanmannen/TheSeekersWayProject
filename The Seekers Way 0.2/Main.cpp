@@ -29,7 +29,7 @@ int main()
 
 	EntityManager::getInstance()->setView(&view);
 
-	std::string map1("Tottemaptest.PNG");
+	std::string map1("Level5.PNG");
 	MapGenerator::generateMap(map1);
 
 	//EntityManager::getInstance()->addEntity(new WoodenWall(sf::Vector2f(17 *64, 13 *64)));

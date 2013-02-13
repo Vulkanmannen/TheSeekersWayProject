@@ -55,3 +55,18 @@ void FireBall::FireBallRot()
 	mPosition = mNewpos;
 	//mAnimation.RotateAnimation(mAngle);
 }
+
+void FireBall::interact(Entity* e)
+{
+	//
+	//if(e->getEntityKind() == SPIKETRAP || e->getEntityKind() == FIREBALL)
+	//{
+	//	if(xDif > 0) // kollar om karaktären är höger eller vänster
+	//	{
+	//		if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
+	//		{
+	//			mPosition = sf::Vector2f(e->getPosition().x + xRadius - 3, mPosition.y);
+	//		}
+	//	}
+	//}
+}

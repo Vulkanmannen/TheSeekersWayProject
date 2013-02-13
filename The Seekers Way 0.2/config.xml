@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 
   <Body>
-	<Door name="DoorsLevel1">
+	<Door name="Level1">
 		<bigBridgePosition X="1408" Y="768" Closed="0"/>
 		<buttonPosition X="1220" Y="896"/>		
 	</Door>
 
-	<Door name="DoorsLevel1">
+	<Door name="Level1">
 		<smalBridgePosition X="832" Y="512" Closed="0"/>
 		<buttonPosition X="768" Y="896"/>		2
 	</Door>
 
-	<Door name="DoorsLevel1">
+	<Door name="Level1">
 		<doorPosition X="256" Y="832"/>
 		<buttonPosition X="704" Y="896"/>		
 	</Door>
 	
 
 
+
   </Body>
+
+<Body2>
+	<Portal name="Level1">
+		<portalPosition X1="196" Y1="1280" X2="196" Y2="1024"/>
+	</Portal>
+
+
+</Body2>

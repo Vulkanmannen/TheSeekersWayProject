@@ -8,6 +8,7 @@
 #include "MagicSwitch.h"
 #include "BigBridge.h"
 #include "Bridge.h"
+#include "Portal.h"
 
 TiXmlDocument GenerateDoor::sDocument;
 
@@ -232,6 +233,55 @@ void GenerateDoor::GenerateDoors()
 		}
 		root = root->NextSiblingElement("Door");
 	}
+
+	//
+	//----------------------------------------------------------------------------------------portal
+	//
+	root = sDocument.FirstChildElement("Body2");
+	root = root->FirstChildElement("Portal");
+
+	while(root)
+	{
+		TiXmlAttribute* attribute = root->FirstAttribute();
+		std::string string = attribute->Name();
+
+		if(string == "name")
+		{
+			float X1, Y1, X2, Y2;
+			TiXmlElement* element;
+
+			element = root->FirstChildElement("portalPosition");
+
+			if(element)
+			{
+				TiXmlAttribute* positionAttribute = element->FirstAttribute();
+				while(positionAttribute)
+				{
+					std::string name = positionAttribute->Name();
+					if(name == "X1")
+					{
+						X1 = static_cast<float>(positionAttribute->IntValue());
+					}
+					if(name == "Y1")
+					{
+						Y1 = static_cast<float>(positionAttribute->IntValue());
+					}
+					if(name == "X2")
+					{
+						X2 = static_cast<float>(positionAttribute->IntValue());
+					}
+					if(name == "Y2")
+					{
+						Y2 = static_cast<float>(positionAttribute->IntValue());
+					}
+					positionAttribute = positionAttribute->Next();
+				}
+			}	
+			EntityManager::getInstance()->addEntity(new Portal(sf::Vector2f(X1, Y1), sf::Vector2f(X2, Y2)));
+		}
+		root = root->NextSiblingElement("Portal");
+	}
+
 }
 
 void GenerateDoor::loadDocument(std::string s)
