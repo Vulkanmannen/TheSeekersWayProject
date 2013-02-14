@@ -15,6 +15,7 @@
 #include "BigBridge.h"
 #include "Stone.h"
 #include "WoodenWall.h"
+#include "Portal.h"
 
 int main()
 {
