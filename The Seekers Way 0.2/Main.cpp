@@ -55,8 +55,42 @@ int main()
 
 		EntityManager::getInstance()->update();
 		EntityManager::getInstance()->render();
+		
+		sf::Vector2f playerPos = EntityManager::getInstance()->getCharacterPos();
+		if(playerPos.x > 512 && playerPos.x < 3392)
+		{
+			view.setCenter(sf::Vector2f(playerPos.x, view.getCenter().y));
+		}
+		else
+		{
+			if(playerPos.x > 1800)
+			{
+				view.setCenter(sf::Vector2f(3392, view.getCenter().y));
+			}
+			else
+			{
+				view.setCenter(sf::Vector2f(512, view.getCenter().y));
+			}
+			
+		}
 
-		view.setCenter(EntityManager::getInstance()->getCharacterPos());
+		if(playerPos.y > 360 && playerPos.y < 1432)
+		{
+			view.setCenter(sf::Vector2f(view.getCenter().x, playerPos.y));
+		}
+		else
+		{
+			if(playerPos.y > 800)
+			{
+				view.setCenter(sf::Vector2f(view.getCenter().x, 1432));
+			}
+			else
+			{
+				view.setCenter(sf::Vector2f(view.getCenter().x, 360));
+			}
+			
+		}
+
 		window.setView(view);
 
 		EntityManager::getInstance()->updatePrimaryCharacter();

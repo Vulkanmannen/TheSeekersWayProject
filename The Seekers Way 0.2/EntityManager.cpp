@@ -16,6 +16,10 @@ EntityManager::EntityManager():
 	{
 		mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
 		mLifeSprite.setTexture(mLifeTexture);
+		mMaskTexture.loadFromImage(*ImageManager::getImage("mask.png"));
+		mMaskSprite.setTexture(mMaskTexture);
+		mBackgroundTexture.loadFromImage(*ImageManager::getImage("background.png"));
+		createBackground();
 	}
 
 
@@ -47,18 +51,19 @@ void EntityManager::update()
 	}
 	interact();
 	killEntity();
-	lifePosition();
-	updatePlayerLife();
+	lifeAndMaskPosition();
+	updateLife();
 }
 
 // uppdaterar lifeposition
-void EntityManager::lifePosition()
+void EntityManager::lifeAndMaskPosition()
 {
 	mLifeSprite.setPosition(mView->getCenter() - sf::Vector2f(512, 360));
+	mMaskSprite.setPosition(getCharacterPos() - sf::Vector2f(1024, 720));
 }
 
 // uppdaterar hur mycket liv spelaren har
-void EntityManager::updatePlayerLife()
+void EntityManager::updateLife()
 {
 	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
 	{
@@ -68,26 +73,54 @@ void EntityManager::updatePlayerLife()
 			mPlayerLife--;
 		}
 	}
-	//checkCollisions();
 }
 
 // ritarut alla objekt
 void EntityManager::render()
 {
+	renderBackground();
+
 	for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
 	{
 		mEntities[i]->render();
 	}
-	renderLife();
+
+	renderLifeAndMask();
 }
 
 // renderar livet
-void EntityManager::renderLife()
+void EntityManager::renderLifeAndMask()
 {
+	ImageManager::render(&mMaskSprite);
+
 	for(int i = 0; i < mPlayerLife; ++i)
 	{
 		ImageManager::render(&mLifeSprite);
 		mLifeSprite.setPosition(mLifeSprite.getPosition() + sf::Vector2f(50, 0));
+	}
+}
+
+// tilar bakgrunden
+void EntityManager::createBackground()
+{
+	for(int i = 0; i < 2; ++i)
+	{
+		for(int j = 0; j < 2; ++j)
+		{
+			sf::Sprite background;
+			background.setTexture(mBackgroundTexture);
+			background.setPosition(i *1952, j * 896);
+			mBackgroundSprites.push_back(background);
+		}
+	}
+}
+
+// renderar bakgrunden
+void EntityManager::renderBackground()
+{
+	for(std::vector<sf::Sprite>::size_type i = 0; i < mBackgroundSprites.size(); ++i)
+	{
+		ImageManager::render(&mBackgroundSprites[i]);
 	}
 }
 
@@ -104,6 +137,7 @@ void EntityManager::addEntity(Entity *e)
 	case Entity::STONE:
 	case Entity::SPIKETRAP:
 	case Entity::SLASH:
+	case Entity::WOODENWALL:
 		mDynamicEntities.push_back(e);
 		break;
 	}
@@ -143,22 +177,22 @@ bool EntityManager::isColliding(Entity *c, Entity *e)
 // tar bort entiterter som är döda i både entityvectorn och dynamicentityvektorn
 void EntityManager::killEntity()
 {
-	for(EntityVector::size_type j = 0; j < mEntities.size(); ++j)
+	for(EntityVector::size_type i = 0; i < mDynamicEntities.size(); ++i)
 	{
-		if(mEntities[j]->getAliveStatus() == false)
+		if(mDynamicEntities[i]->getAliveStatus() == false)
 		{
-			for(EntityVector::size_type i = 0; i < mDynamicEntities.size(); ++i)
+			for(EntityVector::size_type j = 0; j < mEntities.size(); ++j)
 			{
 				if(mDynamicEntities[i] == mEntities[j])
 				{
-					mDynamicEntities[i] = mDynamicEntities.back();
-					mDynamicEntities.pop_back();
+					mEntities[j] = mEntities.back();
+					mEntities.pop_back();
 				}
 			}
-			delete mEntities[j];
-			mEntities[j] = mEntities.back();
-			mEntities.pop_back();
-		}
+			delete mDynamicEntities[i];
+			mDynamicEntities[i] = mDynamicEntities.back();
+			mDynamicEntities.pop_back();
+		}	
 	}
 }
 

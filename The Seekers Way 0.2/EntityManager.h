@@ -4,6 +4,7 @@
 #include <vector>
 #include "SFML\Graphics.hpp"
 #include "Entity.h"
+#include <vector>
 
 class Block;
 class Character;
@@ -47,16 +48,28 @@ private:
 	EntityVector		mEntities;
 	DynamicEntityVector mDynamicEntities;
 	CharacterVector		mCharacters;
-
+	
+	sf::View* mView;
+	
 	//--------------life
 	int mPlayerLife;
 	sf::Texture mLifeTexture;
 	sf::Sprite mLifeSprite;
-	void renderLife();
-	void lifePosition();
-	void updatePlayerLife();
+	void updateLife();
 
-	sf::View* mView;
+	//---------- mask
+	sf::Texture mMaskTexture;
+	sf::Sprite mMaskSprite;
+
+	void renderLifeAndMask();
+	void lifeAndMaskPosition();
+
+	// ----------------- background
+	sf::Texture mBackgroundTexture;
+	std::vector<sf::Sprite> mBackgroundSprites;
+
+	void createBackground();
+	void renderBackground();
 };
 
 #endif 

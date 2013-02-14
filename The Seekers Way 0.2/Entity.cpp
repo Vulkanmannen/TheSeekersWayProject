@@ -2,7 +2,8 @@
 #include "ImageManager.h"
 
 
-Entity::Entity()
+Entity::Entity():
+	mAlive(true)
 	{}
 
 
