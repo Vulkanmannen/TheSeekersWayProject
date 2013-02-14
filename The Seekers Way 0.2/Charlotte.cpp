@@ -5,13 +5,13 @@
 
 #include "Sounds.h"
 
-const static float HEIGHT = 64;
-const static float WIDTH = 128;
+const static float HEIGHT = 128;
+const static float WIDTH = 64;
 
 Charlotte::Charlotte(sf::Vector2f &position):
 	mIsShield(false)
 	{
-		mAnimation.init("Sheekabebad.png", 60, 7);
+		mAnimation.init("Charlotte Sprite1_1.png", 60, 12);
 
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
@@ -40,8 +40,8 @@ void Charlotte::update(EntityKind &currentEntity)
 
 void Charlotte::render()
 {
-	mAnimation.update(mStatus * 2 + mDirLeft);
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -96));
+	mAnimation.update(/*mStatus * 2 + !mDirLeft*/0);
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y - 64));
 	ImageManager::render(&getSprite());
 }
 
@@ -76,5 +76,18 @@ void Charlotte::SetShield()
 		EntityManager::getInstance()->addEntity(mShield);
 
 		mIsShield = true;
+	}
+}
+
+void Charlotte::interact(Entity* e)
+{
+	Character::interact(e);
+	if(e->getEntityKind() == PORTAL)
+	{
+		if((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::X)) && mClock.getElapsedTime().asSeconds() >=1) // tryck "Q" för att aktivera en sköld (1 sec cd)
+		{	
+			mClock.restart();
+			mPosition = static_cast<Portal*>(e)->getDestination();
+		}
 	}
 }

@@ -85,9 +85,6 @@
     <ClCompile Include="FireBall.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
-    <ClCompile Include="FireRune.cpp">
-      <Filter>Entities\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Spiketrap.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
@@ -118,6 +115,40 @@
     <ClCompile Include="SpikeBlock.cpp">
       <Filter>Entities\Block</Filter>
     </ClCompile>
+    <ClCompile Include="FireRune.cpp">
+      <Filter>Entities\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Lava.cpp">
+      <Filter>Entities\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Vine.cpp">
+      <Filter>Entities\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="WoodenWall.cpp">
+      <Filter>Entities\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Slash.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Portal.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="StartMenu.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseMenu.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -192,9 +223,6 @@
     <ClInclude Include="Shield.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
-    <ClInclude Include="FireRune.h">
-      <Filter>Entities\Object</Filter>
-    </ClInclude>
     <ClInclude Include="FireBall.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
@@ -228,6 +256,40 @@
     <ClInclude Include="SpikeBlock.h">
       <Filter>Entities\Block</Filter>
     </ClInclude>
+    <ClInclude Include="FireRune.h">
+      <Filter>Entities\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Vine.h">
+      <Filter>Entities\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Lava.h">
+      <Filter>Entities\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="WoodenWall.h">
+      <Filter>Entities\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Slash.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Portal.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="StartMenu.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">
@@ -250,6 +312,9 @@
     </Filter>
     <Filter Include="More">
       <UniqueIdentifier>{bdfabafa-aa0e-49b6-8d9d-38c118166117}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{10b94e57-7da4-489d-8149-e5e669b64a14}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

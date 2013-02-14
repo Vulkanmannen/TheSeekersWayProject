@@ -3,14 +3,15 @@
 #include "ImageManager.h"
 #include <iostream>
 const static float HEIGHT = 128;
-const static float WIDTH = 64;
+const static float WIDTH = 56;
 
 Kiba::Kiba(sf::Vector2f &position):
 	telestate(free),
-	mTeleBox(new TelekinesisBox(position))
-{
+	mTeleBox(new TelekinesisBox(position))	
+{	
+	mStone=0;
 	EntityManager::getInstance()->addEntity(mTeleBox);
-	mAnimation.init("fenrir.png", 60, 7);
+	mAnimation.init("Kiba.png", 60, 1);
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = KIBA;
@@ -22,13 +23,15 @@ Kiba::~Kiba()
 	{}
 
 void Kiba::update(EntityKind &currentEntity)
-{std::cout<<mTeleBox->stone.size()<<"."<<std::endl;
+{
+	std::cout<<mTeleBox->stone.size()<<"."<<std::endl;
 	if(currentEntity == mEntityKind)
 	{
 		if(telestate == free)
 		{
 			walk();
 			jump();
+			slash();
 		}
 
 		else if(telestate == moving)
@@ -75,9 +78,13 @@ void Kiba::update(EntityKind &currentEntity)
 					}
 				}
 
-				else if(telestate == moving)
+				else if(telestate == moving && mStone->onblock())
 				{
 					telestate = free;
+					if(mStone->mtelekinesis != false)
+					{
+						mStone->mtelekinesis = false;
+					}
 				}
 
 				else if(telestate == free)
@@ -87,6 +94,13 @@ void Kiba::update(EntityKind &currentEntity)
 					mTeleBox->setPosition(mPosition);
 				}
 			}
+		}
+	}
+	else if(mStone != 0)
+	{
+		if(mStone->mtelemove != false)
+		{
+			mStone->mtelemove = false;
 		}
 	}
 
@@ -102,7 +116,7 @@ void Kiba::update(EntityKind &currentEntity)
 
 void Kiba::render()
 {
-	mAnimation.update(mStatus * 2 + mDirLeft);
+	mAnimation.update(/*mStatus * 2 +*/ mDirLeft);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -64));
 	ImageManager::render(&mAnimation.getSprite());
 }
@@ -124,6 +138,12 @@ void Kiba::telekinesis()
 		if(rad2 > rad1)
 		{
 			mStone->mtelekinesis = true;
+			mStone->mtelemove = true;
+			mStone->mKibaPos = mPosition;
+		}
+		else
+		{
+			mStone->mtelemove = false;
 		}
 	}
 }
@@ -131,4 +151,15 @@ void Kiba::telekinesis()
 void Kiba::getStone()
 {
 
+}
+
+void Kiba::slash()
+{ 
+	// tryck "Q" för att aktivera en sköld (1 sec cd)
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) && mslashtimer.getElapsedTime().asSeconds() >= 1)
+	{	
+		mslashtimer.restart();
+		Slash *slash = new Slash(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 32, mPosition.y - 30), mDirLeft);
+		EntityManager::getInstance()->addEntity(slash);
+	}
 }

@@ -5,6 +5,7 @@
 #include "SFML\Graphics.hpp"
 #include "TeleKinesisBox.h"
 #include "EntityManager.h"
+#include "Slash.h"
 
 class Kiba: public Character
 {
@@ -19,11 +20,13 @@ public:
 	void update(EntityKind &currentEntity);
 	void render();
 	void getStone();
+	void slash();
 
 private:
 	Stone *mStone;
 	TelekinesisBox *mTeleBox;
 	sf::Clock teletimer;
+	sf::Clock mslashtimer;
 };
 
 #endif

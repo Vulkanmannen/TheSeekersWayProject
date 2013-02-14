@@ -19,6 +19,8 @@ public:
 private:
 	enum JumpStatus {RIGHT, LEFT, GROUND};
 
+	void move();
+
 	void wallJump();
 	void isWallJumping();
 	void canWallJump();
@@ -37,6 +39,20 @@ private:
 	int mWallJumpCount;
 	int mWallJumpTime;
 
+	// snowmist
+
+	void snowMist();
+	void moveInSnowMist();
+	void snowMistCountdown();
+
+	bool mCanPressSnowMist;
+	bool mInSnowMist;
+	bool mCanSnowMist;
+	bool mHitVine;
+	float mMoveSpeedInMist;
+	float mMaxMoveSpeedInMist;
+
+	sf::Clock mSnowMistTime;
 };
 
 #endif

@@ -10,7 +10,7 @@ static const float SPRITEWIDTH = 64;
 DarkBinding::DarkBinding(sf::Vector2f &position, bool dirLeft):
 	mDirLeft(dirLeft),
 	mMovementSpeed(8),
-	mAnimation("darkbinding.png", 60, 4, SPRITEHEIGHT, SPRITEWIDTH)
+	mAnimation(/*"darkbinding*/"FireBall.png", 60, 4, SPRITEHEIGHT, SPRITEWIDTH)
 	{
 		mEntityKind = DARKBINDING;
 		mAlive = true;
@@ -25,7 +25,6 @@ DarkBinding::~DarkBinding()
 
 void DarkBinding::update(EntityKind &currentEntity)
 {
-	mSprite.setPosition(mPosition);
 	move();
 }
 

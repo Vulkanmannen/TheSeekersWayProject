@@ -1,5 +1,6 @@
 #include "Stone.h"
 #include "ImageManager.h"
+#include <math.h>
 
 static const float WIDTH = 128;
 static const float HEIGHT = 128;
@@ -9,7 +10,9 @@ Stone::Stone(sf::Vector2f Position):
 	mGravity(5),
 	mDecrease(0.6),
 	mFalling(false),
-	mtelekinesis(false)
+	mtelekinesis(false),
+	mtelemove(false),
+	mOnBlock(false)
 {
 	mPosition = Position + sf::Vector2f(WIDTH/2 - 32, HEIGHT/2 - 32);
 	mAlive = true;
@@ -42,9 +45,8 @@ void Stone::update(EntityKind &currentEntity)
 		falling();
 	}
 
-
+	attraction();
 	mFalling = true;
-	mtelekinesis = false;
 }
 
 void Stone::render()
@@ -55,23 +57,27 @@ void Stone::render()
 
 void Stone::telekinesis()
 {
-	if(mMovementSpeed.x*mMovementSpeed.x+mMovementSpeed.y*mMovementSpeed.y < 10)
+	if(mMovementSpeed.x * mMovementSpeed.x + mMovementSpeed.y * mMovementSpeed.y < 10)
 	{
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
 			mMovementSpeed.x -= 1;
+			mOnBlock = false;
 		}
 		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
 			mMovementSpeed.x += 1;
+			mOnBlock = false;
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 		{
 			mMovementSpeed.y -= 1;
+			mOnBlock = false;
 		}
 		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		{
 			mMovementSpeed.y += 1;
+			mOnBlock = false;
 		}
 	}
 }
@@ -83,7 +89,10 @@ void Stone::move()
 	mUblock ? (mMovementSpeed.y < 0 ? mMovementSpeed.y = 0 : NULL ) : NULL;
 	mDblock ? (mMovementSpeed.y > 0 ? mMovementSpeed.y = 0 : NULL ) : NULL;
 
-	mPosition	+= mMovementSpeed;
+	if(mtelemove)
+	{
+		mPosition	+= mMovementSpeed;
+	}
 	mMovementSpeed -= sf::Vector2f( 0.1*mMovementSpeed.x, 0.1*mMovementSpeed.y);
 
 	mRblock	= false;
@@ -156,7 +165,10 @@ void Stone::interact(Entity* e)
 				{
 					mPosition -= sf::Vector2f(0, mPosition.y - (e->getPosition().y - (yRadius - 3)));
 					mDblock = true;
-					
+					if(e->getBaseKind() == BLOCK)
+					{
+						mOnBlock = true;
+					}
 					//mMovementSpeed.y = 0;
 					//onblock();
 					mFalling = false;
@@ -164,4 +176,22 @@ void Stone::interact(Entity* e)
 			}
 		}
 	}
+}
+
+void Stone::attraction()
+{
+	if(mtelekinesis == true && mtelemove == false)
+	{
+		if((mPosition.x - mKibaPos.x) * (mPosition.x - mKibaPos.x) + (mPosition.y - mKibaPos.y) * (mPosition.y - mKibaPos.y) > 160 * 160 + 192 * 192)
+		{
+			float r = sqrt(float(160 * 160 + 192 * 192))-0.1;
+			mPosition = sf::Vector2f(	mKibaPos.x + r*cos(atan2(mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x)),	
+										mKibaPos.y + r*sin(atan2(mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x)));
+		}
+	}
+}
+
+bool Stone::onblock()
+{
+	return mOnBlock;
 }

@@ -27,7 +27,8 @@ protected:
 		INAIR,
 		HURT,
 		ACTION1,
-		ACTION2
+		ACTION2,
+		ACTION3
 	};
 	
 	Status mStatus;
@@ -37,7 +38,7 @@ protected:
 
 	Animation mAnimation;
 
-	void move();
+	virtual void move();
 	void jump();
 	void jumping();
 	void walk();
