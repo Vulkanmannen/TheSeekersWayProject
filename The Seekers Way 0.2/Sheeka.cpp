@@ -43,6 +43,7 @@ void Sheeka::update(EntityKind &currentEntity)
 		jumping();
 		falling();
 		fall();
+		Character::update();
 	}
 	if(currentEntity == mEntityKind)
 	{

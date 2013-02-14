@@ -1,5 +1,6 @@
 #ifndef INCLUDED_FIRERUNE
 #define INCLUDED_FIRERUNE
+ 
 #include "Block.h"
 #include "Animation.h"
 
@@ -14,13 +15,6 @@ public:
 
 private:
 
-	enum FireTrapStatus
-	{
-		IDLE,
-		CIRCLE
-	};
-
-	FireTrapStatus mFireTrapStatus;
 	Animation mAnimation;
 	sf::Clock mClock;
 

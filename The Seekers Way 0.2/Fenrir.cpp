@@ -71,6 +71,7 @@ void Fenrir::update(EntityKind &currentEntity)
 			jumping();
 			falling();
 			fall();
+			Character::update();
 		}
 	}
 	mHitVine = false;
@@ -206,13 +207,11 @@ void Fenrir::interact(Entity *e)
 	if(e->getEntityKind() == Entity::ARROW)
 	{
 		mIsHit = true;
-		mStatus = HURT;
 		e->destroy();
 	}
 	if(e->getEntityKind() == Entity::VINE)
 	{
 		mIsHit = true;
-		mStatus = HURT;
 	}
 	if(e->getEntityKind() == Entity::LAVA)
 	{
@@ -236,7 +235,6 @@ void Fenrir::interact(Entity *e)
 			}
 		}
 		mIsHit = true;
-		mStatus = HURT;
 	}
 }
 

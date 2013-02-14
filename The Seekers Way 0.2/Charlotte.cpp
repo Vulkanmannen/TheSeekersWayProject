@@ -37,6 +37,7 @@ void Charlotte::update(EntityKind &currentEntity)
 	falling();
 	fall();
 	GetShieldLife();
+	Character::update();
 }
 
 void Charlotte::render()

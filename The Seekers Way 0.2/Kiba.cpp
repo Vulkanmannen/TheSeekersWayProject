@@ -109,6 +109,7 @@ void Kiba::update(EntityKind &currentEntity)
 	jumping();
 	falling();
 	fall();
+	Character::update();
 
 	mTeleBox->stone.clear();
 }

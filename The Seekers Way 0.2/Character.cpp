@@ -18,7 +18,14 @@ Character::Character():
 	mFalling(false),
 	mIsJumping(false),
 	mAnimation(128, 128),
-	mIsHit(false)
+	mIsHit(false),
+	mMaxSpeed(20),
+	mHurt(false),
+	mHurtCount(0),
+	mHurtTime(20),
+	mCanWalk(true),
+	mCanWalkCount(0),
+	mCanWalkTime(30)
 {
 	mAlive = true;
 	mBaseKind = CHARACTER;
@@ -27,6 +34,14 @@ Character::Character():
 Character::~Character()
 	{}
 
+void Character::update()
+{
+	canWalkTime();
+	hurtTime();
+	dontMoveToFast();
+}
+
+// detta händer när en kraktär står på ett block
 void Character::onblock()
 {
 	if(mFalling)
@@ -40,6 +55,7 @@ void Character::onblock()
 	}
 }
 
+// detta händer när man träffar ett block underifrån
 void Character::hitBlockFromBelow()
 {
 	mJumping = 0;
@@ -59,24 +75,30 @@ void Character::move()
 // Knapptryck tas in och movementspeed ändras
 void Character::walk()
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && mCanWalk)
 	{
-		if(mMovementSpeed.x > -mMaxRun)
+		mMovementSpeed.x -= mRun;
+		
+		if(mMovementSpeed.x < -mMaxRun)
 		{
-			mMovementSpeed.x -= mRun;
+			mMovementSpeed.x = -mMaxRun;	
 		}
+		
 		if(mStatus == IDLE)
 		{
 			mStatus = WALK;
 		}
 		mDirLeft = true;
 	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && mCanWalk)
 	{
-		if(mMovementSpeed.x < mMaxRun)
+		mMovementSpeed.x += mRun;
+		
+		if(mMovementSpeed.x > mMaxRun)
 		{
-			mMovementSpeed.x += mRun;
+			mMovementSpeed.x = mMaxRun;
 		}
+		
 		if(mStatus == IDLE)
 		{
 			mStatus = WALK;
@@ -85,16 +107,63 @@ void Character::walk()
 	}
 }
 
+// reglerar hur länge en karaktär är skadad
+void Character::hurtTime()
+{
+	mHurtCount++;
+	if(mHurtCount >= mHurtTime)
+	{
+		mHurt = false;
+	}
+}
+
+// reglerar när karaktären kan gå igen efter att han blivit skadad
+void Character::canWalkTime()
+{
+	mCanWalkCount++;
+	if(mCanWalkCount >= mCanWalkTime)
+	{
+		mCanWalk = true;
+	}
+}
+
 // stoppar en gubbe
 void Character::dontWalk(EntityKind &currentEntity)
 {
 	if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || currentEntity != mEntityKind)
 	{
-		mMovementSpeed.x = 0;
+		mMovementSpeed.x *= 0.7;
+
+		if(std::abs(mMovementSpeed.x) < 0.1)
+		{
+			mMovementSpeed.x = 0;
+		}
+
 		if(mStatus == WALK)
 		{
 			mStatus = IDLE;
 		}
+	}
+}
+
+// ser till att karaktärerna inte rör sig för fort
+void Character::dontMoveToFast()
+{
+	if(std::abs(mMovementSpeed.x) > mMaxSpeed)
+	{
+		if(mMaxSpeed > 0)
+		{
+			mMovementSpeed.x = -mMaxSpeed;
+		}
+		else
+		{
+			mMovementSpeed.x = mMaxSpeed;
+		}
+	}
+
+	if(mMovementSpeed.y > mJump)
+	{
+		mMovementSpeed.y = mJump;
 	}
 }
 
@@ -210,10 +279,9 @@ void Character::interact(Entity* e)
 		}
 	}
 		
-	if(e->getEntityKind() == ARROW || e->getEntityKind() == Entity::VINE || (*e) == SPIKETRAP || (*e) == FIREBALL)
+	if(e->getEntityKind() == ARROW || e->getEntityKind() == Entity::VINE/* || (*e) == SPIKETRAP || (*e) == FIREBALL*/)
 	{
-		mIsHit = true;
-		mStatus = HURT;
+		takeDamage();
 	}
 	
 	if(e->getEntityKind() == LAVA)
@@ -221,25 +289,14 @@ void Character::interact(Entity* e)
 		// die
 	}
 
-	//if(e->getEntityKind() == SPIKETRAP || e->getEntityKind() == FIREBALL)
-	//{
-	//	if(xDif > 0) // kollar om karaktären är höger eller vänster
-	//	{
-	//		if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
-	//		{
-	//			mPosition = sf::Vector2f(e->getPosition().x + xRadius - 3, mPosition.y);
-	//		}
-	//	}
-	//	else
-	//	{
-	//		if(std::abs(yDif) < yRadius - 10)
-	//		{
-	//			mPosition = sf::Vector2f(e->getPosition().x - (xRadius - 3), mPosition.y);
-	//		}
-	//	}
-	//	mIsHit = true;
-	//	mStatus = HURT;
-	//}
+	if(e->getEntityKind() == SPIKETRAP || e->getEntityKind() == FIREBALL)
+	{
+		sf::Vector2f dirVector = mPosition - e->getPosition();
+
+		mMovementSpeed += sf::Vector2f(dirVector.x * 0.3, dirVector.y * 0.3);
+
+		takeDamage();
+	}
 }
 
 // funktion som sätter is hit till false
@@ -252,4 +309,11 @@ void Character::setIsHitToFalse()
 bool Character::getIsHit()const
 {
 	return mIsHit;
+}
+
+void Character::takeDamage()
+{
+	mIsHit = true;
+	mHurt = true;
+	mCanWalk = false;
 }

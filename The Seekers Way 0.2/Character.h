@@ -12,6 +12,8 @@ public:
 	Character();
 	~Character();
 
+	virtual void update();
+
 	virtual void onblock();
 	void hitBlockFromBelow();
 
@@ -27,7 +29,6 @@ protected:
 		WALK,
 		JUMP,
 		INAIR,
-		HURT,
 		ACTION1,
 		ACTION2,
 		ACTION3
@@ -47,6 +48,10 @@ protected:
 	void dontWalk(EntityKind &currentEntity);
 	void falling();
 	void fall();
+	void dontMoveToFast();
+	void hurtTime();
+	void canWalkTime();
+	void takeDamage();
 
 	float mJumpTime;
 	float mMaxRun;
@@ -57,10 +62,18 @@ protected:
 	float mJump;
 	float mRun;
 	float mJumping; 
+	float mMaxSpeed;
 	bool mFalling;
 	bool mIsJumping;
 
 	bool mIsHit;
+	bool mHurt;
+	int mHurtCount;
+	int mHurtTime;
+	bool mCanWalk;
+	int mCanWalkCount;
+	int mCanWalkTime;
+	
 };
 
 #endif
