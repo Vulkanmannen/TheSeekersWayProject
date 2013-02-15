@@ -21,7 +21,11 @@ private:
 	sf::Clock mDarkBindingClock;
 
 	void SheekaDash();
+	void dashTime();
+	void notDashing();
 	void darkBinding();
+
+	void takeDamage();
 	
 	int mDashCount;
 	int mDashTimer;

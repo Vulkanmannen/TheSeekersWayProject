@@ -1,6 +1,8 @@
 #include "Character.h"
 #include "Entity.h"
 #include <cmath>
+#include <iostream>
+#include "ImageManager.h"
 
 Character::Character():
 	mMovementSpeed(0, 0),
@@ -22,10 +24,11 @@ Character::Character():
 	mMaxSpeed(20),
 	mHurt(false),
 	mHurtCount(0),
-	mHurtTime(20),
-	mCanWalk(true),
-	mCanWalkCount(0),
-	mCanWalkTime(30)
+	mHurtTime(120),
+	mCanMove(true),
+	mCanMoveCount(0),
+	mCanMoveTime(30),
+	mCanPressJump(true)
 {
 	mAlive = true;
 	mBaseKind = CHARACTER;
@@ -34,11 +37,19 @@ Character::Character():
 Character::~Character()
 	{}
 
-void Character::update()
+void Character::update(EntityKind &currentEntity)
 {
-	canWalkTime();
+	if(mCanMove)
+	{
+		dontWalk(currentEntity);
+		jumping();
+		falling();
+		fall();
+	}
+
+	canMoveTime();
 	hurtTime();
-	dontMoveToFast();
+	slowdownPushBack();
 }
 
 // detta händer när en kraktär står på ett block
@@ -69,13 +80,15 @@ void Character::hitBlockFromBelow()
 void Character::move()
 {
 	mPosition	+= mMovementSpeed;
+	
 	mPosition.y	+= mGravity;
+	
 }
 
 // Knapptryck tas in och movementspeed ändras
 void Character::walk()
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && mCanWalk)
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		mMovementSpeed.x -= mRun;
 		
@@ -90,7 +103,7 @@ void Character::walk()
 		}
 		mDirLeft = true;
 	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && mCanWalk)
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		mMovementSpeed.x += mRun;
 		
@@ -110,20 +123,32 @@ void Character::walk()
 // reglerar hur länge en karaktär är skadad
 void Character::hurtTime()
 {
+	if(mHurt)
+	{
+		std::cout << "hurt" << std::endl;
+	}
+
 	mHurtCount++;
 	if(mHurtCount >= mHurtTime)
 	{
 		mHurt = false;
+		mHurtCount = 0;
 	}
 }
 
 // reglerar när karaktären kan gå igen efter att han blivit skadad
-void Character::canWalkTime()
+void Character::canMoveTime()
 {
-	mCanWalkCount++;
-	if(mCanWalkCount >= mCanWalkTime)
+	if(!mCanMove)
 	{
-		mCanWalk = true;
+		std::cout << "cantMove" << std::endl;
+	}
+
+	mCanMoveCount++;
+	if(mCanMoveCount >= mCanMoveTime)
+	{
+		mCanMove = true;
+		mCanMoveCount = 0;
 	}
 }
 
@@ -147,23 +172,12 @@ void Character::dontWalk(EntityKind &currentEntity)
 }
 
 // ser till att karaktärerna inte rör sig för fort
-void Character::dontMoveToFast()
+void Character::slowdownPushBack()
 {
-	if(std::abs(mMovementSpeed.x) > mMaxSpeed)
+	if(!mCanMove)
 	{
-		if(mMaxSpeed > 0)
-		{
-			mMovementSpeed.x = -mMaxSpeed;
-		}
-		else
-		{
-			mMovementSpeed.x = mMaxSpeed;
-		}
-	}
-
-	if(mMovementSpeed.y > mJump)
-	{
-		mMovementSpeed.y = mJump;
+		mMovementSpeed.x *= 0.95;
+		mMovementSpeed.y *= 0.9;
 	}
 }
 
@@ -172,11 +186,16 @@ void Character::jump()
 {
 	if(!mFalling && !mIsJumping)
 	{
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mMovementSpeed.y < mMaxJump)
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mMovementSpeed.y < mMaxJump && mCanPressJump)
 		{
+			mCanPressJump = false;
 			mStatus = JUMP;
 			mIsJumping = true;
 			mMovementSpeed.y = -mJump;
+		}
+		else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			mCanPressJump = true;
 		}
 	}
 }
@@ -279,21 +298,38 @@ void Character::interact(Entity* e)
 		}
 	}
 		
-	if(e->getEntityKind() == ARROW || e->getEntityKind() == Entity::VINE/* || (*e) == SPIKETRAP || (*e) == FIREBALL*/)
+	if((*e) == ARROW)
 	{
 		takeDamage();
 	}
 	
-	if(e->getEntityKind() == LAVA)
+	if((*e) == LAVA)
 	{
 		// die
 	}
 
-	if(e->getEntityKind() == SPIKETRAP || e->getEntityKind() == FIREBALL)
+	if((*e) == SPIKETRAP || (*e) == FIREBALL || (*e) == VINE)
 	{
-		sf::Vector2f dirVector = mPosition - e->getPosition();
+		if((*e) == VINE && yDif < 0)
+		{
+			if(std::abs(xDif) > yRadius - 10)
+			{
+				return;
+			}
+		}
 
-		mMovementSpeed += sf::Vector2f(dirVector.x * 0.3, dirVector.y * 0.3);
+		sf::Vector2f dirVector = mPosition - e->getPosition();
+		float length2 = dirVector.x * dirVector.x + dirVector.y * dirVector.y;
+
+		dirVector.x *= (1 / std::sqrt(length2));
+		dirVector.y *= (1 / std::sqrt(length2));
+
+		dirVector.x *= 10;
+		dirVector.y *= 30;
+
+		mMovementSpeed = sf::Vector2f(0, 0);
+
+		mMovementSpeed = dirVector;
 
 		takeDamage();
 	}
@@ -308,12 +344,19 @@ void Character::setIsHitToFalse()
 // returnerar ishit status
 bool Character::getIsHit()const
 {
-	return mIsHit;
+	return mIsHit; 
 }
 
 void Character::takeDamage()
 {
-	mIsHit = true;
-	mHurt = true;
-	mCanWalk = false;
+	if(!mHurt)
+	{
+		mIsHit = true;
+		mHurt = true;
+		mHurtCount = 0;
+	}
+
+	mCanMove = false;
+	mCanMoveCount = 0;
+
 }

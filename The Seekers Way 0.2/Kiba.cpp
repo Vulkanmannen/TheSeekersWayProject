@@ -24,92 +24,92 @@ Kiba::~Kiba()
 
 void Kiba::update(EntityKind &currentEntity)
 {
-	std::cout<<mTeleBox->stone.size()<<"."<<std::endl;
-	if(currentEntity == mEntityKind)
+		
+	move();
+	
+	if(mCanMove)
 	{
-		if(telestate == free)
+		if(currentEntity == mEntityKind)
 		{
-			walk();
-			jump();
-			slash();
-		}
-
-		else if(telestate == moving)
-		{
-			telekinesis();
-		}
-
-		if(teletimer.getElapsedTime().asMilliseconds() > 500)
-		{
-			if(telestate == choice)
+			if(telestate == free)
 			{
-				if(mTeleBox->stone.size() != 0)
-				{
-					if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-					{	
-						mTeleBox->getStone(-1);
-						teletimer.restart();
-					}
-					else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
-					{
-						mTeleBox->getStone(1);
-						teletimer.restart();
-					}
-						
-				}
+				walk();
+				jump();
+				slash();
 			}
 
-			// en function
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
+			else if(telestate == moving)
 			{
-				teletimer.restart();
+				telekinesis();
+			}
 
+			if(teletimer.getElapsedTime().asMilliseconds() > 500)
+			{
 				if(telestate == choice)
-				{ 
-					telestate = moving;
-					
+				{
 					if(mTeleBox->stone.size() != 0)
 					{
-						mStone = mTeleBox->getStone();
+						if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+						{	
+							mTeleBox->getStone(-1);
+							teletimer.restart();
+						}
+						else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+						{
+							mTeleBox->getStone(1);
+							teletimer.restart();
+						}
+						
 					}
-					else 
+				}
+
+				// en function
+				if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
+				{
+					teletimer.restart();
+
+					if(telestate == choice)
+					{ 
+						telestate = moving;
+					
+						if(mTeleBox->stone.size() != 0)
+						{
+							mStone = mTeleBox->getStone();
+						}
+						else 
+						{
+							telestate = free;
+						}
+					}
+
+					else if(telestate == moving && mStone->onblock())
 					{
 						telestate = free;
+						if(mStone->mtelekinesis != false)
+						{
+							mStone->mtelekinesis = false;
+						}
 					}
-				}
 
-				else if(telestate == moving && mStone->onblock())
-				{
-					telestate = free;
-					if(mStone->mtelekinesis != false)
+					else if(telestate == free)
 					{
-						mStone->mtelekinesis = false;
+						telestate = choice;
+
+						mTeleBox->setPosition(mPosition);
 					}
-				}
-
-				else if(telestate == free)
-				{
-					telestate = choice;
-
-					mTeleBox->setPosition(mPosition);
 				}
 			}
 		}
-	}
-	else if(mStone != 0)
-	{
-		if(mStone->mtelemove != false)
+		else if(mStone != 0)
 		{
-			mStone->mtelemove = false;
+			if(mStone->mtelemove != false)
+			{
+				mStone->mtelemove = false;
+			}
 		}
 	}
-
-	dontWalk(currentEntity);
-	move();
-	jumping();
-	falling();
-	fall();
-	Character::update();
+	
+	Character::update(currentEntity);
 
 	mTeleBox->stone.clear();
 }

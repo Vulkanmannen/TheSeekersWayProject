@@ -37,11 +37,9 @@ void Fenrir::update(EntityKind &currentEntity)
 {
 	move();
 	isWallJumping();
+	//snowMistCountdown();
 
-	
-	snowMistCountdown();
-
-	if(!mWallJumping)
+	if(!mWallJumping && mCanMove)
 	{
 		canWallJump();
 	
@@ -49,7 +47,7 @@ void Fenrir::update(EntityKind &currentEntity)
 		{
 			if(mInSnowMist)
 			{
-				moveInSnowMist();
+				//moveInSnowMist();
 			}
 			else
 			{
@@ -61,20 +59,31 @@ void Fenrir::update(EntityKind &currentEntity)
 				}
 			}
 			
-			snowMist();
+			//snowMist();
 		}
 
 		if(!mInSnowMist)
 		{
-			wallJump();
-			dontWalk(currentEntity);
+			wallJump();	
+		}	
+		//dontWalk(currentEntity);
+	}
+
+	if(!mInSnowMist)
+	{
+		if(mCanMove)
+		{	
 			jumping();
 			falling();
 			fall();
-			Character::update();
 		}
+
+		//canMoveTime();
+		//hurtTime();
+		//slowdownPushBack();
 	}
-	mHitVine = false;
+
+	//mHitVine = false;
 }
 
 void Fenrir::render()
@@ -89,8 +98,6 @@ void Fenrir::render()
 		mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -64));
 	}
 	ImageManager::render(&getSprite());
-
-	std::cout << mStatus << std::endl;
 }
 
 void Fenrir::onblock()
@@ -186,10 +193,6 @@ void Fenrir::interact(Entity *e)
 				if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
 				{
 					mPosition = sf::Vector2f(mPosition.x, e->getPosition().y + yRadius);
-					//mJumping = 0;
-					//mFalling = true;
-					//mIsJumping = false;
-					//mMovementSpeed.y = 0;
 					hitBlockFromBelow();
 				}
 			}
@@ -218,23 +221,30 @@ void Fenrir::interact(Entity *e)
 		// die
 	}
 
-	if(e->getEntityKind() == SPIKETRAP || e->getEntityKind() == FIREBALL)
+	if((*e) == SPIKETRAP || (*e) == FIREBALL || (*e) == VINE)
 	{
-		if(xDif > 0) // kollar om karaktären är höger eller vänster
+		if((*e) == VINE && yDif < 0)
 		{
-			if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
+			if(std::abs(xDif) > yRadius - 10)
 			{
-				mPosition = sf::Vector2f(e->getPosition().x + xRadius - 3, mPosition.y);
+				return;
 			}
 		}
-		else
-		{
-			if(std::abs(yDif) < yRadius - 10)
-			{
-				mPosition = sf::Vector2f(e->getPosition().x - (xRadius - 3), mPosition.y);
-			}
-		}
-		mIsHit = true;
+
+		sf::Vector2f dirVector = mPosition - e->getPosition();
+		float length2 = dirVector.x * dirVector.x + dirVector.y * dirVector.y;
+
+		dirVector.x *= (1 / std::sqrt(length2));
+		dirVector.y *= (1 / std::sqrt(length2));
+
+		dirVector.x *= 10;
+		dirVector.y *= 30;
+
+		mMovementSpeed = sf::Vector2f(0, 0);
+
+		mMovementSpeed = dirVector;
+
+		takeDamage();
 	}
 }
 
@@ -247,6 +257,13 @@ void Fenrir::move()
 	{
 		mPosition.y	+= mGravity;
 	}
+}
+
+// omdefinerar takeDamage
+void Fenrir::takeDamage()
+{
+	Character::takeDamage();
+	mInSnowMist = false;
 }
 
 //

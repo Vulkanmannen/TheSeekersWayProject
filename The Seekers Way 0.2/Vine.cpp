@@ -4,10 +4,8 @@
 static const float WIDTH = 64;
 static const float HEIGHT = 64;
 
-Vine::Vine(sf::Vector2f &position)
-	
+Vine::Vine(sf::Vector2f &position, unsigned char spriteNumber)
 	{
-
 	mPosition = position;
 	mAlive = true;
 	mHeight = HEIGHT;
@@ -18,7 +16,9 @@ Vine::Vine(sf::Vector2f &position)
 	mSprite.setTexture(mTexture);
 	mSprite.setPosition(position);
 	mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
-
+	
+	sf::IntRect textureRect(spriteNumber * 64, 0, mWidth, mHeight);
+	mSprite.setTextureRect(textureRect);
 	}
 
 

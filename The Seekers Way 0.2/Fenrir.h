@@ -22,6 +22,7 @@ private:
 	enum JumpStatus {RIGHT, LEFT, GROUND};
 
 	void move();
+	void takeDamage();
 
 	void wallJump();
 	void isWallJumping();

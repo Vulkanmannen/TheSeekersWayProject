@@ -31,23 +31,28 @@ void Sheeka::update(EntityKind &currentEntity)
 {
 	move();
 
-	if(mDash == false)
+	if(mCanMove)
 	{
+		if(mDash == false)
+		{
+			if(currentEntity == mEntityKind)
+			{
+				walk();
+				jump();
+				darkBinding();
+			}
+	
+		}
 		if(currentEntity == mEntityKind)
 		{
-			walk();
-			jump();
-			darkBinding();
+			SheekaDash();
 		}
-		dontWalk(currentEntity);
-		jumping();
-		falling();
-		fall();
-		Character::update();
+		dashTime();
 	}
-	if(currentEntity == mEntityKind)
+
+	if(mDash == false)
 	{
-		SheekaDash();
+		Character::update(currentEntity);
 	}
 }
 
@@ -89,20 +94,6 @@ void Sheeka::SheekaDash()
 	{
 		mDashPressed = false;
 	}
-
-	if(mDash)
-	{
-		mDashCount++;
-		if(mDashCount >= mDashTimer)
-		{
-			mStatus = IDLE;
-			mDash = false;
-			mDashCount = 0;
-			mMovementSpeed.y = 0;
-			mMovementSpeed.x = 0;
-			mGravity = 5;
-		}
-	}
 }
 
 // sheeka skjuter en projektil
@@ -120,3 +111,33 @@ void Sheeka::darkBinding()
 	}
 }
 
+// lägger till att dash = false i takedamage
+void Sheeka::takeDamage()
+{
+	Character::takeDamage();
+	notDashing();
+}
+
+// reglerar hur länge dashen pågår
+void Sheeka::dashTime()
+{
+	if(mDash)
+	{
+		mDashCount++;
+		if(mDashCount >= mDashTimer)
+		{
+			notDashing();
+			mMovementSpeed.y = 0;
+			mMovementSpeed.x = 0;
+			mStatus = IDLE;
+		}
+	}
+}
+
+// körs när sheeka går ur sin dash
+void Sheeka::notDashing()
+{
+	mDash = false;
+	mDashCount = 0;
+	mGravity = 5;
+}

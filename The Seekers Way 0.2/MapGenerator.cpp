@@ -64,7 +64,7 @@ void MapGenerator::generateMap(std::string imageName)
 				}
 				else if(color.g == 200)
 				{
-					entityManager->addEntity(new Vine(position));
+					entityManager->addEntity(new Vine(position, color.b));
 				}
 				else if(color.g == 220)
 				{

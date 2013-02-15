@@ -25,19 +25,20 @@ Charlotte::~Charlotte()
 
 void Charlotte::update(EntityKind &currentEntity)
 {
-	if(currentEntity == mEntityKind)
-	{
-		walk();
-		jump();
-		SetShield();
-	}
-	dontWalk(currentEntity);
 	move();
-	jumping();
-	falling();
-	fall();
-	GetShieldLife();
-	Character::update();
+
+	if(mCanMove)
+	{
+		if(currentEntity == mEntityKind)
+		{
+			walk();
+			jump();
+			SetShield();
+		}
+	}
+		GetShieldLife();
+	
+	Character::update(currentEntity);
 }
 
 void Charlotte::render()
