@@ -203,10 +203,10 @@ void Character::jump()
 // uppdaterar hoppet
 void Character::jumping()
 {
-	if(mStatus == JUMP && mAnimation.getEndOfAnimation())
-	{
-		mStatus = INAIR;
-	}
+	//if(mStatus == JUMP && mAnimation.getEndOfAnimation())
+	//{
+	//	mStatus = INAIR;
+	//}
 
 	if(mIsJumping)
 	{

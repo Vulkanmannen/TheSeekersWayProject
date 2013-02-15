@@ -15,7 +15,7 @@ Fenrir::Fenrir(sf::Vector2f &position):
 	mWallJumpCount(0),
 	mWallJumpTime(20),
 	mLastJumpDir(GROUND),
-	mSliding(false),
+	mVerticalHitbox(false),
 	mCanPressSnowMist(true),
 	mInSnowMist(false),
 	mMoveSpeedInMist(0.5),
@@ -37,7 +37,7 @@ void Fenrir::update(EntityKind &currentEntity)
 {
 	move();
 	isWallJumping();
-	//snowMistCountdown();
+	snowMistCountdown();
 
 	if(!mWallJumping && mCanMove)
 	{
@@ -47,7 +47,7 @@ void Fenrir::update(EntityKind &currentEntity)
 		{
 			if(mInSnowMist)
 			{
-				//moveInSnowMist();
+				moveInSnowMist();
 			}
 			else
 			{
@@ -59,14 +59,14 @@ void Fenrir::update(EntityKind &currentEntity)
 				}
 			}
 			
-			//snowMist();
+			snowMist();
 		}
 
 		if(!mInSnowMist)
 		{
 			wallJump();	
 		}	
-		//dontWalk(currentEntity);
+		dontWalk(currentEntity);
 	}
 
 	if(!mInSnowMist)
@@ -78,18 +78,18 @@ void Fenrir::update(EntityKind &currentEntity)
 			fall();
 		}
 
-		//canMoveTime();
-		//hurtTime();
-		//slowdownPushBack();
+		canMoveTime();
+		hurtTime();
+		slowdownPushBack();
 	}
 
-	//mHitVine = false;
+	mHitVine = false;
 }
 
 void Fenrir::render()
 {
 	mAnimation.update(mStatus * 2 + mDirLeft);
-	if(!mSliding)
+	if(!mVerticalHitbox)
 	{
 		mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -96));
 	}
@@ -97,32 +97,7 @@ void Fenrir::render()
 	{
 		mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -64));
 	}
-	ImageManager::render(&getSprite());
-}
-
-void Fenrir::onblock()
-{
-	Character::onblock();
-	
-	// walljump
-	mLastJumpDir = GROUND;
-	mFenrirCanJump = true;
-	mHitWall = false;		
-	mSliding = false;
-	mCanHitWallClock.restart();
-
-	// snowmist
-	mCanSnowMist = true;
-
-	if(mStatus == ACTION2)
-	{
-		mStatus = IDLE;
-	}
-}
-
-sf::Sprite Fenrir::getSprite()
-{
-	return mAnimation.getSprite();
+	ImageManager::render(&mAnimation.getSprite());
 }
 
 void Fenrir::interact(Entity *e)
@@ -247,6 +222,29 @@ void Fenrir::interact(Entity *e)
 		takeDamage();
 	}
 }
+//
+//-----------------------------------------------------------omdefinitioner
+//
+
+void Fenrir::onblock()
+{
+	Character::onblock();
+	
+	// walljump
+	mLastJumpDir = GROUND;
+	mFenrirCanJump = true;
+	mHitWall = false;		
+	mVerticalHitbox = false;
+	mCanHitWallClock.restart();
+
+	// snowmist
+	mCanSnowMist = true;
+
+	if(mStatus == ACTION2 || mStatus == ACTION1 || (mStatus == JUMP && !mJumping))
+	{
+		mStatus = IDLE;
+	}
+}
 
 // omdefinerar movefunktion
 void Fenrir::move()
@@ -266,6 +264,18 @@ void Fenrir::takeDamage()
 	mInSnowMist = false;
 }
 
+// omdefinerar fall
+void Fenrir::fall()
+{
+	if(!mIsJumping)
+	{
+		if(mFalling && !mWallJumping && mAnimation.getEndOfAnimation())
+		{
+  			mStatus = INAIR;
+		}
+		mFalling = true;
+	}
+}
 //
 //--------------------------------------------------------------------------walljump
 //
@@ -283,7 +293,7 @@ void Fenrir::isWallJumping()
 		}
 	}
 
-	if(!mSliding/* || mStatus == INAIR*/)
+	if(!mVerticalHitbox)
 	{
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
@@ -293,11 +303,6 @@ void Fenrir::isWallJumping()
 // sätter igång walljumpen
 void Fenrir::wallJump() 
 {
-	if(mStatus == ACTION1 && mAnimation.getEndOfAnimation())
-	{
-		mStatus = INAIR;
-	}
-
 	if(!mWallJumping && sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mCanPressWallJump)
 	{  
 		mCanPressWallJump = false;
@@ -307,6 +312,7 @@ void Fenrir::wallJump()
 			if(mDirLeft == mLastJumpDir || mLastJumpDir == GROUND)
 			{
   				mWallJumping = true;
+				mJumping = false;
 				mHitWall = false;
 				mWallJumpCount = 0;
 
@@ -327,9 +333,7 @@ void Fenrir::wallJump()
 					mDirLeft = false;
 					mMovementSpeed.x = 6;
 					mLastJumpDir = RIGHT;
-				}
-
-				
+				}				
 			}
 		}
 	}
@@ -350,14 +354,15 @@ void Fenrir::canWallJump()
 // kollar om fenrir träffat en vägg
 bool Fenrir::hitWall()
 {
-	if(mStatus != WALK && mStatus != IDLE && (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) ||sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) && mCanHitWallClock.getElapsedTime().asSeconds() > 0.1)
+	if(mStatus != WALK && mStatus != IDLE&& mCanHitWallClock.getElapsedTime().asSeconds() > 0.1)
 	{
 		mFalling = false;
 		mFenrirCanJump = false;
 
 		if(!mWallJumping)
 		{
-			if(!mIsJumping)
+			
+			if(!mIsJumping && (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) ||sf::Keyboard::isKeyPressed(sf::Keyboard::Right)))
 			{
 				mMovementSpeed.y = 0.3;
 				mStatus = ACTION2;
@@ -365,8 +370,9 @@ bool Fenrir::hitWall()
 				mHeight = WIDTH;
 				mWidth = HEIGHT;
 
-				mSliding = true;
+				mVerticalHitbox = true;
 			}
+			mWallJumping = false;
 			mHitWall = true;
 		}
 		return true;

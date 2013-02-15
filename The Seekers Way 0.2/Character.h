@@ -48,7 +48,7 @@ protected:
 	void walk();
 	void dontWalk(EntityKind &currentEntity);
 	void falling();
-	void fall();
+	virtual void fall();
 	void slowdownPushBack();
 	void hurtTime();
 	void canMoveTime();
