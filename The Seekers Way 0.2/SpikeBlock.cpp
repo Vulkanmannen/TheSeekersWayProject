@@ -7,7 +7,7 @@ static const float HEIGHT = 64;
 static const float WIDTH = 64;
 
 SpikeBlock::SpikeBlock(sf::Vector2f &position):
-	mAnimation("spikerune.png", 60, 12, HEIGHT, WIDTH)
+	mAnimation("spikerune.png", 100, 10, HEIGHT, WIDTH)
 {
 	mPosition = position;
 	mWidth = WIDTH;
@@ -21,6 +21,7 @@ SpikeBlock::SpikeBlock(sf::Vector2f &position):
 
 SpikeBlock::~SpikeBlock()
 {
+
 }
 
 void SpikeBlock::update(EntityKind &currentEntity)
@@ -30,7 +31,6 @@ void SpikeBlock::update(EntityKind &currentEntity)
 
 void SpikeBlock::render()
 {
-	//mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
 	ImageManager::render(&mAnimation.getSprite());
 }
 

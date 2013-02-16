@@ -3,6 +3,7 @@
 #include <cmath>
 #include <iostream>
 #include "ImageManager.h"
+#include "Spiketrap.h"
 
 Character::Character():
 	mMovementSpeed(0, 0),
@@ -203,11 +204,6 @@ void Character::jump()
 // uppdaterar hoppet
 void Character::jumping()
 {
-	//if(mStatus == JUMP && mAnimation.getEndOfAnimation())
-	//{
-	//	mStatus = INAIR;
-	//}
-
 	if(mIsJumping)
 	{
 		mMovementSpeed.y += mAcceleration; // om mStatus är JUMPING trycks char ner med värdet på mAcceleration
@@ -300,7 +296,7 @@ void Character::interact(Entity* e)
 		
 	if((*e) == ARROW)
 	{
-		takeDamage();
+		takeDamageFromArrow();
 	}
 	
 	if((*e) == LAVA)
@@ -313,6 +309,14 @@ void Character::interact(Entity* e)
 		if((*e) == VINE && yDif < 0)
 		{
 			if(std::abs(xDif) > yRadius - 10)
+			{
+				return;
+			}
+		}
+
+		if((*e) == SPIKETRAP)
+		{
+			if(!static_cast<Spiketrap*>(e)->getHurting())
 			{
 				return;
 			}
@@ -347,6 +351,7 @@ bool Character::getIsHit()const
 	return mIsHit; 
 }
 
+// skada som knuffar
 void Character::takeDamage()
 {
 	if(!mHurt)
@@ -359,4 +364,15 @@ void Character::takeDamage()
 	mCanMove = false;
 	mCanMoveCount = 0;
 
+}
+
+// skada som inte knuffar
+void Character::takeDamageFromArrow()
+{
+	if(!mHurt)
+	{
+		mIsHit = true;
+		mHurt = true;
+		mHurtCount = 0;
+	}
 }

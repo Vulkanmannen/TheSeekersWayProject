@@ -19,6 +19,7 @@ Stone::Stone(sf::Vector2f Position):
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = STONE;
+
 	mTexture.loadFromImage(*ImageManager::getImage("crashstone.png"));
 	mSprite.setTexture(mTexture);
 	mSprite.setPosition(Position);

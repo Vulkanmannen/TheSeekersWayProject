@@ -22,14 +22,17 @@ MapGenerator::MapGenerator()
 MapGenerator::~MapGenerator()
 	{}
 
-void MapGenerator::generateMap(std::string imageName)
+void MapGenerator::generateMap(std::string imageNameBlock, std::string imageNameObject)
 {
 	GenerateDoor::loadDocument("config.xml");
 	GenerateDoor::GenerateDoors();
 
 	sf::Image image;
-	image.loadFromFile(imageName);
-
+	image.loadFromFile(imageNameBlock);
+	EntityManager* entityManager = EntityManager::getInstance();
+	//
+	//------------------------------------------------------skapar block och karaktärer
+	//
 	for(int i = 0; i < image.getSize().x; ++i)
 	{
 		for(int j = 0; j < image.getSize().y; ++j)
@@ -38,8 +41,6 @@ void MapGenerator::generateMap(std::string imageName)
 			sf::Vector2f position = sf::Vector2f(i * 64.f, j *64.f);
 
 			// Skapar Block vid Red = 0
-			EntityManager* entityManager = EntityManager::getInstance();
-
 			if(color.r == 0 && color.a == 255)
 			{
 				if(color.g == 0)
@@ -48,33 +49,21 @@ void MapGenerator::generateMap(std::string imageName)
 				}
 				else if(color.g == 50)
 				{
-					entityManager->addEntity(new SpikeBlock(position));
+					entityManager->addEntity(new FireRune(position));
 				}
 				else if(color.g == 100)
 				{
-					entityManager->addEntity(new FireRune(position));
-				}
-				else if(color.g == 150) // höger :-P Sista färgen avgör skut intervallet i tiondels sekunder
-				{
-					entityManager->addEntity(new ShottingTrap(position, color.b, true, false));
-				}
-				else if(color.g == 160) // vänster :-P
-				{
-					entityManager->addEntity(new ShottingTrap(position,color.b ,true, true));
-				}
-				else if(color.g == 200)
-				{
 					entityManager->addEntity(new Vine(position, color.b));
 				}
-				else if(color.g == 220)
+				else if(color.g == 150)
 				{
 					entityManager->addEntity(new Stone(position));
 				}
-				else if(color.g == 240)
+				else if(color.g == 200)
 				{
 					entityManager->addEntity(new Lava(position));
 				}
-				else if(color.g == 255)
+				else if(color.g == 25)
 				{
 					entityManager->addEntity(new WoodenWall(position));
 				}
@@ -85,26 +74,51 @@ void MapGenerator::generateMap(std::string imageName)
 			{			
 				if(color.g == 0)
 				{	
-					entityManager->addEntity(new Sheeka(position));
+					entityManager->addEntity(new Kiba(position));
+				}
+				else if(color.g == 50)
+				{
+					entityManager->addEntity(new Charlotte(position));
 				}
 				else if(color.g == 100)
 				{
 					entityManager->addEntity(new Fenrir(position));
 				}
-				else if(color.g == 200)
+				else if(color.g == 150)
 				{
-					entityManager->addEntity(new Charlotte(position));
-				}
-				else if(color.g == 255)
-				{
-					entityManager->addEntity(new Kiba(position));
+					entityManager->addEntity(new Sheeka(position));
 				}
 			}
+		}
+	}
+	//
+	//------------------------------------------------------------------------skapar objekt
+	//
+
+	image.loadFromFile(imageNameObject);
+
+	for(int i = 0; i < image.getSize().x; ++i)
+	{
+		for(int j = 0; j < image.getSize().y; ++j)
+		{
+			sf::Color color = image.getPixel(i ,j);
+			sf::Vector2f position = sf::Vector2f(i * 64.f, j *64.f);
 
 			// Skapar Object vid Red = 200
-			else if(color.r == 200 && color.a == 255)
+			if(color.r == 200 && color.a == 255)
 			{
-
+				if(color.g == 0) // höger :-P Sista färgen avgör skut intervallet i tiondels sekunder
+				{
+					entityManager->addEntity(new ShottingTrap(position, color.b, true, false));
+				}
+				else if(color.g == 50) // vänster :-b
+				{
+					entityManager->addEntity(new ShottingTrap(position,color.b ,true, true));
+				}
+				else if(color.g == 100)
+				{
+					entityManager->addEntity(new SpikeBlock(position));
+				}
 			}
 		}
 	}

@@ -12,10 +12,10 @@ Vine::Vine(sf::Vector2f &position, unsigned char spriteNumber)
 	mWidth = WIDTH;
 	mEntityKind = VINE;
 
-	mTexture.loadFromImage(*ImageManager::getImage("ShottingTrap.png"));
+	mTexture.loadFromImage(*ImageManager::getImage("vine.png"));
 	mSprite.setTexture(mTexture);
 	mSprite.setPosition(position);
-	mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
+	mSprite.setOrigin(32, mSprite.getLocalBounds().height / 2);
 	
 	sf::IntRect textureRect(spriteNumber * 64, 0, mWidth, mHeight);
 	mSprite.setTextureRect(textureRect);

@@ -74,7 +74,7 @@ void Charlotte::SetShield()
 			mShield->destroy();	
 		}
 		mClock.restart();
-		mShield = new Shield(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 100, mPosition.y - 7), mDirLeft);
+		mShield = new Shield(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 100, mPosition.y - 13), mDirLeft);
 			
 		EntityManager::getInstance()->addEntity(mShield);
 

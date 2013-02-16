@@ -14,6 +14,7 @@ Arrow::Arrow(sf::Vector2f &position, bool dirleft):
 	mWidth = WIDTH;
 	mEntityKind = Entity::ARROW;
 	mPosition = position;
+	
 	mTexture.loadFromImage(*ImageManager::getImage("arrow.png"));
 	mSprite.setTexture(mTexture);
 	mSprite.setPosition(position);
@@ -27,15 +28,14 @@ Arrow::~Arrow()
 }
 
 void Arrow::update(EntityKind &currentEntity)
-{
-	
+{	
 	mPosition	+= mMovementSpeed;
 	mSprite.setPosition(mPosition);
 }
 
 void Arrow::interact(Entity* e)
 {
-	if(e->getEntityKind() != Entity::SHOTTINGTRAP)
+	if(mShottingTime.getElapsedTime().asMilliseconds() > 100)
 	{
 		if(e->getBaseKind() == Entity::BLOCK || e->getBaseKind() == Entity::CHARACTER || e->getEntityKind() == Entity::SHIELD)
 		{

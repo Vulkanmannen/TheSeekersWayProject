@@ -9,7 +9,10 @@ Spiketrap::Spiketrap(sf::Vector2f &position):
 	mSpikeCount(0),
 	mCountDirectionUpp(true),
 	mWait(false),
-	mStartYValue(position.y - 32)
+	mStartYValue(position.y - 32),
+	mHurting(false),
+	mTimeToNextFrame(0.05),
+	mTimeDown(3)
 {
 	mPosition = position - sf::Vector2f(0, 32);
 	mWidth = WIDTH;
@@ -40,7 +43,7 @@ void Spiketrap::spikeCount()
 {
 
 
-	if(mClockFrame.getElapsedTime().asSeconds() > 0.5 && !mWait)
+	if(mClockFrame.getElapsedTime().asSeconds() > mTimeToNextFrame && !mWait)
 	{
 		if(mCountDirectionUpp)
 		{
@@ -60,7 +63,7 @@ void Spiketrap::spikeCount()
 		}
 	}
 	
-	if(mClockWait.getElapsedTime().asSeconds() > 2)
+	if(mClockWait.getElapsedTime().asSeconds() > mTimeDown)
 	{
 		mWait = false;
 	}
@@ -79,11 +82,24 @@ void Spiketrap::spikeCount()
 void Spiketrap::SpikeMove()
 {
 	mHeight =  mSpikeCount * 26;
-	
 	mPosition.y = mStartYValue - mSpikeCount * 13;
+
+	if(mSpikeCount == 0)
+	{
+		mHurting = false;
+	}
+	else
+	{
+		mHurting = true;
+	}
 }
 
 void Spiketrap::interact(Entity* e)
 {
 
+}
+
+bool Spiketrap::getHurting()const
+{
+	return mHurting;
 }

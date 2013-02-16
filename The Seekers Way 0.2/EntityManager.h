@@ -30,6 +30,7 @@ public:
 
 	void setView(sf::View* view);
 
+	void setMapSize(int width, int height);
 private:
 	EntityManager();
 	EntityManager(const EntityManager &e);
@@ -70,6 +71,10 @@ private:
 
 	void createBackground();
 	void renderBackground();
+	
+	//------------mapsize
+	int mMapHeight;
+	int mMapWidth;
 };
 
 #endif 

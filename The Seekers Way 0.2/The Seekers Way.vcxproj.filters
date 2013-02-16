@@ -37,9 +37,6 @@
     <ClCompile Include="Kiba.cpp">
       <Filter>Entities\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Lever.cpp">
-      <Filter>Entities\Block</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>More</Filter>
     </ClCompile>
@@ -112,9 +109,6 @@
     <ClCompile Include="Telekinesisbox.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
-    <ClCompile Include="SpikeBlock.cpp">
-      <Filter>Entities\Block</Filter>
-    </ClCompile>
     <ClCompile Include="FireRune.cpp">
       <Filter>Entities\Block</Filter>
     </ClCompile>
@@ -131,6 +125,12 @@
       <Filter>Entities\Object</Filter>
     </ClCompile>
     <ClCompile Include="Portal.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="SpikeBlock.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Lever.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
   </ItemGroup>
@@ -170,9 +170,6 @@
     </ClInclude>
     <ClInclude Include="Kiba.h">
       <Filter>Entities\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Lever.h">
-      <Filter>Entities\Block</Filter>
     </ClInclude>
     <ClInclude Include="MapGenerator.h">
       <Filter>Generators</Filter>
@@ -237,9 +234,6 @@
     <ClInclude Include="TelekinesisBox.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
-    <ClInclude Include="SpikeBlock.h">
-      <Filter>Entities\Block</Filter>
-    </ClInclude>
     <ClInclude Include="FireRune.h">
       <Filter>Entities\Block</Filter>
     </ClInclude>
@@ -256,6 +250,12 @@
       <Filter>Entities\Object</Filter>
     </ClInclude>
     <ClInclude Include="Portal.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="SpikeBlock.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Lever.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
   </ItemGroup>

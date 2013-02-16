@@ -12,7 +12,9 @@ EntityManager* EntityManager::sInstance = 0;
 
 EntityManager::EntityManager():
 	mPrimaryCharacter(Entity::SHEEKA),
-	mPlayerLife(3)
+	mPlayerLife(3),
+	mMapHeight(),
+	mMapWidth()
 	{
 		mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
 		mLifeSprite.setTexture(mLifeTexture);

@@ -1,10 +1,11 @@
 #ifndef INCLUDED_Lever
 #define INCLUDED_Lever
 
+#include "Object.h"
 #include "Block.h"
 #include "Animation.h"
 
-class Lever: public Block
+class Lever: public Object
 {
 public:
 

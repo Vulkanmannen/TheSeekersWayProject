@@ -12,8 +12,8 @@
 	</Door>
 
 	<Door name="Level1">
-		<doorPosition X="256" Y="832"/>
-		<buttonPosition X="704" Y="896"/>		
+		<doorPosition X="1152" Y="1344"/>
+		<leverPosition X="64" Y="1408"/>		
 	</Door>
 	
 
@@ -23,7 +23,7 @@
 
 <Body2>
 	<Portal name="Level1">
-		<portalPosition X1="196" Y1="1280" X2="196" Y2="1024"/>
+		<portalPosition X1="196" Y1="1408" X2="1024" Y2="1088"/>
 	</Portal>
 
 
