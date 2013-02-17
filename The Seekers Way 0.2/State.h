@@ -24,6 +24,8 @@ protected:
 		GameState
 	};
 
-	Menustate mMenuState;
+	MenuStates mMenuStates;
+
+	sf::Clock mIntroClock;
 };
 #endif

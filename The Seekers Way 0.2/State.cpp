@@ -1,8 +1,9 @@
 #include "State.h"
 
 
+
 State::State():
-	mMenuState(Intro)
+	mMenuStates(Intro)
 {
 }
 
@@ -11,15 +12,29 @@ State::~State()
 {
 }
 
-void update()
+void State::update()
 {
 	switch(mMenuStates)
 	{
-		case Intro:
+		case Intro: 
+			mIntroClock.restart();
+			if(mIntroClock.getElapsedTime().asSeconds() >= 0)
+			{
+				//intro class
+				if(mIntroClock.getElapsedTime().asSeconds() > 4)
+				{
+					mMenuStates = StartMenu;
+				}
+			}
+			break;
+
+		case StartMenu:
+			//StartMenu Class
+			break;
 	}
 }
 
-void render()
+void State::render()
 {
 
 }
