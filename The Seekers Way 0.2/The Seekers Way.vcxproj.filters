@@ -61,9 +61,6 @@
     <ClCompile Include="tinyxmlerror.cpp">
       <Filter>Generators</Filter>
     </ClCompile>
-    <ClCompile Include="ShottingTrap.cpp">
-      <Filter>Entities\Block</Filter>
-    </ClCompile>
     <ClCompile Include="Arrow.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
@@ -133,6 +130,9 @@
     <ClCompile Include="Lever.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
+    <ClCompile Include="ShottingTrap.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -185,9 +185,6 @@
     </ClInclude>
     <ClInclude Include="tinyxml.h">
       <Filter>Generators</Filter>
-    </ClInclude>
-    <ClInclude Include="ShottingTrap.h">
-      <Filter>Entities\Block</Filter>
     </ClInclude>
     <ClInclude Include="Arrow.h">
       <Filter>Entities\Object</Filter>
@@ -256,6 +253,9 @@
       <Filter>Entities\Object</Filter>
     </ClInclude>
     <ClInclude Include="Lever.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ShottingTrap.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "ImageManager.h"
 #include <iostream>
+#include "Spiketrap.h"
 
 const static float HEIGHT = 64;
 const static float WIDTH = 110;
@@ -37,6 +38,7 @@ void Fenrir::update(EntityKind &currentEntity)
 {
 	move();
 	isWallJumping();
+	updateHitbox();
 	snowMistCountdown();
 
 	if(!mWallJumping && mCanMove)
@@ -205,6 +207,14 @@ void Fenrir::interact(Entity *e)
 				return;
 			}
 		}
+				
+		if((*e) == SPIKETRAP)
+		{
+			if(!static_cast<Spiketrap*>(e)->getHurting())
+			{
+				return;
+			}
+		}
 
 		sf::Vector2f dirVector = mPosition - e->getPosition();
 		float length2 = dirVector.x * dirVector.x + dirVector.y * dirVector.y;
@@ -269,13 +279,17 @@ void Fenrir::fall()
 {
 	if(!mIsJumping)
 	{
-		if(mFalling && !mWallJumping && mAnimation.getEndOfAnimation())
+		if(mFalling && !mWallJumping)
 		{
-  			mStatus = INAIR;
+			if(mStatus != ACTION1 || mAnimation.getEndOfAnimation())
+			{
+  				mStatus = INAIR;
+			}
 		}
 		mFalling = true;
 	}
 }
+
 //
 //--------------------------------------------------------------------------walljump
 //
@@ -292,8 +306,12 @@ void Fenrir::isWallJumping()
 			mWallJumpCount = 0;
 		}
 	}
+}
 
-	if(!mVerticalHitbox)
+// ser till att hitboxen är som den ska
+void Fenrir::updateHitbox()
+{
+	if(!mVerticalHitbox || mInSnowMist)
 	{
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
@@ -354,14 +372,13 @@ void Fenrir::canWallJump()
 // kollar om fenrir träffat en vägg
 bool Fenrir::hitWall()
 {
-	if(mStatus != WALK && mStatus != IDLE&& mCanHitWallClock.getElapsedTime().asSeconds() > 0.1)
+	if(mStatus != WALK && mStatus != IDLE&& mCanHitWallClock.getElapsedTime().asSeconds() > 0.1 && !mInSnowMist)
 	{
 		mFalling = false;
 		mFenrirCanJump = false;
 
 		if(!mWallJumping)
 		{
-			
 			if(!mIsJumping && (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) ||sf::Keyboard::isKeyPressed(sf::Keyboard::Right)))
 			{
 				mMovementSpeed.y = 0.3;
@@ -406,6 +423,7 @@ void Fenrir::snowMist()
 	{
 		mInSnowMist = false;
 		mCanPressSnowMist = false;
+		mStatus = IDLE;
 	}
 }
 
@@ -416,6 +434,7 @@ void Fenrir::snowMistCountdown()
 	{
 		mInSnowMist = false;	
 		mFenrirCanJump = true;
+		mStatus = IDLE;
 	}
 }
 

@@ -63,7 +63,7 @@ void MapGenerator::generateMap(std::string imageNameBlock, std::string imageName
 				{
 					entityManager->addEntity(new Lava(position));
 				}
-				else if(color.g == 25)
+				else if(color.g == 250)
 				{
 					entityManager->addEntity(new WoodenWall(position));
 				}

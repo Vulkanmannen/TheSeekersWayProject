@@ -1,5 +1,6 @@
 #include "Door.h"
 #include "ImageManager.h"
+#include "Sounds.h"
 #include <cmath>
 
 static const float WIDTH = 32;
@@ -23,6 +24,11 @@ Door::~Door()
 
 void Door::Activate()
 {
+	if(mBaseKind == BLOCK)
+	{
+		Sounds::getInstance()->Play("door.wav");
+	}
+
 	mBaseKind = OBJECT;
 }
 

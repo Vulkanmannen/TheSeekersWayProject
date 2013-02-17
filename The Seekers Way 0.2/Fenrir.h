@@ -27,7 +27,9 @@ private:
 	void wallJump();
 	void isWallJumping();
 	void canWallJump();
+	void updateHitbox();
 	bool hitWall();
+
 
 
 	bool mWallJumping;

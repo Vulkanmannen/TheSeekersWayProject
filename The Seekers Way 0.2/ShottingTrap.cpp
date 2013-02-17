@@ -1,5 +1,6 @@
 #include "ShottingTrap.h"
 #include "ImageManager.h"
+#include "Sounds.h"
 
 static const float WIDTH = 64;
 static const float HEIGHT = 64;
@@ -33,6 +34,7 @@ void ShottingTrap::update(EntityKind &currentEntity)
 	{
 		if(mShottingTimer.getElapsedTime().asMilliseconds() > mTimeToShot)
 		{
+			Sounds::getInstance()->Play("arrow.wav");
 			EntityManager::getInstance()->addEntity(new Arrow(mPosition, mDirLeft));
 			mShottingTimer.restart();
 		}

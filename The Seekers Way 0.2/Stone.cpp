@@ -5,6 +5,9 @@
 static const float WIDTH = 128;
 static const float HEIGHT = 128;
 
+static const float SPRITEWIDTH = 141;
+static const float SPRITEHEIGHT = 141;
+
 Stone::Stone(sf::Vector2f Position):
 	mMovementSpeed(0,0),
 	mGravity(5),
@@ -12,7 +15,8 @@ Stone::Stone(sf::Vector2f Position):
 	mFalling(false),
 	mtelekinesis(false),
 	mtelemove(false),
-	mOnBlock(false)
+	mOnBlock(false),
+	mAnimation("stone.png", 80, 6, SPRITEHEIGHT, SPRITEWIDTH)
 {
 	mPosition = Position + sf::Vector2f(WIDTH/2 - 32, HEIGHT/2 - 32);
 	mAlive = true;
@@ -20,11 +24,12 @@ Stone::Stone(sf::Vector2f Position):
 	mWidth = WIDTH;
 	mEntityKind = STONE;
 
-	mTexture.loadFromImage(*ImageManager::getImage("crashstone.png"));
-	mSprite.setTexture(mTexture);
-	mSprite.setPosition(Position);
-	mSprite.scale(WIDTH/mSprite.getTexture()->getSize().x,HEIGHT/mSprite.getTexture()->getSize().y);
-	mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
+	//mTexture.loadFromImage(*ImageManager::getImage("crashstone.png"));
+	//mSprite.setTexture(mTexture);
+	//mSprite.setPosition(Position);
+	//mSprite.scale(WIDTH/mSprite.getTexture()->getSize().x,HEIGHT/mSprite.getTexture()->getSize().y);
+	//mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH / 2, mPosition.y - SPRITEHEIGHT / 2));
 }
 
 Stone::~Stone()
@@ -48,12 +53,15 @@ void Stone::update(EntityKind &currentEntity)
 
 	attraction();
 	mFalling = true;
+
+	mAnimation.update(1);
 }
 
 void Stone::render()
 {
-	mSprite.setPosition(sf::Vector2f(mPosition.x, mPosition.y));
-	ImageManager::render(&mSprite);
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH / 2, mPosition.y - SPRITEHEIGHT / 2));
+	//mSprite.setPosition(sf::Vector2f(mPosition.x, mPosition.y));
+	ImageManager::render(&mAnimation.getSprite());
 }
 
 void Stone::telekinesis()

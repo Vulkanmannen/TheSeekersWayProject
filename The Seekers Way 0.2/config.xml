@@ -13,7 +13,7 @@
 
 	<Door name="Level1">
 		<doorPosition X="1152" Y="1344"/>
-		<leverPosition X="64" Y="1408"/>		
+		<buttonPosition X="64" Y="1408"/>		
 	</Door>
 	
 

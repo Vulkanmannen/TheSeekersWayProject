@@ -1,6 +1,7 @@
 #include "Kiba.h"
 #include "Animation.h"
 #include "ImageManager.h"
+#include "Sounds.h"
 #include <iostream>
 const static float HEIGHT = 128;
 const static float WIDTH = 56;
@@ -162,5 +163,6 @@ void Kiba::slash()
 		mslashtimer.restart();
 		Slash *slash = new Slash(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 32, mPosition.y - 30), mDirLeft);
 		EntityManager::getInstance()->addEntity(slash);
+		Sounds::getInstance()->Play("slash.wav");
 	}
 }

@@ -29,8 +29,9 @@ public:
 	sf::Vector2f getCharacterPos()const;
 
 	void setView(sf::View* view);
+	void updateView();
 
-	void setMapSize(int width, int height);
+	void setMapSize(int numberOfBlocksWidth, int numberOfBlocksHeight, int numberOfBackgroundsWidth = 2, int numberOfBackgroundsHeight = 2);
 private:
 	EntityManager();
 	EntityManager(const EntityManager &e);
@@ -75,6 +76,8 @@ private:
 	//------------mapsize
 	int mMapHeight;
 	int mMapWidth;
+	int mNumberOfBackgroundsWidth;
+	int mNumberOfBackgroundsHeight;
 };
 
 #endif 

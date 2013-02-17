@@ -13,8 +13,10 @@ EntityManager* EntityManager::sInstance = 0;
 EntityManager::EntityManager():
 	mPrimaryCharacter(Entity::SHEEKA),
 	mPlayerLife(3),
-	mMapHeight(),
-	mMapWidth()
+	mMapHeight(1432),
+	mMapWidth(3392),
+	mNumberOfBackgroundsWidth(2),
+	mNumberOfBackgroundsHeight(2)
 	{
 		mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
 		mLifeSprite.setTexture(mLifeTexture);
@@ -105,9 +107,9 @@ void EntityManager::renderLifeAndMask()
 // tilar bakgrunden
 void EntityManager::createBackground()
 {
-	for(int i = 0; i < 2; ++i)
+	for(int i = 0; i < mNumberOfBackgroundsWidth; ++i)
 	{
-		for(int j = 0; j < 2; ++j)
+		for(int j = 0; j < mNumberOfBackgroundsHeight; ++j)
 		{
 			sf::Sprite background;
 			background.setTexture(mBackgroundTexture);
@@ -257,4 +259,50 @@ void EntityManager::interact()
 void EntityManager::setView(sf::View* view)
 {
 	mView = view;
+}
+
+// updaterar view positionen
+void EntityManager::updateView()
+{
+	sf::Vector2f playerPos = getCharacterPos();
+	if(playerPos.x > 512 && playerPos.x < mMapWidth)
+	{
+		mView->setCenter(sf::Vector2f(playerPos.x, mView->getCenter().y));
+	}
+	else
+	{
+		if(playerPos.x > mMapWidth / 2)
+		{
+			mView->setCenter(sf::Vector2f(3392, mView->getCenter().y));
+		}
+		else
+		{
+			mView->setCenter(sf::Vector2f(512, mView->getCenter().y));
+		}	
+	}
+
+	if(playerPos.y > 360 && playerPos.y < mMapHeight)
+	{
+		mView->setCenter(sf::Vector2f(mView->getCenter().x, playerPos.y));
+	}
+	else
+	{
+		if(playerPos.y > mMapHeight / 2)
+		{
+			mView->setCenter(sf::Vector2f(mView->getCenter().x, 1432));
+		}
+		else
+		{
+			mView->setCenter(sf::Vector2f(mView->getCenter().x, 360));
+		}
+	}
+}
+
+// sätter storleken på mappen tar emot fyra inter, läng o höjd räknat i block samt antalet bakgrunder i höjdled och längd;
+void EntityManager::setMapSize(int numberOfBlocksWidth, int numberOfBlocksHeight, int numberOfBackgroundsWidth, int numberOfBackgroundsHeight)
+{
+	mMapWidth = numberOfBlocksWidth * 64;
+	mMapHeight = numberOfBlocksHeight * 64;
+	mNumberOfBackgroundsWidth = numberOfBackgroundsWidth;
+	mNumberOfBackgroundsHeight = numberOfBackgroundsHeight;
 }

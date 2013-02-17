@@ -3,3 +3,7 @@ Levelkoncept 2.wav
 Levelkoncept 3.wav
 dash 1.1.wav
 dash.wav
+arrow.wav
+slash.wav
+door.wav
+sheild.wav
