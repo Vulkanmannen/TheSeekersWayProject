@@ -149,6 +149,7 @@
       <Filter>States</Filter>
     </ClCompile>
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="IntroScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -290,6 +291,7 @@
       <Filter>States</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="IntroScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">

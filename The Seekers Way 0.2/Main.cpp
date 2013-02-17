@@ -29,7 +29,11 @@ int main()
 
 	EntityManager::getInstance()->setView(&view);
 
+<<<<<<< HEAD
 	//std::string map1("Totteebest.PNG");
+=======
+	//std::string map1("Tottemaptest.PNG");
+>>>>>>> d31ef437918f10c79286823d33c416cb4ac2f001
 	//MapGenerator::generateMap(map1);
 
 	//EntityManager::getInstance()->addEntity(new WoodenWall(sf::Vector2f(17 *64, 13 *64)));
