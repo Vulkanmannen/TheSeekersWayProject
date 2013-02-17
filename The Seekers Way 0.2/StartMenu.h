@@ -9,10 +9,7 @@ public:
 	StartMenu();
 	~StartMenu();
 
-	void update();
-	void render();
-
-	void LoadStartMenu();
+	sf::Texture mStartMenuText;
 };
 
 #endif

@@ -1,28 +1,13 @@
 #include "StartMenu.h"
-#include "MapGenerator.h"
+#include "ImageManager.h"
 
 
 StartMenu::StartMenu()
 {
+	mStartMenuText.loadFromFile("StartMenu.PNG");
 }
 
 
 StartMenu::~StartMenu()
 {
 }
-
-//void StartMenu::update()
-//{
-//	LoadStartMenu();
-//}
-//
-//void StartMenu::LoadStartMenu()
-//{
-//	std::string startmenu("StartMenu.PNG");
-//	MapGenerator::generateMap(startmenu);
-//}
-//
-//void StartMenu::render()
-//{
-//
-//}

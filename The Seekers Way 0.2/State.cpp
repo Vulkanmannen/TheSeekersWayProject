@@ -1,7 +1,8 @@
 #include "State.h"
 
 
-State::State()
+State::State():
+	mMenuState(Intro)
 {
 }
 
@@ -12,7 +13,10 @@ State::~State()
 
 void update()
 {
-	
+	switch(mMenuStates)
+	{
+		case Intro:
+	}
 }
 
 void render()

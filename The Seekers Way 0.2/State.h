@@ -12,5 +12,18 @@ public:
 	void update();
 
 	~State();
+
+protected:
+
+	enum MenuStates
+	{
+		Intro,
+		StartMenu,
+		PauseMenu,
+		DialogState,
+		GameState
+	};
+
+	Menustate mMenuState;
 };
 #endif
