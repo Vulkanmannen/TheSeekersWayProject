@@ -9,8 +9,12 @@ public:
 	IntroScreen();
 	~IntroScreen();
 
-private:
+protected:
 
-	sf::Texture mIntroscreen;
+	void Splash();
+	sf::Texture mIntroText;
+	sf::Sprite mIntroSprite;
+	sf::RenderWindow mIntroRender;
+	
 };
 #endif

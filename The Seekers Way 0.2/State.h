@@ -25,6 +25,7 @@ protected:
 	};
 
 	MenuStates mMenuStates;
+	IntroScreen *IntroSplash;
 
 	sf::Clock mIntroClock;
 };

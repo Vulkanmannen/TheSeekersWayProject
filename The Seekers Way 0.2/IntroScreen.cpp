@@ -1,12 +1,18 @@
 #include "IntroScreen.h"
 
-
 IntroScreen::IntroScreen()
 {
-	mIntroscreen.loadFromFile("Llama.JPEG");
+	
 }
 
 
 IntroScreen::~IntroScreen()
 {
+}
+
+void IntroScreen::Splash()
+{
+	mIntroText.loadFromFile("Llama.JPEG");
+	mIntroSprite.setPosition(512, 360);
+	mIntroRender.draw(mIntroSprite);
 }
