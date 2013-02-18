@@ -1,9 +1,11 @@
 #include "StartMenu.h"
-#include "MapGenerator.h"
+#include "ImageManager.h"
+#include "Animation.h"
 
 
 StartMenu::StartMenu()
 {
+	mTexture.loadFromFile(*ImageManager::getImage("StartMenu.png"));
 }
 
 
@@ -11,18 +13,12 @@ StartMenu::~StartMenu()
 {
 }
 
-//void StartMenu::update()
-//{
-//	LoadStartMenu();
-//}
-//
-//void StartMenu::LoadStartMenu()
-//{
-//	std::string startmenu("StartMenu.PNG");
-//	MapGenerator::generateMap(startmenu);
-//}
-//
-//void StartMenu::render()
-//{
-//
-//}
+void StartMenu::update()
+{
+	
+}
+
+void StartMenu::render()
+{
+
+}

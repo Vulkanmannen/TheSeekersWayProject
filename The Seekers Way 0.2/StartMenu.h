@@ -11,8 +11,6 @@ public:
 
 	void update();
 	void render();
-
-	void LoadStartMenu();
 };
 
 #endif
