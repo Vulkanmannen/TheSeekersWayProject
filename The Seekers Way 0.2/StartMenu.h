@@ -11,6 +11,14 @@ public:
 
 	void update();
 	void render();
+	bool GetContinue();
+
+private:
+
+	bool mContinue;
+
+	sf::Texture mStartText;
+	sf::Sprite mStartSprite;
 };
 
 #endif

@@ -3,7 +3,7 @@
 #include "Entity.h"
 
 class IntroScreen;
-
+class StartMenu;
 
 class State
 {
@@ -15,19 +15,21 @@ public:
 
 	~State();
 
-protected:
+private:
 
 	enum MenuStates
 	{
 		Intro,
-		StartMenu,
-		PauseMenu,
+		StartState,
+		PauseState,
 		DialogState,
 		GameState
 	};
 
 	MenuStates mMenuStates;
+
 	IntroScreen *IntroSplash;
+	StartMenu *mStartMenu;
 
 	sf::Clock mIntroClock;
 };

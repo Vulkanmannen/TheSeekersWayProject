@@ -56,6 +56,7 @@ int main()
 		
 		window.clear(sf::Color::Blue);
 
+		state.update();
 		//EntityManager::getInstance()->update();
 		//EntityManager::getInstance()->render();
 

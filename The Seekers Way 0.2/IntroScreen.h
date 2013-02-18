@@ -11,11 +11,9 @@ public:
 
 	void render();
 
-protected:
+private:
 
 	sf::Texture mIntroText;
 	sf::Sprite mIntroSprite;
-	sf::RenderWindow mIntroRender;
-	
 };
 #endif
