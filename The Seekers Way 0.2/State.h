@@ -2,6 +2,8 @@
 #define INCLUDED_STATE
 #include "Entity.h"
 
+class IntroScreen;
+
 
 class State
 {

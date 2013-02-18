@@ -2,7 +2,8 @@
 
 IntroScreen::IntroScreen()
 {
-	
+	mIntroText.loadFromFile("Llama.JPEG");
+	mIntroSprite.setTexture(mIntroText);
 }
 
 
@@ -10,9 +11,9 @@ IntroScreen::~IntroScreen()
 {
 }
 
-void IntroScreen::Splash()
+void IntroScreen::render()
 {
-	mIntroText.loadFromFile("Llama.JPEG");
 	mIntroSprite.setPosition(512, 360);
 	mIntroRender.draw(mIntroSprite);
+	
 }

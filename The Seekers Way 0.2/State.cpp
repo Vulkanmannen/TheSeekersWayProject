@@ -1,9 +1,10 @@
 #include "State.h"
-
+#include "IntroScreen.h"
 
 State::State():
 	mMenuStates(Intro)
 {
+	IntroSplash = new IntroScreen();
 }
 
 
@@ -19,8 +20,8 @@ void State::update()
 			mIntroClock.restart();
 			if(mIntroClock.getElapsedTime().asSeconds() >= 0)
 			{
-				IntroSplash->Splash();
-				if(mIntroClock.getElapsedTime().asSeconds() > 4)
+				IntroSplash->render();
+				if(mIntroClock.getElapsedTime().asSeconds() > 5)
 				{
 					mMenuStates = StartMenu;
 				}

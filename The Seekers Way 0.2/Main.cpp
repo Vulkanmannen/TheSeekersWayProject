@@ -7,6 +7,7 @@
 
 #include <string>
 
+#include "State.h"
 #include "Door.h"
 #include "Button.h"
 #include "Lever.h"
@@ -36,6 +37,8 @@ int main()
 
 	sf::Clock clock;
 	//Sounds::getInstance()->Loop("Levelkoncept.wav", 30);
+
+	State state;
     while (window.isOpen())
     {
         sf::Event event;

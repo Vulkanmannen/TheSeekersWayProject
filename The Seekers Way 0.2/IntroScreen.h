@@ -9,9 +9,10 @@ public:
 	IntroScreen();
 	~IntroScreen();
 
+	void render();
+
 protected:
 
-	void Splash();
 	sf::Texture mIntroText;
 	sf::Sprite mIntroSprite;
 	sf::RenderWindow mIntroRender;
