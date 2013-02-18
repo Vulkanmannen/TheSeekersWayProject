@@ -12,5 +12,21 @@ public:
 	void update();
 
 	~State();
+
+protected:
+
+	enum MenuStates
+	{
+		Intro,
+		StartMenu,
+		PauseMenu,
+		DialogState,
+		GameState
+	};
+
+	MenuStates mMenuStates;
+	IntroScreen *IntroSplash;
+
+	sf::Clock mIntroClock;
 };
 #endif
