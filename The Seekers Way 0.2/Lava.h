@@ -1,5 +1,5 @@
-#ifndef INCLUDED_LAMA
-#define INCLUDED_LAMA
+#ifndef INCLUDED_LAVA
+#define INCLUDED_LAVA
 
 #include "Block.h"
 #include "Animation.h"

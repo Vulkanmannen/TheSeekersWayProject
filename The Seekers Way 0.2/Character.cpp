@@ -65,6 +65,11 @@ void Character::onblock()
 		}
 		mMovementSpeed.y = 0;
 	}
+
+	if(mStatus == ACTION2 && mAnimation.getEndOfAnimation())
+	{
+		mStatus = IDLE;
+	}
 }
 
 // detta händer när man träffar ett block underifrån

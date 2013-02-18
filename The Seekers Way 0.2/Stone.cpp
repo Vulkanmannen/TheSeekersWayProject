@@ -54,7 +54,7 @@ void Stone::update(EntityKind &currentEntity)
 	attraction();
 	mFalling = true;
 
-	mAnimation.update(1);
+	mAnimation.update(mtelekinesis);
 }
 
 void Stone::render()
@@ -121,7 +121,7 @@ void Stone::falling()
 
 void Stone::interact(Entity* e)
 {
-	if(e->getBaseKind() == Entity::BLOCK || (e->getBaseKind() == Entity::CHARACTER && mtelekinesis ))
+	if(e->getBaseKind() == Entity::BLOCK || (e->getBaseKind() == Entity::CHARACTER && mtelekinesis && mtelemove))
 	{
 		// räknar ut objektens radier och lägger ihop dem
 		float xRadius = mWidth / 2 + e->getWidth() / 2;
@@ -138,7 +138,7 @@ void Stone::interact(Entity* e)
 			{
 				if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
 				{
-					mPosition -= sf::Vector2f(mPosition.x - (e->getPosition().x + xRadius - 3), 0);
+					mPosition -= sf::Vector2f(mPosition.x - (e->getPosition().x + xRadius - 0), 0);
 					mLblock = true;
 				}
 			}
@@ -146,7 +146,7 @@ void Stone::interact(Entity* e)
 			{
 				if(std::abs(yDif) < yRadius - 10)
 				{
-					mPosition -= sf::Vector2f(mPosition.x - (e->getPosition().x - (xRadius - 3)), 0);
+					mPosition -= sf::Vector2f(mPosition.x - (e->getPosition().x - (xRadius - 0)), 0);
 					mRblock = true;
 				}
 			}
@@ -157,7 +157,7 @@ void Stone::interact(Entity* e)
 			{
 				if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
 				{
-					mPosition -= sf::Vector2f( 0,mPosition.y - (e->getPosition().y + yRadius - 3));
+					mPosition -= sf::Vector2f( 0,mPosition.y - (e->getPosition().y + yRadius - 0));
 					mUblock = true;
 					if(e->getBaseKind() == CHARACTER || e->getEntityKind() == STONE)
 					{
@@ -172,7 +172,7 @@ void Stone::interact(Entity* e)
 			{
 				if(std::abs(xDif) < xRadius - 10)
 				{
-					mPosition -= sf::Vector2f(0, mPosition.y - (e->getPosition().y - (yRadius - 3)));
+					mPosition -= sf::Vector2f(0, mPosition.y - (e->getPosition().y - (yRadius - 0)));
 					mDblock = true;
 					if(e->getBaseKind() == BLOCK)
 					{

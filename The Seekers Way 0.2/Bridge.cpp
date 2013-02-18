@@ -65,11 +65,11 @@ void Bridge::interact(Entity* e)
 		{
 			if(xDif > 0) // kollar om karaktären är höger eller vänster
 			{
-				c->setPosition(sf::Vector2f(mPosition.x + xRadius - 3, c->getPosition().y));
+				c->setPosition(sf::Vector2f(mPosition.x + xRadius - 0, c->getPosition().y));
 			}
 			else
 			{
-				c->setPosition(sf::Vector2f(mPosition.x - (xRadius - 3), c->getPosition().y));
+				c->setPosition(sf::Vector2f(mPosition.x - (xRadius - 0), c->getPosition().y));
 			}
 		}
 		else
@@ -79,12 +79,12 @@ void Bridge::interact(Entity* e)
 			{
 				if(yDif > 0)
 				{
-					c->setPosition(sf::Vector2f(c->getPosition().x, mPosition.y + (yRadius - 3)));
+					c->setPosition(sf::Vector2f(c->getPosition().x, mPosition.y + (yRadius - 0)));
 					c->hitBlockFromBelow();
 				}
 				else
 				{
-					c->setPosition(sf::Vector2f(c->getPosition().x, mPosition.y - (yRadius - 3)));
+					c->setPosition(sf::Vector2f(c->getPosition().x, mPosition.y - (yRadius - 0)));
 					c->onblock();
 				}
 			}

@@ -62,11 +62,11 @@ void Door::interact(Entity* e)
 		{
 			if(xDif > 0)
 			{
-				e->setPosition(sf::Vector2f(mPosition.x + xRadius - 3, e->getPosition().y));
+				e->setPosition(sf::Vector2f(mPosition.x + xRadius - 0, e->getPosition().y));
 			}
 			else
 			{
-				e->setPosition(sf::Vector2f(mPosition.x - (xRadius - 3), e->getPosition().y));
+				e->setPosition(sf::Vector2f(mPosition.x - (xRadius - 0), e->getPosition().y));
 			}
 		}
 		else

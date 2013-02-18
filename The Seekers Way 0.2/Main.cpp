@@ -35,6 +35,8 @@ int main()
 	std::string map1Object("Level5Object.png");
 	MapGenerator::generateMap(map1Block, map1Object);
 
+	Sounds::getInstance();
+
 	//EntityManager::getInstance()->addEntity(new WoodenWall(sf::Vector2f(17 *64, 13 *64)));
 
 	sf::Clock clock;

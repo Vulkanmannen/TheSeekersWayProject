@@ -2,8 +2,8 @@
 
   <Body>
 	<Door name="Level1">
-		<bigBridgePosition X="1408" Y="768" Closed="0"/>
-		<buttonPosition X="1220" Y="896"/>		
+		<bigBridgePosition X="640" Y="1344" Closed="0"/>
+		<buttonPosition X="128" Y="1408"/>		
 	</Door>
 
 	<Door name="Level1">

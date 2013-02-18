@@ -2,10 +2,13 @@
 #include "ImageManager.h"
 
 static const float HEIGHT = 128;
-static const float WIDTH = 64;
+static const float WIDTH = 54;
+
+static const float SPRITEHEIGHT = 128;
+static const float SPRITEWIDTH = 64;
 
 Spiketrap::Spiketrap(sf::Vector2f &position):
-	mAnimation("spiketrap.png", 60, 1, HEIGHT, WIDTH),
+	mAnimation("spiketrap.png", 60, 1, SPRITEHEIGHT, SPRITEWIDTH),
 	mSpikeCount(0),
 	mCountDirectionUpp(true),
 	mWait(false),
@@ -18,7 +21,7 @@ Spiketrap::Spiketrap(sf::Vector2f &position):
 	mWidth = WIDTH;
 	mHeight = 0;
 	mEntityKind = SPIKETRAP;
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - 128));
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH/ 2, mPosition.y - 128));
 }
 
 

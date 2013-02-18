@@ -17,8 +17,9 @@ public:
 	sf::Sprite getSprite();
 
 private:
-	sf::Clock mDashClock;
 	sf::Clock mDarkBindingClock;
+	int mCanDashCount;
+	int mCanDashTime;
 
 	void SheekaDash();
 	void dashTime();

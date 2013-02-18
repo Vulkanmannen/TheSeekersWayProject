@@ -91,9 +91,6 @@
     <ClCompile Include="FireRune.cpp">
       <Filter>Entities\Block</Filter>
     </ClCompile>
-    <ClCompile Include="MagicSwitch.cpp">
-      <Filter>Entities\Block</Filter>
-    </ClCompile>
     <ClCompile Include="Bridge.cpp">
       <Filter>Entities\Block</Filter>
     </ClCompile>
@@ -131,6 +128,9 @@
       <Filter>Entities\Object</Filter>
     </ClCompile>
     <ClCompile Include="ShottingTrap.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicSwitch.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
   </ItemGroup>
@@ -213,9 +213,6 @@
     <ClInclude Include="FireBall.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
-    <ClInclude Include="MagicSwitch.h">
-      <Filter>Entities\Block</Filter>
-    </ClInclude>
     <ClInclude Include="FireRune.h">
       <Filter>Entities\Block</Filter>
     </ClInclude>
@@ -256,6 +253,9 @@
       <Filter>Entities\Object</Filter>
     </ClInclude>
     <ClInclude Include="ShottingTrap.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicSwitch.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
   </ItemGroup>
