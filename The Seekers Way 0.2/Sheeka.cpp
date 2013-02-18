@@ -5,9 +5,10 @@
 #include "Sounds.h"
 #include "DarkBinding.h"
 #include "EntityManager.h"
+#include "SFML\System\Clock.hpp"
 
 const static float HEIGHT	= 64;
-const static float WIDTH	= 128;
+const static float WIDTH	= 110;
 
 Sheeka::Sheeka(sf::Vector2f &position):
 	mDashPressed(false),
@@ -15,7 +16,9 @@ Sheeka::Sheeka(sf::Vector2f &position):
 	mDashTimer(38),
 	mDashAcc(10),
 	mDashCount(0),
-	mCanPressDarkBinding(true)
+	mCanPressDarkBinding(true),
+	mCanDashCount(60),
+	mCanDashTime(60)
 	{
 		mAnimation.init("sheeka.PNG", 60, 8);
 		mHeight = HEIGHT;
@@ -31,22 +34,28 @@ void Sheeka::update(EntityKind &currentEntity)
 {
 	move();
 
-	if(mDash == false)
+	if(mCanMove)
 	{
+		if(mDash == false)
+		{
+			if(currentEntity == mEntityKind)
+			{
+				walk();
+				jump();
+				darkBinding();
+			}
+	
+		}
 		if(currentEntity == mEntityKind)
 		{
-			walk();
-			jump();
-			darkBinding();
+			SheekaDash();
 		}
-		dontWalk(currentEntity);
-		jumping();
-		falling();
-		fall();
+		dashTime();
 	}
-	if(currentEntity == mEntityKind)
+
+	if(mDash == false)
 	{
-		SheekaDash();
+		Character::update(currentEntity);
 	}
 }
 
@@ -65,14 +74,17 @@ sf::Sprite Sheeka::getSprite()
 // sätter igång dashen
 void Sheeka::SheekaDash()
 {
-	if((sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) && !mDash && !mDashPressed && mDashClock.getElapsedTime().asSeconds() >=2)
+	mCanDashCount++;
+	if((sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) 
+										&& !mDash && !mDashPressed && mCanDashCount >= mCanDashTime)
 	{
+		mCanDashCount = 0;
 		mStatus = ACTION1;
 		Sounds::getInstance()->Play("dash.wav");
-		mDashClock.restart();
 		mMovementSpeed.y = 0;
 		mMovementSpeed.x = 0;
 		mGravity = 0;
+
 		if(mDirLeft)
 		{
 			mMovementSpeed.x -= mDashAcc;
@@ -88,30 +100,21 @@ void Sheeka::SheekaDash()
 	{
 		mDashPressed = false;
 	}
-
-	if(mDash)
-	{
-		mDashCount++;
-		if(mDashCount >= mDashTimer)
-		{
-			mStatus = IDLE;
-			mDash = false;
-			mDashCount = 0;
-			mMovementSpeed.y = 0;
-			mMovementSpeed.x = 0;
-			mGravity = 5;
-		}
-	}
 }
 
 // sheeka skjuter en projektil
 void Sheeka::darkBinding()
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) && mCanPressDarkBinding && mDarkBindingClock.getElapsedTime().asSeconds() >= 0.3)
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) 
+		&& mCanPressDarkBinding 
+		&& mDarkBindingClock.getElapsedTime().asSeconds() >= 0.3
+		&& !mJumping
+		&& !mFalling)
 	{
 		mDarkBindingClock.restart();
 		mCanPressDarkBinding = false;
 		EntityManager::getInstance()->addEntity(new DarkBinding(mPosition, mDirLeft));
+		mStatus = ACTION2;
 	}
 	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
@@ -119,3 +122,33 @@ void Sheeka::darkBinding()
 	}
 }
 
+// lägger till att dash = false i takedamage
+void Sheeka::takeDamage()
+{
+	Character::takeDamage();
+	notDashing();
+}
+
+// reglerar hur länge dashen pågår
+void Sheeka::dashTime()
+{
+	if(mDash)
+	{
+		mDashCount++;
+		if(mDashCount >= mDashTimer)
+		{
+			notDashing();
+			mMovementSpeed.y = 0;
+			mMovementSpeed.x = 0;
+			mStatus = IDLE;
+		}
+	}
+}
+
+// körs när sheeka går ur sin dash
+void Sheeka::notDashing()
+{
+	mDash = false;
+	mDashCount = 0;
+	mGravity = 5;
+}

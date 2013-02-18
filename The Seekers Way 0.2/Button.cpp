@@ -1,20 +1,23 @@
 #include "Button.h"
 #include "ImageManager.h"
 
-static const float WIDTH = 64;
-static const float HEIGHT = 64;
+static const float WIDTH = 54;
+static const float HEIGHT = 5;
+
+static const float SPRITEWIDTH = 64;
+static const float SPRITEHEIGHT = 64;
 
 Button::Button(sf::Vector2f &position, Block* target):
 	mBlock(target),
-	mAnimation("Button.png", 60, 1, HEIGHT, WIDTH)
+	mAnimation("Button.png", 60, 1, SPRITEHEIGHT, SPRITEWIDTH)
 {
 	isitpressed = false;
-	mPosition = position;
+	mPosition = position + sf::Vector2f(0, 29);
 	mAlive = true;
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = BUTTON;
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
+	mAnimation.setPosition(sf::Vector2f(position.x - SPRITEWIDTH/ 2, position.y - SPRITEHEIGHT/ 2));
 }
 
 Button::~Button()
@@ -48,14 +51,11 @@ void Button::update(EntityKind &currentEntity)
 void Button::render()
 {
 	mAnimation.update(isitpressed);
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
 	ImageManager::render(&mAnimation.getSprite());
 }
 
 void Button::interact(Entity* e)
 {
-	if(getPosition().y - e->getPosition().y > (e->getHeight() / 2 + mHeight / 2) - 7)
-	{
 		switch(e->getEntityKind())
 		{
 		case CHARLOTTE:
@@ -66,5 +66,4 @@ void Button::interact(Entity* e)
 			Activate();
 			break;
 		}
-	}
 }

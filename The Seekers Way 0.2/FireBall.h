@@ -12,6 +12,8 @@ public:
 	void render();
 	void update(EntityKind &currentEntity);
 
+	void interact(Entity* e);
+
 protected:
 
 	Animation mAnimation;

@@ -55,3 +55,8 @@ void FireBall::FireBallRot()
 	mPosition = mNewpos;
 	//mAnimation.RotateAnimation(mAngle);
 }
+
+void FireBall::interact(Entity* e)
+{
+
+}

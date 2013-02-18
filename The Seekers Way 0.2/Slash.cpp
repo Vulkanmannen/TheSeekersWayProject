@@ -21,7 +21,7 @@ Slash::~Slash()
 
 void Slash::update(EntityKind &currentCharacter)
 {
-	mPosition += sf::Vector2f((mDirLeft? -1: 1) * 10, 0 );
+	//mPosition += sf::Vector2f((mDirLeft? -1: 1) * 10, 0 );
 	if(mAnimation.getEndOfAnimation())
 	{
 		destroy();

@@ -2,9 +2,10 @@
 #define INCLUDED_MAGICSWITCH
 
 #include "Animation.h"
+#include "Object.h"
 #include "Block.h"
 
-class MagicSwitch : public Block
+class MagicSwitch : public Object
 {
 public:
 	MagicSwitch(sf::Vector2f &position, Block* door, float timeOpen);

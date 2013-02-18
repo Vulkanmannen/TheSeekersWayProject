@@ -22,12 +22,15 @@
     <ClInclude Include="DarkBinding.h" />
     <ClInclude Include="DecorateBlock.h" />
     <ClInclude Include="Dialogue.h" />
+    <ClInclude Include="DialogState.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Fenrir.h" />
     <ClInclude Include="FireBall.h" />
     <ClInclude Include="FireRune.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="GenerateDoor.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="Kiba.h" />
@@ -37,6 +40,7 @@
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="NormalBlock.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="Portal.h" />
     <ClInclude Include="Sheeka.h" />
     <ClInclude Include="Shield.h" />
@@ -45,6 +49,8 @@
     <ClInclude Include="Sounds.h" />
     <ClInclude Include="SpikeBlock.h" />
     <ClInclude Include="Spiketrap.h" />
+    <ClInclude Include="StartMenu.h" />
+    <ClInclude Include="State.h" />
     <ClInclude Include="Stone.h" />
     <ClInclude Include="TelekinesisBox.h" />
     <ClInclude Include="tinystr.h" />
@@ -64,12 +70,15 @@
     <ClCompile Include="DarkBinding.cpp" />
     <ClCompile Include="DecorateBlock.cpp" />
     <ClCompile Include="Dialogue.cpp" />
+    <ClCompile Include="DialogState.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="Fenrir.cpp" />
     <ClCompile Include="FireBall.cpp" />
     <ClCompile Include="FireRune.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GenerateDoor.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="Kiba.cpp" />
@@ -80,6 +89,7 @@
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="NormalBlock.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="Sheeka.cpp" />
     <ClCompile Include="Shield.cpp" />
@@ -88,6 +98,8 @@
     <ClCompile Include="Sounds.cpp" />
     <ClCompile Include="SpikeBlock.cpp" />
     <ClCompile Include="Spiketrap.cpp" />
+    <ClCompile Include="StartMenu.cpp" />
+    <ClCompile Include="State.cpp" />
     <ClCompile Include="Stone.cpp" />
     <ClCompile Include="Telekinesisbox.cpp" />
     <ClCompile Include="tinystr.cpp" />

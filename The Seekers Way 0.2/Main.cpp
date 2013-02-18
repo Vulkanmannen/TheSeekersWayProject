@@ -28,10 +28,17 @@ int main()
 	sf::View view;
 	view.setSize(1024, 720);
 
+	window.setMouseCursorVisible(false);
+
 	EntityManager::getInstance()->setView(&view);
 
-	std::string map1("Tottemaptest.PNG");
-	MapGenerator::generateMap(map1);
+
+	std::string map1Block("Level5.PNG");
+	std::string map1Object("Level5Object.png");
+	MapGenerator::generateMap(map1Block, map1Object);
+
+	Sounds::getInstance();
+
 
 	EntityManager::getInstance()->addEntity(new WoodenWall(sf::Vector2f(17 *64, 13 *64)));
 
@@ -72,7 +79,8 @@ int main()
 			Dialogue::getInstance()->render();
 		}
 
-		view.setCenter(EntityManager::getInstance()->getCharacterPos());
+		EntityManager::getInstance()->updateView();
+
 		window.setView(view);
 
 		EntityManager::getInstance()->updatePrimaryCharacter();

@@ -2,7 +2,8 @@
 #include "ImageManager.h"
 
 
-Entity::Entity()
+Entity::Entity():
+	mAlive(true)
 	{}
 
 
@@ -81,3 +82,25 @@ void Entity::setPosition(sf::Vector2f &v)
 	mPosition = v;
 }
 
+// gämför en entity med en entitykind, e de lika
+bool Entity::operator==(EntityKind entityKind)
+{
+	return mEntityKind == entityKind;
+}
+
+// gämför en entity med en entitykind, e de olika
+bool Entity::operator!=(EntityKind entityKind)
+{
+	return mEntityKind != entityKind;
+}
+// gämför en entity med en baseKind, e de lika
+bool Entity::operator==(BaseKind baseKind)
+{
+	return mBaseKind == baseKind;
+}
+
+// gämför en entity med en baseKind, e de olika
+bool Entity::operator!=(BaseKind baseKind)
+{
+	return mBaseKind != baseKind;
+}

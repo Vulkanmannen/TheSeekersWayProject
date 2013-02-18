@@ -16,11 +16,15 @@ public:
 
 	void interact(Entity* e);
 
+	bool getHurting()const;
+
 private:
 	Animation mAnimation;
 
 	sf::Clock mClockFrame;
 	sf::Clock mClockWait;
+	float mTimeToNextFrame;
+	float mTimeDown;
 
 	void SpikeMove();
 	void spikeCount();
@@ -28,6 +32,7 @@ private:
 	int mSpikeCount;
 	bool mCountDirectionUpp;
 	bool mWait;
+	bool mHurting;
 	float mStartYValue;
 };
 

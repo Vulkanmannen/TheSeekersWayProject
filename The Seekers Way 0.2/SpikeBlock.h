@@ -1,10 +1,10 @@
 #ifndef INCLUDED_SPIKEBLOCK
 #define INCLUDED_SPIKEBLOCK
 
-#include "Block.h"
+#include "Object.h"
 #include "Animation.h"
 
-class SpikeBlock: public Block
+class SpikeBlock: public Object
 {
 public:
 	SpikeBlock(sf::Vector2f &position);

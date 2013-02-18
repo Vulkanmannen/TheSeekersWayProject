@@ -37,9 +37,6 @@
     <ClCompile Include="Kiba.cpp">
       <Filter>Entities\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Lever.cpp">
-      <Filter>Entities\Block</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>More</Filter>
     </ClCompile>
@@ -63,9 +60,6 @@
     </ClCompile>
     <ClCompile Include="tinyxmlerror.cpp">
       <Filter>Generators</Filter>
-    </ClCompile>
-    <ClCompile Include="ShottingTrap.cpp">
-      <Filter>Entities\Block</Filter>
     </ClCompile>
     <ClCompile Include="Arrow.cpp">
       <Filter>Entities\Object</Filter>
@@ -97,9 +91,6 @@
     <ClCompile Include="FireRune.cpp">
       <Filter>Entities\Block</Filter>
     </ClCompile>
-    <ClCompile Include="MagicSwitch.cpp">
-      <Filter>Entities\Block</Filter>
-    </ClCompile>
     <ClCompile Include="Bridge.cpp">
       <Filter>Entities\Block</Filter>
     </ClCompile>
@@ -111,9 +102,6 @@
     </ClCompile>
     <ClCompile Include="Telekinesisbox.cpp">
       <Filter>Entities\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="SpikeBlock.cpp">
-      <Filter>Entities\Block</Filter>
     </ClCompile>
     <ClCompile Include="FireRune.cpp">
       <Filter>Entities\Block</Filter>
@@ -135,6 +123,36 @@
     </ClCompile>
     <ClCompile Include="Dialogue.cpp">
       <Filter>More</Filter>
+    </ClCompile>
+    <ClCompile Include="StartMenu.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseMenu.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="SpikeBlock.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Lever.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ShottingTrap.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicSwitch.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -174,9 +192,6 @@
     <ClInclude Include="Kiba.h">
       <Filter>Entities\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Lever.h">
-      <Filter>Entities\Block</Filter>
-    </ClInclude>
     <ClInclude Include="MapGenerator.h">
       <Filter>Generators</Filter>
     </ClInclude>
@@ -191,9 +206,6 @@
     </ClInclude>
     <ClInclude Include="tinyxml.h">
       <Filter>Generators</Filter>
-    </ClInclude>
-    <ClInclude Include="ShottingTrap.h">
-      <Filter>Entities\Block</Filter>
     </ClInclude>
     <ClInclude Include="Arrow.h">
       <Filter>Entities\Object</Filter>
@@ -222,9 +234,6 @@
     <ClInclude Include="FireBall.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
-    <ClInclude Include="MagicSwitch.h">
-      <Filter>Entities\Block</Filter>
-    </ClInclude>
     <ClInclude Include="FireRune.h">
       <Filter>Entities\Block</Filter>
     </ClInclude>
@@ -239,9 +248,6 @@
     </ClInclude>
     <ClInclude Include="TelekinesisBox.h">
       <Filter>Entities\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="SpikeBlock.h">
-      <Filter>Entities\Block</Filter>
     </ClInclude>
     <ClInclude Include="FireRune.h">
       <Filter>Entities\Block</Filter>
@@ -263,6 +269,36 @@
     </ClInclude>
     <ClInclude Include="Dialogue.h">
       <Filter>More</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="StartMenu.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="SpikeBlock.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Lever.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ShottingTrap.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicSwitch.h">
+      <Filter>Entities\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -286,6 +322,9 @@
     </Filter>
     <Filter Include="More">
       <UniqueIdentifier>{bdfabafa-aa0e-49b6-8d9d-38c118166117}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{10b94e57-7da4-489d-8149-e5e669b64a14}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 #include "Shield.h"
 #include "ImageManager.h"
+#include "Sounds.h"
 #include "Charlotte.h"
 
 static const float WIDTH = 20;
@@ -17,6 +18,8 @@ Shield::Shield(sf::Vector2f &position, bool dirLeft):
 	mWidth = WIDTH;
 	mEntityKind = SHIELD;
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
+	mAnimation.update(mShieldCount * 2 + mDirLeft);
+	Sounds::getInstance()->Play("sheild.wav");
 }
 
 
