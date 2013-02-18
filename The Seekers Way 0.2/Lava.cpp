@@ -2,20 +2,21 @@
 #include "ImageManager.h"
 
 static const float WIDTH = 64;
-static const float HEIGHT = 64;
+static const float HEIGHT = 50;
 
-Lava::Lava(sf::Vector2f & position)
+static const float SPRITEWIDTH = 64;
+static const float SPRITEHEIGHT = 64;
+
+Lava::Lava(sf::Vector2f & position):
+	mAnimation("lava.png", 120, 11, SPRITEHEIGHT, SPRITEWIDTH)
 	{
-	mPosition = position;
+	mPosition = position + sf::Vector2f(0, 7);
 	mAlive = true;
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = LAVA;
 
-	mTexture.loadFromImage(*ImageManager::getImage("ShottingTrap.png"));
-	mSprite.setTexture(mTexture);
-	mSprite.setPosition(position);
-	mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
+	mAnimation.setPosition(sf::Vector2f(position.x - SPRITEWIDTH/ 2, position.y - SPRITEHEIGHT/ 2));
 	}
 
 
@@ -23,4 +24,11 @@ Lava::~Lava()
 	{}
 
 void Lava::update(EntityKind &currentEntity)
-{}
+{
+	mAnimation.update(0);
+}
+
+void Lava::render()
+{
+	ImageManager::render(&mAnimation.getSprite());
+}

@@ -3,6 +3,7 @@
 
 #include "Block.h"
 #include "SFML\Graphics.hpp"
+#include "Animation.h"
 
 
 class Stone: public Block
@@ -27,6 +28,8 @@ public:
 	sf::Vector2f mKibaPos;
 
 private:
+	Animation mAnimation;
+
 	sf::Vector2f mMovementSpeed;
 	float mDecrease;
 	float mGravity;

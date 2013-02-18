@@ -13,25 +13,30 @@ public:
 	void update(EntityKind &currentEntity);
 	void render();
 
+	void onblock();
+
 	void interact(Entity *e);
 
-	sf::Sprite getSprite();
 private:
 	enum JumpStatus {RIGHT, LEFT, GROUND};
 
 	void move();
+	void takeDamage();
+	void fall();
 
 	void wallJump();
 	void isWallJumping();
 	void canWallJump();
+	void updateHitbox();
 	bool hitWall();
+
 
 
 	bool mWallJumping;
 	bool mCanPressWallJump;
 	bool mHitWall;
 	bool mFenrirCanJump;
-	bool mSliding;
+	bool mVerticalHitbox;
 	bool mWallJumpDirLeft;
 	JumpStatus mLastJumpDir;
 	sf::Clock mCanHitWallClock;

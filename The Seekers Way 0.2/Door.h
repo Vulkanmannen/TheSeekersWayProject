@@ -11,6 +11,9 @@ public:
 
 	void render();
 	void update(EntityKind &currentEntity);
+
+	void interact(Entity* e);
+
 	sf::Sprite getSprite();
 
 	void Activate();

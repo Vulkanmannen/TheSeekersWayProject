@@ -5,6 +5,9 @@
 static const float WIDTH = 128;
 static const float HEIGHT = 128;
 
+static const float SPRITEWIDTH = 141;
+static const float SPRITEHEIGHT = 141;
+
 Stone::Stone(sf::Vector2f Position):
 	mMovementSpeed(0,0),
 	mGravity(5),
@@ -12,18 +15,21 @@ Stone::Stone(sf::Vector2f Position):
 	mFalling(false),
 	mtelekinesis(false),
 	mtelemove(false),
-	mOnBlock(false)
+	mOnBlock(false),
+	mAnimation("stone.png", 80, 6, SPRITEHEIGHT, SPRITEWIDTH)
 {
 	mPosition = Position + sf::Vector2f(WIDTH/2 - 32, HEIGHT/2 - 32);
 	mAlive = true;
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = STONE;
-	mTexture.loadFromImage(*ImageManager::getImage("crashstone.png"));
-	mSprite.setTexture(mTexture);
-	mSprite.setPosition(Position);
-	mSprite.scale(WIDTH/mSprite.getTexture()->getSize().x,HEIGHT/mSprite.getTexture()->getSize().y);
-	mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
+
+	//mTexture.loadFromImage(*ImageManager::getImage("crashstone.png"));
+	//mSprite.setTexture(mTexture);
+	//mSprite.setPosition(Position);
+	//mSprite.scale(WIDTH/mSprite.getTexture()->getSize().x,HEIGHT/mSprite.getTexture()->getSize().y);
+	//mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH / 2, mPosition.y - SPRITEHEIGHT / 2));
 }
 
 Stone::~Stone()
@@ -47,12 +53,15 @@ void Stone::update(EntityKind &currentEntity)
 
 	attraction();
 	mFalling = true;
+
+	mAnimation.update(mtelekinesis);
 }
 
 void Stone::render()
 {
-	mSprite.setPosition(sf::Vector2f(mPosition.x, mPosition.y));
-	ImageManager::render(&mSprite);
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH / 2, mPosition.y - SPRITEHEIGHT / 2));
+	//mSprite.setPosition(sf::Vector2f(mPosition.x, mPosition.y));
+	ImageManager::render(&mAnimation.getSprite());
 }
 
 void Stone::telekinesis()
@@ -112,7 +121,7 @@ void Stone::falling()
 
 void Stone::interact(Entity* e)
 {
-	if(e->getBaseKind() == Entity::BLOCK || (e->getBaseKind() == Entity::CHARACTER && mtelekinesis ))
+	if(e->getBaseKind() == Entity::BLOCK || (e->getBaseKind() == Entity::CHARACTER && mtelekinesis && mtelemove))
 	{
 		// räknar ut objektens radier och lägger ihop dem
 		float xRadius = mWidth / 2 + e->getWidth() / 2;
@@ -129,7 +138,7 @@ void Stone::interact(Entity* e)
 			{
 				if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
 				{
-					mPosition -= sf::Vector2f(mPosition.x - (e->getPosition().x + xRadius - 3), 0);
+					mPosition -= sf::Vector2f(mPosition.x - (e->getPosition().x + xRadius - 0), 0);
 					mLblock = true;
 				}
 			}
@@ -137,7 +146,7 @@ void Stone::interact(Entity* e)
 			{
 				if(std::abs(yDif) < yRadius - 10)
 				{
-					mPosition -= sf::Vector2f(mPosition.x - (e->getPosition().x - (xRadius - 3)), 0);
+					mPosition -= sf::Vector2f(mPosition.x - (e->getPosition().x - (xRadius - 0)), 0);
 					mRblock = true;
 				}
 			}
@@ -148,7 +157,7 @@ void Stone::interact(Entity* e)
 			{
 				if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
 				{
-					mPosition -= sf::Vector2f( 0,mPosition.y - (e->getPosition().y + yRadius - 3));
+					mPosition -= sf::Vector2f( 0,mPosition.y - (e->getPosition().y + yRadius - 0));
 					mUblock = true;
 					if(e->getBaseKind() == CHARACTER || e->getEntityKind() == STONE)
 					{
@@ -163,7 +172,7 @@ void Stone::interact(Entity* e)
 			{
 				if(std::abs(xDif) < xRadius - 10)
 				{
-					mPosition -= sf::Vector2f(0, mPosition.y - (e->getPosition().y - (yRadius - 3)));
+					mPosition -= sf::Vector2f(0, mPosition.y - (e->getPosition().y - (yRadius - 0)));
 					mDblock = true;
 					if(e->getBaseKind() == BLOCK)
 					{
