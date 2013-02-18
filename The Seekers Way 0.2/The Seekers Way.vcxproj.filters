@@ -136,6 +136,22 @@
     <ClCompile Include="Dialogue.cpp">
       <Filter>More</Filter>
     </ClCompile>
+    <ClCompile Include="StartMenu.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseMenu.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -264,6 +280,22 @@
     <ClInclude Include="Dialogue.h">
       <Filter>More</Filter>
     </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="StartMenu.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">
@@ -286,6 +318,9 @@
     </Filter>
     <Filter Include="More">
       <UniqueIdentifier>{bdfabafa-aa0e-49b6-8d9d-38c118166117}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{10b94e57-7da4-489d-8149-e5e669b64a14}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
