@@ -20,6 +20,9 @@ Animation::Animation(int height, int width):
 	mTextureRectangle(0, 0, width, height)
 	{}
 
+Animation::Animation()
+	{}
+
 Animation::~Animation()
 	{}
 
@@ -111,3 +114,24 @@ void Animation::RotateAnimation(float angle)
 	mSprite.setOrigin(32 + 64 * mCurrentFrame, 32);
 	mSprite.rotate(angle);
 }
+
+void Animation::operator=(const Animation &animation)
+{
+	mNumberOfFrames		= animation.mNumberOfFrames;
+	mTimePerFrame		= animation.mTimePerFrame;
+	mCurrentFrame		= animation.mCurrentFrame;
+	mLastRow			= animation.mLastRow;
+	mEndOfAnimation		= animation.mEndOfAnimation;
+	mLeftDir			= animation.mLeftDir;
+	mFrameTimer			= animation.mFrameTimer;
+	mTexture			= animation.mTexture;
+	mSprite				= animation.mSprite;
+	mTextureRectangle	= animation.mTextureRectangle;
+
+	mImage = animation.mImage;
+
+	mTexture.loadFromImage(*mImage);
+	mSprite.setTexture(mTexture);
+	mSprite.setTextureRect(mTextureRectangle);
+}
+

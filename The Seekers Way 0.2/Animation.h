@@ -10,6 +10,7 @@ class Animation
 public:
 	Animation(std::string fileName, int timePerFrame, int numberOfFrames, int height, int width);
 	Animation(int height, int width);
+	Animation();
 	~Animation();
 
 	void init(std::string fileName, int timePerFrame, int numberOfFrames);
@@ -22,7 +23,6 @@ public:
 	void RotateAnimation(float angle);
 
 	void operator=(const Animation &animation);
-
 private:
 	int			mNumberOfFrames;
 	int			mTimePerFrame;
@@ -35,6 +35,8 @@ private:
 	sf::Texture	mTexture;
 	sf::Sprite	mSprite;
 	sf::IntRect	mTextureRectangle;
+
+	
 };
 
 #endif

@@ -4,6 +4,7 @@
 #include <vector>
 #include "SFML\Graphics.hpp"
 #include "Entity.h"
+#include "Animation.h"
 
 class Block;
 class Character;
@@ -28,6 +29,7 @@ public:
 	sf::Vector2f getCharacterPos()const;
 
 	void setView(sf::View* view);
+	sf::View* getView();
 
 private:
 	EntityManager();
@@ -55,6 +57,14 @@ private:
 	void renderLife();
 	void lifePosition();
 	void updatePlayerLife();
+	
+	//--------------portrait
+	Animation mPortraitSprite[4];
+	void renderPortrait();
+	void updatePlayerPortrait();
+
+	sf::Texture frameTexture;
+	sf::Sprite frame;
 
 	sf::View* mView;
 };
