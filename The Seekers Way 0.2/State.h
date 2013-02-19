@@ -4,6 +4,8 @@
 
 class IntroScreen;
 class StartMenu;
+class GameMenu;
+class PauseMenu;
 
 class State
 {
@@ -30,7 +32,11 @@ private:
 
 	IntroScreen *IntroSplash;
 	StartMenu *mStartMenu;
+	GameMenu *mGameMenu;
+	PauseMenu *mPauseMenu;
 
 	sf::Clock mIntroClock;
+
+	bool mEsc;
 };
 #endif

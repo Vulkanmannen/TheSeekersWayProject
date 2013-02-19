@@ -136,13 +136,6 @@
     <ClCompile Include="DialogState.cpp">
       <Filter>States</Filter>
     </ClCompile>
-    <ClCompile Include="GameState.cpp">
-      <Filter>States</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="IntroScreen.cpp" />
-=======
     <ClCompile Include="SpikeBlock.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
@@ -158,7 +151,12 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>States</Filter>
     </ClCompile>
->>>>>>> 09adbed49d5a347dc770bdfc92576126f2033377
+    <ClCompile Include="GameMenu.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroScreen.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -284,16 +282,9 @@
     <ClInclude Include="PauseMenu.h">
       <Filter>States</Filter>
     </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>States</Filter>
-    </ClInclude>
     <ClInclude Include="DialogState.h">
       <Filter>States</Filter>
     </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="GameManager.h" />
-    <ClInclude Include="IntroScreen.h" />
-=======
     <ClInclude Include="GameManager.h">
       <Filter>States</Filter>
     </ClInclude>
@@ -309,7 +300,12 @@
     <ClInclude Include="MagicSwitch.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
->>>>>>> 09adbed49d5a347dc770bdfc92576126f2033377
+    <ClInclude Include="GameMenu.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroScreen.h">
+      <Filter>States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">

@@ -30,7 +30,7 @@
     <ClInclude Include="FireBall.h" />
     <ClInclude Include="FireRune.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameMenu.h" />
     <ClInclude Include="GenerateDoor.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="IntroScreen.h" />
@@ -79,7 +79,7 @@
     <ClCompile Include="FireBall.cpp" />
     <ClCompile Include="FireRune.cpp" />
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="GenerateDoor.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="IntroScreen.cpp" />

@@ -3,7 +3,7 @@
 
 IntroScreen::IntroScreen()
 {
-	mIntroText.loadFromFile("StartMenu.PNG");
+	mIntroText.loadFromFile("IntroSplash.PNG");
 	mIntroSprite.setTexture(mIntroText);
 }
 

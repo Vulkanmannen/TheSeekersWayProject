@@ -52,7 +52,7 @@ int main()
     {
         sf::Event event;
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P))
 		{	
 			window.close();
 		}
@@ -67,17 +67,12 @@ int main()
 		window.clear(sf::Color::Blue);
 		view.setCenter(sf::Vector2f(512, 360));
 		state.update();
-
-<<<<<<< HEAD
-=======
-		EntityManager::getInstance()->update();
-		EntityManager::getInstance()->render();
 		
 		if(Dialogue::getInstance()->getendofDialogue())
 		{
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
 			{	
-					Dialogue::getInstance()->startDialogue("start1.txt");
+				Dialogue::getInstance()->startDialogue("start1.txt");
 			}
 		}
 		else
@@ -86,9 +81,8 @@ int main()
 			Dialogue::getInstance()->render();
 		}
 
-		EntityManager::getInstance()->updateView();
+		
 
->>>>>>> 09adbed49d5a347dc770bdfc92576126f2033377
 		window.setView(view);
 
 		window.display();
