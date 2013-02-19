@@ -3,11 +3,15 @@
 #include "State.h"
 
 
-class GameState: public State
+class GameState
 {
 public:
 	GameState();
 	~GameState();
+
+	void render();
+	void update();
+
 };
 
 #endif

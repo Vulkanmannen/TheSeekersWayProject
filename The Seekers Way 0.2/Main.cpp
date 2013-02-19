@@ -30,8 +30,8 @@ int main()
 
 	EntityManager::getInstance()->setView(&view);
 
-	//std::string map1("Totteebest.PNG");
-	//MapGenerator::generateMap(map1);
+	std::string map1("Totteebest.PNG");
+	MapGenerator::generateMap(map1);
 
 	//EntityManager::getInstance()->addEntity(new WoodenWall(sf::Vector2f(17 *64, 13 *64)));
 
@@ -55,15 +55,10 @@ int main()
         }
 		
 		window.clear(sf::Color::Blue);
-
+		view.setCenter(sf::Vector2f(512, 360));
 		state.update();
-		//EntityManager::getInstance()->update();
-		//EntityManager::getInstance()->render();
 
-		//view.setCenter(EntityManager::getInstance()->getCharacterPos());
-		//window.setView(view);
-
-		//EntityManager::getInstance()->updatePrimaryCharacter();
+		window.setView(view);
 
 		window.display();
     }
