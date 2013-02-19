@@ -3,8 +3,9 @@
 
 #include "Block.h"
 #include "Animation.h"
+#include "Object.h"
 
-class Button: public Block
+class Button: public Object
 {
 public:
 

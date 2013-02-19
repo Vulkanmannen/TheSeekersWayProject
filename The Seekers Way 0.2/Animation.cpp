@@ -20,6 +20,9 @@ Animation::Animation(int height, int width):
 	mTextureRectangle(0, 0, width, height)
 	{}
 
+Animation::Animation()
+	{}
+
 Animation::~Animation()
 	{}
 
@@ -53,7 +56,7 @@ void Animation::update(int rowOfSprite)
 
 			sf::Color color = mImage->getPixel(mTextureRectangle.width * mCurrentFrame, mTextureRectangle.height * rowOfSprite); // hämtar färgen hoss pixeln i det översta hörnet på framen 
 
-			if(mCurrentFrame >= mNumberOfFrames || color == sf::Color(0, 0, 0, 255) || color == sf::Color(0, 255, 0, 255)) // om färgen e svart så är animationen slut
+			if(mCurrentFrame >= mNumberOfFrames || color == sf::Color(0, 255, 0, 255)) // om färgen e svart så är animationen slut
 			{
 				mEndOfAnimation = true;
 				mCurrentFrame = 0;
@@ -111,3 +114,24 @@ void Animation::RotateAnimation(float angle)
 	mSprite.setOrigin(32 + 64 * mCurrentFrame, 32);
 	mSprite.rotate(angle);
 }
+
+void Animation::operator=(const Animation &animation)
+{
+	mNumberOfFrames		= animation.mNumberOfFrames;
+	mTimePerFrame		= animation.mTimePerFrame;
+	mCurrentFrame		= animation.mCurrentFrame;
+	mLastRow			= animation.mLastRow;
+	mEndOfAnimation		= animation.mEndOfAnimation;
+	mLeftDir			= animation.mLeftDir;
+	mFrameTimer			= animation.mFrameTimer;
+	mTexture			= animation.mTexture;
+	mSprite				= animation.mSprite;
+	mTextureRectangle	= animation.mTextureRectangle;
+
+	mImage = animation.mImage;
+
+	mTexture.loadFromImage(*mImage);
+	mSprite.setTexture(mTexture);
+	mSprite.setTextureRect(mTextureRectangle);
+}
+

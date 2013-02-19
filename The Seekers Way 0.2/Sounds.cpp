@@ -25,9 +25,10 @@ Sounds::Sounds()
 //tar bort pekare
 Sounds::~Sounds()
 {
-	for(SoundVector::size_type i = 0; i < mSounds.size();i++)
+	while(!mSounds.empty())
 	{
-		delete mSounds[i];
+		delete mSounds.back();
+		mSounds.pop_back();
 	}
 	
 	for(BufferMap::iterator i = bufferlista.begin(); i != bufferlista.end(); i++)

@@ -7,7 +7,7 @@
 class Vine : public Block
 {
 public:
-	Vine(sf::Vector2f &position);
+	Vine(sf::Vector2f &position, unsigned char spriteNumber);
 	~Vine();
 
 	void update(EntityKind &currentEntity);

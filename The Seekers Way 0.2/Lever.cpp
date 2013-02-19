@@ -1,21 +1,24 @@
 #include "Lever.h"
 #include "ImageManager.h"
 
-static const float WIDTH = 64;
-static const float HEIGHT = 64;
+static const float WIDTH = 40;
+static const float HEIGHT = 15;
+
+static const float SPRITEWIDTH = 64;
+static const float SPRITEHEIGHT = 64;
 
 Lever::Lever(sf::Vector2f &position, Block* target):
 	mBlock(target),
-	mAnimation("Lever.png", 60, 1, HEIGHT, WIDTH)
+	mAnimation("Lever.png", 120, 3, SPRITEHEIGHT, SPRITEWIDTH)
 {
 	mDrawn = false;
-	mPosition = position;
+	mPosition = position + sf::Vector2f(0, 25);
 	mAlive = true;
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = LEVER;
 
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
+	mAnimation.setPosition(sf::Vector2f(position.x - SPRITEWIDTH/ 2, position.y - SPRITEHEIGHT/ 2));
 }
 
 Lever::~Lever()
@@ -38,10 +41,8 @@ void Lever::update(EntityKind &currentEntity)
 }
 
 void Lever::render()
-{
-	
+{	
 	mAnimation.update(mDrawn);
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
 	ImageManager::render(&getSprite());
 }
 
@@ -52,17 +53,14 @@ sf::Sprite Lever::getSprite()
 
 void Lever::interact(Entity* e)
 {
-	if(getPosition().y - e->getPosition().y > (e->getHeight() / 2 + mHeight / 2) - 7)
+	switch(e->getEntityKind())
 	{
-		switch(e->getEntityKind())
-		{
-		case CHARLOTTE:
-		case KIBA:
-		case FENRIR:
-		case SHEEKA:
-		case STONE:
-			 Activate();
-			break;
-		}
+	case CHARLOTTE:
+	case KIBA:
+	case FENRIR:
+	case SHEEKA:
+	case STONE:
+		 Activate();
+		break;
 	}
 }

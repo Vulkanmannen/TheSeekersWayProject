@@ -17,11 +17,16 @@ public:
 	sf::Sprite getSprite();
 
 private:
-	sf::Clock mDashClock;
 	sf::Clock mDarkBindingClock;
+	int mCanDashCount;
+	int mCanDashTime;
 
 	void SheekaDash();
+	void dashTime();
+	void notDashing();
 	void darkBinding();
+
+	void takeDamage();
 	
 	int mDashCount;
 	int mDashTimer;

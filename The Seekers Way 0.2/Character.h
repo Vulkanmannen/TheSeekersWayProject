@@ -11,7 +11,11 @@ class Character: public Entity
 public:
 	Character();
 	~Character();
-	void onblock();
+
+	virtual void update(EntityKind &currentEntity);
+
+	virtual void onblock();
+	void hitBlockFromBelow();
 
 	virtual void interact(Entity* e);
 
@@ -25,7 +29,6 @@ protected:
 		WALK,
 		JUMP,
 		INAIR,
-		HURT,
 		ACTION1,
 		ACTION2,
 		ACTION3
@@ -37,15 +40,22 @@ protected:
 	sf::Vector2f mMovementSpeed;
 
 	Animation mAnimation;
-
+	
+	//-----------------funktioner som reglerar hur karaktärerna rör sig
 	virtual void move();
 	void jump();
 	void jumping();
 	void walk();
 	void dontWalk(EntityKind &currentEntity);
 	void falling();
-	void fall();
+	virtual void fall();
+	void slowdownPushBack();
+	void hurtTime();
+	void canMoveTime();
+	virtual void takeDamage();
+	void takeDamageFromArrow();
 
+	// variabler som reglerar hur karaktärerna rör sig
 	float mJumpTime;
 	float mMaxRun;
 	float mMaxJump;
@@ -55,10 +65,20 @@ protected:
 	float mJump;
 	float mRun;
 	float mJumping; 
+	float mMaxSpeed;
 	bool mFalling;
 	bool mIsJumping;
+	bool mCanPressJump;
 
+	// variabler som styr hur karaktären beter sig vid skada
 	bool mIsHit;
+	bool mHurt;
+	int mHurtCount;
+	int mHurtTime;
+	bool mCanMove;
+	int mCanMoveCount;
+	int mCanMoveTime;
+	
 };
 
 #endif
