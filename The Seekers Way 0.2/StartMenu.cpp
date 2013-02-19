@@ -1,9 +1,13 @@
 #include "StartMenu.h"
-#include "MapGenerator.h"
+#include "ImageManager.h"
+#include "SFML\Graphics.hpp"
 
 
-StartMenu::StartMenu()
+StartMenu::StartMenu():
+	mContinue(false)
 {
+	mStartText.loadFromFile("StartMenurelease.PNG");
+	mStartSprite.setTexture(mStartText);
 }
 
 
@@ -11,18 +15,21 @@ StartMenu::~StartMenu()
 {
 }
 
-//void StartMenu::update()
-//{
-//	LoadStartMenu();
-//}
-//
-//void StartMenu::LoadStartMenu()
-//{
-//	std::string startmenu("StartMenu.PNG");
-//	MapGenerator::generateMap(startmenu);
-//}
-//
-//void StartMenu::render()
-//{
-//
-//}
+void StartMenu::update()
+{
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Y))
+	{
+		mContinue = true;
+	}
+}
+
+void StartMenu::render()
+{
+	mStartSprite.setPosition(0, 0);
+	ImageManager::render(&mStartSprite);
+}
+
+bool StartMenu::GetContinue()
+{
+	return mContinue;
+}

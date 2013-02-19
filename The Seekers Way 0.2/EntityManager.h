@@ -4,6 +4,7 @@
 #include <vector>
 #include "SFML\Graphics.hpp"
 #include "Entity.h"
+#include "Animation.h"
 #include <vector>
 
 class Block;
@@ -29,6 +30,7 @@ public:
 	sf::Vector2f getCharacterPos()const;
 
 	void setView(sf::View* view);
+	sf::View* getView();
 	void updateView();
 
 	void setMapSize(int numberOfBlocksWidth, int numberOfBlocksHeight, int numberOfBackgroundsWidth = 2, int numberOfBackgroundsHeight = 2);
@@ -57,7 +59,7 @@ private:
 	int mPlayerLife;
 	sf::Texture mLifeTexture;
 	sf::Sprite mLifeSprite;
-	void updateLife();
+	void updatePlayerLife();
 
 	//---------- mask
 	sf::Texture mMaskTexture;
@@ -65,6 +67,14 @@ private:
 
 	void renderLifeAndMask();
 	void lifeAndMaskPosition();
+
+	//--------------portrait
+	Animation mPortraitSprite[4];
+	void renderPortrait();
+	void updatePlayerPortrait();
+
+	sf::Texture frameTexture;
+	sf::Sprite frame;
 
 	// ----------------- background
 	sf::Texture mBackgroundTexture;

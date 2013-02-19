@@ -7,6 +7,7 @@
 
 #include <string>
 
+#include "State.h"
 #include "Door.h"
 #include "Button.h"
 #include "Lever.h"
@@ -16,6 +17,7 @@
 #include "Stone.h"
 #include "WoodenWall.h"
 #include "Portal.h"
+#include "Dialogue.h"
 
 int main()
 {
@@ -38,15 +40,18 @@ int main()
 
 	Sounds::getInstance();
 
+
 	Sounds::getInstance()->Loop("Level1Music.wav", 30);
+
     while (window.isOpen())
     {
         sf::Event event;
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P))
 		{	
 			window.close();
 		}
+		
 
         while (window.pollEvent(event))
         {
@@ -55,18 +60,30 @@ int main()
         }
 		
 		window.clear(sf::Color::Blue);
+		view.setCenter(sf::Vector2f(512, 360));
+		//state.update();
+		
+		if(Dialogue::getInstance()->getendofDialogue())
+		{
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+			{	
+				Dialogue::getInstance()->startDialogue("start1.txt");
+			}
+		}
+		else
+		{
+			Dialogue::getInstance()->update();
+			Dialogue::getInstance()->render();
+		}
 
-		EntityManager::getInstance()->update();
-		EntityManager::getInstance()->render();
-
-		EntityManager::getInstance()->updateView();
+		
 
 		window.setView(view);
-
-		EntityManager::getInstance()->updatePrimaryCharacter();
 
 		window.display();
     }
 	delete EntityManager::getInstance();
+	delete Dialogue::getInstance();
+	delete Sounds::getInstance();
     return 0;
 }

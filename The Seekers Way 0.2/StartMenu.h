@@ -3,7 +3,7 @@
 #include "State.h"
 
 
-class StartMenu: public State
+class StartMenu
 {
 public:
 	StartMenu();
@@ -11,8 +11,15 @@ public:
 
 	void update();
 	void render();
+	bool GetContinue();
 
-	void LoadStartMenu();
+
+private:
+
+		bool mContinue;
+
+	sf::Texture mStartText;
+	sf::Sprite mStartSprite;
 };
 
 #endif

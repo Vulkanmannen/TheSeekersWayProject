@@ -6,7 +6,7 @@
 #include "Door.h"
 #include <algorithm>
 #include "ImageManager.h"
-
+#include <iostream>
 
 EntityManager* EntityManager::sInstance = 0;
 
@@ -17,14 +17,25 @@ EntityManager::EntityManager():
 	mMapWidth(3392),
 	mNumberOfBackgroundsWidth(2),
 	mNumberOfBackgroundsHeight(2)
-	{
+{
+		mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
+		mLifeSprite.setTexture(mLifeTexture);
+
+		frameTexture.loadFromFile("frame.png");
+		frame.setTexture(frameTexture);
+		
+		mPortraitSprite[0] = Animation("Fenrir Face sprite 1_1.png", 60, 1, 64, 64);
+		mPortraitSprite[1] = Animation("Fenrir Face sprite 1_1.png", 60, 1, 64, 64);
+		mPortraitSprite[2] = Animation("Fenrir Face sprite 1_1.png", 60, 1, 64, 64);
+		mPortraitSprite[3] = Animation("Fenrir Face sprite 1_1.png", 60, 1, 64, 64);
+	
 		mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
 		mLifeSprite.setTexture(mLifeTexture);
 		mMaskTexture.loadFromImage(*ImageManager::getImage("mask.png"));
 		mMaskSprite.setTexture(mMaskTexture);
 		mBackgroundTexture.loadFromImage(*ImageManager::getImage("background.png"));
 		createBackground();
-	}
+}
 
 
 EntityManager::~EntityManager()
@@ -55,8 +66,11 @@ void EntityManager::update()
 	}
 	interact();
 	killEntity();
+
+	updatePlayerLife();
 	lifeAndMaskPosition();
-	updateLife();
+
+	updatePlayerPortrait();
 }
 
 // uppdaterar lifeposition
@@ -67,7 +81,7 @@ void EntityManager::lifeAndMaskPosition()
 }
 
 // uppdaterar hur mycket liv spelaren har
-void EntityManager::updateLife()
+void EntityManager::updatePlayerLife()
 {
 	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)
 	{
@@ -79,6 +93,15 @@ void EntityManager::updateLife()
 	}
 }
 
+// uppdaterar Portraiten spelaren har
+void EntityManager::updatePlayerPortrait()
+{
+	mPortraitSprite[0].update(0);
+	mPortraitSprite[1].update(0);
+	mPortraitSprite[2].update(0);
+	mPortraitSprite[3].update(0);
+}
+
 // ritarut alla objekt
 void EntityManager::render()
 {
@@ -88,7 +111,7 @@ void EntityManager::render()
 	{
 		mEntities[i]->render();
 	}
-
+	renderPortrait();
 	renderLifeAndMask();
 }
 
@@ -101,6 +124,44 @@ void EntityManager::renderLifeAndMask()
 	{
 		ImageManager::render(&mLifeSprite);
 		mLifeSprite.setPosition(mLifeSprite.getPosition() + sf::Vector2f(50, 0));
+	}
+}
+
+// renderar portraitet
+void EntityManager::renderPortrait()
+{
+
+	for(int i = 0; i < 4; i++)
+	{
+		frame.setPosition(				mView->getCenter() - sf::Vector2f(512 - i * frameTexture.getSize().x, 360));
+		mPortraitSprite[i].setPosition(	mView->getCenter() - sf::Vector2f(503 - i * frameTexture.getSize().x, 351));
+		
+		for(CharacterVector::size_type j = 0; j < mCharacters.size(); j++)
+		{
+			if (mCharacters[j]->getEntityKind() == Entity::KIBA && i == 0)
+			{
+				ImageManager::render(&mPortraitSprite[0].getSprite());
+				ImageManager::render(&frame);
+			}
+
+			else if (mCharacters[j]->getEntityKind() == Entity::CHARLOTTE && i == 1)
+			{
+				ImageManager::render(&mPortraitSprite[1].getSprite());
+				ImageManager::render(&frame);
+			}
+
+			else if (mCharacters[j]->getEntityKind() == Entity::FENRIR && i == 2)
+			{
+				ImageManager::render(&mPortraitSprite[2].getSprite());
+				ImageManager::render(&frame);
+			}
+
+			else if (mCharacters[j]->getEntityKind() == Entity::SHEEKA && i == 3)
+			{
+				ImageManager::render(&mPortraitSprite[3].getSprite());
+				ImageManager::render(&frame);
+			}
+		}
 	}
 }
 
@@ -205,19 +266,19 @@ void EntityManager::updatePrimaryCharacter()
 {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
-		mPrimaryCharacter = Entity::SHEEKA;
+		mPrimaryCharacter = Entity::KIBA;
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 	{
-		mPrimaryCharacter = Entity::FENRIR;
+		mPrimaryCharacter = Entity::CHARLOTTE;
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
 	{
-		mPrimaryCharacter = Entity::CHARLOTTE;
+		mPrimaryCharacter = Entity::FENRIR;
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
 	{
-		mPrimaryCharacter = Entity::KIBA;
+		mPrimaryCharacter = Entity::SHEEKA;
 	}
 }
 
@@ -259,6 +320,11 @@ void EntityManager::interact()
 void EntityManager::setView(sf::View* view)
 {
 	mView = view;
+}
+
+sf::View* EntityManager::getView()
+{
+	return mView;
 }
 
 // updaterar view positionen
