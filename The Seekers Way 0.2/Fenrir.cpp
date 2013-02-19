@@ -404,7 +404,7 @@ bool Fenrir::hitWall()
 // kollar om man activerar snowmist
 void Fenrir::snowMist()
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && mCanPressSnowMist && !mInSnowMist && mCanSnowMist)
+	if((sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) && mCanPressSnowMist && !mInSnowMist && mCanSnowMist)
 	{
 		mCanPressSnowMist = false;
 		mInSnowMist = true;
@@ -415,11 +415,11 @@ void Fenrir::snowMist()
 		mStatus = ACTION3;
 		mMovementSpeed = sf::Vector2f(0, 0);
 	}
-	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 	{
 		mCanPressSnowMist = true;
 	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && mCanPressSnowMist && mInSnowMist && !mHitVine)
+	else if((sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) && mCanPressSnowMist && mInSnowMist && !mHitVine)
 	{
 		mInSnowMist = false;
 		mCanPressSnowMist = false;

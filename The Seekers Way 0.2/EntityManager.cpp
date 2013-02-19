@@ -372,3 +372,14 @@ void EntityManager::setMapSize(int numberOfBlocksWidth, int numberOfBlocksHeight
 	mNumberOfBackgroundsWidth = numberOfBackgroundsWidth;
 	mNumberOfBackgroundsHeight = numberOfBackgroundsHeight;
 }
+
+void EntityManager::ClearAll()
+{
+	while(!mEntities.empty())
+	{
+		delete mEntities.back();
+		mEntities.pop_back();
+	}
+	mDynamicEntities.clear();
+	mCharacters.clear();
+}

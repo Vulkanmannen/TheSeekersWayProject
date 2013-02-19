@@ -10,14 +10,6 @@ class PauseMenu;
 class State
 {
 public:
-	State();
-
-	void render();
-	void update();
-
-	~State();
-
-private:
 
 	enum MenuStates
 	{
@@ -27,6 +19,22 @@ private:
 		DialogState,
 		GameState
 	};
+
+	void render();
+	void update();
+	bool getExit();
+	void setState(MenuStates);
+	static State* getInstance();
+
+	~State();
+
+private:
+
+	State();
+	State(const State&);
+	void operator=(const State&);
+
+	static State* sInstance;
 
 	MenuStates mMenuStates;
 

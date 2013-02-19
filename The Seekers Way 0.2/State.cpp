@@ -4,6 +4,7 @@
 #include "GameMenu.h"
 #include "PauseMenu.h"
 
+State* State::sInstance = 0;
 
 State::State():
 	mMenuStates(Intro),
@@ -27,9 +28,10 @@ void State::update()
 	//The Splashscreen
 		case Intro: 
 			IntroSplash->render();
-			if(mIntroClock.getElapsedTime().asSeconds() > 5)
+			if(mIntroClock.getElapsedTime().asSeconds() > 5 || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			{
 				mMenuStates = StartState;
+				mEsc = false;
 			}
 			break;
 
@@ -37,10 +39,6 @@ void State::update()
 		case StartState:
 			mStartMenu->render();
 			mStartMenu->update();
-			if(mStartMenu->GetContinue())
-			{
-				mMenuStates = GameState;
-			}
 			break;
 
 	//The Game state
@@ -64,7 +62,6 @@ void State::update()
 				mMenuStates = GameState;
 				mEsc = false;
 			}
-
 			break;
 	}
 
@@ -77,4 +74,25 @@ void State::update()
 void State::render()
 {
 
+}
+
+State* State::getInstance()
+{
+	if(sInstance == 0)
+	{
+		sInstance = new State();
+	}
+	return sInstance;
+}
+
+void State::setState(MenuStates menustate)
+{
+	mMenuStates = menustate;
+	mStartMenu->SetCanPressToFalse();
+	mPauseMenu->SetCanPressToFalse();
+}
+
+bool State::getExit()
+{
+	return mStartMenu->getExit();
 }

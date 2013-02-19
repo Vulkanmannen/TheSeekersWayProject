@@ -4,6 +4,7 @@
 #include "MapGenerator.h"
 #include "NormalBlock.h"
 #include "Animation.h"
+#include "StartMenu.h"
 
 #include <string>
 
@@ -47,12 +48,11 @@ int main()
 	sf::Clock clock;
 	//Sounds::getInstance()->Loop("Levelkoncept.wav", 30);
 
-	State state;
     while (window.isOpen())
     {
         sf::Event event;
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P))
+		if (State::getInstance()->getExit())
 		{	
 			window.close();
 		}
@@ -64,9 +64,9 @@ int main()
                 window.close();
         }
 		
-		window.clear(sf::Color::Blue);
+		window.clear(sf::Color::Black);
 		view.setCenter(sf::Vector2f(512, 360));
-		state.update();
+		State::getInstance()->update();
 		
 		if(Dialogue::getInstance()->getendofDialogue())
 		{
@@ -81,9 +81,7 @@ int main()
 			Dialogue::getInstance()->render();
 		}
 
-		
-
-		window.setView(view);
+		window.setView(view); 
 
 		window.display();
     }

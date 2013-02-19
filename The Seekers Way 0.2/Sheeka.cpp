@@ -76,7 +76,9 @@ void Sheeka::SheekaDash()
 {
 	mCanDashCount++;
 	if((sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) 
-										&& !mDash && !mDashPressed && mCanDashCount >= mCanDashTime)
+		&& !mDash 
+		&& !mDashPressed 
+		&& mCanDashCount >= mCanDashTime)
 	{
 		mCanDashCount = 0;
 		mStatus = ACTION1;
@@ -105,7 +107,7 @@ void Sheeka::SheekaDash()
 // sheeka skjuter en projektil
 void Sheeka::darkBinding()
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) 
+	if(((sf::Keyboard::isKeyPressed(sf::Keyboard::W)) || (sf::Keyboard::isKeyPressed(sf::Keyboard::X)))
 		&& mCanPressDarkBinding 
 		&& mDarkBindingClock.getElapsedTime().asSeconds() >= 0.3
 		&& !mJumping
@@ -116,7 +118,7 @@ void Sheeka::darkBinding()
 		EntityManager::getInstance()->addEntity(new DarkBinding(mPosition, mDirLeft));
 		mStatus = ACTION2;
 	}
-	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::X))
 	{
 		mCanPressDarkBinding = true;
 	}

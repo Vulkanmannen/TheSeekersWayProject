@@ -1,6 +1,8 @@
 #ifndef INCLUDED_STARTMENU
 #define INCLUDED_STARTMENU
 #include "State.h"
+#include <vector>
+#include "Animation.h"
 
 
 class StartMenu
@@ -11,15 +13,26 @@ public:
 
 	void update();
 	void render();
-	bool GetContinue();
-
+	void SetCanPressToFalse();
+	bool getExit();
 
 private:
 
-		bool mContinue;
+	void generateButtons();
+	void changeButton();
+	void renderButtons();
+	void updateCurrentButton();
+	void buttonActivate();
+
+	int currentButton;
+	bool canPressReturn;
+	bool canPress;
+	bool exit;
 
 	sf::Texture mStartText;
 	sf::Sprite mStartSprite;
+
+	std::vector<Animation> mButtons;
 };
 
 #endif

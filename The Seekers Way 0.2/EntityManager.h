@@ -24,6 +24,7 @@ public:
 	void update();
 	void render();
 
+	void ClearAll();
 	void addEntity(Entity *e);
 
 	void updatePrimaryCharacter();

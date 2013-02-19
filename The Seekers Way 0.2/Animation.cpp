@@ -135,3 +135,22 @@ void Animation::operator=(const Animation &animation)
 	mSprite.setTextureRect(mTextureRectangle);
 }
 
+Animation::Animation(const Animation& animation)
+{
+	mNumberOfFrames		= animation.mNumberOfFrames;
+	mTimePerFrame		= animation.mTimePerFrame;
+	mCurrentFrame		= animation.mCurrentFrame;
+	mLastRow			= animation.mLastRow;
+	mEndOfAnimation		= animation.mEndOfAnimation;
+	mLeftDir			= animation.mLeftDir;
+	mFrameTimer			= animation.mFrameTimer;
+	mTexture			= animation.mTexture;
+	mSprite				= animation.mSprite;
+	mTextureRectangle	= animation.mTextureRectangle;
+
+	mImage = animation.mImage;
+
+	mTexture.loadFromImage(*mImage);
+	mSprite.setTexture(mTexture);
+	mSprite.setTextureRect(mTextureRectangle);
+}
