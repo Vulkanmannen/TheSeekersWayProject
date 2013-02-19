@@ -53,12 +53,12 @@ void Animation::update(int rowOfSprite)
 
 			sf::Color color = mImage->getPixel(mTextureRectangle.width * mCurrentFrame, mTextureRectangle.height * rowOfSprite); // hämtar färgen hoss pixeln i det översta hörnet på framen 
 
-			if(mCurrentFrame >= mNumberOfFrames || color == sf::Color(0, 255, 0, 255)) // om färgen e svart så är animationen slut
+			if(mCurrentFrame >= mNumberOfFrames || color == sf::Color(0, 255, 0, 255)) // om färgen e grön så är animationen slut
 			{
 				mEndOfAnimation = true;
 				mCurrentFrame = 0;
 			}
-			else if(color == sf::Color(0, 0, 255, 255))
+			else if(color == sf::Color(0, 0, 255, 255)) // om färgen är blå så ska den stanna vid den sissta framen
 			{
 				mEndOfAnimation = true;
 				--mCurrentFrame;

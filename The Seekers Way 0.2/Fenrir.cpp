@@ -4,6 +4,7 @@
 #include "ImageManager.h"
 #include <iostream>
 #include "Spiketrap.h"
+#include "Sounds.h"
 
 const static float HEIGHT = 64;
 const static float WIDTH = 110;
@@ -40,6 +41,7 @@ void Fenrir::update(EntityKind &currentEntity)
 	isWallJumping();
 	updateHitbox();
 	snowMistCountdown();
+	updateSatatus();
 
 	if(!mWallJumping && mCanMove)
 	{
@@ -250,7 +252,7 @@ void Fenrir::onblock()
 	// snowmist
 	mCanSnowMist = true;
 
-	if(mStatus == ACTION2 || mStatus == ACTION1 || (mStatus == JUMP && !mJumping))
+	if(mStatus == ACTION2 || mStatus == ACTION1 || (mStatus == ACTION5 && mAnimation.getEndOfAnimation()) || (mStatus == JUMP && !mJumping))
 	{
 		mStatus = IDLE;
 	}
@@ -259,7 +261,7 @@ void Fenrir::onblock()
 // omdefinerar movefunktion
 void Fenrir::move()
 {
-	mPosition	+= mMovementSpeed;
+	mPosition += mMovementSpeed;
 	
 	if(!mInSnowMist)
 	{
@@ -414,6 +416,8 @@ void Fenrir::snowMist()
 		
 		mStatus = ACTION3;
 		mMovementSpeed = sf::Vector2f(0, 0);
+
+		Sounds::getInstance()->Play("snowmist.wav");
 	}
 	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 	{
@@ -421,9 +425,8 @@ void Fenrir::snowMist()
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && mCanPressSnowMist && mInSnowMist && !mHitVine)
 	{
-		mInSnowMist = false;
+		notInSnowMist();
 		mCanPressSnowMist = false;
-		mStatus = IDLE;
 	}
 }
 
@@ -432,10 +435,16 @@ void Fenrir::snowMistCountdown()
 {
 	if(mSnowMistTime.getElapsedTime().asSeconds() > 3 && mInSnowMist && !mHitVine)
 	{
-		mInSnowMist = false;	
-		mFenrirCanJump = true;
-		mStatus = IDLE;
+		notInSnowMist();
 	}
+}
+
+// körs när man går ur snowmist
+void Fenrir::notInSnowMist()
+{
+	mInSnowMist = false;	
+	mFenrirCanJump = true;
+	mStatus = ACTION5;
 }
 
 // flyttar på fenrir i snomistmode
@@ -463,5 +472,13 @@ void Fenrir::moveInSnowMist()
 			!sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		mMovementSpeed = sf::Vector2f(0, 0);
+	}
+}
+
+void Fenrir::updateSatatus()
+{
+	if(mStatus == ACTION3 && mAnimation.getEndOfAnimation())
+	{
+		mStatus = ACTION4;
 	}
 }

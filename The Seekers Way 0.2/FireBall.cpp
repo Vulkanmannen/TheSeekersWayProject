@@ -1,5 +1,6 @@
 #include "FireBall.h"
 #include "ImageManager.h"
+#include "Sounds.h"
 #include <cmath>
 
 static const float HEIGHT = 30;
@@ -19,6 +20,8 @@ FireBall::FireBall(sf::Vector2f &position):
 	mHeight = HEIGHT;
 	mEntityKind = FIREBALL;
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH/ 2, mPosition.y - SPRITEHEIGHT/ 2));
+
+	Sounds::getInstance()->Loop("fireball.wav", 50);
 }
 
 

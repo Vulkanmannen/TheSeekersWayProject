@@ -19,7 +19,7 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1024, 720), "The Seekers Way"/*, sf::Style::Fullscreen*/);
+	sf::RenderWindow window(sf::VideoMode(1024, 720), "The Seekers Way", sf::Style::Fullscreen);
 	ImageManager::setWindow(&window);
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
@@ -38,11 +38,7 @@ int main()
 
 	Sounds::getInstance();
 
-
-	//EntityManager::getInstance()->addEntity(new WoodenWall(sf::Vector2f(17 *64, 13 *64)));
-
-	sf::Clock clock;
-	//Sounds::getInstance()->Loop("Levelkoncept.wav", 30);
+	Sounds::getInstance()->Loop("Level1Music.wav", 30);
     while (window.isOpen())
     {
         sf::Event event;

@@ -31,7 +31,9 @@ protected:
 		INAIR,
 		ACTION1,
 		ACTION2,
-		ACTION3
+		ACTION3,
+		ACTION4,
+		ACTION5
 	};
 	
 	Status mStatus;

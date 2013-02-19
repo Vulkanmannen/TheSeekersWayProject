@@ -9,7 +9,7 @@ static const float SPRITEHEIGHT = 64;
 
 Lever::Lever(sf::Vector2f &position, Block* target):
 	mBlock(target),
-	mAnimation("Lever.png", 120, 3, SPRITEHEIGHT, SPRITEWIDTH)
+	mAnimation("Lever.png", 120, 4, SPRITEHEIGHT, SPRITEWIDTH)
 {
 	mDrawn = false;
 	mPosition = position + sf::Vector2f(0, 25);

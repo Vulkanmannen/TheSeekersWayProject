@@ -26,6 +26,8 @@ private:
 	void SetShield();
 	void GetShieldLife();
 	bool mIsShield;
+
+	bool mActiveCharacter;
 };
 
 #endif
