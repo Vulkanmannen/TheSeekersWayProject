@@ -28,7 +28,8 @@ void State::update()
 	//The Splashscreen
 		case Intro: 
 			IntroSplash->render();
-			if(mIntroClock.getElapsedTime().asSeconds() > 5 || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			if(mIntroClock.getElapsedTime().asSeconds() > 5 
+				|| (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || sf::Keyboard::isKeyPressed(sf::Keyboard::Return)))
 			{
 				mMenuStates = StartState;
 				mEsc = false;

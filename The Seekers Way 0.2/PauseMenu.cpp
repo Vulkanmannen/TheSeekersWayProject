@@ -2,6 +2,7 @@
 #include "ImageManager.h"
 #include "State.h"
 #include "EntityManager.h"
+#include "LevelManager.h"
 
 
 PauseMenu::PauseMenu():
@@ -54,13 +55,21 @@ void PauseMenu::generateButtons()
 		animation.setPosition(sf::Vector2f(230, 100 + 1*70));
 		mButtons.push_back(animation);
 
+		Animation animation2("RestartLevel.PNG", 80, 1, 46, 123);
+		animation2.setPosition(sf::Vector2f(230, 100 + 2*70));
+		mButtons.push_back(animation2);
+
 		Animation animation3("HowToPlay.PNG", 80, 1, 46, 123);
-		animation3.setPosition(sf::Vector2f(230, 100 + 2*70));
+		animation3.setPosition(sf::Vector2f(230, 100 + 3*70));
 		mButtons.push_back(animation3);
 
-		Animation animation4("MainMenu.PNG", 80, 1, 46, 123);
-		animation4.setPosition(sf::Vector2f(230, 100 + 3*70));
+		Animation animation4("Audio.png", 80, 1, 46, 123);
+		animation4.setPosition(sf::Vector2f(230, 100 + 4*70));
 		mButtons.push_back(animation4);
+
+		Animation animation5("MainMenu.PNG", 80, 1, 46, 123);
+		animation5.setPosition(sf::Vector2f(230, 100 + 5*70));
+		mButtons.push_back(animation5);
 }
 
 void PauseMenu::changeButton()
@@ -119,10 +128,18 @@ void PauseMenu::buttonActivate()
 				break;
 
 			case 1:
-				HowToPlay = !HowToPlay;
+				LevelManager::getInstance()->LoadLevel();
+				State::getInstance()->setState(State::GameState);
 				break;
 
 			case 2:
+				HowToPlay = !HowToPlay;
+				break;
+
+			case 3:
+				break;
+
+			case 4:
 				State::getInstance()->setState(State::StartState);
 				break;
 		}
