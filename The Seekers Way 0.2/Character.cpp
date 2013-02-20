@@ -33,6 +33,7 @@ Character::Character():
 {
 	mAlive = true;
 	mBaseKind = CHARACTER;
+	mLayer = CHARACTERS;
 }
 
 Character::~Character()
@@ -66,7 +67,7 @@ void Character::onblock()
 		mMovementSpeed.y = 0;
 	}
 
-	if(mStatus == ACTION2 && mAnimation.getEndOfAnimation() || (mStatus == JUMP && !mJumping))
+	if(mStatus == ACTION2 && mAnimation.getEndOfAnimation() || (mStatus == JUMP && !mJumping) || (mStatus == ACTION1 && mAnimation.getEndOfAnimation()))
 	{
 		mStatus = IDLE;
 	}

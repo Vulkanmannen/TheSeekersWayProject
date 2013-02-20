@@ -107,9 +107,15 @@ void EntityManager::render()
 {
 	renderBackground();
 
-	for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
+	for(int h = 0; h < 4; ++h)
 	{
-		mEntities[i]->render();
+		for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
+		{
+			if(mEntities[i]->getLayer() == h)
+			{
+				mEntities[i]->render();
+			}
+		}
 	}
 	renderPortrait();
 	renderLifeAndMask();

@@ -14,9 +14,9 @@ public:
 		FIREBALL, FIRERUNE, DARKBINDING, MAGICSWITCH, SPIKEBLOCK, 
 		BRIDGE, BIGBRIDGE, TELEKINESISBOX, LAVA, SLASH, FINISHDOOR};
 
-
-
 	enum BaseKind {CHARACTER, BLOCK, OBJECT};
+
+	enum Layer {BACKGROUND, MIDDLE, CHARACTERS, FORGROUND};
 
 	Entity();
 	virtual ~Entity();
@@ -36,7 +36,8 @@ public:
 	float getHeight()const;
 	EntityKind getEntityKind()const;
 	BaseKind getBaseKind()const;
-	
+	Layer getLayer()const;
+
 	bool getAliveStatus()const;
 
 	void destroy();
@@ -57,6 +58,7 @@ protected:
 
 	EntityKind mEntityKind;
 	BaseKind mBaseKind;
+	Layer mLayer;
 
 	bool mAlive;
 	sf::Sprite mSprite;

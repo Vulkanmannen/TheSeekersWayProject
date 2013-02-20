@@ -9,7 +9,7 @@ static const float SPRITEHEIGHT = 64;
 
 Button::Button(sf::Vector2f &position, Block* target):
 	mBlock(target),
-	mAnimation("Button.png", 60, 1, SPRITEHEIGHT, SPRITEWIDTH)
+	mAnimation("button.png", 60, 1, SPRITEHEIGHT, SPRITEWIDTH)
 {
 	isitpressed = false;
 	mPosition = position + sf::Vector2f(0, 29);
