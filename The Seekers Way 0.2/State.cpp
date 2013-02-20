@@ -56,11 +56,13 @@ void State::update()
 		case PauseState:
 			mPauseMenu->render();
 			mPauseMenu->update();
-
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && mEsc == true)
+			if(mPauseMenu->HowToPlayInst() == false && mEsc == true)
 			{
-				mMenuStates = GameState;
-				mEsc = false;
+				if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && mEsc == true)
+				{
+					mMenuStates = GameState;
+					mEsc = false;
+				}
 			}
 			break;
 	}
@@ -95,4 +97,9 @@ void State::setState(MenuStates menustate)
 bool State::getExit()
 {
 	return mStartMenu->getExit();
+}
+
+void State::setmEsc(bool bol)
+{
+	mEsc = bol;
 }

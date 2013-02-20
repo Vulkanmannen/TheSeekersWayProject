@@ -27,6 +27,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Fenrir.h" />
+    <ClInclude Include="FinishDoor.h" />
     <ClInclude Include="FireBall.h" />
     <ClInclude Include="FireRune.h" />
     <ClInclude Include="GameManager.h" />
@@ -77,6 +78,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="Fenrir.cpp" />
+    <ClCompile Include="FinishDoor.cpp" />
     <ClCompile Include="FireBall.cpp" />
     <ClCompile Include="FireRune.cpp" />
     <ClCompile Include="GameManager.cpp" />

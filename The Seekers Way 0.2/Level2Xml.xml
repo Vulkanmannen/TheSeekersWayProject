@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <Body>
+	<Door name="DoorsLevel1">
+		<doorPosition X="512" Y="896"/>
+		<leverPosition X="128" Y="640"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<doorPosition X="1216" Y="1280"/>
+		<leverPosition X="128" Y="1664"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<doorPosition X="1920" Y="960"/>
+		<leverPosition X="1152" Y="1664"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<doorPosition X="3584" Y="960"/>
+		<buttonPosition X="3328" Y="960"/>
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<doorPosition X="1344" Y="1600"/>
+		<magicSwitchPosition X="2048" Y="1664" timeOpen="8"/>
+		
+			
+	</Door>
+  </Body>
+  
+  <Body2>
+
+  </Body2>

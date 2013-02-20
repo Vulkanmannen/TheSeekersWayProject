@@ -9,10 +9,13 @@ StartMenu::StartMenu():
 	canPress(true),
 	canPressReturn(false),
 	exit(false),
+	HowToPlay(false),
 	currentButton(0)
 {
 	mStartText.loadFromFile("StartMenurelease.PNG");
 	mStartSprite.setTexture(mStartText);
+	mHowToPlay.loadFromFile("Howtoplayinst.png");
+	mHowToPlaySprite.setTexture(mHowToPlay);
 	generateButtons();
 }
 
@@ -23,8 +26,12 @@ StartMenu::~StartMenu()
 
 void StartMenu::update()
 {
-	updateCurrentButton();
-	changeButton();
+	if(HowToPlay == false)
+	{
+		updateCurrentButton();
+		changeButton();
+		
+	}
 	buttonActivate();
 }
 
@@ -33,16 +40,34 @@ void StartMenu::render()
 	mStartSprite.setPosition(0, 0);
 	ImageManager::render(&mStartSprite);
 	renderButtons();
+	if(HowToPlay == true)
+	{
+		mHowToPlaySprite.setPosition(0, 0);
+		ImageManager::render(&mHowToPlaySprite);
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		{
+			HowToPlay = false;
+		}
+	}
 }
 
 void StartMenu::generateButtons()
 {
-	for(int i = 0; i < 5; ++i)
-	{
-		Animation animation("KNAPP.PNG", 80, 1, 46, 123);
-		animation.setPosition(sf::Vector2f(450, 200 + i*70));
+		Animation animation("Resume.PNG", 80, 1, 46, 123);
+		animation.setPosition(sf::Vector2f(450, 200 + 1*70));
 		mButtons.push_back(animation);
-	}
+
+		Animation animation2("NewGame.PNG", 80, 1, 46, 123);
+		animation2.setPosition(sf::Vector2f(450, 200 + 2*70));
+		mButtons.push_back(animation2);
+
+		Animation animation3("HowToPlay.PNG", 80, 1, 46, 123);
+		animation3.setPosition(sf::Vector2f(450, 200 + 3*70));
+		mButtons.push_back(animation3);
+
+		Animation animation4("Exit.PNG", 80, 1, 46, 123);
+		animation4.setPosition(sf::Vector2f(450, 200 + 4*70));
+		mButtons.push_back(animation4);
 }
 
 void StartMenu::changeButton()
@@ -93,29 +118,24 @@ void StartMenu::buttonActivate()
 {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && canPressReturn)
 	{
+		canPressReturn = false;
 		switch(currentButton)
 		{
 			case 0:
-				LevelManager::getInstance()->LoadLevel(1);
+				LevelManager::getInstance()->LoadLevel();
 				State::getInstance()->setState(State::GameState);
 				break;
 
 			case 1:
-				LevelManager::getInstance()->LoadLevel(2);
+				LevelManager::getInstance()->LoadLevel(0);
 				State::getInstance()->setState(State::GameState);
 				break;
 
 			case 2:
-				LevelManager::getInstance()->LoadLevel(3);
-				State::getInstance()->setState(State::GameState);
-				break;
+				HowToPlay = !HowToPlay;
+				break; 
 
 			case 3:
-				LevelManager::getInstance()->LoadLevel(4);
-				State::getInstance()->setState(State::GameState);
-				break;
-
-			case 4:
 				exit = true;
 				break;
 		}
