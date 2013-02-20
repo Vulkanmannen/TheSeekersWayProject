@@ -157,19 +157,13 @@
     <ClCompile Include="LevelManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
-<<<<<<< HEAD
-<<<<<<< HEAD
     <ClCompile Include="FinishDoor.cpp" />
-=======
     <ClCompile Include="Button.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
->>>>>>> master
-=======
     <ClCompile Include="Button.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
->>>>>>> master
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -319,19 +313,13 @@
     <ClInclude Include="LevelManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
-<<<<<<< HEAD
-<<<<<<< HEAD
     <ClInclude Include="FinishDoor.h" />
-=======
     <ClInclude Include="Button.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
->>>>>>> master
-=======
     <ClInclude Include="Button.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
->>>>>>> master
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">
