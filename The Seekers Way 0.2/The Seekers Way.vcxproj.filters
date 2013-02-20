@@ -7,9 +7,6 @@
     <ClCompile Include="Block.cpp">
       <Filter>Entities\Block</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Entities\Block</Filter>
-    </ClCompile>
     <ClCompile Include="Character.cpp">
       <Filter>Entities\Character</Filter>
     </ClCompile>
@@ -160,15 +157,15 @@
     <ClCompile Include="LevelManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
       <Filter>More</Filter>
     </ClInclude>
     <ClInclude Include="Block.h">
-      <Filter>Entities\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
       <Filter>Entities\Block</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
@@ -311,6 +308,9 @@
     </ClInclude>
     <ClInclude Include="LevelManager.h">
       <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Entities\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

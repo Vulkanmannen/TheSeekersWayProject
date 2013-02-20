@@ -41,11 +41,11 @@ void Shield::render()
 
 void Shield::interact(Entity* e)
 {
-	if(e->getEntityKind() == ARROW)
+	if((*e) == ARROW)
 	{
 		mShieldCount++;
 	}
-	if(e->getBaseKind() == BLOCK)
+	if((*e) == BLOCK || (*e) == FIREBALL)
 	{
 		mShieldCount = 5;
 	}

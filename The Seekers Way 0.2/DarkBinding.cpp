@@ -37,7 +37,7 @@ void DarkBinding::render()
 
 void DarkBinding::interact(Entity* e)
 {
-	if(e->getBaseKind() == BLOCK)
+	if((*e) == BLOCK && (*e) != VINE)
 	{
 		destroy();
 	}

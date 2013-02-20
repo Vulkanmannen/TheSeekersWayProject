@@ -6,9 +6,10 @@ static const float HEIGHT = 64;
 
 MagicSwitch::MagicSwitch(sf::Vector2f &position, Block* door, float timeOpen):
 	mIsPressed(false),
-	mAnimation("magicswitch.png", 60, 1, HEIGHT, WIDTH),
+	mAnimation("MagicSwitch.png", 60, 1, HEIGHT, WIDTH),
 	mTimeOpen(timeOpen),
-	mBlock(door)
+	mBlock(door),
+	mOpen(false)
 	{
 		mPosition = position;
 		mAlive = true;
@@ -28,7 +29,7 @@ void MagicSwitch::update(EntityKind &currentCharacter)
 
 void MagicSwitch::render()
 {
-	mAnimation.update(mIsPressed);
+	mAnimation.update(mOpen);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH / 2, mPosition.y - HEIGHT / 2));
 	ImageManager::render(&mAnimation.getSprite());
 }
@@ -39,6 +40,7 @@ void MagicSwitch::interact(Entity *e)
 	if(e->getEntityKind() == DARKBINDING)
 	{
 		Activate();
+		mOpen = true;
 	}
 }
 
@@ -59,6 +61,7 @@ void MagicSwitch::DisActivate()
 	if(mIsPressed == false && mClockOpen.getElapsedTime().asSeconds() > mTimeOpen)
 	{
 		mBlock->DisActivate();
+		mOpen = false;
 	}
 	mIsPressed = false;
 }
