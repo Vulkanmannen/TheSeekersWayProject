@@ -65,7 +65,7 @@ void Kiba::update(EntityKind &currentEntity)
 				}
 
 				// en function
-				if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
+				if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 				{
 					teletimer.restart();
 
@@ -158,7 +158,7 @@ void Kiba::getStone()
 void Kiba::slash()
 { 
 	// tryck "Q" för att aktivera en sköld (1 sec cd)
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) && mslashtimer.getElapsedTime().asSeconds() >= 1)
+	if((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::X)) && mslashtimer.getElapsedTime().asSeconds() >= 1)
 	{	
 		mslashtimer.restart();
 		Slash *slash = new Slash(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 32, mPosition.y - 30), mDirLeft);

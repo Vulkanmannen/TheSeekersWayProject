@@ -41,6 +41,8 @@ private:
 	bool mDblock;
 
 	bool mOnBlock;
+
+	bool mCanMove;
 };
 
 #endif

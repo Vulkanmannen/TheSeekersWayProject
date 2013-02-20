@@ -40,6 +40,7 @@ void GenerateDoor::GenerateDoors()
 		if(string == "name")
 		{
 			float doorPosX, doorPosY, leverPosX, leverPosY, timeOpen;
+			std::string texture;
 			bool closed = true;
 			
 			//
@@ -63,6 +64,10 @@ void GenerateDoor::GenerateDoors()
 					if(name == "Y")
 					{
 						doorPosY = static_cast<float>(positionAttribute->IntValue());
+					}
+					if(name == "texture")
+					{
+						texture = positionAttribute->Value();
 					}
 					positionAttribute = positionAttribute->Next();
 				}
@@ -204,7 +209,14 @@ void GenerateDoor::GenerateDoors()
 			Entity* block;
 			if(brigeOrDoor == DOOR)
 			{
-				block = new Door(sf::Vector2f(doorPosX, doorPosY));
+				if(texture.empty())
+				{
+					block = new Door(sf::Vector2f(doorPosX, doorPosY));
+				}
+				else
+				{
+					block = new Door(sf::Vector2f(doorPosX, doorPosY), texture);
+				}
 			}
 			else if(brigeOrDoor == BIGBRIDGE)
 			{

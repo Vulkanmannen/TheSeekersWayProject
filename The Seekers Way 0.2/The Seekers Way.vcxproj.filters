@@ -7,9 +7,6 @@
     <ClCompile Include="Block.cpp">
       <Filter>Entities\Block</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Entities\Block</Filter>
-    </ClCompile>
     <ClCompile Include="Character.cpp">
       <Filter>Entities\Character</Filter>
     </ClCompile>
@@ -136,9 +133,6 @@
     <ClCompile Include="DialogState.cpp">
       <Filter>States</Filter>
     </ClCompile>
-    <ClCompile Include="GameState.cpp">
-      <Filter>States</Filter>
-    </ClCompile>
     <ClCompile Include="SpikeBlock.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
@@ -154,15 +148,34 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>States</Filter>
     </ClCompile>
+    <ClCompile Include="GameMenu.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroScreen.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <ClCompile Include="FinishDoor.cpp" />
+=======
+    <ClCompile Include="Button.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+>>>>>>> master
+=======
+    <ClCompile Include="Button.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+>>>>>>> master
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
       <Filter>More</Filter>
     </ClInclude>
     <ClInclude Include="Block.h">
-      <Filter>Entities\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
       <Filter>Entities\Block</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
@@ -279,9 +292,6 @@
     <ClInclude Include="PauseMenu.h">
       <Filter>States</Filter>
     </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>States</Filter>
-    </ClInclude>
     <ClInclude Include="DialogState.h">
       <Filter>States</Filter>
     </ClInclude>
@@ -300,6 +310,28 @@
     <ClInclude Include="MagicSwitch.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
+    <ClInclude Include="GameMenu.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroScreen.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <ClInclude Include="FinishDoor.h" />
+=======
+    <ClInclude Include="Button.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+>>>>>>> master
+=======
+    <ClInclude Include="Button.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+>>>>>>> master
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">

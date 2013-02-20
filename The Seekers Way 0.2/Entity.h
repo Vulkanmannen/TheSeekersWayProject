@@ -12,11 +12,15 @@ public:
 		SHOTTINGTRAP, WALLTRAP, WOODENWALL, VINE, SPIKETRAP,
 		FLOORTRAP, ARROW, SHIELD, PORTAL, LEVER,
 		FIREBALL, FIRERUNE, DARKBINDING, MAGICSWITCH, SPIKEBLOCK, 
+<<<<<<< HEAD
+		BRIDGE, BIGBRIDGE, TELEKINESISBOX, LAVA, SLASH, FINISHDOOR};
+=======
 		BRIDGE, BIGBRIDGE, TELEKINESISBOX, LAVA, SLASH};
-
-
+>>>>>>> master
 
 	enum BaseKind {CHARACTER, BLOCK, OBJECT};
+
+	enum Layer {BACKGROUND, MIDDLE, CHARACTERS, FORGROUND};
 
 	Entity();
 	virtual ~Entity();
@@ -36,7 +40,8 @@ public:
 	float getHeight()const;
 	EntityKind getEntityKind()const;
 	BaseKind getBaseKind()const;
-	
+	Layer getLayer()const;
+
 	bool getAliveStatus()const;
 
 	void destroy();
@@ -57,6 +62,7 @@ protected:
 
 	EntityKind mEntityKind;
 	BaseKind mBaseKind;
+	Layer mLayer;
 
 	bool mAlive;
 	sf::Sprite mSprite;

@@ -16,6 +16,7 @@ Stone::Stone(sf::Vector2f Position):
 	mtelekinesis(false),
 	mtelemove(false),
 	mOnBlock(false),
+	mCanMove(true),
 	mAnimation("stone.png", 80, 6, SPRITEHEIGHT, SPRITEWIDTH)
 {
 	mPosition = Position + sf::Vector2f(WIDTH/2 - 32, HEIGHT/2 - 32);
@@ -24,11 +25,6 @@ Stone::Stone(sf::Vector2f Position):
 	mWidth = WIDTH;
 	mEntityKind = STONE;
 
-	//mTexture.loadFromImage(*ImageManager::getImage("crashstone.png"));
-	//mSprite.setTexture(mTexture);
-	//mSprite.setPosition(Position);
-	//mSprite.scale(WIDTH/mSprite.getTexture()->getSize().x,HEIGHT/mSprite.getTexture()->getSize().y);
-	//mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH / 2, mPosition.y - SPRITEHEIGHT / 2));
 }
 
@@ -51,8 +47,18 @@ void Stone::update(EntityKind &currentEntity)
 		falling();
 	}
 
+	if(mtelemove && mtelekinesis && mCanMove)
+	{
+		mBaseKind = OBJECT;
+	}
+	else
+	{
+		mBaseKind = BLOCK;
+	}
+
 	attraction();
 	mFalling = true;
+	mCanMove = true;
 
 	mAnimation.update(mtelekinesis);
 }
@@ -60,7 +66,6 @@ void Stone::update(EntityKind &currentEntity)
 void Stone::render()
 {
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH / 2, mPosition.y - SPRITEHEIGHT / 2));
-	//mSprite.setPosition(sf::Vector2f(mPosition.x, mPosition.y));
 	ImageManager::render(&mAnimation.getSprite());
 }
 
@@ -98,7 +103,7 @@ void Stone::move()
 	mUblock ? (mMovementSpeed.y < 0 ? mMovementSpeed.y = 0 : NULL ) : NULL;
 	mDblock ? (mMovementSpeed.y > 0 ? mMovementSpeed.y = 0 : NULL ) : NULL;
 
-	if(mtelemove)
+	if(mtelemove && mCanMove)
 	{
 		mPosition	+= mMovementSpeed;
 	}
@@ -121,16 +126,21 @@ void Stone::falling()
 
 void Stone::interact(Entity* e)
 {
-	if(e->getBaseKind() == Entity::BLOCK || (e->getBaseKind() == Entity::CHARACTER && mtelekinesis && mtelemove))
+	// räknar ut objektens radier och lägger ihop dem
+	float xRadius = mWidth / 2 + e->getWidth() / 2;
+	float yRadius = mHeight / 2 + e->getHeight() / 2;
+
+	// beräknar differansen mellan två objekt
+	float xDif = mPosition.x - e->getPosition().x;
+	float yDif = mPosition.y - e->getPosition().y;
+	
+	if((*e == CHARACTER) && yDif > yRadius - 20)
 	{
-		// räknar ut objektens radier och lägger ihop dem
-		float xRadius = mWidth / 2 + e->getWidth() / 2;
-		float yRadius = mHeight / 2 + e->getHeight() / 2;
+		mCanMove = false;
+	}
 
-		// beräknar differansen mellan två objekt
-		float xDif = mPosition.x - e->getPosition().x;
-		float yDif = mPosition.y - e->getPosition().y;
-
+	if(e->getBaseKind() == Entity::BLOCK || (e->getBaseKind() == Entity::CHARACTER && mtelekinesis && mtelemove) && mCanMove)
+	{
 		// fråga vilken sida caraktären finns på.
 		if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius)) // är karaktären höger/vänster eller över/under om blocket
 		{

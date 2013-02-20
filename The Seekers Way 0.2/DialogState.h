@@ -3,7 +3,7 @@
 #include "State.h"
 
 
-class DialogState: public State
+class DialogState
 {
 public:
 	DialogState();

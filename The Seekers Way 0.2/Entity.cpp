@@ -104,3 +104,9 @@ bool Entity::operator!=(BaseKind baseKind)
 {
 	return mBaseKind != baseKind;
 }
+
+// returnerar lagret
+Entity::Layer Entity::getLayer()const
+{
+	return mLayer;
+}

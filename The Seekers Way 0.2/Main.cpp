@@ -4,9 +4,11 @@
 #include "MapGenerator.h"
 #include "NormalBlock.h"
 #include "Animation.h"
+#include "StartMenu.h"
 
 #include <string>
 
+#include "State.h"
 #include "Door.h"
 #include "Button.h"
 #include "Lever.h"
@@ -32,24 +34,16 @@ int main()
 
 	EntityManager::getInstance()->setView(&view);
 
-
-	std::string map1Block("Level5.PNG");
-	std::string map1Object("Level5Object.png");
-	MapGenerator::generateMap(map1Block, map1Object);
-
 	Sounds::getInstance();
 
 
-	EntityManager::getInstance()->addEntity(new WoodenWall(sf::Vector2f(17 *64, 13 *64)));
+	/*Sounds::getInstance()->Loop("Level1Music.wav", 30);*/
 
-
-	sf::Clock clock;
-	//Sounds::getInstance()->Loop("Levelkoncept.wav", 30);
     while (window.isOpen())
     {
         sf::Event event;
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+		if (State::getInstance()->getExit())
 		{	
 			window.close();
 		}
@@ -61,29 +55,24 @@ int main()
                 window.close();
         }
 		
-		window.clear(sf::Color::Blue);
-
-		EntityManager::getInstance()->update();
-		EntityManager::getInstance()->render();
+		window.clear(sf::Color::Black);
+		view.setCenter(sf::Vector2f(512, 360));
+		State::getInstance()->update();
 		
-		if(Dialogue::getInstance()->getendofDialogue())
-		{
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
-			{	
-					Dialogue::getInstance()->startDialogue("start1.txt");
-			}
-		}
-		else
-		{
-			Dialogue::getInstance()->update();
-			Dialogue::getInstance()->render();
-		}
+		//if(Dialogue::getInstance()->getendofDialogue())
+		//{
+		//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+		//	{	
+		//		Dialogue::getInstance()->startDialogue("start1.txt");
+		//	}
+		//}
+		//else
+		//{
+		//	Dialogue::getInstance()->update();
+		//	Dialogue::getInstance()->render();
+		//}
 
-		EntityManager::getInstance()->updateView();
-
-		window.setView(view);
-
-		EntityManager::getInstance()->updatePrimaryCharacter();
+		window.setView(view); 
 
 		window.display();
     }

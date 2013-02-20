@@ -1,12 +1,14 @@
 #ifndef INCLUDED_Door
 #define INCLUDED_Door
+
 #include "Animation.h"
 #include "Block.h"
+#include <string>
 
 class Door: public Block
 {
 public:
-	Door(sf::Vector2f &position);
+	Door(sf::Vector2f &position, std::string &texture = std::string("door.png"));
 	~Door();
 
 	void render();
@@ -21,6 +23,10 @@ public:
 	
 private:
 	Animation mAnimation;
+	
+	enum Status {CLOSED, OPENING, OPEN, CLOSING};
+
+	Status mStatus;
 };
 
 #endif

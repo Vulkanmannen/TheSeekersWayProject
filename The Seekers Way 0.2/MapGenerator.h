@@ -10,7 +10,7 @@ public:
 	MapGenerator();
 	~MapGenerator();
 
-	static void generateMap(std::string imageNameBlock, std::string imageNameObject);
+	static void generateMap(std::string imageNameBlock, std::string imageNameObject, std::string imageNameXML);
 private:
 };
 

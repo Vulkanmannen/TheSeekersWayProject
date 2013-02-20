@@ -11,6 +11,7 @@ public:
 	Animation(std::string fileName, int timePerFrame, int numberOfFrames, int height, int width);
 	Animation(int height, int width);
 	Animation();
+	Animation(const Animation&);
 	~Animation();
 
 	void init(std::string fileName, int timePerFrame, int numberOfFrames);
