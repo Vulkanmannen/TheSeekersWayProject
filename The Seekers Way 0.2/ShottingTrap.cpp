@@ -9,7 +9,7 @@ ShottingTrap::ShottingTrap(sf::Vector2f &position, int time, bool shot, bool dir
 	mDirLeft(dirleft),
 	mShotting(shot),
 	mTimeToShot(time * 100),
-	mAnimation("spikerune.png", 100, 10, HEIGHT, WIDTH)
+	mAnimation("arrowtrap.png", 100, 8, HEIGHT, WIDTH)
 {
 	mEntityKind = SHOTTINGTRAP;
 	mAlive = true;

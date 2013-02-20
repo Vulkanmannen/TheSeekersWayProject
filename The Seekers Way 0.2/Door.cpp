@@ -35,6 +35,10 @@ void Door::Activate()
 
 	if(mStatus != OPEN)
 	{
+		if(mStatus != OPENING)
+		{
+			mAnimation.setAnimationToBegining();
+		}
 		mStatus = OPENING;
 	}
 	mBaseKind = OBJECT;
@@ -44,6 +48,10 @@ void Door::DisActivate()
 {
 	if(mStatus != CLOSED)
 	{
+		if(mStatus != CLOSING)
+		{
+			mAnimation.setAnimationToBegining();
+		}
 		mStatus = CLOSING;
 	}
 	mBaseKind = BLOCK;
@@ -51,9 +59,6 @@ void Door::DisActivate()
 
 void Door::update(EntityKind &currentEntity)
 {
-	mAnimation.update(mStatus);
-
-
 	if(mStatus == OPENING && mAnimation.getEndOfAnimation())
 	{
 		mStatus = OPEN;
@@ -61,12 +66,13 @@ void Door::update(EntityKind &currentEntity)
 
 	if(mStatus == CLOSING && mAnimation.getEndOfAnimation())
 	{
-		mStatus = CLOSED;
+ 		mStatus = CLOSED;
 	}
 }
 
 void Door::render()
 {
+	mAnimation.update(mStatus);
 	ImageManager::render(&mAnimation.getSprite());
 }
 
