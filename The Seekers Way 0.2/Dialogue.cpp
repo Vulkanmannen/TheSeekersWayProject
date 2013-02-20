@@ -11,19 +11,24 @@ const static float WIDTH = 64;
 Dialogue::Dialogue():
 	mEndofDialogue(true),
 	isbuttonpressed(false),
-	currentText(0)
+	currentText(0),
+	dialogSpeed(10),
+	currentLetter(0)
 {
 	
 	journal_font = new sf::Font;
 	if(!journal_font->loadFromFile("journal.ttf"))
 		assert(!"FONT NOT LOADED");
 
-	character_font = new sf::Font;
-	if(!character_font->loadFromFile("journal.ttf"))
-		assert(!"FONT NOT LOADED");
+	character_font = new sf::Font(journal_font->getDefaultFont());
+	/*if(!character_font->loadFromFile("journal.ttf"))
+		assert(!"FONT NOT LOADED");*/
 
-	mTexture.loadFromImage(*ImageManager::getImage("dialog0.png"));
-	mSprite.setTexture(mTexture);
+	mTexture[0].loadFromImage(*ImageManager::getImage("dialog0.png"));
+	mTexture[1].loadFromImage(*ImageManager::getImage("dialog1.png"));
+	mTexture[2].loadFromImage(*ImageManager::getImage("dialog2.png"));
+	mTexture[3].loadFromImage(*ImageManager::getImage("dialog3.png"));
+
 }
 
 Dialogue::~Dialogue()
@@ -44,6 +49,14 @@ Dialogue* Dialogue::getInstance()
 
 void Dialogue::update()
 {
+	if(interval.getElapsedTime().asMilliseconds() > dialogSpeed)
+	{
+		interval.restart();
+		if(currentLetter < texts[currentText]->getString().toAnsiString().size() )
+		{
+			currentLetter++;
+		}
+	}
 	playNext();
 }
 
@@ -53,10 +66,23 @@ void Dialogue::render()
 	{
 		if(currentText < texts.size())
 		{
+			sf::Text tempText;
+			tempText.setFont(*character_font);
+			std::string tempString;
+			if(texts[currentText]->getString().toAnsiString().size() != 0)
+			{
+				tempString = texts[currentText]->getString().toAnsiString().substr(0, currentLetter);
+			}
+			else
+			{
+				tempString = texts[currentText]->getString().toAnsiString();
+			}
+			tempText.setString(tempString);
 			mSprite.setPosition(			EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(512		, 360 - 84));
-			texts[currentText]->setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(512 - 10, 360 - 94));
+			tempText.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(512 - 10, 360 - 94));
+			mSprite.setTexture(mTexture[speakerlista[texts[currentText]]]);
 			ImageManager::render(&mSprite);
-			ImageManager::render(texts[currentText]);
+			ImageManager::render(&tempText);
 		}
 		else
 		{
@@ -74,9 +100,11 @@ bool Dialogue::getendofDialogue()
 void Dialogue::startDialogue(std::string dialogueName)
 {
 	currentText = 0;
+	currentLetter = 0;
 	empthyDialogue();
 	loadDialogue(dialogueName);
 	mEndofDialogue = false;
+	interval.restart();
 }
 
 void Dialogue::empthyDialogue()
@@ -86,6 +114,7 @@ void Dialogue::empthyDialogue()
 			delete texts.back();
 			texts.pop_back();
 		}
+	speakerlista.clear();
 }
 
 void Dialogue::loadDialogue(std::string dialogueName)
@@ -104,7 +133,7 @@ void Dialogue::loadDialogue(std::string dialogueName)
 			newest = filnamn[0];
 			oldest = "";
 			sf::Text *text = new sf::Text;
-			text->setFont(*journal_font);
+			text->setFont(*character_font);
 			for(bool j = true; j == true;)
 			{
 				//std::cout<<oldest<<std::endl;
@@ -164,6 +193,7 @@ void Dialogue::loadDialogue(std::string dialogueName)
 					j = false;
 				}
 			}
+			speakerlista.insert(std::pair<sf::Text*, Speaker>(text, kiba));
 			texts.push_back(text);
 		}
 		filnamn.clear();
@@ -176,7 +206,15 @@ void Dialogue::playNext()
 	{
 		if(!isbuttonpressed)
 		{
-			currentText++;
+			if(currentLetter >= texts[currentText]->getString().toAnsiString().size())
+			{
+				currentText++;
+				currentLetter = 0;
+			}
+			else
+			{
+				currentLetter = texts[currentText]->getString().toAnsiString().size() - 1;
+			}
 			isbuttonpressed = true;
 		}
 	}

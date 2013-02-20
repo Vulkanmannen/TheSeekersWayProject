@@ -6,6 +6,8 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include "tinyxml.h"
+#include <map>
 
 class Dialogue
 {
@@ -27,12 +29,14 @@ public:
 private:
 	static Dialogue *sInstance;
 
+	enum Speaker{kiba, charlotte, fenrir, sheeka, journal};
 	int currentText;
+	int currentLetter;
 	int dialogSpeed;
-
-	sf::Text dialogue;
 	
 	TextVector texts;
+	typedef std::map<sf::Text*, Speaker> SpeakerMap;
+	SpeakerMap speakerlista;
 	
 	bool isbuttonpressed;
 	bool mEndofDialogue;
@@ -41,7 +45,9 @@ private:
 	sf::Font *character_font;
 
 	sf::Sprite mSprite;
-	sf::Texture mTexture;
+	sf::Texture mTexture[4];
+
+	sf::Clock interval;
 };
 
 #endif

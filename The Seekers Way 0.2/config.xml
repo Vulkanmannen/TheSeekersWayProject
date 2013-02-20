@@ -8,7 +8,7 @@
 
 	<Door name="Level1">
 		<smalBridgePosition X="832" Y="512" Closed="0"/>
-		<buttonPosition X="768" Y="896"/>		2
+		<buttonPosition X="768" Y="896"/>
 	</Door>
 
 	<Door name="Level1">
