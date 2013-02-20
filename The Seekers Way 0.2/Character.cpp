@@ -66,7 +66,7 @@ void Character::onblock()
 		mMovementSpeed.y = 0;
 	}
 
-	if(mStatus == ACTION2 && mAnimation.getEndOfAnimation())
+	if(mStatus == ACTION2 && mAnimation.getEndOfAnimation() || (mStatus == JUMP && !mJumping))
 	{
 		mStatus = IDLE;
 	}

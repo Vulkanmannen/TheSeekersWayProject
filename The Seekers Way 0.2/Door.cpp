@@ -6,15 +6,19 @@
 static const float WIDTH = 32;
 static const float HEIGHT = 128;
 
-Door::Door(sf::Vector2f &position):
-	mAnimation("Door2.png", 60, 1, HEIGHT, WIDTH)
+static const float SPRITEWIDTH = 64;
+static const float SPRITEHEIGHT = 128;
+
+Door::Door(sf::Vector2f &position, std::string &texture):
+	mAnimation(texture, 30, 11, SPRITEHEIGHT, SPRITEWIDTH),
+	mStatus(CLOSED)
 {
 	mPosition = position + sf::Vector2f(0,32);
 	mAlive = true;
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = DOOR;	
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH/ 2, mPosition.y - SPRITEHEIGHT/ 2));
 }
 
 Door::~Door()
@@ -29,22 +33,39 @@ void Door::Activate()
 		Sounds::getInstance()->Play("door.wav");
 	}
 
+	if(mStatus != OPEN)
+	{
+		mStatus = OPENING;
+	}
 	mBaseKind = OBJECT;
 }
 
 void Door::DisActivate()
 {
+	if(mStatus != CLOSED)
+	{
+		mStatus = CLOSING;
+	}
 	mBaseKind = BLOCK;
 }
 
 void Door::update(EntityKind &currentEntity)
 {
+	if(mStatus == CLOSING && mAnimation.getEndOfAnimation())
+	{
+		mStatus = CLOSED;
+	}
 
+	if(mStatus == OPENING && mAnimation.getEndOfAnimation())
+	{
+		mStatus = OPEN;
+	}
+
+	mAnimation.update(mStatus);
 }
 
 void Door::render()
 {
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
 	ImageManager::render(&mAnimation.getSprite());
 }
 

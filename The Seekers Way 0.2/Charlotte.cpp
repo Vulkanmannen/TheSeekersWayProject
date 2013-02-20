@@ -10,7 +10,8 @@ const static float WIDTH = 60;
 
 
 Charlotte::Charlotte(sf::Vector2f &position):
-	mIsShield(false)
+	mIsShield(false),
+	mActiveCharacter(false)
 	{
 		mAnimation.init("Charlotte Sprite1_1.png", 60, 12);
 
@@ -36,8 +37,16 @@ void Charlotte::update(EntityKind &currentEntity)
 			SetShield();
 		}
 	}
-		GetShieldLife();
-	
+	GetShieldLife();
+
+	if(mEntityKind == currentEntity)
+	{
+		mActiveCharacter = true;
+	}
+	else
+	{
+		mActiveCharacter = false;
+	}
 	Character::update(currentEntity);
 }
 
@@ -85,12 +94,13 @@ void Charlotte::SetShield()
 void Charlotte::interact(Entity* e)
 {
 	Character::interact(e);
-	if(e->getEntityKind() == PORTAL)
+	if(e->getEntityKind() == PORTAL && mActiveCharacter)
 	{
 		if((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::X)) && mClock.getElapsedTime().asSeconds() >=1) // tryck "Q" för att aktivera en sköld (1 sec cd)
 		{	
 			mClock.restart();
 			mPosition = static_cast<Portal*>(e)->getDestination();
+			Sounds::getInstance()->Play("teleport.wav");
 		}
 	}
 }

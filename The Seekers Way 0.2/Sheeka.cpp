@@ -115,7 +115,7 @@ void Sheeka::darkBinding()
 	{
 		mDarkBindingClock.restart();
 		mCanPressDarkBinding = false;
-		EntityManager::getInstance()->addEntity(new DarkBinding(mPosition, mDirLeft));
+		EntityManager::getInstance()->addEntity(new DarkBinding(sf::Vector2f(mPosition.x + (35 * (mDirLeft? -1 : 1)), mPosition.y - 7), mDirLeft));
 		mStatus = ACTION2;
 	}
 	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::X))

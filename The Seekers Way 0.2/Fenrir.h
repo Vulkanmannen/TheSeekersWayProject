@@ -28,9 +28,10 @@ private:
 	void isWallJumping();
 	void canWallJump();
 	void updateHitbox();
+	void updateSatatus();
 	bool hitWall();
 
-
+	// walljump
 
 	bool mWallJumping;
 	bool mCanPressWallJump;
@@ -47,6 +48,7 @@ private:
 	// snowmist
 
 	void snowMist();
+	void notInSnowMist();
 	void moveInSnowMist();
 	void snowMistCountdown();
 

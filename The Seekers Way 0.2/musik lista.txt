@@ -7,3 +7,8 @@ arrow.wav
 slash.wav
 door.wav
 sheild.wav
+fireball.wav
+teleport.wav
+errorsound.wav
+snowmist.wav
+Level1Music.wav
