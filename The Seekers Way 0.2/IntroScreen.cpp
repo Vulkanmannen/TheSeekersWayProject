@@ -1,10 +1,10 @@
 #include "IntroScreen.h"
 #include "ImageManager.h"
 
-IntroScreen::IntroScreen()
+IntroScreen::IntroScreen():
+mAnimation("intro.png", 150, 24, 512, 512)
 {
-	mIntroText.loadFromFile("IntroSplash.PNG");
-	mIntroSprite.setTexture(mIntroText);
+	mAnimation.setPosition(sf::Vector2f(256, 64));
 }
 
 
@@ -14,6 +14,8 @@ IntroScreen::~IntroScreen()
 
 void IntroScreen::render()
 {
-	mIntroSprite.setPosition(0, 0);
-	ImageManager::render(&mIntroSprite);
+
+	mAnimation.update(0);
+	ImageManager::render(&mAnimation.getSprite());
+
 }

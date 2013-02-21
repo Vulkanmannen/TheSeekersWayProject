@@ -40,7 +40,7 @@ void ShottingTrap::update(EntityKind &currentEntity)
 		}
 	}
 
-	mAnimation.update(0);
+	mAnimation.update(!mDirLeft);
 }
 
 void ShottingTrap::render()

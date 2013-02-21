@@ -35,10 +35,6 @@ void Door::Activate()
 
 	if(mStatus != OPEN)
 	{
-		if(mStatus != OPENING)
-		{
-			mAnimation.setAnimationToBegining();
-		}
 		mStatus = OPENING;
 	}
 	mBaseKind = OBJECT;
@@ -48,10 +44,6 @@ void Door::DisActivate()
 {
 	if(mStatus != CLOSED)
 	{
-		if(mStatus != CLOSING)
-		{
-			mAnimation.setAnimationToBegining();
-		}
 		mStatus = CLOSING;
 	}
 	mBaseKind = BLOCK;

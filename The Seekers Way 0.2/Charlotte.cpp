@@ -13,7 +13,7 @@ Charlotte::Charlotte(sf::Vector2f &position):
 	mIsShield(false),
 	mActiveCharacter(false)
 	{
-		mAnimation.init("Charlotte Sprite1_1.png", 60, 12);
+		mAnimation.init("charlotte.png", 60, 12);
 
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
@@ -52,7 +52,7 @@ void Charlotte::update(EntityKind &currentEntity)
 
 void Charlotte::render()
 {
-	mAnimation.update(/*mStatus * 2 + !mDirLeft*/0);
+	mAnimation.update(mStatus * 2 + mDirLeft);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y - 71));
 	ImageManager::render(&getSprite());
 }
