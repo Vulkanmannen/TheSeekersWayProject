@@ -64,8 +64,11 @@ void FinishDoor::LoadNextLevel()
 {
 	if(kibaInGoal == true && charlotteInGoal == true && fenrirInGoal == true && sheekaInGoal == true)
 	{
+		if(mAllInGoal == false)
+		{
+			mClockAllIn.restart();
+		}
 		mAllInGoal = true;
-		mClockAllIn.restart();
 	}
 
 	if(mClockAllIn.getElapsedTime().asSeconds() > 2 && mAllInGoal)
