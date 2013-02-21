@@ -1,0 +1,5 @@
+3/Well?\
+4/What?\
+3/Aren’t you going to say anything? Just admit you needed my help.\
+4/Oh, sure. If it makes you feel better, we can pretend that’s true.\
+3/Right. I’m done trying to be nice.\
