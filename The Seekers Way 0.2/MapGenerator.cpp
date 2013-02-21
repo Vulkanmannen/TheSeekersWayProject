@@ -14,6 +14,7 @@
 #include "Stone.h"
 #include "Lava.h"
 #include "WoodenWall.h"
+#include "FinishDoor.h"
 
 MapGenerator::MapGenerator()
 	{}
@@ -22,9 +23,9 @@ MapGenerator::MapGenerator()
 MapGenerator::~MapGenerator()
 	{}
 
-void MapGenerator::generateMap(std::string imageNameBlock, std::string imageNameObject)
+void MapGenerator::generateMap(std::string imageNameBlock, std::string imageNameObject, std::string imageNameXML)
 {
-	GenerateDoor::loadDocument("config.xml");
+	GenerateDoor::loadDocument(imageNameXML);
 	GenerateDoor::GenerateDoors();
 
 	sf::Image image;
@@ -66,6 +67,10 @@ void MapGenerator::generateMap(std::string imageNameBlock, std::string imageName
 				else if(color.g == 250)
 				{
 					entityManager->addEntity(new WoodenWall(position));
+				}
+				else if(color.g == 255)
+				{
+					entityManager->addEntity(new FinishDoor(position));
 				}
 			}
 

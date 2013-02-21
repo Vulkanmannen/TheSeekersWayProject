@@ -5,25 +5,30 @@
 
 struct Level 
 {
-	Level(std::string blockMap, std::string objectMap)
+	Level(std::string blockMap, std::string objectMap, std::string XmlMap)
 	{
 		mblockMap = blockMap;
 		mobjectMap = objectMap;
+		mXmlMap = XmlMap;
 	}
 	std::string mblockMap;
 	std::string mobjectMap;
+	std::string mXmlMap;
 };
 
 class LevelManager
 {
+static int currentLevel;
 public:
 	
 	typedef std::vector<Level> Levelvector;
 
 	~LevelManager();
 
-	void LoadLevel(int level);
+	void LoadLevel(int level = currentLevel);
 	static LevelManager* getInstance();
+
+	int getCurrentLevel();
 
 
 private:
@@ -37,6 +42,8 @@ private:
 	Levelvector mLevels;
 
 	void generateLevels();
+	
+	
 
 };
 

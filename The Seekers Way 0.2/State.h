@@ -23,6 +23,7 @@ public:
 	void render();
 	void update();
 	bool getExit();
+	void setmEsc(bool bol);
 	void setState(MenuStates);
 	static State* getInstance();
 

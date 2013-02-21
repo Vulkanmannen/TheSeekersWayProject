@@ -13,6 +13,7 @@ public:
 	void render();
 	void update();
 	void SetCanPressToFalse();
+	bool HowToPlayInst();
 
 private:
 
@@ -27,8 +28,12 @@ private:
 	bool canPressReturn;
 	bool canPress;
 
+	bool HowToPlay;
+
 	sf::Texture mPauseText;
+	sf::Texture mHowToPlay;
 	sf::Sprite mPauseSprite;
+	sf::Sprite mHowToPlaySprite;
 
 	std::vector<Animation> mButtons;
 };

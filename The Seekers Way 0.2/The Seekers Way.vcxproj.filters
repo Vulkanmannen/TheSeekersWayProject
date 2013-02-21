@@ -157,6 +157,7 @@
     <ClCompile Include="LevelManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
+    <ClCompile Include="FinishDoor.cpp" />
     <ClCompile Include="Button.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
@@ -309,6 +310,7 @@
     <ClInclude Include="LevelManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
+    <ClInclude Include="FinishDoor.h" />
     <ClInclude Include="Button.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>

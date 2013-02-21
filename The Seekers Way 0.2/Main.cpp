@@ -34,15 +34,10 @@ int main()
 
 	EntityManager::getInstance()->setView(&view);
 
-
-	std::string map1Block("Level5.PNG");
-	std::string map1Object("Level5Object.png");
-	MapGenerator::generateMap(map1Block, map1Object);
-
 	Sounds::getInstance();
 
 
-	Sounds::getInstance()->Loop("Level1Music.wav", 30);
+	/*Sounds::getInstance()->Loop("Level1Music.wav", 30);*/
 
     while (window.isOpen())
     {
@@ -64,18 +59,18 @@ int main()
 		view.setCenter(sf::Vector2f(512, 360));
 		State::getInstance()->update();
 		
-		if(Dialogue::getInstance()->getendofDialogue())
-		{
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
-			{	
-				Dialogue::getInstance()->startDialogue("start1.txt");
-			}
-		}
-		else
-		{
-			Dialogue::getInstance()->update();
-			Dialogue::getInstance()->render();
-		}
+		//if(Dialogue::getInstance()->getendofDialogue())
+		//{
+		//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+		//	{	
+		//		Dialogue::getInstance()->startDialogue("start1.txt");
+		//	}
+		//}
+		//else
+		//{
+		//	Dialogue::getInstance()->update();
+		//	Dialogue::getInstance()->render();
+		//}
 
 		window.setView(view); 
 

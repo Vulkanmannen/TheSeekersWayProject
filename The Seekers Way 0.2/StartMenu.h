@@ -28,9 +28,12 @@ private:
 	bool canPressReturn;
 	bool canPress;
 	bool exit;
+	bool HowToPlay;
 
 	sf::Texture mStartText;
+	sf::Texture mHowToPlay;
 	sf::Sprite mStartSprite;
+	sf::Sprite mHowToPlaySprite;
 
 	std::vector<Animation> mButtons;
 };
