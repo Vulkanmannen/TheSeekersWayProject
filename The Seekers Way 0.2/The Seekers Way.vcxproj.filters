@@ -157,12 +157,10 @@
     <ClCompile Include="LevelManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="FinishDoor.cpp" />
     <ClCompile Include="Button.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
-=======
     <ClCompile Include="Button.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
@@ -172,7 +170,6 @@
     <ClCompile Include="FinishDoor.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
->>>>>>> Ameroz
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -322,12 +319,10 @@
     <ClInclude Include="LevelManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="FinishDoor.h" />
     <ClInclude Include="Button.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
-=======
     <ClInclude Include="Button.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
@@ -337,7 +332,6 @@
     <ClInclude Include="FinishDoor.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
->>>>>>> Ameroz
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">

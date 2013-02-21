@@ -63,7 +63,10 @@ void FinishDoor::LoadNextLevel()
 {
 	if(kibaInGoal == true && charlotteInGoal == true && fenrirInGoal == true && sheekaInGoal == true)
 	{
-		LevelManager::getInstance()->LoadLevel(LevelManager::getInstance()->getCurrentLevel() + 1);
+		if(mClock.getElapsedTime().asSeconds() > 2)
+		{
+			LevelManager::getInstance()->LoadLevel(LevelManager::getInstance()->getCurrentLevel() + 1);
+		}
 	}
 }
 
