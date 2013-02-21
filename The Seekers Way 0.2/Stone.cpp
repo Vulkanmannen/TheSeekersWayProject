@@ -24,6 +24,7 @@ Stone::Stone(sf::Vector2f Position):
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = STONE;
+	mLayer = FORGROUND;
 
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH / 2, mPosition.y - SPRITEHEIGHT / 2));
 }

@@ -3,6 +3,7 @@
 #include "StartMenu.h"
 #include "GameMenu.h"
 #include "PauseMenu.h"
+#include "Sounds.h"
 
 State* State::sInstance = 0;
 
@@ -14,6 +15,7 @@ State::State():
 	mStartMenu = new StartMenu();
 	mGameMenu = new GameMenu();
 	mPauseMenu = new PauseMenu();
+	Sounds::getInstance()->Loop("crazykoncept.wav", 30);
 }
 
 
@@ -28,16 +30,27 @@ void State::update()
 	//The Splashscreen
 		case Intro: 
 			IntroSplash->render();
-			if(mIntroClock.getElapsedTime().asSeconds() > 5 
+			if(mIntroClock.getElapsedTime().asSeconds() > 6.7)
+			{
+				Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() - 1);
+			}
+			if(mIntroClock.getElapsedTime().asSeconds() > 8 
 				|| (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || sf::Keyboard::isKeyPressed(sf::Keyboard::Return)))
 			{
 				mMenuStates = StartState;
+				Sounds::getInstance()->StopAll();
 				mEsc = false;
+				Sounds::getInstance()->setMasterVolume(30);
+				Sounds::getInstance()->Loop("fireball.wav", 30);
 			}
 			break;
 
 	//The StartMenu State
 		case StartState:
+			if(Sounds::getInstance()->getMasterVolume() < 100)
+			{
+				Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() + 1);
+			}
 			mStartMenu->render();
 			mStartMenu->update();
 			break;
