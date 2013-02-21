@@ -51,23 +51,23 @@ void PauseMenu::render()
 
 void PauseMenu::generateButtons()
 {
-		Animation animation("Resume.PNG", 80, 1, 46, 123);
+		Animation animation("Resume.PNG", 80, 1, 64, 192);
 		animation.setPosition(sf::Vector2f(230, 100 + 1*70));
 		mButtons.push_back(animation);
 
-		Animation animation2("RestartLevel.PNG", 80, 1, 46, 123);
+		Animation animation2("RestartLevel.PNG", 80, 1, 64, 192);
 		animation2.setPosition(sf::Vector2f(230, 100 + 2*70));
 		mButtons.push_back(animation2);
 
-		Animation animation3("HowToPlay.PNG", 80, 1, 46, 123);
+		Animation animation3("HowToPlay.PNG", 80, 1, 64, 192);
 		animation3.setPosition(sf::Vector2f(230, 100 + 3*70));
 		mButtons.push_back(animation3);
 
-		Animation animation4("Audio.png", 80, 1, 46, 123);
+		Animation animation4("Audio.png", 80, 1, 64, 192);
 		animation4.setPosition(sf::Vector2f(230, 100 + 4*70));
 		mButtons.push_back(animation4);
 
-		Animation animation5("MainMenu.PNG", 80, 1, 46, 123);
+		Animation animation5("MainMenu.PNG", 80, 1,64 , 192);
 		animation5.setPosition(sf::Vector2f(230, 100 + 5*70));
 		mButtons.push_back(animation5);
 }

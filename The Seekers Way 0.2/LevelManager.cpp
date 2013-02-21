@@ -2,6 +2,7 @@
 #include "EntityManager.h"
 #include <string>
 #include "MapGenerator.h"
+#include "Sounds.h"
 
 LevelManager* LevelManager::sInstance = 0;
 
@@ -23,6 +24,9 @@ void LevelManager::LoadLevel(int level)
 	MapGenerator::generateMap(mLevels[level].mblockMap, mLevels[level].mobjectMap, mLevels[level].mXmlMap);
 	currentLevel = level;
 	EntityManager::getInstance()->setMapSize(mLevels[level].mMapRight, mLevels[level].mMapBottom);
+	Sounds::getInstance()->StopAll();
+	Sounds::getInstance()->setMasterVolume(100);
+	Sounds::getInstance()->Loop("Level1Music.wav", 30);
 }
 
 LevelManager* LevelManager::getInstance()
