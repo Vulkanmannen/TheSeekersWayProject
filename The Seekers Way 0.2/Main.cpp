@@ -56,18 +56,18 @@ int main()
 		view.setCenter(sf::Vector2f(512, 360));
 		State::getInstance()->update();
 		
-		//if(Dialogue::getInstance()->getendofDialogue())
-		//{
-		//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
-		//	{	
-		//		Dialogue::getInstance()->startDialogue("start1.txt");
-		//	}
-		//}
-		//else
-		//{
-		//	Dialogue::getInstance()->update();
-		//	Dialogue::getInstance()->render();
-		//}
+		if(Dialogue::getInstance()->getendofDialogue())
+		{
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+			{	
+				Dialogue::getInstance()->startDialogue("start1.txt");
+			}
+		}
+		else
+		{
+			Dialogue::getInstance()->update();
+			Dialogue::getInstance()->render();
+		}
 
 		window.setView(view); 
 

@@ -23,10 +23,10 @@ EntityManager::EntityManager():
 		frameTexture.loadFromFile("frame.png");
 		frame.setTexture(frameTexture);
 		
-		mPortraitSprite[0] = Animation("Fenrir Face sprite 1_1.png", 60, 1, 64, 64);
-		mPortraitSprite[1] = Animation("Fenrir Face sprite 1_1.png", 60, 1, 64, 64);
+		mPortraitSprite[0] = Animation("PortraitesKiba.png", 60, 1, 64, 64);
+		mPortraitSprite[1] = Animation("PortraitesCharlotte.png", 60, 1, 64, 64);
 		mPortraitSprite[2] = Animation("Fenrir Face sprite 1_1.png", 60, 1, 64, 64);
-		mPortraitSprite[3] = Animation("Fenrir Face sprite 1_1.png", 60, 1, 64, 64);
+		mPortraitSprite[3] = Animation("Sheeka Face sprite 1_1.png", 60, 1, 64, 64);
 	
 		mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
 		mLifeSprite.setTexture(mLifeTexture);
@@ -117,8 +117,9 @@ void EntityManager::render()
 			}
 		}
 	}
-	renderPortrait();
+	
 	renderLifeAndMask();
+	renderPortrait();
 	//sf::RectangleShape rect(sf::Vector2f(mMapRight - 512, mMapBottom - 360));
 	//rect.setPosition(mMapLeft, mMapTop);
 	//sf::Color colo(255,255,255,128);
@@ -130,7 +131,7 @@ void EntityManager::render()
 void EntityManager::renderLifeAndMask()
 {
 	ImageManager::render(&mMaskSprite);
-
+	mLifeSprite.setPosition(mLifeSprite.getPosition() + sf::Vector2f(20, frame.getLocalBounds().height + 10));
 	for(int i = 0; i < mPlayerLife; ++i)
 	{
 		ImageManager::render(&mLifeSprite);
@@ -144,9 +145,7 @@ void EntityManager::renderPortrait()
 
 	for(int i = 0; i < 4; i++)
 	{
-		frame.setPosition(				mView->getCenter() - sf::Vector2f(512 - i * frameTexture.getSize().x, 360));
-		mPortraitSprite[i].setPosition(	mView->getCenter() - sf::Vector2f(503 - i * frameTexture.getSize().x, 351));
-		
+		frame.setPosition(	mPortraitSprite[i].getSprite().getPosition() - sf::Vector2f(9 , 9));
 		for(CharacterVector::size_type j = 0; j < mCharacters.size(); j++)
 		{
 			if (mCharacters[j]->getEntityKind() == Entity::KIBA && i == 0)
@@ -173,7 +172,9 @@ void EntityManager::renderPortrait()
 				ImageManager::render(&frame);
 			}
 		}
+		mPortraitSprite[i].setPosition(	mView->getCenter() - sf::Vector2f(503 - i * frameTexture.getSize().x, 351));
 	}
+	
 }
 
 // tilar bakgrunden
