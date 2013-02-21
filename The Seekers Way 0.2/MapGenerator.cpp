@@ -15,6 +15,7 @@
 #include "Lava.h"
 #include "WoodenWall.h"
 #include "FinishDoor.h"
+#include "Decoration.h"
 
 MapGenerator::MapGenerator()
 	{}
@@ -123,6 +124,14 @@ void MapGenerator::generateMap(std::string imageNameBlock, std::string imageName
 				else if(color.g == 100)
 				{
 					entityManager->addEntity(new SpikeBlock(position));
+				}
+				else if(color.g == 150)
+				{
+					entityManager->addEntity(new Decoration(position, color.b, false));
+				}
+				else if(color.g == 200)
+				{
+					entityManager->addEntity(new Decoration(position, color.b, true));
 				}
 			}
 		}

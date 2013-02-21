@@ -3,6 +3,7 @@
 #include "SFML\Graphics.hpp"
 #include "LevelManager.h"
 #include "State.h"
+#include "Sounds.h"
 
 
 StartMenu::StartMenu():
@@ -17,6 +18,7 @@ StartMenu::StartMenu():
 	mHowToPlay.loadFromFile("Howtoplayinst.png");
 	mHowToPlaySprite.setTexture(mHowToPlay);
 	generateButtons();
+	Sounds::getInstance()->Loop("crazykoncept.wav", 30);
 }
 
 

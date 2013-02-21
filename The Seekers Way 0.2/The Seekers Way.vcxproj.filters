@@ -170,6 +170,10 @@
     <ClCompile Include="FinishDoor.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
+<<<<<<< HEAD
+=======
+    <ClCompile Include="Decoration.cpp" />
+>>>>>>> b60bc6f2e5c443c05aadc3d56f2e78830a510583
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -332,6 +336,10 @@
     <ClInclude Include="FinishDoor.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
+<<<<<<< HEAD
+=======
+    <ClInclude Include="Decoration.h" />
+>>>>>>> b60bc6f2e5c443c05aadc3d56f2e78830a510583
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">

@@ -12,7 +12,7 @@ Kiba::Kiba(sf::Vector2f &position):
 {	
 	mStone=0;
 	EntityManager::getInstance()->addEntity(mTeleBox);
-	mAnimation.init("Kiba.png", 60, 1);
+	mAnimation.init("Kiba.png", 60, 6);
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = KIBA;
@@ -118,7 +118,7 @@ void Kiba::update(EntityKind &currentEntity)
 
 void Kiba::render()
 {
-	mAnimation.update(/*mStatus * 2 +*/ mDirLeft);
+	mAnimation.update(mStatus * 2 + mDirLeft);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -64));
 	ImageManager::render(&mAnimation.getSprite());
 }

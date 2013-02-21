@@ -36,9 +36,6 @@ int main()
 
 	Sounds::getInstance();
 
-
-	/*Sounds::getInstance()->Loop("Level1Music.wav", 30);*/
-
     while (window.isOpen())
     {
         sf::Event event;
