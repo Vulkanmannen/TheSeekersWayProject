@@ -21,6 +21,9 @@ public:
 private:
 	Animation mAnimation;
 	bool isitclosed;
+
+	enum Status {CLOSED, OPENING, OPEN, CLOSING};	
+	Status mStatus;
 };
 
 #endif

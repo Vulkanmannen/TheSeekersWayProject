@@ -161,6 +161,16 @@
     <ClCompile Include="Button.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="FinishDoor.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Decoration.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -314,6 +324,16 @@
     <ClInclude Include="Button.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="FinishDoor.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Decoration.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">

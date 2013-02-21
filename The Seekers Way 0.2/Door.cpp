@@ -51,9 +51,6 @@ void Door::DisActivate()
 
 void Door::update(EntityKind &currentEntity)
 {
-	mAnimation.update(mStatus);
-
-
 	if(mStatus == OPENING && mAnimation.getEndOfAnimation())
 	{
 		mStatus = OPEN;
@@ -61,12 +58,13 @@ void Door::update(EntityKind &currentEntity)
 
 	if(mStatus == CLOSING && mAnimation.getEndOfAnimation())
 	{
-		mStatus = CLOSED;
+ 		mStatus = CLOSED;
 	}
 }
 
 void Door::render()
 {
+	mAnimation.update(mStatus);
 	ImageManager::render(&mAnimation.getSprite());
 }
 

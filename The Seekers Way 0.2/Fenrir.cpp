@@ -433,7 +433,7 @@ void Fenrir::snowMist()
 // när tiden gått så tar misten slut
 void Fenrir::snowMistCountdown()
 {
-	if(mSnowMistTime.getElapsedTime().asSeconds() > 3 && mInSnowMist && !mHitVine)
+	if(mSnowMistTime.getElapsedTime().asSeconds() > 1 && mInSnowMist && !mHitVine)
 	{
 		notInSnowMist();
 	}

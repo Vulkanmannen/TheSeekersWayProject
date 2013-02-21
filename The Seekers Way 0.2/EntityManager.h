@@ -34,7 +34,7 @@ public:
 	sf::View* getView();
 	void updateView();
 
-	void setMapSize(int numberOfBlocksWidth, int numberOfBlocksHeight, int numberOfBackgroundsWidth = 2, int numberOfBackgroundsHeight = 2);
+	void setMapSize(int numberOfBlocksWidth, int numberOfBlocksHeight/*, int numberOfBackgroundsWidth = 2, int numberOfBackgroundsHeight = 2*/);
 private:
 	EntityManager();
 	EntityManager(const EntityManager &e);
@@ -85,10 +85,10 @@ private:
 	void renderBackground();
 	
 	//------------mapsize
-	int mMapHeight;
-	int mMapWidth;
-	int mNumberOfBackgroundsWidth;
-	int mNumberOfBackgroundsHeight;
+	int mMapRight;
+	int mMapLeft;
+	int mMapTop;
+	int mMapBottom;
 };
 
 #endif 

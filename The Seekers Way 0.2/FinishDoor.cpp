@@ -11,12 +11,14 @@ FinishDoor::FinishDoor(sf::Vector2f &position):
 	kibaInGoal(false),
 	charlotteInGoal(false),
 	fenrirInGoal(false),
-	sheekaInGoal(false)
+	sheekaInGoal(false),
+	mAllInGoal(false)
 {
 	mPosition = position + sf::Vector2f(64, 64);
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = FINISHDOOR;
+	mLayer = BACKGROUND;
 
 	mTexture.loadFromImage(*ImageManager::getImage("FinishDoor.png"));
 	mSprite.setTexture(mTexture);
@@ -61,6 +63,12 @@ void FinishDoor::interact(Entity* e)
 void FinishDoor::LoadNextLevel()
 {
 	if(kibaInGoal == true && charlotteInGoal == true && fenrirInGoal == true && sheekaInGoal == true)
+	{
+		mAllInGoal = true;
+		mClockAllIn.restart();
+	}
+
+	if(mClockAllIn.getElapsedTime().asSeconds() > 2 && mAllInGoal)
 	{
 		LevelManager::getInstance()->LoadLevel(LevelManager::getInstance()->getCurrentLevel() + 1);
 	}

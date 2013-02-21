@@ -3,6 +3,7 @@
 #include "SFML\Graphics.hpp"
 #include "LevelManager.h"
 #include "State.h"
+#include "Sounds.h"
 
 
 StartMenu::StartMenu():
@@ -17,6 +18,7 @@ StartMenu::StartMenu():
 	mHowToPlay.loadFromFile("Howtoplayinst.png");
 	mHowToPlaySprite.setTexture(mHowToPlay);
 	generateButtons();
+	Sounds::getInstance()->Loop("crazykoncept.wav", 30);
 }
 
 
@@ -54,20 +56,24 @@ void StartMenu::render()
 void StartMenu::generateButtons()
 {
 		Animation animation("Resume.PNG", 80, 1, 46, 123);
-		animation.setPosition(sf::Vector2f(450, 200 + 1*70));
+		animation.setPosition(sf::Vector2f(450, 100 + 1*70));
 		mButtons.push_back(animation);
 
 		Animation animation2("NewGame.PNG", 80, 1, 46, 123);
-		animation2.setPosition(sf::Vector2f(450, 200 + 2*70));
+		animation2.setPosition(sf::Vector2f(450, 100 + 2*70));
 		mButtons.push_back(animation2);
 
 		Animation animation3("HowToPlay.PNG", 80, 1, 46, 123);
-		animation3.setPosition(sf::Vector2f(450, 200 + 3*70));
+		animation3.setPosition(sf::Vector2f(450, 100 + 3*70));
 		mButtons.push_back(animation3);
 
-		Animation animation4("Exit.PNG", 80, 1, 46, 123);
-		animation4.setPosition(sf::Vector2f(450, 200 + 4*70));
+		Animation animation4("Audio.png", 80, 1, 46, 123);
+		animation4.setPosition(sf::Vector2f(450, 100 + 4*70));
 		mButtons.push_back(animation4);
+
+		Animation animation5("Exit.PNG", 80, 1, 46, 123);
+		animation5.setPosition(sf::Vector2f(450, 100 + 5*70));
+		mButtons.push_back(animation5);
 }
 
 void StartMenu::changeButton()
@@ -136,6 +142,9 @@ void StartMenu::buttonActivate()
 				break; 
 
 			case 3:
+				break;
+
+			case 4:
 				exit = true;
 				break;
 		}
