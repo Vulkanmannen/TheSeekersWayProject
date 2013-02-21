@@ -16,6 +16,7 @@ public:
 private:
 
 	sf::Clock mClock;
+	sf::Clock mClockAllIn;
 
 	void LoadNextLevel();
 	void inGoalfalse();
@@ -24,6 +25,8 @@ private:
 	bool charlotteInGoal;
 	bool fenrirInGoal;
 	bool sheekaInGoal;
+
+	bool mAllInGoal;
 };
 
 #endif
