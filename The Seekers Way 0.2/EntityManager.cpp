@@ -7,15 +7,14 @@
 #include <algorithm>
 #include "ImageManager.h"
 #include <iostream>
+#include <SFML\Graphics.hpp>
 
 EntityManager* EntityManager::sInstance = 0;
 
 EntityManager::EntityManager():
 	mPlayerLife(3),
-	mMapHeight(1432),
-	mMapWidth(3392),
-	mNumberOfBackgroundsWidth(2),
-	mNumberOfBackgroundsHeight(2)
+	mMapTop(360),
+	mMapLeft(512)
 {
 		mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
 		mLifeSprite.setTexture(mLifeTexture);
@@ -23,10 +22,10 @@ EntityManager::EntityManager():
 		frameTexture.loadFromFile("frame.png");
 		frame.setTexture(frameTexture);
 		
-		mPortraitSprite[0] = Animation("Fenrir Face sprite 1_1.png", 60, 1, 64, 64);
-		mPortraitSprite[1] = Animation("Fenrir Face sprite 1_1.png", 60, 1, 64, 64);
+		mPortraitSprite[0] = Animation("PortraitesKiba.png", 60, 1, 64, 64);
+		mPortraitSprite[1] = Animation("PortraitesCharlotte.png", 60, 1, 64, 64);
 		mPortraitSprite[2] = Animation("Fenrir Face sprite 1_1.png", 60, 1, 64, 64);
-		mPortraitSprite[3] = Animation("Fenrir Face sprite 1_1.png", 60, 1, 64, 64);
+		mPortraitSprite[3] = Animation("Sheeka Face sprite 1_1.png", 60, 1, 64, 64);
 	
 		mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
 		mLifeSprite.setTexture(mLifeTexture);
@@ -34,6 +33,7 @@ EntityManager::EntityManager():
 		mMaskSprite.setTexture(mMaskTexture);
 		mBackgroundTexture.loadFromImage(*ImageManager::getImage("background.png"));
 		createBackground();
+		setMapSize(61, 28);
 }
 
 
@@ -116,15 +116,21 @@ void EntityManager::render()
 			}
 		}
 	}
-	renderPortrait();
+	
 	renderLifeAndMask();
+	renderPortrait();
+	//sf::RectangleShape rect(sf::Vector2f(mMapRight - 512, mMapBottom - 360));
+	//rect.setPosition(mMapLeft, mMapTop);
+	//sf::Color colo(255,255,255,128);
+	//rect.setFillColor(colo);
+	//ImageManager::render(&rect);
 }
 
 // renderar livet
 void EntityManager::renderLifeAndMask()
 {
 	ImageManager::render(&mMaskSprite);
-
+	mLifeSprite.setPosition(mLifeSprite.getPosition() + sf::Vector2f(20, frame.getLocalBounds().height + 10));
 	for(int i = 0; i < mPlayerLife; ++i)
 	{
 		ImageManager::render(&mLifeSprite);
@@ -138,9 +144,7 @@ void EntityManager::renderPortrait()
 
 	for(int i = 0; i < 4; i++)
 	{
-		frame.setPosition(				mView->getCenter() - sf::Vector2f(512 - i * frameTexture.getSize().x, 360));
-		mPortraitSprite[i].setPosition(	mView->getCenter() - sf::Vector2f(503 - i * frameTexture.getSize().x, 351));
-		
+		frame.setPosition(	mPortraitSprite[i].getSprite().getPosition() - sf::Vector2f(9 , 9));
 		for(CharacterVector::size_type j = 0; j < mCharacters.size(); j++)
 		{
 			if (mCharacters[j]->getEntityKind() == Entity::KIBA && i == 0)
@@ -167,15 +171,17 @@ void EntityManager::renderPortrait()
 				ImageManager::render(&frame);
 			}
 		}
+		mPortraitSprite[i].setPosition(	mView->getCenter() - sf::Vector2f(503 - i * frameTexture.getSize().x, 351));
 	}
+	
 }
 
 // tilar bakgrunden
 void EntityManager::createBackground()
 {
-	for(int i = 0; i < mNumberOfBackgroundsWidth; ++i)
+	for(int i = 0; i < 3; ++i)
 	{
-		for(int j = 0; j < mNumberOfBackgroundsHeight; ++j)
+		for(int j = 0; j < 3; ++j)
 		{
 			sf::Sprite background;
 			background.setTexture(mBackgroundTexture);
@@ -352,46 +358,45 @@ sf::View* EntityManager::getView()
 void EntityManager::updateView()
 {
 	sf::Vector2f playerPos = getCharacterPos();
-	if(playerPos.x > 512 && playerPos.x < mMapWidth)
+	
+	if(playerPos.x > mMapLeft && playerPos.x < mMapRight)
 	{
 		mView->setCenter(sf::Vector2f(playerPos.x, mView->getCenter().y));
 	}
 	else
 	{
-		if(playerPos.x > mMapWidth / 2)
+		if(playerPos.x > mMapRight / 2)
 		{
-			mView->setCenter(sf::Vector2f(3392, mView->getCenter().y));
+			mView->setCenter(sf::Vector2f(mMapRight, mView->getCenter().y));
 		}
 		else
 		{
-			mView->setCenter(sf::Vector2f(512, mView->getCenter().y));
+			mView->setCenter(sf::Vector2f(mMapLeft, mView->getCenter().y));
 		}	
 	}
-
-	if(playerPos.y > 360 && playerPos.y < mMapHeight)
+	// det står fan totte överallt
+	if(playerPos.y > mMapTop && playerPos.y < mMapBottom)
 	{
 		mView->setCenter(sf::Vector2f(mView->getCenter().x, playerPos.y));
 	}
 	else
 	{
-		if(playerPos.y > mMapHeight / 2)
+		if(playerPos.y > mMapBottom / 2)
 		{
-			mView->setCenter(sf::Vector2f(mView->getCenter().x, 1432));
+			mView->setCenter(sf::Vector2f(mView->getCenter().x, mMapBottom));
 		}
 		else
 		{
-			mView->setCenter(sf::Vector2f(mView->getCenter().x, 360));
+			mView->setCenter(sf::Vector2f(mView->getCenter().x, mMapTop));
 		}
 	}
 }
 
 // sätter storleken på mappen tar emot fyra inter, läng o höjd räknat i block samt antalet bakgrunder i höjdled och längd;
-void EntityManager::setMapSize(int numberOfBlocksWidth, int numberOfBlocksHeight, int numberOfBackgroundsWidth, int numberOfBackgroundsHeight)
+void EntityManager::setMapSize(int numberOfBlocksRight, int numberOfBlocksBottom)
 {
-	mMapWidth = numberOfBlocksWidth * 64;
-	mMapHeight = numberOfBlocksHeight * 64;
-	mNumberOfBackgroundsWidth = numberOfBackgroundsWidth;
-	mNumberOfBackgroundsHeight = numberOfBackgroundsHeight;
+	mMapRight = numberOfBlocksRight * 64 - 576;
+	mMapBottom = numberOfBlocksBottom * 64 - 424;
 }
 
 void EntityManager::ClearAll()

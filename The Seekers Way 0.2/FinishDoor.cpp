@@ -11,7 +11,8 @@ FinishDoor::FinishDoor(sf::Vector2f &position):
 	kibaInGoal(false),
 	charlotteInGoal(false),
 	fenrirInGoal(false),
-	sheekaInGoal(false)
+	sheekaInGoal(false),
+	mAllInGoal(false)
 {
 	mPosition = position + sf::Vector2f(64, 64);
 	mHeight = HEIGHT;
@@ -62,6 +63,15 @@ void FinishDoor::interact(Entity* e)
 void FinishDoor::LoadNextLevel()
 {
 	if(kibaInGoal == true && charlotteInGoal == true && fenrirInGoal == true && sheekaInGoal == true)
+	{
+		if(mAllInGoal == false)
+		{
+			mClockAllIn.restart();
+		}
+		mAllInGoal = true;
+	}
+
+	if(mClockAllIn.getElapsedTime().asSeconds() > 2 && mAllInGoal)
 	{
 		LevelManager::getInstance()->LoadLevel(LevelManager::getInstance()->getCurrentLevel() + 1);
 	}

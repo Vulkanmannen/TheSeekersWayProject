@@ -16,17 +16,20 @@ void GameMenu::update()
 {
 	EntityManager::getInstance()->update();
 	EntityManager::getInstance()->updatePrimaryCharacter();
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num7))
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::M))
 	{
-		LevelManager::getInstance()->LoadLevel(0);
-	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num8))
-	{
-		LevelManager::getInstance()->LoadLevel(1);
-	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num9))
-	{
-		LevelManager::getInstance()->LoadLevel(2);
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+		{
+			LevelManager::getInstance()->LoadLevel(0);
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+		{
+			LevelManager::getInstance()->LoadLevel(1);
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+		{
+			LevelManager::getInstance()->LoadLevel(2);
+		}
 	}
 }
 

@@ -22,7 +22,7 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1024, 720), "The Seekers Way"/*, sf::Style::Fullscreen*/);
+	sf::RenderWindow window(sf::VideoMode(1024, 720), "The Seekers Way", sf::Style::Fullscreen);
 	ImageManager::setWindow(&window);
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
@@ -56,18 +56,18 @@ int main()
 		view.setCenter(sf::Vector2f(512, 360));
 		State::getInstance()->update();
 		
-		//if(Dialogue::getInstance()->getendofDialogue())
-		//{
-		//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
-		//	{	
-		//		Dialogue::getInstance()->startDialogue("start1.txt");
-		//	}
-		//}
-		//else
-		//{
-		//	Dialogue::getInstance()->update();
-		//	Dialogue::getInstance()->render();
-		//}
+		if(Dialogue::getInstance()->getendofDialogue())
+		{
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+			{	
+				Dialogue::getInstance()->startDialogue("start1.txt");
+			}
+		}
+		else
+		{
+			Dialogue::getInstance()->update();
+			Dialogue::getInstance()->render();
+		}
 
 		window.setView(view); 
 
