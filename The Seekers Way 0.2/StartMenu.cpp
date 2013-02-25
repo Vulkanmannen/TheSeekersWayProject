@@ -49,7 +49,7 @@ void StartMenu::render()
 	renderButtons();
 	if(HowToPlay == true)
 	{
-		HowToPlayCount();
+		//HowToPlayCount();
 		mHowToPlaySpriteKiba.setPosition(116, 64);
 		ImageManager::render(&mHowToPlaySpriteKiba);
 
