@@ -2,18 +2,22 @@
 #define	INCLUDED_LEVELMANAGER
 #include <string>
 #include <vector>
+#include "Entity.h"
 
 struct Level 
 {
-	Level(std::string blockMap, std::string objectMap, std::string XmlMap)
+	Level(std::string blockMap, std::string objectMap, std::string XmlMap, Entity::EntityKind entityKind = Entity::KIBA)
 	{
 		mblockMap = blockMap;
 		mobjectMap = objectMap;
 		mXmlMap = XmlMap;
+
+		mPrimaryCharacter = entityKind;
 	}
 	std::string mblockMap;
 	std::string mobjectMap;
 	std::string mXmlMap;
+	Entity::EntityKind mPrimaryCharacter;
 };
 
 class LevelManager
