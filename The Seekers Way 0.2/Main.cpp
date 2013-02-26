@@ -22,7 +22,7 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1024, 720), "The Seekers Way", sf::Style::Fullscreen);
+	sf::RenderWindow window(sf::VideoMode(1024, 720), "The Seekers Way"/*, sf::Style::Fullscreen*/);
 	ImageManager::setWindow(&window);
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);

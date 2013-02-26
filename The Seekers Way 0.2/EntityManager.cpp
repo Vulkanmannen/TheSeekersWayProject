@@ -315,7 +315,7 @@ sf::Vector2f EntityManager::getCharacterPos()const
 	}
 }
 
-// setter primarycharacter
+// sätter primarycharacter
 void EntityManager::setPrimaryCharacter(Entity::EntityKind entityKind)
 {
 	mPrimaryCharacter = entityKind;

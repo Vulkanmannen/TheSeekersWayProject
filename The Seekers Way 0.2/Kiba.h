@@ -23,6 +23,9 @@ public:
 	void slash();
 
 private:
+	void changeStone();
+	void changeTeleState();
+
 	Stone *mStone;
 	TelekinesisBox *mTeleBox;
 	sf::Clock teletimer;
