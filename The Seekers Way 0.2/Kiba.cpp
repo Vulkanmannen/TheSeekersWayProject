@@ -142,7 +142,11 @@ void Kiba::render()
 	if(mHurtShow)
 		states.shader = &mHurtShader;
 	mAnimation.update(mStatus * 2 + mDirLeft);
+<<<<<<< HEAD
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -68));
+=======
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -64));
+>>>>>>> origin/Peter
 	ImageManager::render(&mAnimation.getSprite(), states);
 }
 
