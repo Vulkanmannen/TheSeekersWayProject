@@ -8,6 +8,8 @@ class DialogState
 public:
 	DialogState();
 	~DialogState();
+	void update();
+	void render();
 };
 
 #endif

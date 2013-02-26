@@ -25,7 +25,7 @@ Stone::Stone(sf::Vector2f Position):
 	mWidth = WIDTH;
 	mEntityKind = STONE;
 	mLayer = FORGROUND;
-
+radius = sqrt(float(160 * 160 + 192 * 192))-0.1;
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH / 2, mPosition.y - SPRITEHEIGHT / 2));
 }
 
@@ -99,11 +99,13 @@ void Stone::telekinesis()
 
 void Stone::move()	   
 {
-	mRblock ? (mMovementSpeed.x > 0 ? mMovementSpeed.x = 0 : NULL ) : NULL;
-	mLblock ? (mMovementSpeed.x < 0 ? mMovementSpeed.x = 0 : NULL ) : NULL;
-	mUblock ? (mMovementSpeed.y < 0 ? mMovementSpeed.y = 0 : NULL ) : NULL;
-	mDblock ? (mMovementSpeed.y > 0 ? mMovementSpeed.y = 0 : NULL ) : NULL;
-
+	//float xdif = ;mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x
+	//float ydif = ;mKibaPos.y - mPosition.y, mKibaPos.x - mPosition.x
+	mRblock || !(mPosition.x - mKibaPos.x < radius*cos(atan2(mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x)) || mPosition.x - mKibaPos.x <= 0) ? (mMovementSpeed.x > 0 ? mMovementSpeed.x = 0 : NULL ) : NULL;
+	mLblock || !(mPosition.x - mKibaPos.x > radius*cos(atan2(mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x)) || mPosition.x - mKibaPos.x >= 0) ? (mMovementSpeed.x < 0 ? mMovementSpeed.x = 0 : NULL ) : NULL;
+	mUblock || !(mPosition.y - mKibaPos.y > radius*sin(atan2(mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x)) || mPosition.y - mKibaPos.y >= 0) ? (mMovementSpeed.y < 0 ? mMovementSpeed.y = 0 : NULL ) : NULL;
+	mDblock || !(mPosition.y - mKibaPos.y < radius*sin(atan2(mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x)) || mPosition.y - mKibaPos.y <= 0) ? (mMovementSpeed.y > 0 ? mMovementSpeed.y = 0 : NULL ) : NULL;
+	
 	if(mtelemove && mCanMove)
 	{
 		mPosition	+= mMovementSpeed;
@@ -204,9 +206,9 @@ void Stone::attraction()
 	{
 		if((mPosition.x - mKibaPos.x) * (mPosition.x - mKibaPos.x) + (mPosition.y - mKibaPos.y) * (mPosition.y - mKibaPos.y) > 160 * 160 + 192 * 192)
 		{
-			float r = sqrt(float(160 * 160 + 192 * 192))-0.1;
-			mPosition = sf::Vector2f(	mKibaPos.x + r*cos(atan2(mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x)),	
-										mKibaPos.y + r*sin(atan2(mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x)));
+			
+			mPosition = sf::Vector2f(	mKibaPos.x + radius*cos(atan2(mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x)),	
+										mKibaPos.y + radius*sin(atan2(mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x)));
 		}
 	}
 }

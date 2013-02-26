@@ -4,6 +4,7 @@
 #include "GameMenu.h"
 #include "PauseMenu.h"
 #include "Sounds.h"
+#include "DialogState.h"
 
 State* State::sInstance = 0;
 
@@ -15,12 +16,18 @@ State::State():
 	mStartMenu = new StartMenu();
 	mGameMenu = new GameMenu();
 	mPauseMenu = new PauseMenu();
+	mDialogState = new DialogState();
 	Sounds::getInstance()->Loop("crazykoncept.wav", 30);
 }
 
 
 State::~State()
 {
+	delete IntroSplash;
+	delete mStartMenu;
+	delete mGameMenu;
+	delete mPauseMenu;
+	delete mDialogState;
 }
 
 void State::update()
@@ -78,6 +85,11 @@ void State::update()
 					mEsc = false;
 				}
 			}
+			break;
+		case DialogueState:
+			mGameMenu->render();
+			mDialogState->render();
+			mDialogState->update();
 			break;
 	}
 

@@ -33,7 +33,7 @@ public:
 	void setView(sf::View* view);
 	sf::View* getView();
 	void updateView();
-
+	
 	void setMapSize(int numberOfBlocksWidth, int numberOfBlocksHeight/*, int numberOfBackgroundsWidth = 2, int numberOfBackgroundsHeight = 2*/);
 private:
 	EntityManager();
@@ -76,7 +76,7 @@ private:
 
 	sf::Texture frameTexture;
 	sf::Sprite frame;
-
+	sf::Shader shadow;
 	// ----------------- background
 	sf::Texture mBackgroundTexture;
 	std::vector<sf::Sprite> mBackgroundSprites;

@@ -25,15 +25,18 @@ Character::Character():
 	mMaxSpeed(20),
 	mHurt(false),
 	mHurtCount(0),
-	mHurtTime(120),
+	mHurtTime(90),
 	mCanMove(true),
 	mCanMoveCount(0),
 	mCanMoveTime(30),
-	mCanPressJump(true)
+	mCanPressJump(true),
+	mHurtShow(false)
 {
 	mAlive = true;
 	mBaseKind = CHARACTER;
 	mLayer = CHARACTERS;
+	mHurtShader.loadFromFile("hurt.frag", sf::Shader::Fragment);
+	mHurtShader.setParameter("texture", sf::Shader::CurrentTexture);
 }
 
 Character::~Character()
@@ -132,13 +135,19 @@ void Character::hurtTime()
 {
 	if(mHurt)
 	{
-		std::cout << "hurt" << std::endl;
+		//std::cout << "hurt" << std::endl;
+		if(mHurtClock.getElapsedTime().asMilliseconds() > 250)
+		{
+			mHurtClock.restart();
+			mHurtShow = !mHurtShow;
+		}
 	}
 
 	mHurtCount++;
 	if(mHurtCount >= mHurtTime)
 	{
 		mHurt = false;
+		mHurtShow = false;
 		mHurtCount = 0;
 	}
 }
@@ -364,6 +373,8 @@ void Character::takeDamage()
 	{
 		mIsHit = true;
 		mHurt = true;
+		mHurtClock.restart();
+		mHurtShow = true;
 		mHurtCount = 0;
 	}
 
@@ -379,6 +390,8 @@ void Character::takeDamageFromArrow()
 	{
 		mIsHit = true;
 		mHurt = true;
+		mHurtClock.restart();
+		mHurtShow = true;
 		mHurtCount = 0;
 	}
 }

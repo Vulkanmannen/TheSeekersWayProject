@@ -33,7 +33,7 @@ private:
 	sf::Vector2f mMovementSpeed;
 	float mDecrease;
 	float mGravity;
-
+	float radius;
 	bool mFalling;
 	bool mRblock;
 	bool mLblock;
