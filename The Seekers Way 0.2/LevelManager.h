@@ -44,6 +44,7 @@ public:
 
 
 private:
+	typedef std::vector<std::string> StringVector;
 
 	LevelManager();
 	LevelManager(const LevelManager&);
@@ -54,9 +55,10 @@ private:
 	Levelvector mLevels;
 
 	void generateLevels();
+	void generateDialogues();
 	
-	
-
+	StringVector mStartDialogues;
+	StringVector mEndDialogues;
 };
 
 #endif

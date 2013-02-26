@@ -99,7 +99,6 @@ bool Dialogue::getendofDialogue()
 	return mEndofDialogue;
 }
 
-
 void Dialogue::startDialogue(std::string dialogueName)
 {
 	currentText = 0;

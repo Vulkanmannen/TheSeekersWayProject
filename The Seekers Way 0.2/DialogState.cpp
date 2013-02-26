@@ -1,5 +1,6 @@
 #include "DialogState.h"
 #include "Dialogue.h"
+#include "State.h"
 
 DialogState::DialogState()
 {
@@ -18,4 +19,8 @@ void DialogState::render()
 void DialogState::update()
 {
 	Dialogue::getInstance()->update();
+	if(Dialogue::getInstance()->getendofDialogue())
+	{
+		State::getInstance()->setState(State::GameState);
+	}
 }

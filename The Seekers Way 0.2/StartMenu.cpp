@@ -137,12 +137,12 @@ void StartMenu::buttonActivate()
 		{
 			case 0:
 				LevelManager::getInstance()->LoadLevel();
-				State::getInstance()->setState(State::GameState);
+				State::getInstance()->setState(State::DialogueState);
 				break;
 
 			case 1:
 				LevelManager::getInstance()->LoadLevel(0);
-				State::getInstance()->setState(State::GameState);
+				State::getInstance()->setState(State::DialogueState);
 				break;
 
 			case 2:

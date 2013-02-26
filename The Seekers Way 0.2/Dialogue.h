@@ -17,17 +17,21 @@ public:
 	static Dialogue* getInstance();
 	void update();
 	void render();
-	void playNext();
-	void empthyDialogue();
-	void loadDialogue(std::string dialogueName);
+
 	void startDialogue(std::string dialogueName);
-	void loadText();
+
 	bool getendofDialogue();
+	
 	typedef std::vector<sf::Text*> TextVector;
 	TextVector textBox(sf::Text &);
 
 private:
 	static Dialogue *sInstance;
+
+	void playNext();
+	void loadDialogue(std::string dialogueName);
+	void empthyDialogue();
+	void loadText();
 
 	enum Speaker{kiba, charlotte, fenrir, sheeka, journal};
 	int currentText;
