@@ -70,7 +70,7 @@ void Door::render()
 
 void Door::interact(Entity* e)
 {
-	if((*e) == CHARACTER && mBaseKind == BLOCK)
+	if(((*e) == CHARACTER || (*e) == STONE) && mBaseKind == BLOCK)
 	{
 		// räknar ut objektens radier och lägger ihop dem
 		float xRadius = mWidth / 2 + e->getWidth() / 2;

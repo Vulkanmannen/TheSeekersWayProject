@@ -37,7 +37,7 @@ void Arrow::interact(Entity* e)
 {
 	if(mShottingTime.getElapsedTime().asMilliseconds() > 150 || (*e) != Entity::BLOCK)
 	{
-		if((*e) == Entity::BLOCK || (*e) == Entity::CHARACTER || (*e) == Entity::SHIELD)
+		if((*e) == Entity::BLOCK || (*e) == Entity::CHARACTER || (*e) == Entity::SHIELD || (*e) == Entity::STONE)
 		{
 			if(e->getEntityKind() != FENRIR)
 			{

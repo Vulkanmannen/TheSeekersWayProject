@@ -93,7 +93,7 @@ void Bridge::render()
 // knuffar charactärer
 void Bridge::interact(Entity* e)
 {
-	if((*e) == CHARACTER && mBaseKind == BLOCK)
+	if(((*e) == CHARACTER || (*e) == STONE) &&  mBaseKind == BLOCK)
 	{
 		Character* c = static_cast<Character*>(e);
 
