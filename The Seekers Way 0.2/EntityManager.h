@@ -29,6 +29,7 @@ public:
 
 	void updatePrimaryCharacter();
 	sf::Vector2f getCharacterPos()const;
+	void setPrimaryCharacter(Entity::EntityKind);
 
 	void setView(sf::View* view);
 	sf::View* getView();

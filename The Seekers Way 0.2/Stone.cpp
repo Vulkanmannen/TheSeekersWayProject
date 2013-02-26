@@ -5,8 +5,8 @@
 static const float WIDTH = 128;
 static const float HEIGHT = 128;
 
-static const float SPRITEWIDTH = 141;
-static const float SPRITEHEIGHT = 141;
+static const float SPRITEWIDTH = 140;
+static const float SPRITEHEIGHT = 140;
 
 Stone::Stone(sf::Vector2f Position):
 	mMovementSpeed(0,0),

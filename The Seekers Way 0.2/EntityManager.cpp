@@ -12,7 +12,6 @@
 EntityManager* EntityManager::sInstance = 0;
 
 EntityManager::EntityManager():
-	mPrimaryCharacter(Entity::SHEEKA),
 	mPlayerLife(3),
 	mMapTop(360),
 	mMapLeft(512)
@@ -279,21 +278,31 @@ void EntityManager::killEntity()
 // uppdaterar vilken som är den primära karaktären
 void EntityManager::updatePrimaryCharacter()
 {
+	Entity::EntityKind tempEntityKind = mPrimaryCharacter;
+
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
-		mPrimaryCharacter = Entity::KIBA;
+		tempEntityKind = Entity::KIBA;
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 	{
-		mPrimaryCharacter = Entity::CHARLOTTE;
+		tempEntityKind = Entity::CHARLOTTE;
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
 	{
-		mPrimaryCharacter = Entity::FENRIR;
+		tempEntityKind = Entity::FENRIR;
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
 	{
-		mPrimaryCharacter = Entity::SHEEKA;
+		tempEntityKind = Entity::SHEEKA;
+	}
+
+	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i) // kollar om den valda karaktären finns i vektorn
+	{
+		if(mCharacters[i]->getEntityKind() == tempEntityKind)
+		{
+			mPrimaryCharacter = tempEntityKind;
+		}
 	}
 }
 
@@ -307,6 +316,12 @@ sf::Vector2f EntityManager::getCharacterPos()const
 			return mCharacters[i]->getPosition();
 		}
 	}
+}
+
+// setter primarycharacter
+void EntityManager::setPrimaryCharacter(Entity::EntityKind entityKind)
+{
+	mPrimaryCharacter = entityKind;
 }
 
 void EntityManager::interact()

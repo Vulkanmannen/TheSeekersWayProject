@@ -31,9 +31,18 @@ private:
 	bool HowToPlay;
 
 	sf::Texture mStartText;
-	sf::Texture mHowToPlay;
 	sf::Sprite mStartSprite;
-	sf::Sprite mHowToPlaySprite;
+
+	sf::Vector2f HowToPlayCount(sf::Sprite);
+
+	sf::Texture mHowToPlayKiba;
+	sf::Sprite mHowToPlaySpriteKiba;
+	sf::Texture mHowToPlayCharlotte;
+	sf::Sprite mHowToPlaySpriteCharlotte;
+	sf::Texture mHowToPlayFenrir;
+	sf::Sprite mHowToPlaySpriteFenrir;
+	sf::Texture mHowToPlaySheeka;
+	sf::Sprite mHowToPlaySpriteSheeka;
 
 	std::vector<Animation> mButtons;
 };
