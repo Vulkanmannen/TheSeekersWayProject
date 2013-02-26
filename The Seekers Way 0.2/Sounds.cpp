@@ -4,6 +4,8 @@
 #include <sstream>
 #include <SFML\Audio\SoundBuffer.hpp>
 #include <windows.h>
+#include "EntityManager.h"
+
 Sounds* Sounds::sInstance = 0;
 
 //ger värde till variable och laddar all musik som är skrivna i en text fil
