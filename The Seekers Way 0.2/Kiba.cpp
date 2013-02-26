@@ -3,7 +3,7 @@
 #include "ImageManager.h"
 #include "Sounds.h"
 #include <iostream>
-const static float HEIGHT = 128;
+const static float HEIGHT = 120;
 const static float WIDTH = 56;
 
 Kiba::Kiba(sf::Vector2f &position):
@@ -48,57 +48,10 @@ void Kiba::update(EntityKind &currentEntity)
 			{
 				if(telestate == choice)
 				{
-					if(mTeleBox->stone.size() != 0)
-					{
-						if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-						{	
-							mTeleBox->getStone(-1);
-							teletimer.restart();
-						}
-						else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
-						{
-							mTeleBox->getStone(1);
-							teletimer.restart();
-						}
-						
-					}
+					changeStone();
 				}
 
-				// en function
-				if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-				{
-					teletimer.restart();
-
-					if(telestate == choice)
-					{ 
-						telestate = moving;
-					
-						if(mTeleBox->stone.size() != 0)
-						{
-							mStone = mTeleBox->getStone();
-						}
-						else 
-						{
-							telestate = free;
-						}
-					}
-
-					else if(telestate == moving && mStone->onblock())
-					{
-						telestate = free;
-						if(mStone->mtelekinesis != false)
-						{
-							mStone->mtelekinesis = false;
-						}
-					}
-
-					else if(telestate == free)
-					{
-						telestate = choice;
-
-						mTeleBox->setPosition(mPosition);
-					}
-				}
+				changeTeleState();
 			}
 		}
 		else if(mStone != 0)
@@ -115,6 +68,73 @@ void Kiba::update(EntityKind &currentEntity)
 	mTeleBox->stone.clear();
 }
 
+void Kiba::changeStone()
+{
+	if(mTeleBox->stone.size() != 0)
+	{
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+		{	
+			mTeleBox->getStone(-1);
+			teletimer.restart();
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+		{
+			mTeleBox->getStone(1);
+			teletimer.restart();
+		}
+	}
+}
+
+void Kiba::changeTeleState()
+{
+	if(telestate == choice)
+	{
+		if(mTeleBox->stone.size() == 0)
+		{
+			telestate = free;
+		}
+
+		else if(mTeleBox->stone.size() == 1)
+		{
+			telestate = moving;
+			mStone = mTeleBox->getStone();
+		}
+	}
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+	{
+		teletimer.restart();
+		if(telestate == choice)
+		{		
+			telestate = moving;		
+			if(mTeleBox->stone.size() != 0)
+			{
+				mStone = mTeleBox->getStone();
+			}
+			else 
+			{
+				telestate = free;
+			}
+		}
+
+		else if(telestate == moving && mStone->onblock())
+		{
+			telestate = free;
+			if(mStone->mtelekinesis != false)
+			{
+				mStone->mtelekinesis = false;
+			}
+		}
+
+		else if(telestate == free && !mFalling && !mIsJumping)
+		{
+			telestate = choice;
+			mMovementSpeed.x = 0;
+			mStatus = IDLE;
+			mTeleBox->setPosition(mPosition);
+		}
+	}
+}
+
 
 void Kiba::render()
 {
@@ -122,7 +142,7 @@ void Kiba::render()
 	if(mHurtShow)
 		states.shader = &mHurtShader;
 	mAnimation.update(mStatus * 2 + mDirLeft);
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -64));
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -68));
 	ImageManager::render(&mAnimation.getSprite(), states);
 }
 

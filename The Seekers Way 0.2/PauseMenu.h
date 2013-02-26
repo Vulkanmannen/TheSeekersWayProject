@@ -22,18 +22,29 @@ private:
 	void renderButtons();
 	void updateCurrentButton();
 	void buttonActivate();
+	void changeJournalFrame();
 
-
+	int currentJournalFrame;
 	int currentButton;
 	bool canPressReturn;
-	bool canPress;
+	bool canPressMenu;
+	bool canPressJournal;
 
 	bool HowToPlay;
 
 	sf::Texture mPauseText;
-	sf::Texture mHowToPlay;
 	sf::Sprite mPauseSprite;
-	sf::Sprite mHowToPlaySprite;
+
+	sf::Texture mHowToPlayKiba;
+	sf::Sprite mHowToPlaySpriteKiba;
+	sf::Texture mHowToPlayCharlotte;
+	sf::Sprite mHowToPlaySpriteCharlotte;
+	sf::Texture mHowToPlayFenrir;
+	sf::Sprite mHowToPlaySpriteFenrir;
+	sf::Texture mHowToPlaySheeka;
+	sf::Sprite mHowToPlaySpriteSheeka;
+
+	std::vector<sf::Sprite*> mSpriteVector;
 
 	std::vector<Animation> mButtons;
 };
