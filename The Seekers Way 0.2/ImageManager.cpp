@@ -21,9 +21,9 @@ ImageManager::~ImageManager()
 	}
 
 // ritar ut det som skickas in i funktionen i fönstret
-void ImageManager::render(sf::Drawable *drawable)
+void ImageManager::render(sf::Drawable *drawable, sf::RenderStates states)
 {
-	sWindow->draw(*drawable);
+	sWindow->draw(*drawable, states);
 }
 
 // tilldela pekaren ett fönster

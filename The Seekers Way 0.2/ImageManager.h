@@ -11,7 +11,7 @@ public:
 	ImageManager();
 	~ImageManager();
 
-	static void render(sf::Drawable *drawable);
+	static void render(sf::Drawable *drawable, sf::RenderStates states = sf::RenderStates::Default);
 
 	static sf::Image* getImage(const std::string &fileName);
 

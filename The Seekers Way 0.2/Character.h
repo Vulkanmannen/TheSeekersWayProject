@@ -81,6 +81,9 @@ protected:
 	int mCanMoveCount;
 	int mCanMoveTime;
 	
+	sf::Shader mHurtShader;
+	sf::Clock mHurtClock;
+	bool mHurtShow;
 };
 
 #endif

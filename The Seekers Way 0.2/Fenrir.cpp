@@ -101,7 +101,10 @@ void Fenrir::render()
 	{
 		mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -64));
 	}
-	ImageManager::render(&mAnimation.getSprite());
+	sf::RenderStates states;
+	if(mHurtShow)
+		states.shader = &mHurtShader;
+	ImageManager::render(&mAnimation.getSprite(), states);
 }
 
 void Fenrir::interact(Entity *e)

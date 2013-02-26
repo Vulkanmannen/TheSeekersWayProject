@@ -6,6 +6,7 @@ class IntroScreen;
 class StartMenu;
 class GameMenu;
 class PauseMenu;
+class DialogState;
 
 class State
 {
@@ -16,7 +17,7 @@ public:
 		Intro,
 		StartState,
 		PauseState,
-		DialogState,
+		DialogueState,
 		GameState
 	};
 
@@ -43,6 +44,7 @@ private:
 	StartMenu *mStartMenu;
 	GameMenu *mGameMenu;
 	PauseMenu *mPauseMenu;
+	DialogState *mDialogState;
 
 	sf::Clock mIntroClock;
 
