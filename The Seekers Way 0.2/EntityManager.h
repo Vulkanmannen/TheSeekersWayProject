@@ -58,10 +58,14 @@ private:
 	sf::View* mView;
 	
 	//--------------life
+	int mCountPlayerLife;
 	int mPlayerLife;
+	sf::Texture mDeathTexture;
+	sf::Sprite mDeathSprite;
 	sf::Texture mLifeTexture;
 	sf::Sprite mLifeSprite;
 	void updatePlayerLife();
+	void killPlayers();
 
 	//---------- mask
 	sf::Texture mMaskTexture;

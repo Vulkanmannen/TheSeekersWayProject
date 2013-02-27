@@ -14,10 +14,12 @@ EntityManager* EntityManager::sInstance = 0;
 EntityManager::EntityManager():
 	mPlayerLife(3),
 	mMapTop(360),
+	mCountPlayerLife(0),
 	mMapLeft(512)
 {
-		mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
-		mLifeSprite.setTexture(mLifeTexture);
+
+		//mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
+		//mLifeSprite.setTexture(mLifeTexture);
 
 		frameTexture.loadFromFile("frame.png");
 		frame.setTexture(frameTexture);
@@ -30,6 +32,8 @@ EntityManager::EntityManager():
 		shadow.setParameter("texture", sf::Shader::CurrentTexture);
 		mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
 		mLifeSprite.setTexture(mLifeTexture);
+		mDeathTexture.loadFromFile("Pausemenu.png");
+		mDeathSprite.setTexture(mDeathTexture);
 		mMaskTexture.loadFromImage(*ImageManager::getImage("mask.png"));
 		mMaskSprite.setTexture(mMaskTexture);
 		mBackgroundTexture.loadFromImage(*ImageManager::getImage("background.png"));
@@ -80,6 +84,15 @@ void EntityManager::lifeAndMaskPosition()
 	mMaskSprite.setPosition(getCharacterPos() - sf::Vector2f(1024, 720));
 }
 
+void EntityManager::killPlayers()
+{
+	if(mCountPlayerLife == 3)
+	{
+		ImageManager::render(&mDeathSprite);
+		mDeathSprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
+	}
+}
+
 // uppdaterar hur mycket liv spelaren har
 void EntityManager::updatePlayerLife()
 {
@@ -89,6 +102,7 @@ void EntityManager::updatePlayerLife()
 		{
 			mCharacters[i]->setIsHitToFalse();
 			mPlayerLife--;
+			mCountPlayerLife++;
 		}
 	}
 }
@@ -105,6 +119,7 @@ void EntityManager::updatePlayerPortrait()
 // ritarut alla objekt
 void EntityManager::render()
 {
+	killPlayers();
 	renderBackground();
 
 	for(int h = 0; h < 4; ++h)
@@ -306,7 +321,7 @@ void EntityManager::updatePrimaryCharacter()
 	}
 }
 
-// returnerar possitione till den primära karaktären
+// returnerar positionen till den primära karaktären
 sf::Vector2f EntityManager::getCharacterPos()const
 {
 	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i)

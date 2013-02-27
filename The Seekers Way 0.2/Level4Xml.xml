@@ -12,102 +12,87 @@
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<doorPosition X="3840" Y="448"/>
-		<buttonPosition X="4544" Y="704"/>		
+		<doorPosition X="3840" Y="320"/>
+		<buttonPosition X="4544" Y="576"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
 		<doorPosition X="4032" Y="1600"/>
-		<buttonPosition X="3584" Y="1856"/>		
-	</Door>
-	
-	<Door name="DoorsLevel1">
-		<doorPosition X="4032" Y="1152"/>
-		<buttonPosition X="4288" Y="1984"/>		
+		<buttonPosition X="3648" Y="1280"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
 		<doorPosition X="3200" Y="640"/>
-		<leverPosition X="3904" Y="512"/>		
+		<leverPosition X="3904" Y="384"/>		
 	</Door>
   
   	<Door name="DoorsLevel1">
-		<smalBridgePosition X="512" Y="768"/>
-		<leverPosition X="832" Y="1088"/>		
+		<smalBridgePosition X="2176" Y="256" Closed ="1"/>
+		<leverPosition X="512" Y="768"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<smalBridgePosition X="704" Y="1984"/>
+		<smalBridgePosition X="704" Y="1984" Closed ="0"/>
 		<leverPosition X="1792" Y="2048"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<smalBridgePosition X="2688" Y="1472"/>
+		<smalBridgePosition X="2816" Y="1472" Closed ="1"/>
 		<leverPosition X="3456" Y="1600"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<smalBridgePosition X="3264" Y="576"/>
-		<buttonPosition X="3264" Y="128"/>		
+		<smalBridgePosition X="3264" Y="512" Closed ="1"/>
+		<buttonPosition X="3264" Y="192"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<smalBridgePosition X="3072" Y="768"/>
+		<smalBridgePosition X="3072" Y="768" Closed ="1"/>
 		<buttonPosition X="3264" Y="896"/>
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<smalBridgePosition X="4096" Y="1920"/>
+		<smalBridgePosition X="4352" Y="1920" Closed ="0"/>
 		<buttonPosition X="3648" Y="1728"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<smalBridgePosition X="4352" Y="1856"/>
-		<buttonPosition X="3712" Y="1728"/>		
+		<smalBridgePosition X="4352" Y="1152" Closed ="0"/>
+		<buttonPosition X="4224" Y="1344"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<smalBridgePosition X="4224" Y="1344"/>
-		<buttonPosition X="4480" Y="1408"/>		
-	</Door>
-	
-	<Door name="DoorsLevel1">
-		<smalBridgePosition X="4352" Y="1216"/>
-		<buttonPosition X="4416" Y="1408"/>		
-	</Door>
-	
-	<Door name="DoorsLevel1">
-		<bigBridgePosition X="2304" Y="704"/>
+		<bigBridgePosition X="2304" Y="704" Closed ="0"/>
 		<buttonPosition X="3008" Y="1408"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<bigBridgePosition X="4160" Y="1728"/>
-		<buttonPosition X="4480" Y="1664"/>		
+		<bigBridgePosition X="4160" Y="1728" Closed ="1"/>
+		<buttonPosition X="3584" Y="1856"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<doorPosition X="2240" Y="1664"/>
+		<doorPosition X="2240" Y="1664" texture="magicdoor.png"/>
 		<magicSwitchPosition X="2752" Y="2048" timeOpen="8"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<doorPosition X="3328" Y="1728"/>
+		<doorPosition X="3328" Y="1728" texture="magicdoor.png"/>
 		<magicSwitchPosition X="2176" Y="1728" timeOpen="8"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<doorPosition X="2240" Y="1856"/>
+		<doorPosition X="2240" Y="1856" texture="magicdoor.png"/>
 		<magicSwitchPosition X="3456" Y="1792" timeOpen="8"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<doorPosition X="3328" Y="1984"/>
+		<doorPosition X="3328" Y="1984" texture="magicdoor.png"/>
 		<magicSwitchPosition X="2176" Y="1920" timeOpen="8"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<doorPosition X="3328" Y="1536"/>
+		<doorPosition X="3328" Y="1536" texture="magicdoor.png"/>
 		<magicSwitchPosition X="3456" Y="2048" timeOpen="8"/>		
 	</Door>
 	
@@ -120,7 +105,7 @@
 	</Portal>
 	
 	<Portal name="Level1">
-		<portalPosition X1="3328" Y1="896" X2="3584" Y2="512"/>
+		<portalPosition X1="3328" Y1="896" X2="3584" Y2="384"/>
 	</Portal>
 
 </Body2>
