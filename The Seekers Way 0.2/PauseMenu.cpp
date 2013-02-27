@@ -6,12 +6,32 @@
 
 
 PauseMenu::PauseMenu():
-	HowToPlay(false)
+	HowToPlay(false),
+	canPressJournal(true),
+	currentJournalFrame(0)
 {
 	mPauseText.loadFromFile("journal.PNG");
+	mHowToPlayKiba.loadFromFile("journal_Kiba.png");
+	mHowToPlayCharlotte.loadFromFile("journal_Charlotte.png");
+	mHowToPlayFenrir.loadFromFile("journal_Fenrir.png");
+	mHowToPlaySheeka.loadFromFile("journal_Sheeka.png");
+
 	mPauseSprite.setTexture(mPauseText);
-	mHowToPlay.loadFromFile("Howtoplayinst.png");
-	mHowToPlaySprite.setTexture(mHowToPlay);
+	mHowToPlaySpriteSheeka.setTexture(mHowToPlaySheeka);
+	mHowToPlaySpriteFenrir.setTexture(mHowToPlayFenrir);
+	mHowToPlaySpriteCharlotte.setTexture(mHowToPlayCharlotte);
+	mHowToPlaySpriteKiba.setTexture(mHowToPlayKiba);
+
+	mHowToPlaySpriteKiba.setPosition(100, 60);
+	mHowToPlaySpriteCharlotte.setPosition(100, 60);
+	mHowToPlaySpriteFenrir.setPosition(100, 60);
+	mHowToPlaySpriteSheeka.setPosition(100, 60);
+
+	mSpriteVector.push_back(&mHowToPlaySpriteKiba);
+	mSpriteVector.push_back(&mHowToPlaySpriteCharlotte);
+	mSpriteVector.push_back(&mHowToPlaySpriteFenrir);
+	mSpriteVector.push_back(&mHowToPlaySpriteSheeka);
+
 	generateButtons();
 }
 
@@ -28,7 +48,14 @@ void PauseMenu::update()
 		changeButton();
 		
 	}
+
+	else 
+	{
+		changeJournalFrame();
+	}
+
 	buttonActivate();
+
 }
 
 void PauseMenu::render()
@@ -39,8 +66,7 @@ void PauseMenu::render()
 	renderButtons();
 	if(HowToPlay == true)
 	{
-		mHowToPlaySprite.setPosition(0, 0);
-		ImageManager::render(&mHowToPlaySprite);
+		ImageManager::render(mSpriteVector[currentJournalFrame]);
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
 			HowToPlay = false;
@@ -74,19 +100,19 @@ void PauseMenu::generateButtons()
 
 void PauseMenu::changeButton()
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && canPress)
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && canPressMenu)
 	{
 		currentButton++;
-		canPress = false;
+		canPressMenu = false;
 	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && canPress)
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && canPressMenu)
 	{
 		currentButton--;
-		canPress = false;
+		canPressMenu = false;
 	}
 	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		canPress = true;	
+		canPressMenu = true;	
 	}
 
 
@@ -158,4 +184,34 @@ void PauseMenu::SetCanPressToFalse()
 bool PauseMenu::HowToPlayInst()
 {
 	return HowToPlay;
+}
+
+void PauseMenu::changeJournalFrame()
+{
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && canPressJournal)
+	{
+		currentJournalFrame--;
+		canPressJournal = false;
+	}
+
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && canPressJournal)
+	{
+		currentJournalFrame++;
+		canPressJournal = false;
+	}
+
+	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		canPressJournal = true;
+	}
+
+	if(currentJournalFrame < 0)
+	{
+		currentJournalFrame = 3;
+	}
+
+	else if(currentJournalFrame > 3)
+	{
+		currentJournalFrame = 0;
+	}
 }

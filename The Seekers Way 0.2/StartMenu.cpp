@@ -15,14 +15,8 @@ StartMenu::StartMenu():
 {
 	mStartText.loadFromFile("StartMenurelease.PNG");
 	mStartSprite.setTexture(mStartText);
-	mHowToPlayKiba.loadFromFile("journal_Kiba.png");
-	mHowToPlaySpriteKiba.setTexture(mHowToPlayKiba);
-	mHowToPlayCharlotte.loadFromFile("journal_Charlotte.png");
-	mHowToPlaySpriteCharlotte.setTexture(mHowToPlayCharlotte);
-	mHowToPlayFenrir.loadFromFile("journal_Fenrir.png");
-	mHowToPlaySpriteFenrir.setTexture(mHowToPlayFenrir);
-	mHowToPlaySheeka.loadFromFile("journal_Sheeka.png");
-	mHowToPlaySpriteSheeka.setTexture(mHowToPlaySheeka);
+	mHowToPlay.loadFromFile("HowToPlayinst.png");
+	mHowToPlaySprite.setTexture(mHowToPlay);
 	generateButtons();
 }
 
@@ -49,9 +43,8 @@ void StartMenu::render()
 	renderButtons();
 	if(HowToPlay == true)
 	{
-		//HowToPlayCount();
-		mHowToPlaySpriteKiba.setPosition(116, 64);
-		ImageManager::render(&mHowToPlaySpriteKiba);
+		mHowToPlaySprite.setPosition(0, 0);
+		ImageManager::render(&mHowToPlaySprite);
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{

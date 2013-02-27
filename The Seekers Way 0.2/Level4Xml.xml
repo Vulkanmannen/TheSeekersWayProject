@@ -116,11 +116,11 @@
 <Body2>
 
 	<Portal name="Level1">
-		<portalPosition X1="2816" Y1="960" X2="3520" Y2="832"/>
+		<portalPosition X1="2816" Y1="1024" X2="3520" Y2="896"/>
 	</Portal>
 	
 	<Portal name="Level1">
-		<portalPosition X1="3328" Y1="832" X2="3584" Y2="448"/>
+		<portalPosition X1="3328" Y1="896" X2="3584" Y2="512"/>
 	</Portal>
 
 </Body2>
