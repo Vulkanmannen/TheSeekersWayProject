@@ -3,6 +3,8 @@
 #include "Entity.h"
 #include "LevelManager.h"
 #include "EntityManager.h"
+#include "State.h"
+#include "Dialogue.h"
 
 
 static const float WIDTH = 192;
@@ -76,7 +78,9 @@ void FinishDoor::LoadNextLevel()
 
 	if(mClockAllIn.getElapsedTime().asSeconds() > 2 && mAllInGoal)
 	{
-		LevelManager::getInstance()->LoadLevel(LevelManager::getInstance()->getCurrentLevel() + 1);
+		LevelManager::getInstance()->LoadEndLevel();
+		Dialogue::getInstance()->setStartDialogue(false);
+		State::getInstance()->setState(State::DialogueState);
 	}
 }
 

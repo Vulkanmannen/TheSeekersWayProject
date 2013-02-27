@@ -38,6 +38,8 @@ public:
 	~LevelManager();
 
 	void LoadLevel(int level = currentLevel);
+	void LoadEndLevel();
+
 	static LevelManager* getInstance();
 
 	int getCurrentLevel();

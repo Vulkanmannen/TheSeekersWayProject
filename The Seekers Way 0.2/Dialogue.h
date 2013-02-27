@@ -21,6 +21,9 @@ public:
 	void startDialogue(std::string dialogueName);
 
 	bool getendofDialogue();
+
+	bool getStartDialogue()const;
+	void setStartDialogue(bool stardDialogue = true);
 	
 	typedef std::vector<sf::Text*> TextVector;
 	TextVector textBox(sf::Text &);
@@ -52,6 +55,8 @@ private:
 	sf::Texture mTexture[4];
 
 	sf::Clock interval;
+
+	bool mStartDialogue;
 };
 
 #endif

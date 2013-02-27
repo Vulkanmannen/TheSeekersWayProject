@@ -2,6 +2,7 @@
 #include "Dialogue.h"
 #include "State.h"
 #include "EntityManager.h"
+#include "LevelManager.h"
 
 DialogState::DialogState()
 {
@@ -23,6 +24,13 @@ void DialogState::update()
 	EntityManager::getInstance()->updateView();
 	if(Dialogue::getInstance()->getendofDialogue())
 	{
-		State::getInstance()->setState(State::GameState);
+		if(Dialogue::getInstance()->getStartDialogue())
+		{
+			State::getInstance()->setState(State::GameState);
+		}
+		else
+		{
+			LevelManager::getInstance()->LoadLevel(LevelManager::getInstance()->getCurrentLevel() + 1);
+		}
 	}
 }

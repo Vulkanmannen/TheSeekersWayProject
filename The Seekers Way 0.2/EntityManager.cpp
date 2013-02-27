@@ -105,7 +105,7 @@ void EntityManager::updatePlayerPortrait()
 void EntityManager::render()
 {
 	renderBackground();
-
+	updateView();
 	
 	for(int h = 0; h < 4; ++h)
 	{
@@ -379,6 +379,7 @@ void EntityManager::updateView()
 		}	
 	}
 	// det står fan totte överallt
+	// jag vet!!! och det stör mig som faaan!
 	if(playerPos.y > mMapTop && playerPos.y < mMapBottom)
 	{
 		mView->setCenter(sf::Vector2f(mView->getCenter().x, playerPos.y));

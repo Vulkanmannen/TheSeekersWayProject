@@ -36,6 +36,6 @@ void GameMenu::update()
 
 void GameMenu::render()
 {
-	EntityManager::getInstance()->updateView();
+	//EntityManager::getInstance()->updateView();
 	EntityManager::getInstance()->render();
 }
