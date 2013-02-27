@@ -157,7 +157,6 @@
     <ClCompile Include="LevelManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
-    <ClCompile Include="FinishDoor.cpp" />
     <ClCompile Include="Button.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
@@ -170,7 +169,12 @@
     <ClCompile Include="FinishDoor.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Decoration.cpp" />
+    <ClCompile Include="FinishDoor.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Decoration.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -320,7 +324,6 @@
     <ClInclude Include="LevelManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
-    <ClInclude Include="FinishDoor.h" />
     <ClInclude Include="Button.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
@@ -333,7 +336,12 @@
     <ClInclude Include="FinishDoor.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Decoration.h" />
+    <ClInclude Include="FinishDoor.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Decoration.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">

@@ -17,17 +17,24 @@ public:
 	static Dialogue* getInstance();
 	void update();
 	void render();
-	void playNext();
-	void empthyDialogue();
-	void loadDialogue(std::string dialogueName);
+
 	void startDialogue(std::string dialogueName);
-	void loadText();
+
 	bool getendofDialogue();
+
+	bool getStartDialogue()const;
+	void setStartDialogue(bool stardDialogue = true);
+	
 	typedef std::vector<sf::Text*> TextVector;
 	TextVector textBox(sf::Text &);
 
 private:
 	static Dialogue *sInstance;
+
+	void playNext();
+	void loadDialogue(std::string dialogueName);
+	void empthyDialogue();
+	void loadText();
 
 	enum Speaker{kiba, charlotte, fenrir, sheeka, journal};
 	int currentText;
@@ -48,6 +55,8 @@ private:
 	sf::Texture mTexture[4];
 
 	sf::Clock interval;
+
+	bool mStartDialogue;
 };
 
 #endif

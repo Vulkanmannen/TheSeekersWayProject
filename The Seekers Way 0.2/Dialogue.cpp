@@ -13,7 +13,8 @@ Dialogue::Dialogue():
 	isbuttonpressed(false),
 	currentText(0),
 	dialogSpeed(10),
-	currentLetter(0)
+	currentLetter(0),
+	mStartDialogue(true)
 {
 	
 	journal_font = new sf::Font;
@@ -54,9 +55,13 @@ void Dialogue::update()
 		interval.restart();
 		if(texts.size() != 0)
 		{
-			if(currentLetter < texts[currentText]->getString().toAnsiString().size() )
-			{	
-				currentLetter++;
+			if(currentText < texts.size())
+			{
+				if(currentLetter < texts[currentText]->getString().toAnsiString().size() )
+				{	
+					currentLetter++;
+				}
+				EntityManager::getInstance()->setPrimaryCharacter(static_cast<Entity::EntityKind>(speakerlista[texts[currentText]]));
 			}
 		}
 	}
@@ -99,7 +104,6 @@ bool Dialogue::getendofDialogue()
 	return mEndofDialogue;
 }
 
-
 void Dialogue::startDialogue(std::string dialogueName)
 {
 	currentText = 0;
@@ -113,10 +117,10 @@ void Dialogue::startDialogue(std::string dialogueName)
 void Dialogue::empthyDialogue()
 {
 	while(!texts.empty())
-		{
-			delete texts.back();
-			texts.pop_back();
-		}
+	{
+		delete texts.back();
+		texts.pop_back();
+	}
 	speakerlista.clear();
 }
 
@@ -287,4 +291,14 @@ Dialogue::TextVector Dialogue::textBox(sf::Text &rawText)
 {
 TextVector om;
 	return om;
+}
+
+bool Dialogue::getStartDialogue()const
+{
+	return mStartDialogue;
+}
+
+void Dialogue::setStartDialogue(bool startDialogue)
+{
+	mStartDialogue = startDialogue;
 }

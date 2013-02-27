@@ -18,7 +18,7 @@ Charlotte::Charlotte(sf::Vector2f &position):
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
 		mEntityKind = CHARLOTTE;
-		mPosition = position;
+		mPosition = position + sf::Vector2f(0, 40);
 	}
 
 Charlotte::~Charlotte()

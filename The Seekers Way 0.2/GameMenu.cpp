@@ -16,6 +16,7 @@ void GameMenu::update()
 {
 	EntityManager::getInstance()->update();
 	EntityManager::getInstance()->updatePrimaryCharacter();
+
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::M))
 	{
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
@@ -43,6 +44,6 @@ void GameMenu::update()
 
 void GameMenu::render()
 {
-	EntityManager::getInstance()->updateView();
+	//EntityManager::getInstance()->updateView();
 	EntityManager::getInstance()->render();
 }

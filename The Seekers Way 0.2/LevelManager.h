@@ -38,12 +38,15 @@ public:
 	~LevelManager();
 
 	void LoadLevel(int level = currentLevel);
+	void LoadEndLevel();
+
 	static LevelManager* getInstance();
 
 	int getCurrentLevel();
 
 
 private:
+	typedef std::vector<std::string> StringVector;
 
 	LevelManager();
 	LevelManager(const LevelManager&);
@@ -54,9 +57,10 @@ private:
 	Levelvector mLevels;
 
 	void generateLevels();
+	void generateDialogues();
 	
-	
-
+	StringVector mStartDialogues;
+	StringVector mEndDialogues;
 };
 
 #endif
