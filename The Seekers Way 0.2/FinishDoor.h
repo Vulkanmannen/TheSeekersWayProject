@@ -27,6 +27,9 @@ private:
 	bool sheekaInGoal;
 
 	bool mAllInGoal;
+
+	int mNumberOfCharactersInGoal;
+	void updateCharactersInGoal();
 };
 
 #endif

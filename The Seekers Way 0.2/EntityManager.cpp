@@ -68,7 +68,6 @@ void EntityManager::update()
 	killEntity();
 
 	updatePlayerLife();
-	lifeAndMaskPosition();
 
 	updatePlayerPortrait();
 }
@@ -106,7 +105,8 @@ void EntityManager::updatePlayerPortrait()
 void EntityManager::render()
 {
 	renderBackground();
-
+	updateView();
+	
 	for(int h = 0; h < 4; ++h)
 	{
 		for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
@@ -120,6 +120,7 @@ void EntityManager::render()
 	
 	renderLifeAndMask();
 	renderPortrait();
+	lifeAndMaskPosition();
 	//sf::RectangleShape rect(sf::Vector2f(mMapRight - 512, mMapBottom - 360));
 	//rect.setPosition(mMapLeft, mMapTop);
 	//sf::Color colo(255,255,255,128);
@@ -378,6 +379,7 @@ void EntityManager::updateView()
 		}	
 	}
 	// det står fan totte överallt
+	// jag vet!!! och det stör mig som faaan!
 	if(playerPos.y > mMapTop && playerPos.y < mMapBottom)
 	{
 		mView->setCenter(sf::Vector2f(mView->getCenter().x, playerPos.y));
@@ -400,6 +402,12 @@ void EntityManager::setMapSize(int numberOfBlocksRight, int numberOfBlocksBottom
 {
 	mMapRight = numberOfBlocksRight * 64 - 576;
 	mMapBottom = numberOfBlocksBottom * 64 - 424;
+}
+
+// returnerar storleken på mCharacters
+int EntityManager::getSizeOfCharacterVector()const
+{
+	return static_cast<int>(mCharacters.size());
 }
 
 void EntityManager::ClearAll()
