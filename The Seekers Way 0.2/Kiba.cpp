@@ -16,7 +16,7 @@ Kiba::Kiba(sf::Vector2f &position):
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = KIBA;
-	mPosition = position;
+	mPosition = position + sf::Vector2f(0, 32);
 }
 
 

@@ -54,9 +54,13 @@ void Dialogue::update()
 		interval.restart();
 		if(texts.size() != 0)
 		{
-			if(currentLetter < texts[currentText]->getString().toAnsiString().size() )
-			{	
-				currentLetter++;
+			if(currentText < texts.size())
+			{
+				if(currentLetter < texts[currentText]->getString().toAnsiString().size() )
+				{	
+					currentLetter++;
+				}
+				EntityManager::getInstance()->setPrimaryCharacter(static_cast<Entity::EntityKind>(speakerlista[texts[currentText]]));
 			}
 		}
 	}

@@ -2,6 +2,7 @@
 #include "ImageManager.h"
 #include "Entity.h"
 #include "LevelManager.h"
+#include "EntityManager.h"
 
 
 static const float WIDTH = 192;
@@ -12,7 +13,8 @@ FinishDoor::FinishDoor(sf::Vector2f &position):
 	charlotteInGoal(false),
 	fenrirInGoal(false),
 	sheekaInGoal(false),
-	mAllInGoal(false)
+	mAllInGoal(false),
+	mNumberOfCharactersInGoal(0)
 {
 	mPosition = position + sf::Vector2f(64, 64);
 	mHeight = HEIGHT;
@@ -62,7 +64,8 @@ void FinishDoor::interact(Entity* e)
 
 void FinishDoor::LoadNextLevel()
 {
-	if(kibaInGoal == true && charlotteInGoal == true && fenrirInGoal == true && sheekaInGoal == true)
+	updateCharactersInGoal();
+	if(mNumberOfCharactersInGoal >= EntityManager::getInstance()->getSizeOfCharacterVector())
 	{
 		if(mAllInGoal == false)
 		{
@@ -74,6 +77,27 @@ void FinishDoor::LoadNextLevel()
 	if(mClockAllIn.getElapsedTime().asSeconds() > 2 && mAllInGoal)
 	{
 		LevelManager::getInstance()->LoadLevel(LevelManager::getInstance()->getCurrentLevel() + 1);
+	}
+}
+
+void FinishDoor::updateCharactersInGoal()
+{
+	mNumberOfCharactersInGoal = 0;
+	if(kibaInGoal)
+	{
+		mNumberOfCharactersInGoal++;
+	}
+	if(charlotteInGoal)
+	{
+		mNumberOfCharactersInGoal++;
+	}
+	if(fenrirInGoal)
+	{
+		mNumberOfCharactersInGoal++;
+	}
+	if(sheekaInGoal)
+	{
+		mNumberOfCharactersInGoal++;
 	}
 }
 

@@ -35,7 +35,9 @@ public:
 	sf::View* getView();
 	void updateView();
 	
-	void setMapSize(int numberOfBlocksWidth, int numberOfBlocksHeight/*, int numberOfBackgroundsWidth = 2, int numberOfBackgroundsHeight = 2*/);
+	void setMapSize(int numberOfBlocksWidth, int numberOfBlocksHeight);
+
+	int getSizeOfCharacterVector()const;
 private:
 	EntityManager();
 	EntityManager(const EntityManager &e);
