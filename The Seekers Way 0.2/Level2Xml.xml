@@ -22,9 +22,8 @@
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<doorPosition X="1344" Y="1600"/>
+		<doorPosition X="1344" Y="1600" texture="magicdoor.png"/>
 		<magicSwitchPosition X="2048" Y="1664" timeOpen="8"/>
-		
 			
 	</Door>
   </Body>
