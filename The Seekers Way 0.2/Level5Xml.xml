@@ -1,30 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 
   <Body>
-	<Door name="Level1">
-		<bigBridgePosition X="640" Y="1344" Closed="0"/>
-		<buttonPosition X="128" Y="1408"/>		
-	</Door>
-
-	<Door name="Level1">
-		<smalBridgePosition X="832" Y="512" Closed="0"/>
-		<buttonPosition X="768" Y="896"/>
-	</Door>
-
-	<Door name="Level1">
-		<doorPosition X="1152" Y="1344"/>
-		<buttonPosition X="1088" Y="1408"/>		
+	<Door name="DoorsLevel1">
+		<doorPosition X="320" Y="1792"/>
+		<leverPosition X="832" Y="1408"/>		
 	</Door>
 	
-
-
-
-  </Body>
-
+	<Door name="DoorsLevel1">
+		<doorPosition X="2816" Y="64"/>
+		<leverPosition X="2560" Y="1152"/>		
+	</Door>
+	
+   </Body>
+   
 <Body2>
-	<Portal name="Level1">
-		<portalPosition X1="196" Y1="1408" X2="1024" Y2="1088"/>
-	</Portal>
 
+	<Portal name="Level1">
+		<portalPosition X1="2944" Y1="1536" X2="3904" Y2="1472"/>
+	</Portal>
+	
+	<Portal name="Level1">
+		<portalPosition X1="4032" Y1="1728" X2="3008" Y2="1792"/>
+	</Portal>
 
 </Body2>

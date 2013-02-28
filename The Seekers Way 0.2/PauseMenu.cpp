@@ -22,10 +22,11 @@ PauseMenu::PauseMenu():
 	mHowToPlaySpriteCharlotte.setTexture(mHowToPlayCharlotte);
 	mHowToPlaySpriteKiba.setTexture(mHowToPlayKiba);
 
-	mHowToPlaySpriteKiba.setPosition(100, 60);
-	mHowToPlaySpriteCharlotte.setPosition(100, 60);
-	mHowToPlaySpriteFenrir.setPosition(100, 60);
-	mHowToPlaySpriteSheeka.setPosition(100, 60);
+	mPauseSprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
+	mHowToPlaySpriteKiba.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
+	mHowToPlaySpriteCharlotte.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
+	mHowToPlaySpriteFenrir.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
+	mHowToPlaySpriteSheeka.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
 
 	mSpriteVector.push_back(&mHowToPlaySpriteKiba);
 	mSpriteVector.push_back(&mHowToPlaySpriteCharlotte);
@@ -46,14 +47,13 @@ void PauseMenu::update()
 	{
 		updateCurrentButton();
 		changeButton();
-		
 	}
-
 	else 
 	{
 		changeJournalFrame();
 	}
 
+	updateButtons();
 	buttonActivate();
 
 }
@@ -61,8 +61,8 @@ void PauseMenu::update()
 void PauseMenu::render()
 {
 	EntityManager::getInstance()->render();
-	mPauseSprite.setPosition(100, 60);
 	ImageManager::render(&mPauseSprite);
+	updateButtons();
 	renderButtons();
 	if(HowToPlay == true)
 	{
@@ -73,29 +73,44 @@ void PauseMenu::render()
 			State::getInstance()->setmEsc(false);
 		}
 	}
+
+	mPauseSprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
+	mHowToPlaySpriteKiba.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
+	mHowToPlaySpriteCharlotte.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
+	mHowToPlaySpriteFenrir.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
+	mHowToPlaySpriteSheeka.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
+
 }
 
 void PauseMenu::generateButtons()
 {
 		Animation animation("Resume.PNG", 80, 1, 64, 192);
-		animation.setPosition(sf::Vector2f(230, 100 + 1*70));
+		updateButtons();
 		mButtons.push_back(animation);
 
 		Animation animation2("RestartLevel.PNG", 80, 1, 64, 192);
-		animation2.setPosition(sf::Vector2f(230, 100 + 2*70));
+		updateButtons();
 		mButtons.push_back(animation2);
 
 		Animation animation3("HowToPlay.PNG", 80, 1, 64, 192);
-		animation3.setPosition(sf::Vector2f(230, 100 + 3*70));
+		updateButtons();
 		mButtons.push_back(animation3);
 
 		Animation animation4("Audio.png", 80, 1, 64, 192);
-		animation4.setPosition(sf::Vector2f(230, 100 + 4*70));
+		updateButtons();
 		mButtons.push_back(animation4);
-
+		
 		Animation animation5("MainMenu.PNG", 80, 1,64 , 192);
-		animation5.setPosition(sf::Vector2f(230, 100 + 5*70));
+		updateButtons();
 		mButtons.push_back(animation5);
+}
+
+void PauseMenu::updateButtons()
+{
+	for(std::vector<Animation>::size_type i = 0; i < mButtons.size(); i++)
+	{
+		mButtons[i].setPosition(mPauseSprite.getPosition() + sf::Vector2f(120, 120 + i*70));
+	}
 }
 
 void PauseMenu::changeButton()

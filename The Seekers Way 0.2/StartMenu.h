@@ -18,6 +18,7 @@ public:
 
 private:
 
+	void updateButtons();
 	void generateButtons();
 	void changeButton();
 	void renderButtons();

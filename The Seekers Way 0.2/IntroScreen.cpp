@@ -1,10 +1,11 @@
 #include "IntroScreen.h"
 #include "ImageManager.h"
+#include "EntityManager.h"
 
 IntroScreen::IntroScreen():
 mAnimation("intro.png", 150, 24, 512, 512)
 {
-	mAnimation.setPosition(sf::Vector2f(256, 64));
+	mAnimation.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(256, 220));
 }
 
 

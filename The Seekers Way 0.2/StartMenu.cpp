@@ -4,6 +4,7 @@
 #include "LevelManager.h"
 #include "State.h"
 #include "Sounds.h"
+#include "EntityManager.h"
 
 
 StartMenu::StartMenu():
@@ -33,13 +34,15 @@ void StartMenu::update()
 		changeButton();
 		
 	}
+	updateButtons();
 	buttonActivate();
 }
 
 void StartMenu::render()
 {
-	mStartSprite.setPosition(0, 0);
+	mStartSprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(512, 360));
 	ImageManager::render(&mStartSprite);
+	updateButtons();
 	renderButtons();
 	if(HowToPlay == true)
 	{
@@ -51,30 +54,42 @@ void StartMenu::render()
 			HowToPlay = false;
 		}
 	}
-
 }
 
 void StartMenu::generateButtons()
 {
 		Animation animation("Resume.PNG", 80, 1, 64, 192);
-		animation.setPosition(sf::Vector2f(450, 100 + 1*70));
+		updateButtons();
+		//animation.setPosition(mStartSprite.getPosition() + sf::Vector2f(420, 720 + 1*70));
 		mButtons.push_back(animation);
 
 		Animation animation2("NewGame.PNG", 80, 1, 64, 192);
-		animation2.setPosition(sf::Vector2f(450, 100 + 2*70));
+		updateButtons();
+		//animation2.setPosition(mStartSprite.getPosition() + sf::Vector2f(420, 720 + 2*70));
 		mButtons.push_back(animation2);
 
 		Animation animation3("HowToPlay.PNG", 80, 1, 64, 192);
-		animation3.setPosition(sf::Vector2f(450, 100 + 3*70));
+		updateButtons();
+		//animation3.setPosition(mStartSprite.getPosition() + sf::Vector2f(420, 720 + 3*70));
 		mButtons.push_back(animation3);
 
 		Animation animation4("Audio.png", 80, 1, 64, 192);
-		animation4.setPosition(sf::Vector2f(450, 100 + 4*70));
+		updateButtons();
+		//animation4.setPosition(mStartSprite.getPosition() + sf::Vector2f(420, 720 + 4*70));
 		mButtons.push_back(animation4);
 
 		Animation animation5("Exit.PNG", 80, 1, 64, 192);
-		animation5.setPosition(sf::Vector2f(450, 100 + 5*70));
+		updateButtons();
+		//animation5.setPosition(mStartSprite.getPosition() + sf::Vector2f(420, 720 + 5*70));
 		mButtons.push_back(animation5);
+}
+
+void StartMenu::updateButtons()
+{
+	for(std::vector<Animation>::size_type i = 0; i < mButtons.size(); i++)
+	{
+		mButtons[i].setPosition(mStartSprite.getPosition() + sf::Vector2f(420, 180 + i*70));
+	}
 }
 
 void StartMenu::changeButton()

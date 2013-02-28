@@ -28,6 +28,7 @@ int main()
 	window.setFramerateLimit(60);
 	
 	sf::View view;
+	view.setCenter(512, 360);
 	view.setSize(1024, 720);
 
 	window.setMouseCursorVisible(false);
@@ -53,7 +54,7 @@ int main()
         }
 		
 		window.clear(sf::Color::Black);
-		view.setCenter(sf::Vector2f(512, 360));
+	/*	view.setCenter(sf::Vector2f(512, 360));*/
 		State::getInstance()->update();
 
 		window.setView(view); 
