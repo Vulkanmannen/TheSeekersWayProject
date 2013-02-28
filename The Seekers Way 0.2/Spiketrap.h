@@ -21,18 +21,18 @@ public:
 private:
 	Animation mAnimation;
 
-	sf::Clock mClockFrame;
-	sf::Clock mClockWait;
-	float mTimeToNextFrame;
-	float mTimeDown;
+	static sf::Clock mClockFrame;
+	static sf::Clock mClockWait;
+	static float mTimeToNextFrame;
+	static float mTimeDown;
 
 	void SpikeMove();
-	void spikeCount();
+	static void spikeCount();
 
-	int mSpikeCount;
-	bool mCountDirectionUpp;
-	bool mWait;
-	bool mHurting;
+	static int mSpikeCount;
+	static bool mCountDirectionUpp;
+	static bool mWait;
+	static bool mHurting;
 	float mStartYValue;
 };
 

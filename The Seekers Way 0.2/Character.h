@@ -20,6 +20,7 @@ public:
 	virtual void interact(Entity* e);
 
 	bool getIsHit()const;
+	sf::Vector2f getMovementSpeed()const;
 	void setIsHitToFalse();
 protected:
 

@@ -136,7 +136,7 @@ void Character::hurtTime()
 	if(mHurt)
 	{
 		//std::cout << "hurt" << std::endl;
-		if(mHurtClock.getElapsedTime().asMilliseconds() > 250)
+		if(mHurtClock.getElapsedTime().asMilliseconds() > 100)
 		{
 			mHurtClock.restart();
 			mHurtShow = !mHurtShow;
@@ -194,6 +194,11 @@ void Character::slowdownPushBack()
 	{
 		mMovementSpeed.x *= 0.95;
 		mMovementSpeed.y *= 0.9;
+
+		if(mMovementSpeed.x < 0.01)
+		{
+			mMovementSpeed.x = 0;
+		}
 	}
 }
 
@@ -394,4 +399,10 @@ void Character::takeDamageFromArrow()
 		mHurtShow = true;
 		mHurtCount = 0;
 	}
+}
+
+// hämtar movementsped
+sf::Vector2f Character::getMovementSpeed()const
+{
+	return mMovementSpeed;
 }
