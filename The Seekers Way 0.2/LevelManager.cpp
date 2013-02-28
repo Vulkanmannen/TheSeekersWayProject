@@ -60,7 +60,10 @@ void LevelManager::generateLevels()
 	mLevels.push_back(Level("Level3.png", "Level3Object.png", "Level3Xml.xml"));
 	mLevels.push_back(Level("Level4.png", "Level4Object.png", "Level4Xml.xml", 76, 34));
 	mLevels.push_back(Level("Level5.png", "Level5Object.png", "Level5Xml.xml", 73, 34));
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0725b5b793f6459c11684e845fd8f50a4a4dc297
 }
 
 void LevelManager::generateDialogues()
@@ -76,7 +79,10 @@ void LevelManager::generateDialogues()
 	mEndDialogues.push_back("Level3EndDialogue.txt");
 	mEndDialogues.push_back("Level4EndDialogue.txt");
 	mEndDialogues.push_back("Level5EndDialogue.txt");
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0725b5b793f6459c11684e845fd8f50a4a4dc297
 }
 
 int LevelManager::getCurrentLevel()

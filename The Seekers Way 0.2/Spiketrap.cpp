@@ -7,16 +7,21 @@ static const float WIDTH = 54;
 static const float SPRITEHEIGHT = 128;
 static const float SPRITEWIDTH = 64;
 
+sf::Clock Spiketrap::mClockFrame;
+sf::Clock Spiketrap::mClockWait;
+float Spiketrap::mTimeToNextFrame = 0.05;
+float Spiketrap::mTimeDown = 2;
+
+int Spiketrap::mSpikeCount = 0;
+bool Spiketrap::mCountDirectionUpp = true;
+bool Spiketrap::mWait = false;
+bool Spiketrap::mHurting = false;
+
 Spiketrap::Spiketrap(sf::Vector2f &position):
 	mAnimation("spiketrap.png", 60, 1, SPRITEHEIGHT, SPRITEWIDTH),
-	mSpikeCount(0),
-	mCountDirectionUpp(true),
-	mWait(false),
-	mStartYValue(position.y - 32),
-	mHurting(false),
-	mTimeToNextFrame(0.05),
-	mTimeDown(3)
+	mStartYValue(position.y - 32)
 {
+
 	mPosition = position - sf::Vector2f(0, 32);
 	mWidth = WIDTH;
 	mHeight = 0;
