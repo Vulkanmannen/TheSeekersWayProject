@@ -142,7 +142,7 @@ void Stone::interact(Entity* e)
 		mCanMove = false;
 	}
 
-	if(e->getBaseKind() == Entity::BLOCK || (e->getBaseKind() == Entity::CHARACTER && mtelekinesis && mtelemove) && mCanMove)
+	if(((*e) == BLOCK && (*e) != DOOR && (*e) != BRIDGE && (*e) != BIGBRIDGE) || (e->getBaseKind() == Entity::CHARACTER && mtelekinesis && mtelemove) && mCanMove)
 	{
 		// fråga vilken sida caraktären finns på.
 		if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius)) // är karaktären höger/vänster eller över/under om blocket

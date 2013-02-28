@@ -42,7 +42,8 @@ void Fenrir::update(EntityKind &currentEntity)
 	updateHitbox();
 	snowMistCountdown();
 	updateSatatus();
-
+	hurtTime();
+	
 	if(!mWallJumping && mCanMove)
 	{
 		canWallJump();
@@ -83,7 +84,6 @@ void Fenrir::update(EntityKind &currentEntity)
 		}
 
 		canMoveTime();
-		hurtTime();
 		slowdownPushBack();
 	}
 
@@ -140,11 +140,11 @@ void Fenrir::interact(Entity *e)
 		{
 			if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
 			{	
-				if(xDif > 0)
+				if(xDif > 0)// kollar om karaktären är höger eller vänster
 				{
 					mWallJumpDirLeft = false;
 
-					if(hitWall()) // kollar om karaktären är höger eller vänster
+					if(hitWall()) // kollar om karaktären kan gå in i walljump
 					{
 						mPosition = sf::Vector2f(e->getPosition().x + xRadius - 3, mPosition.y);
 					}
@@ -157,7 +157,7 @@ void Fenrir::interact(Entity *e)
 				{
 					mWallJumpDirLeft = true;
 
-					if(hitWall()) // kollar om karaktären är höger eller vänster
+					if(hitWall())
 					{
 						mPosition = sf::Vector2f(e->getPosition().x - (xRadius - 3), mPosition.y);
 					}
@@ -174,7 +174,7 @@ void Fenrir::interact(Entity *e)
 			{
 				if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
 				{
-					mPosition = sf::Vector2f(mPosition.x, e->getPosition().y + yRadius);
+					mPosition = sf::Vector2f(mPosition.x, e->getPosition().y + (yRadius + mInSnowMist * 0.1)); // sista fixar så målnet inte fastnar i tak.
 					hitBlockFromBelow();
 				}
 			}
@@ -182,7 +182,7 @@ void Fenrir::interact(Entity *e)
 			{
 				if(std::abs(xDif) < xRadius - 10)
 				{
-					mPosition = sf::Vector2f(mPosition.x, e->getPosition().y - yRadius);
+					mPosition = sf::Vector2f(mPosition.x, e->getPosition().y - (yRadius + mInSnowMist * 0.1));
 					onblock();
 				}
 			}

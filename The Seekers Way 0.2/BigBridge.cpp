@@ -49,57 +49,86 @@ void BigBridge::render()
 // knuffar charactärer
 void BigBridge::interact(Entity* e)
 {
-	if(((*e) == CHARACTER || (*e) == STONE) && mBaseKind == BLOCK)
+	if(((*e) == CHARACTER || (*e) == STONE) &&  mBaseKind == BLOCK)
 	{
-		Character* c = static_cast<Character*>(e);
 
+		
 		// räknar ut objektens radier och lägger ihop dem
-		float xRadius = mWidth / 2 + c->getWidth() / 2;
-		float yRadius = mHeight / 2 + c->getHeight() / 2;
+		float xRadius = mWidth / 2 + e->getWidth() / 2;
+		float yRadius = mHeight / 2 + e->getHeight() / 2;
 
 		// beräknar differansen mellan två objekt
-		float xDif = c->getPosition().x - mPosition.x ;
-		float yDif = c->getPosition().y - mPosition.y ;
+		float xDif = e->getPosition().x - mPosition.x ;
+		float yDif = e->getPosition().y - mPosition.y ;
 
 		// fråga vilken sida caraktären finns på.
 		if(std::abs(xDif) > xRadius - 10) // kollar så blocket inte ligger snett under
 		{
 			if(xDif > 0) // kollar om karaktären är höger eller vänster
 			{
-				c->setPosition(sf::Vector2f(mPosition.x + xRadius - 0, c->getPosition().y));
+				e->setPosition(sf::Vector2f(mPosition.x + xRadius - 0, e->getPosition().y));
 			}
 			else
 			{
-				c->setPosition(sf::Vector2f(mPosition.x - (xRadius - 0), c->getPosition().y));
+				e->setPosition(sf::Vector2f(mPosition.x - (xRadius - 0), e->getPosition().y));
 			}
 		}
 		else
 		{
 
-			if(std::abs(yDif) > yRadius - 10)
+
+			if((*e == CHARACTER))	
 			{
-				if(yDif > 0)
+				Character* c = static_cast<Character*>(e);
+
+				if(std::abs(yDif) > yRadius - 10 || c->getMovementSpeed().y > 4)
 				{
-					c->setPosition(sf::Vector2f(c->getPosition().x, mPosition.y + (yRadius + 1)));
-					c->hitBlockFromBelow();
+					if(yDif > 0)
+					{
+						c->setPosition(sf::Vector2f(c->getPosition().x, mPosition.y + (yRadius + 0.1)));
+						c->hitBlockFromBelow();
+					}
+					else
+					{
+						c->setPosition(sf::Vector2f(c->getPosition().x, mPosition.y - (yRadius - 0)));
+						c->onblock();
+					}
 				}
 				else
 				{
-					c->setPosition(sf::Vector2f(c->getPosition().x, mPosition.y - (yRadius - 0)));
-					c->onblock();
+					if(yDif > 0)
+					{
+						e->setPosition(e->getPosition() + sf::Vector2f(0, 4));
+					}
+					else
+					{
+						e->setPosition(e->getPosition() - sf::Vector2f(0, 4));
+					}
 				}
 			}
 			else
 			{
-				if(yDif > 0)
+				if(std::abs(yDif) > yRadius - 10)
 				{
-					c->setPosition(c->getPosition() + sf::Vector2f(0, 10));
-					c->hitBlockFromBelow();
+					if(yDif > 0)
+					{
+						e->setPosition(sf::Vector2f(e->getPosition().x, mPosition.y + (yRadius - 0)));
+					}
+					else
+					{
+						e->setPosition(sf::Vector2f(e->getPosition().x, mPosition.y - (yRadius - 0)));
+					}
 				}
 				else
 				{
-					c->setPosition(c->getPosition() - sf::Vector2f(0, 10));
-					c->onblock();
+					if(yDif > 0)
+					{
+						e->setPosition(e->getPosition() + sf::Vector2f(0, 4));
+					}
+					else
+					{
+						e->setPosition(e->getPosition() - sf::Vector2f(0, 4));
+					}
 				}
 			}
 		}
