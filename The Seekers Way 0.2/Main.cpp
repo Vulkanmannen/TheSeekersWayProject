@@ -39,6 +39,7 @@ int main()
 
     while (window.isOpen())
     {
+		sf::Listener::setPosition(view.getCenter().x, view.getCenter().y, 0);
         sf::Event event;
 
 		if (State::getInstance()->getExit())

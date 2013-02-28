@@ -142,7 +142,18 @@ void EntityManager::render()
 		{
 			if(mEntities[i]->getLayer() == h)
 			{
-				mEntities[i]->render();
+				sf::Vector2f pos = mEntities[i]->getPosition();
+				float width = mEntities[i]->getWidth(), height = mEntities[i]->getHeight();
+				float screenWidth = mView->getSize().x + width, screenHeight = mView->getSize().y + height;
+				pos.x -= (mView->getCenter().x - mView->getSize().x/2);
+				pos.y -= (mView->getCenter().y - mView->getSize().y/2);
+				if	( (pos.x + width) > 0 
+					&& pos.x < screenWidth
+					&& pos.y + height > 0
+					&& pos.y < screenHeight)
+				{
+					mEntities[i]->render();
+				}
 			}
 		}
 	}

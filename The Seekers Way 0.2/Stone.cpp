@@ -1,6 +1,7 @@
 #include "Stone.h"
 #include "ImageManager.h"
 #include <math.h>
+#include "TelekinesisBox.h"
 
 static const float WIDTH = 128;
 static const float HEIGHT = 128;
@@ -25,7 +26,12 @@ Stone::Stone(sf::Vector2f Position):
 	mWidth = WIDTH;
 	mEntityKind = STONE;
 	mLayer = FORGROUND;
-radius = sqrt(float(160 * 160 + 192 * 192))-0.1;
+	radius = sqrt (float(
+		TelekinesisBox(sf::Vector2f(0,0)).getHeight() 
+		* TelekinesisBox(sf::Vector2f(0,0)).getHeight() 
+		+ TelekinesisBox(sf::Vector2f(0,0)).getWidth() 
+		* TelekinesisBox(sf::Vector2f(0,0)).getWidth()
+		)/4)-0.1;
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH / 2, mPosition.y - SPRITEHEIGHT / 2));
 }
 
@@ -142,7 +148,7 @@ void Stone::interact(Entity* e)
 		mCanMove = false;
 	}
 
-	if(e->getBaseKind() == Entity::BLOCK || (e->getBaseKind() == Entity::CHARACTER && mtelekinesis && mtelemove) && mCanMove)
+	if(((*e) == BLOCK && (*e) != DOOR && (*e) != BRIDGE && (*e) != BIGBRIDGE) || (e->getBaseKind() == Entity::CHARACTER && mtelekinesis && mtelemove) && mCanMove)
 	{
 		// fråga vilken sida caraktären finns på.
 		if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius)) // är karaktären höger/vänster eller över/under om blocket
@@ -204,7 +210,7 @@ void Stone::attraction()
 {
 	if(mtelekinesis == true && mtelemove == false)
 	{
-		if((mPosition.x - mKibaPos.x) * (mPosition.x - mKibaPos.x) + (mPosition.y - mKibaPos.y) * (mPosition.y - mKibaPos.y) > 160 * 160 + 192 * 192)
+		if((mPosition.x - mKibaPos.x) * (mPosition.x - mKibaPos.x) + (mPosition.y - mKibaPos.y) * (mPosition.y - mKibaPos.y) > (radius - 1) * (radius - 1))
 		{
 			
 			mPosition = sf::Vector2f(	mKibaPos.x + radius*cos(atan2(mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x)),	
