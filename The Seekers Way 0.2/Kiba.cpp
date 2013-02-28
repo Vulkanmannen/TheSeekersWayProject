@@ -144,7 +144,6 @@ void Kiba::render()
 	mAnimation.update(mStatus * 2 + mDirLeft);
 
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -68));
-
 	ImageManager::render(&mAnimation.getSprite(), states);
 }
 
