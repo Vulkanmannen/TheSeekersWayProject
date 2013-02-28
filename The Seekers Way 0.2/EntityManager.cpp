@@ -70,12 +70,9 @@ void EntityManager::update()
 		}
 	
 
-<<<<<<< HEAD
-	updatePlayerLife();
-=======
+		updatePlayerLife();
 		interact();
 		killEntity();
->>>>>>> Ameroz
 
 		updatePlayerLife();
 		lifeAndMaskPosition();
