@@ -86,8 +86,10 @@ void State::update()
 				}
 			}
 			break;
+			// dialogstate
 		case DialogueState:
 			mGameMenu->render();
+
 			mDialogState->render();
 			mDialogState->update();
 			break;

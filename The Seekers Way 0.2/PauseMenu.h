@@ -17,6 +17,7 @@ public:
 
 private:
 
+	void updateButtons();
 	void generateButtons();
 	void changeButton();
 	void renderButtons();
@@ -31,6 +32,7 @@ private:
 	bool canPressJournal;
 
 	bool HowToPlay;
+
 
 	sf::Texture mPauseText;
 	sf::Sprite mPauseSprite;
