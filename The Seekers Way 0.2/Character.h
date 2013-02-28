@@ -57,6 +57,7 @@ protected:
 	void canMoveTime();
 	virtual void takeDamage();
 	void takeDamageFromArrow();
+	void takeLavaDamage();
 
 	// variabler som reglerar hur karaktärerna rör sig
 	float mJumpTime;

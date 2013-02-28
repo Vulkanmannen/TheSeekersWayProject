@@ -24,6 +24,7 @@ public:
 	void update();
 	void render();
 
+	void setPlayerLifeZero();
 	void setPlayerLifeMax();
 	void ClearAll();
 	void addEntity(Entity *e);
@@ -61,6 +62,7 @@ private:
 	sf::View* mView;
 	
 	//--------------life
+	int mZeroPlayerLife;
 	int mMaxPlayerLife;
 	int mPlayerLife;
 	sf::Texture mDeathTexture;

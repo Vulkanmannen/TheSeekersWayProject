@@ -14,8 +14,9 @@
 EntityManager* EntityManager::sInstance = 0;
 
 EntityManager::EntityManager():
-	mMaxPlayerLife(3),
+	mMaxPlayerLife(5),
 	mPlayerLife(mMaxPlayerLife),
+	mZeroPlayerLife(0),
 	mMapTop(360),
 	mMapLeft(512)
 {
@@ -30,7 +31,7 @@ EntityManager::EntityManager():
 		shadow.setParameter("texture", sf::Shader::CurrentTexture);
 		mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
 		mLifeSprite.setTexture(mLifeTexture);
-		mDeathTexture.loadFromFile("Pausemenu.png");
+		mDeathTexture.loadFromFile("DieScreen.png");
 		mDeathSprite.setTexture(mDeathTexture);
 		mMaskTexture.loadFromImage(*ImageManager::getImage("mask.png"));
 		mMaskSprite.setTexture(mMaskTexture);
@@ -461,4 +462,9 @@ void EntityManager::ClearAll()
 void EntityManager::setPlayerLifeMax()
 {
 	mPlayerLife = mMaxPlayerLife;
+}
+
+void EntityManager::setPlayerLifeZero()
+{
+	mPlayerLife = mZeroPlayerLife;
 }
