@@ -144,10 +144,6 @@ void Kiba::render()
 	mAnimation.update(mStatus * 2 + mDirLeft);
 
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -68));
-<<<<<<< HEAD
-=======
-
->>>>>>> 0725b5b793f6459c11684e845fd8f50a4a4dc297
 	ImageManager::render(&mAnimation.getSprite(), states);
 }
 
