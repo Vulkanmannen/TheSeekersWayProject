@@ -4,7 +4,8 @@
 #include <sstream>
 #include <SFML\Audio\SoundBuffer.hpp>
 #include <windows.h>
-#include "EntityManager.h"
+#include <iostream>
+
 
 Sounds* Sounds::sInstance = 0;
 
@@ -20,7 +21,6 @@ Sounds::Sounds()
 		bufferlista.insert(std::pair<std::string, sf::SoundBuffer*>(filnamn, buff));
 		filnamn.clear();
 	}
-
 	sf::Listener::setGlobalVolume(100);
 }
 
@@ -50,19 +50,19 @@ Sounds* Sounds::getInstance()
 }
 
 //spelar musik en gång och bestämmer volumen
-void Sounds::Play(std::string namn, float volume)
+void Sounds::Play(std::string namn, float volume, sf::Vector2f position)
 {
-	Playbase(namn, volume, false);
+	Playbase(namn, position, volume, false);
 }
 
 //istället för att det spelas en gång så upprepas det och bestämmer volumen
-void Sounds::Loop(std::string namn, float volume)
+void Sounds::Loop(std::string namn, float volume, sf::Vector2f position)
 {
-	Playbase(namn, volume, true);
+	Playbase(namn, position, volume, true);
 }
 
 //funktion som lettar efter musik och lägger den i en spelare och loopar eller spelar den.
-void Sounds::Playbase(std::string namn, float volume, bool repeat)
+void Sounds::Playbase(std::string namn, sf::Vector2f position, float volume, bool repeat)
 {
 	if(bufferlista[namn]!=NULL)
 	{
@@ -71,28 +71,40 @@ void Sounds::Playbase(std::string namn, float volume, bool repeat)
 		//loop som lettar efter plats i spelaren för att spela musik
 		for(int i=0;i<10;i++)
 		{
-			//skapa ny plats om det finns mindre än 10 ljud spelare
-			if(mSounds.size() < 10)
+			if(mSounds.size() < 10 || mSounds[i]->getStatus() == sf::Sound::Stopped)
 			{
-				x=mSounds.size();
-				mSounds.push_back(new sf::Sound(*bufferlista[namn]));
-				mSounds[x]->setVolume(volume);
-				mSounds[x]->setLoop(repeat);
-				mSounds[x]->play();
-				break;
-			}
+				//skapa ny plats om det finns mindre än 10 ljud spelare
+				if(mSounds.size() < 10)
+				{
+					x = mSounds.size();
+					mSounds.push_back(new sf::Sound(*bufferlista[namn]));
+				}
 
-			//byter ut en som ljud som inte spelas mot en som ska spela
-			else if(mSounds[i]->getStatus() == sf::Sound::Stopped)
-			{
-				x=i;
-				mSounds[x]->setBuffer(*bufferlista[namn]);
-				mSounds[x]->setVolume(volume);
+				//byter ut en som ljud som inte spelas mot en som ska spela
+				else if(mSounds[i]->getStatus() == sf::Sound::Stopped)
+				{
+					x = i;
+					mSounds[x]->setBuffer(*bufferlista[namn]);
+				}
+				mSounds[x]->setMinDistance(EntityManager::getInstance()->getView()->getSize().x/2);
+				mSounds[x]->setRelativeToListener(true);
+				mSounds[x]->setAttenuation(10);
+				mSounds[x]->setPosition(position.x, position.y, 0);
+				float	viewX = sf::Listener::getPosition().x, 
+						viewY = sf::Listener::getPosition().y;
+				float Distance = std::sqrt((position.x - viewX)*(position.x - viewX) + (position.y - viewY)*(position.y - viewY));
+				float Factor = 
+					mSounds[x]->getMinDistance() 
+					/ (mSounds[x]->getMinDistance() 
+						+ mSounds[x]->getAttenuation() 
+						* (std::max<float>(Distance, mSounds[x]->getMinDistance()) 
+							- mSounds[x]->getMinDistance()));
+				std::cout<<Factor<<std::endl;
+				mSounds[x]->setVolume(volume * Factor);
 				mSounds[x]->setLoop(repeat);
 				mSounds[x]->play();
 				break;
 			}
-	
 		}
 	}
 	else

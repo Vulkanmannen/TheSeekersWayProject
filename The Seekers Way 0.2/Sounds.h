@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <map>
+#include "EntityManager.h"
 
 class Sounds
 {
@@ -11,8 +12,8 @@ public:
 
 	~Sounds();
 	static Sounds* getInstance();
-	void Play(std::string namn, float volume = 100);
-	void Loop(std::string namn, float volume = 100);
+	void Play(std::string namn, float volume = 100, sf::Vector2f position = EntityManager::getInstance()->getView()->getCenter());
+	void Loop(std::string namn, float volume = 100, sf::Vector2f position = EntityManager::getInstance()->getView()->getCenter());
 	void StopAll();
 	void PauseAll();
 	void UnPauseAll();
@@ -28,7 +29,7 @@ private:
 	SoundVector mSounds;
 	typedef std::map<std::string, sf::SoundBuffer*> BufferMap;
 	BufferMap bufferlista;
-	void Playbase(std::string namn, float volume, bool repeat);
+	void Playbase(std::string namn, sf::Vector2f position, float volume, bool repeat);
 };
 
 #endif

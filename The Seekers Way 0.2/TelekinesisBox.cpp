@@ -4,7 +4,7 @@
 
 
 static const float WIDTH = 384;
-static const float HEIGHT = 320;
+static const float HEIGHT = 320+64;
 
 TelekinesisBox::TelekinesisBox(sf::Vector2f &position):
 	b(0)
@@ -30,7 +30,7 @@ void TelekinesisBox::render()
 	sf::RectangleShape rect(sf::Vector2f(mWidth, mHeight));
 	rect.setPosition(mPosition);
 	rect.setOrigin(mWidth/2, mHeight/2);
-	sf::Color colo(255,255,255,/*128*/0);
+	sf::Color colo(255,255,255,128);
 	rect.setFillColor(colo);
 	ImageManager::render(&rect);
 }
