@@ -1,26 +1,24 @@
 #include "EntityManager.h"
 #include "Entity.h"
 #include "Character.h"
-#include <cmath>
+#include "State.h"
 #include "Character.h"
 #include "Door.h"
-#include <algorithm>
 #include "ImageManager.h"
+#include "LevelManager.h"
 #include <iostream>
 #include <SFML\Graphics.hpp>
+#include <cmath>
+#include <algorithm>
 
 EntityManager* EntityManager::sInstance = 0;
 
 EntityManager::EntityManager():
-	mPlayerLife(3),
+	mMaxPlayerLife(3),
+	mPlayerLife(mMaxPlayerLife),
 	mMapTop(360),
-	mCountPlayerLife(0),
 	mMapLeft(512)
 {
-
-		//mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
-		//mLifeSprite.setTexture(mLifeTexture);
-
 		frameTexture.loadFromFile("frame.png");
 		frame.setTexture(frameTexture);
 		
@@ -64,16 +62,28 @@ EntityManager* EntityManager::getInstance()
 // uppdaterar alla objekt
 void EntityManager::update()
 {
-	for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
+	if(mPlayerLife > 0)
 	{
-		mEntities[i]->update(mPrimaryCharacter);
-	}
-	interact();
-	killEntity();
+		for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
+		{
+			mEntities[i]->update(mPrimaryCharacter);
+		}
+	
 
+<<<<<<< HEAD
 	updatePlayerLife();
+=======
+		interact();
+		killEntity();
+>>>>>>> Ameroz
 
-	updatePlayerPortrait();
+		updatePlayerLife();
+		lifeAndMaskPosition();
+
+		updatePlayerPortrait();
+	}
+	
+	killPlayers();
 }
 
 // uppdaterar lifeposition
@@ -85,10 +95,16 @@ void EntityManager::lifeAndMaskPosition()
 
 void EntityManager::killPlayers()
 {
-	if(mCountPlayerLife == 3)
+	if(mPlayerLife <= 0)
 	{
 		ImageManager::render(&mDeathSprite);
-		mDeathSprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
+		mDeathSprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(512, 360));
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+		{
+			LevelManager::getInstance()->LoadLevel();
+			State::getInstance()->setState(State::GameState);
+			mPlayerLife = mMaxPlayerLife;
+		}
 	}
 }
 
@@ -101,7 +117,6 @@ void EntityManager::updatePlayerLife()
 		{
 			mCharacters[i]->setIsHitToFalse();
 			mPlayerLife--;
-			mCountPlayerLife++;
 		}
 	}
 }
@@ -118,7 +133,6 @@ void EntityManager::updatePlayerPortrait()
 // ritarut alla objekt
 void EntityManager::render()
 {
-	killPlayers();
 	renderBackground();
 	updateView();
 	
@@ -434,4 +448,9 @@ void EntityManager::ClearAll()
 	}
 	mDynamicEntities.clear();
 	mCharacters.clear();
+}
+
+void EntityManager::setPlayerLifeMax()
+{
+	mPlayerLife = mMaxPlayerLife;
 }
