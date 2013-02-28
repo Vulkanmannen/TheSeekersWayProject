@@ -122,6 +122,7 @@ void Kiba::changeTeleState()
 			if(mStone->mtelekinesis != false)
 			{
 				mStone->mtelekinesis = false;
+				mStone->setState(Stone::ONGROUND);
 			}
 		}
 
@@ -131,6 +132,7 @@ void Kiba::changeTeleState()
 			mMovementSpeed.x = 0;
 			mStatus = IDLE;
 			mTeleBox->setPosition(mPosition);
+			mStone->setState(Stone::SELECTED);
 		}
 	}
 }
@@ -149,29 +151,30 @@ void Kiba::render()
 
 void Kiba::telekinesis()
 {
-	if(mStone != 0)
-	{
-		int rad1 =	(mStone->getPosition() - getPosition()).x * 
-					(mStone->getPosition() - getPosition()).x +
-					(mStone->getPosition() - getPosition()).y * 
-					(mStone->getPosition() - getPosition()).y ;
-		int rad2 =	mTeleBox->getHeight() * 
-					mTeleBox->getHeight() / 4 +
-					mTeleBox->getWidth() *
-					mTeleBox->getWidth() / 4;
+	//if(mStone != 0)
+	//{
+	//	int rad1 =	(mStone->getPosition() - getPosition()).x * 
+	//				(mStone->getPosition() - getPosition()).x +
+	//				(mStone->getPosition() - getPosition()).y * 
+	//				(mStone->getPosition() - getPosition()).y ;
+	//	int rad2 =	mTeleBox->getHeight() * 
+	//				mTeleBox->getHeight() / 4 +
+	//				mTeleBox->getWidth() *
+	//				mTeleBox->getWidth() / 4;
 
 
-		if(rad2 > rad1)
-		{
+	//	if(rad2 > rad1)
+	//	{
 			mStone->mtelekinesis = true;
 			mStone->mtelemove = true;
 			mStone->mKibaPos = mPosition;
-		}
-		else
-		{
-			mStone->mtelemove = false;
-		}
-	}
+			mStone->setState(Stone::INTELE);
+	//	}
+	//	else
+	//	{
+	//		mStone->mtelemove = false;
+	//	}
+	//}
 }
 
 void Kiba::getStone()

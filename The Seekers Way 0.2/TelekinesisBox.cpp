@@ -3,8 +3,8 @@
 #include "NormalBlock.h"
 
 
-static const float WIDTH = 384;
-static const float HEIGHT = 320+64;
+static const float WIDTH = 448;
+static const float HEIGHT = 448;
 
 TelekinesisBox::TelekinesisBox(sf::Vector2f &position):
 	b(0)

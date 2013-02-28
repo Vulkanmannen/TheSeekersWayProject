@@ -66,6 +66,11 @@ void Dialogue::update()
 		}
 	}
 	playNext();
+
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	{
+		mEndofDialogue = true;
+	}
 }
 
 void Dialogue::render()
@@ -264,7 +269,7 @@ void Dialogue::loadDialogue(std::string dialogueName)
 
 void Dialogue::playNext()
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		if(!isbuttonpressed)
 		{

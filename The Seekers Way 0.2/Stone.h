@@ -27,13 +27,18 @@ public:
 	
 	sf::Vector2f mKibaPos;
 
+	enum StoneState {ONGROUND, INTELE, SELECTED};
+	void setState(StoneState);
+
 private:
 	Animation mAnimation;
+	StoneState mStoneState;
 
 	sf::Vector2f mMovementSpeed;
 	float mDecrease;
 	float mGravity;
 	float radius;
+	float mRange;
 	bool mFalling;
 	bool mRblock;
 	bool mLblock;
