@@ -10,7 +10,8 @@
 Sounds* Sounds::sInstance = 0;
 
 //ger värde till variable och laddar all musik som är skrivna i en text fil
-Sounds::Sounds()	
+Sounds::Sounds():
+soundlimit(10)
 {
 	for(std::ifstream fil("musik lista.txt");!fil.eof();)
 	{
@@ -64,74 +65,80 @@ void Sounds::Loop(std::string namn, float volume, sf::Vector2f position)
 //funktion som lettar efter musik och lägger den i en spelare och loopar eller spelar den.
 void Sounds::Playbase(std::string namn, sf::Vector2f position, float volume, bool repeat)
 {
-	if(bufferlista[namn]!=NULL)
+	float	viewX = sf::Listener::getPosition().x, 
+			viewY = sf::Listener::getPosition().y;
+	float Distance = std::sqrt((position.x - viewX)*(position.x - viewX) + (position.y - viewY)*(position.y - viewY));
+	if(Distance * Distance < (1024 * 1024 + 720 * 720)/4)
 	{
-		int x;
-
-		//loop som lettar efter plats i spelaren för att spela musik
-		for(int i=0;i<10;i++)
+		if(bufferlista[namn]!=NULL)
 		{
-			if(mSounds.size() < 10 || mSounds[i]->getStatus() == sf::Sound::Stopped)
-			{
-				//skapa ny plats om det finns mindre än 10 ljud spelare
-				if(mSounds.size() < 10)
-				{
-					x = mSounds.size();
-					mSounds.push_back(new sf::Sound(*bufferlista[namn]));
-				}
+			int x;
 
-				//byter ut en som ljud som inte spelas mot en som ska spela
-				else if(mSounds[i]->getStatus() == sf::Sound::Stopped)
+			//loop som lettar efter plats i spelaren för att spela musik
+			for(int i=0;i<soundlimit;i++)
+			{
+				if(mSounds.size() < soundlimit || mSounds[i]->getStatus() == sf::Sound::Stopped)
 				{
-					x = i;
-					mSounds[x]->setBuffer(*bufferlista[namn]);
+					//skapa ny plats om det finns mindre än 10 ljud spelare
+					if(mSounds.size() < soundlimit)
+					{
+						x = mSounds.size();
+						mSounds.push_back(new sf::Sound(*bufferlista[namn]));
+					}
+
+					//byter ut en som ljud som inte spelas mot en som ska spela
+					else if(mSounds[i]->getStatus() == sf::Sound::Stopped)
+					{
+						x = i;
+						mSounds[x]->setBuffer(*bufferlista[namn]);
+					}
+					mSounds[x]->setMinDistance(EntityManager::getInstance()->getView()->getSize().x/3);
+					mSounds[x]->setRelativeToListener(true);
+					mSounds[x]->setAttenuation(5);
+					mSounds[x]->setPosition(position.x, position.y, 0);
+					float Factor = 
+						mSounds[x]->getMinDistance() 
+						/ (mSounds[x]->getMinDistance() 
+							+ mSounds[x]->getAttenuation() 
+							* (std::max<float>(Distance, mSounds[x]->getMinDistance()) 
+								- mSounds[x]->getMinDistance()));
+					std::cout<<Factor<<std::endl;
+					mSounds[x]->setVolume(volume * Factor);
+					mSounds[x]->setLoop(repeat);
+					if(Factor > 0.1)
+					{
+						mSounds[x]->play();
+					}
+					break;
 				}
-				mSounds[x]->setMinDistance(EntityManager::getInstance()->getView()->getSize().x/2);
-				mSounds[x]->setRelativeToListener(true);
-				mSounds[x]->setAttenuation(10);
-				mSounds[x]->setPosition(position.x, position.y, 0);
-				float	viewX = sf::Listener::getPosition().x, 
-						viewY = sf::Listener::getPosition().y;
-				float Distance = std::sqrt((position.x - viewX)*(position.x - viewX) + (position.y - viewY)*(position.y - viewY));
-				float Factor = 
-					mSounds[x]->getMinDistance() 
-					/ (mSounds[x]->getMinDistance() 
-						+ mSounds[x]->getAttenuation() 
-						* (std::max<float>(Distance, mSounds[x]->getMinDistance()) 
-							- mSounds[x]->getMinDistance()));
-				std::cout<<Factor<<std::endl;
-				mSounds[x]->setVolume(volume * Factor);
-				mSounds[x]->setLoop(repeat);
-				mSounds[x]->play();
-				break;
 			}
 		}
-	}
-	else
-	{
-		//felmedelandet
-		namn = "Failed to load sound file: \n" + namn;
+		else
+		{
+			//felmedelandet
+			namn = "Failed to load sound file: \n" + namn;
 
-		//convert from string to wstring
-		int len;
-		int slength = (int)namn.length() + 1;
-		len = MultiByteToWideChar(CP_ACP, 0, namn.c_str(), slength, 0, 0); 
-		wchar_t* buf = new wchar_t[len];
-		MultiByteToWideChar(CP_ACP, 0, namn.c_str(), slength, buf, len);
-		std::wstring r(buf);
-		delete[] buf;
+			//convert from string to wstring
+			int len;
+			int slength = (int)namn.length() + 1;
+			len = MultiByteToWideChar(CP_ACP, 0, namn.c_str(), slength, 0, 0); 
+			wchar_t* buf = new wchar_t[len];
+			MultiByteToWideChar(CP_ACP, 0, namn.c_str(), slength, buf, len);
+			std::wstring r(buf);
+			delete[] buf;
 		
-		//convert from wstring to LPCWSTR
-#ifdef UNICODE
-		std::wstring stemp = r; // Temporary buffer is required
-		LPCWSTR result = stemp.c_str();
-#else
-		LPCWSTR result = s.c_str();
-#endif
+			//convert from wstring to LPCWSTR
+	#ifdef UNICODE
+			std::wstring stemp = r; // Temporary buffer is required
+			LPCWSTR result = stemp.c_str();
+	#else
+			LPCWSTR result = s.c_str();
+	#endif
 
-		//"Failed to load sound file: "
-		MessageBox(NULL, result, (LPCWSTR)L"CANNOT LOAD", MB_OK);
-        std::exit(EXIT_FAILURE);
+			//"Failed to load sound file: "
+			MessageBox(NULL, result, (LPCWSTR)L"CANNOT LOAD", MB_OK);
+			std::exit(EXIT_FAILURE);
+		}
 	}
 }
 

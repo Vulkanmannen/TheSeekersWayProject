@@ -150,7 +150,7 @@ void Kiba::render()
 void Kiba::telekinesis()
 {
 	if(mStone != 0)
-	{
+	{/*
 		int rad1 =	(mStone->getPosition() - getPosition()).x * 
 					(mStone->getPosition() - getPosition()).x +
 					(mStone->getPosition() - getPosition()).y * 
@@ -159,9 +159,11 @@ void Kiba::telekinesis()
 					mTeleBox->getHeight() / 4 +
 					mTeleBox->getWidth() *
 					mTeleBox->getWidth() / 4;
+					*/
+		sf::Rect<float> square1( mStone->getLeft(), mStone->getTop(), mStone->getWidth(), mStone->getHeight());
+		sf::Rect<float> square2( mTeleBox->getLeft(), mTeleBox->getTop(), mTeleBox->getWidth(), mTeleBox->getHeight());
 
-
-		if(rad2 > rad1)
+		if(square2.intersects(square1))
 		{
 			mStone->mtelekinesis = true;
 			mStone->mtelemove = true;
@@ -170,6 +172,8 @@ void Kiba::telekinesis()
 		else
 		{
 			mStone->mtelemove = false;
+			mStone->mtelekinesis = false;
+			telestate = free;
 		}
 	}
 }
