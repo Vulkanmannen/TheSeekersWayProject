@@ -30,6 +30,7 @@ private:
 	bool canPress;
 	bool exit;
 	bool HowToPlay;
+	bool Resumedraw;
 
 	sf::Texture mStartText;
 	sf::Sprite mStartSprite;	

@@ -35,7 +35,7 @@ void State::update()
 	switch(mMenuStates)
 	{
 	//The Splashscreen
-		case Intro: 
+		case Intro:
 			IntroSplash->render();
 			if(mIntroClock.getElapsedTime().asSeconds() > 6.7)
 			{
@@ -86,7 +86,8 @@ void State::update()
 				}
 			}
 			break;
-			// dialogstate
+
+	// dialogstate
 		case DialogueState:
 			mGameMenu->render();
 

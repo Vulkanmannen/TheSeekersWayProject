@@ -8,6 +8,7 @@
 PauseMenu::PauseMenu():
 	HowToPlay(false),
 	canPressJournal(true),
+	currentButton(0),
 	currentJournalFrame(0)
 {
 	mPauseText.loadFromFile("journal.PNG");
