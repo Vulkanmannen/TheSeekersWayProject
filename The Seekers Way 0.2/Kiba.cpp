@@ -8,9 +8,12 @@ const static float WIDTH = 56;
 
 Kiba::Kiba(sf::Vector2f &position):
 	telestate(free),
-	mTeleBox(new TelekinesisBox(position))	
+	mNoStone(sf::Vector2f(0,0)),
+	mTeleBox(new TelekinesisBox(position, &mNoStone)),
+	mCanPressQ(true),
+	mCanPressChange(true)
 {	
-	mStone=0;
+	mStone = 0;
 	EntityManager::getInstance()->addEntity(mTeleBox);
 	mAnimation.init("Kiba.png", 60, 6);
 	mHeight = HEIGHT;
@@ -39,22 +42,10 @@ void Kiba::update(EntityKind &currentEntity)
 				slash();
 			}
 
-			else if(telestate == moving)
-			{
-				telekinesis();
-			}
 
-			if(teletimer.getElapsedTime().asMilliseconds() > 500)
-			{
-				if(telestate == choice)
-				{
-					changeStone();
-				}
-
-				changeTeleState();
-			}
+			teleStates();
 		}
-		else if(mStone != 0)
+		else if(mStone != NULL)
 		{
 			if(mStone->mtelemove != false)
 			{
@@ -64,76 +55,79 @@ void Kiba::update(EntityKind &currentEntity)
 	}
 	
 	Character::update(currentEntity);
-
-	mTeleBox->stone.clear();
+	
+	mTeleBox->setPosition(mPosition);
+	//mTeleBox->stone.clear();
 }
 
-void Kiba::changeStone()
-{
-	if(mTeleBox->stone.size() != 0)
-	{
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-		{	
-			mTeleBox->getStone(-1);
-			teletimer.restart();
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
-		{
-			mTeleBox->getStone(1);
-			teletimer.restart();
-		}
-	}
-}
 
-void Kiba::changeTeleState()
+void Kiba::teleStates()
 {
 	if(telestate == choice)
 	{
-		if(mTeleBox->stone.size() == 0)
+		
+		mStone = mTeleBox->getStone();
+
+		if(mTeleBox->getStoneVector().size() == 0)
 		{
 			telestate = free;
 		}
 
-		else if(mTeleBox->stone.size() == 1)
+		else if(mStone != NULL)
 		{
-			telestate = moving;
+			mStone->setStoneState(Stone::ONGROUND);
+			mTeleBox->changeStone();
 			mStone = mTeleBox->getStone();
+			mStone->setStoneState(Stone::SELECTED);
+		}	
+		
+
+		if((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) && mCanPressQ || mTeleBox->getStoneVector().size() == 1)
+		{
+			mCanPressQ = false;
+
+			if(mStone != NULL)
+			{
+				telestate = moving;			
+				telekinesis();
+			}
 		}
 	}
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-	{
-		teletimer.restart();
-		if(telestate == choice)
-		{		
-			telestate = moving;		
-			if(mTeleBox->stone.size() != 0)
-			{
-				mStone = mTeleBox->getStone();
-			}
-			else 
-			{
-				telestate = free;
-			}
-		}
 
-		else if(telestate == moving && mStone->onblock())
+	else if(telestate == moving && mStone != NULL && mStone->onblock())
+	{	
+		if((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) && mCanPressQ)
 		{
+			mCanPressQ = false;
+
 			telestate = free;
-			if(mStone->mtelekinesis != false)
+
+			if(mStone != NULL)
 			{
 				mStone->mtelekinesis = false;
-				mStone->setState(Stone::ONGROUND);
+				mStone->setStoneState(Stone::ONGROUND);
 			}
 		}
+	}
 
-		else if(telestate == free && !mFalling && !mIsJumping)
+	else if(telestate == free)
+	{
+		mTeleBox->clearStoneVector();
+		
+		if(!mFalling && !mIsJumping)
 		{
-			telestate = choice;
-			mMovementSpeed.x = 0;
-			mStatus = IDLE;
-			mTeleBox->setPosition(mPosition);
-			mStone->setState(Stone::SELECTED);
+			if((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) && mCanPressQ)
+			{
+				mCanPressQ = false;
+				telestate = choice;
+			}	
 		}
+	}
+
+
+	if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+	{
+		mCanPressQ = true;
 	}
 }
 
@@ -151,30 +145,16 @@ void Kiba::render()
 
 void Kiba::telekinesis()
 {
-	//if(mStone != 0)
-	//{
-	//	int rad1 =	(mStone->getPosition() - getPosition()).x * 
-	//				(mStone->getPosition() - getPosition()).x +
-	//				(mStone->getPosition() - getPosition()).y * 
-	//				(mStone->getPosition() - getPosition()).y ;
-	//	int rad2 =	mTeleBox->getHeight() * 
-	//				mTeleBox->getHeight() / 4 +
-	//				mTeleBox->getWidth() *
-	//				mTeleBox->getWidth() / 4;
+	if(mStone != NULL)
+	{
+		mStone->mtelekinesis = true;
+		mStone->mtelemove = true;
+		mStone->mKibaPos = mPosition;
+		mStone->setStoneState(Stone::INTELE);
 
-
-	//	if(rad2 > rad1)
-	//	{
-			mStone->mtelekinesis = true;
-			mStone->mtelemove = true;
-			mStone->mKibaPos = mPosition;
-			mStone->setState(Stone::INTELE);
-	//	}
-	//	else
-	//	{
-	//		mStone->mtelemove = false;
-	//	}
-	//}
+		mMovementSpeed.x = 0;
+		mStatus = IDLE;
+	}
 }
 
 void Kiba::getStone()
@@ -184,7 +164,6 @@ void Kiba::getStone()
 
 void Kiba::slash()
 { 
-	// tryck "Q" för att aktivera en sköld (1 sec cd)
 	if((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::X)) && mslashtimer.getElapsedTime().asSeconds() >= 1)
 	{	
 		mslashtimer.restart();

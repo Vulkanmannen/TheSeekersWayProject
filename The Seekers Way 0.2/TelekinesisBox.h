@@ -8,19 +8,29 @@
 class TelekinesisBox: public Object
 {
 public:
-	TelekinesisBox(sf::Vector2f &position);
+	typedef std::vector<Stone*> StoneVector;
+
+	TelekinesisBox(sf::Vector2f &position, Stone*);
 
 	~TelekinesisBox();
 
 	void render();
 	void update(EntityKind &currentEntity);
 	void interact(Entity* e);
-	Stone* getStone(int a = 0);
-	int b;
-	std::vector<Stone*> stone;
+	Stone* getStone();
+	void changeStone();
+
+	StoneVector getStoneVector()const;
+
+	void clearStoneVector();
 
 private:
-	
+	int mSelectedStone;
+	StoneVector stone;
+
+	Stone* mNoStone;
+
+	bool mCanPressChange;
 };
 
 #endif

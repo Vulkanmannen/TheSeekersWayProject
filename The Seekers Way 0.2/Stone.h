@@ -28,7 +28,7 @@ public:
 	sf::Vector2f mKibaPos;
 
 	enum StoneState {ONGROUND, INTELE, SELECTED};
-	void setState(StoneState);
+	void setStoneState(StoneState);
 
 private:
 	Animation mAnimation;

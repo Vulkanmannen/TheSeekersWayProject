@@ -28,12 +28,12 @@ Stone::Stone(sf::Vector2f Position):
 	mWidth = WIDTH;
 	mEntityKind = STONE;
 	mLayer = FORGROUND;
-	radius = sqrt (float(
-		TelekinesisBox(sf::Vector2f(0,0)).getHeight() 
-		* TelekinesisBox(sf::Vector2f(0,0)).getHeight() 
-		+ TelekinesisBox(sf::Vector2f(0,0)).getWidth() 
-		* TelekinesisBox(sf::Vector2f(0,0)).getWidth()
-		)/4)-0.1;
+	//radius = sqrt (float(
+	//	TelekinesisBox(sf::Vector2f(0,0)).getHeight() 
+	//	* TelekinesisBox(sf::Vector2f(0,0)).getHeight() 
+	//	+ TelekinesisBox(sf::Vector2f(0,0)).getWidth() 
+	//	* TelekinesisBox(sf::Vector2f(0,0)).getWidth()
+	//	)/4)-0.1;
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH / 2, mPosition.y - SPRITEHEIGHT / 2));
 }
 
@@ -231,7 +231,7 @@ bool Stone::onblock()
 	return mOnBlock;
 }
 
-void Stone::setState(StoneState stoneState)
+void Stone::setStoneState(StoneState stoneState)
 {
 	mStoneState = stoneState;
 }
