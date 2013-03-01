@@ -28,14 +28,10 @@ Door::~Door()
 
 void Door::Activate()
 {
-	if(mBaseKind == BLOCK)
-	{
-		Sounds::getInstance()->Play("door.wav");
-	}
-
 	if(mStatus != OPEN)
 	{
 		mStatus = OPENING;
+		Sounds::getInstance()->Play("door.wav");
 	}
 	mBaseKind = OBJECT;
 }
@@ -45,6 +41,7 @@ void Door::DisActivate()
 	if(mStatus != CLOSED)
 	{
 		mStatus = CLOSING;
+		Sounds::getInstance()->Play("door.wav");
 	}
 	mBaseKind = BLOCK;
 }

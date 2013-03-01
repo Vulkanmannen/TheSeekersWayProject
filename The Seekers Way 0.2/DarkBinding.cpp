@@ -1,5 +1,6 @@
 #include "DarkBinding.h"
 #include "ImageManager.h"
+#include "Sounds.h"
 
 static const float HEIGHT = 24;
 static const float WIDTH = 24;
@@ -17,6 +18,7 @@ DarkBinding::DarkBinding(sf::Vector2f &position, bool dirLeft):
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
 		mPosition = position;
+		Sounds::getInstance()->Play("shadowbolt 1.3.wav", 100, mPosition);
 	}
 
 
@@ -37,7 +39,7 @@ void DarkBinding::render()
 
 void DarkBinding::interact(Entity* e)
 {
-	if((*e) == BLOCK && (*e) != VINE)
+	if(((*e) == BLOCK && (*e) != VINE) || *e == DARKBINDING)
 	{
 		destroy();
 	}

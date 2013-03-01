@@ -22,7 +22,7 @@ public:
 	sf::SoundBuffer getBuffer(std::string namn);
 
 private:
-	
+	int soundlimit;
 	Sounds();
 	static Sounds *sInstance;
 	typedef std::vector<sf::Sound*> SoundVector;

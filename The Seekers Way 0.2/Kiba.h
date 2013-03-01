@@ -6,6 +6,8 @@
 #include "TeleKinesisBox.h"
 #include "EntityManager.h"
 #include "Slash.h"
+#include "Stone.h"
+
 
 class Kiba: public Character
 {
@@ -23,12 +25,16 @@ public:
 	void slash();
 
 private:
-	void changeStone();
-	void changeTeleState();
+	void teleStates();
+
+	bool mCanPressQ;
+	bool mCanPressChange;
 
 	Stone *mStone;
+	Stone mNoStone;
+
 	TelekinesisBox *mTeleBox;
-	sf::Clock teletimer;
+	//sf::Clock teletimer;
 	sf::Clock mslashtimer;
 };
 

@@ -1,5 +1,6 @@
 #include "Spiketrap.h"
 #include "ImageManager.h"
+#include "Sounds.h"
 
 static const float HEIGHT = 128;
 static const float WIDTH = 54;
@@ -74,6 +75,7 @@ void Spiketrap::spikeCount()
 	if(mClockWait.getElapsedTime().asSeconds() > mTimeDown)
 	{
 		mWait = false;
+		Sounds::getInstance()->Play("slash.wav", 25, mPosition);
 	}
 
 

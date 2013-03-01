@@ -27,7 +27,7 @@ private:
 	static float mTimeDown;
 
 	void SpikeMove();
-	static void spikeCount();
+	void spikeCount();
 
 	static int mSpikeCount;
 	static bool mCountDirectionUpp;
