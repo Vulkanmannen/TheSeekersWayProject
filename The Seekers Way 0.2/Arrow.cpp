@@ -1,5 +1,6 @@
 #include "Arrow.h"
 #include "ImageManager.h"
+#include "Sounds.h"
 
 static const float WIDTH = 64;
 static const float HEIGHT = 12;
@@ -37,6 +38,11 @@ void Arrow::interact(Entity* e)
 {
 	if(mShottingTime.getElapsedTime().asMilliseconds() > 150 || (*e) != Entity::BLOCK)
 	{
+		switch(e->getEntityKind())
+		{
+		case SHIELD:
+			Sounds::getInstance()->Play("pil mot sköld 1.1.wav", 100, mPosition);
+		}
 		if((*e) == Entity::BLOCK || (*e) == Entity::CHARACTER || (*e) == Entity::SHIELD || (*e) == Entity::STONE)
 		{
 			if(e->getEntityKind() != FENRIR)

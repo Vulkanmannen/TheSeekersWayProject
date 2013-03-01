@@ -8,6 +8,7 @@
 #include "LevelManager.h"
 #include <iostream>
 #include <SFML\Graphics.hpp>
+#include "Sounds.h"
 #include <cmath>
 #include <algorithm>
 
@@ -185,32 +186,41 @@ void EntityManager::renderPortrait()
 	for(int i = 0; i < 4; i++)
 	{
 		frame.setPosition(	mPortraitSprite[i].getSprite().getPosition() - sf::Vector2f(9 , 9));
+		sf::RenderStates states;
+		states.shader = &shadow;
 		for(CharacterVector::size_type j = 0; j < mCharacters.size(); j++)
 		{
-			sf::RenderStates states;
-			states.shader = &shadow;
-			if (mCharacters[j]->getEntityKind() == Entity::KIBA && i == 0)
+			//peter är kass
+			switch(i)
 			{
-				ImageManager::render(&mPortraitSprite[0].getSprite(), mPrimaryCharacter != Entity::KIBA ? states : sf::RenderStates::Default);
+			case 0:
+				if (mCharacters[j]->getEntityKind() == Entity::KIBA) 
+				{
+					ImageManager::render(&mPortraitSprite[0].getSprite(), mPrimaryCharacter != Entity::KIBA ? states : sf::RenderStates::Default);
+				}
 				ImageManager::render(&frame, mPrimaryCharacter != Entity::KIBA ? states : sf::RenderStates::Default);
-			}
-
-			else if (mCharacters[j]->getEntityKind() == Entity::CHARLOTTE && i == 1)
-			{
-				ImageManager::render(&mPortraitSprite[1].getSprite(), mPrimaryCharacter != Entity::CHARLOTTE ? states : sf::RenderStates::Default);
+				break;
+			case 1:
+				if (mCharacters[j]->getEntityKind() == Entity::CHARLOTTE) 
+				{
+					ImageManager::render(&mPortraitSprite[1].getSprite(), mPrimaryCharacter != Entity::CHARLOTTE ? states : sf::RenderStates::Default);
+				}
 				ImageManager::render(&frame, mPrimaryCharacter != Entity::CHARLOTTE ? states : sf::RenderStates::Default);
-			}
-
-			else if (mCharacters[j]->getEntityKind() == Entity::FENRIR && i == 2)
-			{
-				ImageManager::render(&mPortraitSprite[2].getSprite(), mPrimaryCharacter != Entity::FENRIR ? states : sf::RenderStates::Default);
+				break;
+			case 2:
+				if (mCharacters[j]->getEntityKind() == Entity::FENRIR)
+				{
+					ImageManager::render(&mPortraitSprite[2].getSprite(), mPrimaryCharacter != Entity::FENRIR ? states : sf::RenderStates::Default);
+				}
 				ImageManager::render(&frame, mPrimaryCharacter != Entity::FENRIR ? states : sf::RenderStates::Default);
-			}
-
-			else if (mCharacters[j]->getEntityKind() == Entity::SHEEKA && i == 3)
-			{
-				ImageManager::render(&mPortraitSprite[3].getSprite(), mPrimaryCharacter != Entity::SHEEKA ? states : sf::RenderStates::Default);
+				break;
+			case 3:
+				if (mCharacters[j]->getEntityKind() == Entity::SHEEKA) 
+				{
+					ImageManager::render(&mPortraitSprite[3].getSprite(), mPrimaryCharacter != Entity::SHEEKA ? states : sf::RenderStates::Default);
+				}
 				ImageManager::render(&frame, mPrimaryCharacter != Entity::SHEEKA ? states : sf::RenderStates::Default);
+				break;
 			}
 		}
 		mPortraitSprite[i].setPosition(	mView->getCenter() - sf::Vector2f(503 - i * frameTexture.getSize().x, 351));
@@ -340,7 +350,11 @@ void EntityManager::updatePrimaryCharacter()
 	{
 		if(mCharacters[i]->getEntityKind() == tempEntityKind)
 		{
-			mPrimaryCharacter = tempEntityKind;
+			if(tempEntityKind != mPrimaryCharacter)
+			{
+				Sounds::getInstance()->Play("switch char 1.1.wav", 6);
+				mPrimaryCharacter = tempEntityKind;
+			}
 		}
 	}
 }
