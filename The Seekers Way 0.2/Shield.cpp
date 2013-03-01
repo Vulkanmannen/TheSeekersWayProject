@@ -29,7 +29,7 @@ Shield::~Shield()
 
 void Shield::update(EntityKind &currentEntity)
 {
-	
+
 }
 
 void Shield::render()

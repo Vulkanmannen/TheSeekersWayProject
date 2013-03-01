@@ -12,7 +12,8 @@ StartMenu::StartMenu():
 	canPressReturn(false),
 	exit(false),
 	HowToPlay(false),
-	currentButton(0)
+	Resumedraw(true),
+	currentButton(1)
 {
 	mStartText.loadFromFile("StartMenurelease.PNG");
 	mStartSprite.setTexture(mStartText);
@@ -32,8 +33,8 @@ void StartMenu::update()
 	{
 		updateCurrentButton();
 		changeButton();
-		
 	}
+
 	updateButtons();
 	buttonActivate();
 }
@@ -58,35 +59,30 @@ void StartMenu::render()
 
 void StartMenu::generateButtons()
 {
-		Animation animation("Resume.PNG", 80, 1, 64, 192);
+		Animation animation("StartResume.PNG", 80, 1, 64, 192);
 		updateButtons();
-		//animation.setPosition(mStartSprite.getPosition() + sf::Vector2f(420, 720 + 1*70));
 		mButtons.push_back(animation);
 
-		Animation animation2("NewGame.PNG", 80, 1, 64, 192);
+		Animation animation2("StartNewGame.PNG", 80, 1, 64, 192);
 		updateButtons();
-		//animation2.setPosition(mStartSprite.getPosition() + sf::Vector2f(420, 720 + 2*70));
 		mButtons.push_back(animation2);
 
-		Animation animation3("HowToPlay.PNG", 80, 1, 64, 192);
+		Animation animation3("StartHowtoPlay.PNG", 80, 1, 64, 192);
 		updateButtons();
-		//animation3.setPosition(mStartSprite.getPosition() + sf::Vector2f(420, 720 + 3*70));
 		mButtons.push_back(animation3);
 
-		Animation animation4("Audio.png", 80, 1, 64, 192);
+		Animation animation4("StartAudio.png", 80, 1, 64, 192);
 		updateButtons();
-		//animation4.setPosition(mStartSprite.getPosition() + sf::Vector2f(420, 720 + 4*70));
 		mButtons.push_back(animation4);
 
-		Animation animation5("Exit.PNG", 80, 1, 64, 192);
+		Animation animation5("StartQuit.PNG", 80, 1, 64, 192);
 		updateButtons();
-		//animation5.setPosition(mStartSprite.getPosition() + sf::Vector2f(420, 720 + 5*70));
 		mButtons.push_back(animation5);
 }
 
 void StartMenu::updateButtons()
 {
-	for(std::vector<Animation>::size_type i = 0; i < mButtons.size(); i++)
+	for(std::vector<Animation>::size_type i = 0 + Resumedraw; i < mButtons.size(); i++)
 	{
 		mButtons[i].setPosition(mStartSprite.getPosition() + sf::Vector2f(420, 180 + i*70));
 	}
@@ -112,9 +108,9 @@ void StartMenu::changeButton()
 
 	if(currentButton >= static_cast<int>(mButtons.size()))
 	{
-		currentButton = 0;
+		currentButton = 0 + Resumedraw;
 	}
-	else if(currentButton < 0)
+	else if(currentButton < 0 + Resumedraw)
 	{
 		currentButton = static_cast<int>(mButtons.size()) -1;
 	}
@@ -122,7 +118,7 @@ void StartMenu::changeButton()
 
 void StartMenu::renderButtons()
 {
-	for(auto i = mButtons.begin(); i != mButtons.end(); i++)
+	for(auto i = mButtons.begin() + Resumedraw; i != mButtons.end(); i++)
 	{
 		ImageManager::render(&i->getSprite());
 	}
@@ -144,13 +140,17 @@ void StartMenu::buttonActivate()
 		switch(currentButton)
 		{
 			case 0:
-				LevelManager::getInstance()->LoadLevel();
-				State::getInstance()->setState(State::DialogueState);
+				if(Resumedraw == false)
+				{
+					LevelManager::getInstance()->LoadLevel();
+					State::getInstance()->setState(State::DialogueState);
+				}
 				break;
 
 			case 1:
 				LevelManager::getInstance()->LoadLevel(0);
 				State::getInstance()->setState(State::DialogueState);
+				Resumedraw = false;
 				break;
 
 			case 2:

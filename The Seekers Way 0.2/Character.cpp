@@ -4,6 +4,7 @@
 #include <iostream>
 #include "ImageManager.h"
 #include "Spiketrap.h"
+#include "EntityManager.h"
 
 Character::Character():
 	mMovementSpeed(0, 0),
@@ -321,7 +322,7 @@ void Character::interact(Entity* e)
 	
 	if((*e) == LAVA)
 	{
-		// die
+		takeLavaDamage();
 	}
 
 	if((*e) == SPIKETRAP || (*e) == FIREBALL || (*e) == VINE)
@@ -405,4 +406,9 @@ void Character::takeDamageFromArrow()
 sf::Vector2f Character::getMovementSpeed()const
 {
 	return mMovementSpeed;
+}
+
+void Character::takeLavaDamage()
+{
+	EntityManager::getInstance()->setPlayerLifeZero();
 }

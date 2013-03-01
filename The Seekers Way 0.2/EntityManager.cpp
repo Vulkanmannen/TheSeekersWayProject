@@ -1,26 +1,26 @@
 #include "EntityManager.h"
 #include "Entity.h"
 #include "Character.h"
-#include <cmath>
+#include "State.h"
 #include "Character.h"
 #include "Door.h"
-#include <algorithm>
 #include "ImageManager.h"
+#include "LevelManager.h"
 #include <iostream>
 #include <SFML\Graphics.hpp>
+#include "Sounds.h"
+#include <cmath>
+#include <algorithm>
 
 EntityManager* EntityManager::sInstance = 0;
 
 EntityManager::EntityManager():
-	mPlayerLife(3),
+	mMaxPlayerLife(5),
+	mPlayerLife(mMaxPlayerLife),
+	mZeroPlayerLife(0),
 	mMapTop(360),
-	mCountPlayerLife(0),
 	mMapLeft(512)
 {
-
-		//mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
-		//mLifeSprite.setTexture(mLifeTexture);
-
 		frameTexture.loadFromFile("frame.png");
 		frame.setTexture(frameTexture);
 		
@@ -32,7 +32,7 @@ EntityManager::EntityManager():
 		shadow.setParameter("texture", sf::Shader::CurrentTexture);
 		mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
 		mLifeSprite.setTexture(mLifeTexture);
-		mDeathTexture.loadFromFile("Pausemenu.png");
+		mDeathTexture.loadFromFile("DieScreen.png");
 		mDeathSprite.setTexture(mDeathTexture);
 		mMaskTexture.loadFromImage(*ImageManager::getImage("mask.png"));
 		mMaskSprite.setTexture(mMaskTexture);
@@ -64,16 +64,25 @@ EntityManager* EntityManager::getInstance()
 // uppdaterar alla objekt
 void EntityManager::update()
 {
-	for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
+	if(mPlayerLife > 0)
 	{
-		mEntities[i]->update(mPrimaryCharacter);
+		for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
+		{
+			mEntities[i]->update(mPrimaryCharacter);
+		}
+	
+
+		updatePlayerLife();
+		interact();
+		killEntity();
+
+		updatePlayerLife();
+		lifeAndMaskPosition();
+
+		updatePlayerPortrait();
 	}
-	interact();
-	killEntity();
-
-	updatePlayerLife();
-
-	updatePlayerPortrait();
+	
+	killPlayers();
 }
 
 // uppdaterar lifeposition
@@ -85,10 +94,16 @@ void EntityManager::lifeAndMaskPosition()
 
 void EntityManager::killPlayers()
 {
-	if(mCountPlayerLife == 3)
+	if(mPlayerLife <= 0)
 	{
 		ImageManager::render(&mDeathSprite);
-		mDeathSprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
+		mDeathSprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(512, 360));
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+		{
+			LevelManager::getInstance()->LoadLevel();
+			State::getInstance()->setState(State::GameState);
+			mPlayerLife = mMaxPlayerLife;
+		}
 	}
 }
 
@@ -101,7 +116,6 @@ void EntityManager::updatePlayerLife()
 		{
 			mCharacters[i]->setIsHitToFalse();
 			mPlayerLife--;
-			mCountPlayerLife++;
 		}
 	}
 }
@@ -118,7 +132,6 @@ void EntityManager::updatePlayerPortrait()
 // ritarut alla objekt
 void EntityManager::render()
 {
-	killPlayers();
 	renderBackground();
 	updateView();
 	
@@ -173,32 +186,41 @@ void EntityManager::renderPortrait()
 	for(int i = 0; i < 4; i++)
 	{
 		frame.setPosition(	mPortraitSprite[i].getSprite().getPosition() - sf::Vector2f(9 , 9));
+		sf::RenderStates states;
+		states.shader = &shadow;
 		for(CharacterVector::size_type j = 0; j < mCharacters.size(); j++)
 		{
-			sf::RenderStates states;
-			states.shader = &shadow;
-			if (mCharacters[j]->getEntityKind() == Entity::KIBA && i == 0)
+			//peter är kass
+			switch(i)
 			{
-				ImageManager::render(&mPortraitSprite[0].getSprite(), mPrimaryCharacter != Entity::KIBA ? states : sf::RenderStates::Default);
+			case 0:
+				if (mCharacters[j]->getEntityKind() == Entity::KIBA) 
+				{
+					ImageManager::render(&mPortraitSprite[0].getSprite(), mPrimaryCharacter != Entity::KIBA ? states : sf::RenderStates::Default);
+				}
 				ImageManager::render(&frame, mPrimaryCharacter != Entity::KIBA ? states : sf::RenderStates::Default);
-			}
-
-			else if (mCharacters[j]->getEntityKind() == Entity::CHARLOTTE && i == 1)
-			{
-				ImageManager::render(&mPortraitSprite[1].getSprite(), mPrimaryCharacter != Entity::CHARLOTTE ? states : sf::RenderStates::Default);
+				break;
+			case 1:
+				if (mCharacters[j]->getEntityKind() == Entity::CHARLOTTE) 
+				{
+					ImageManager::render(&mPortraitSprite[1].getSprite(), mPrimaryCharacter != Entity::CHARLOTTE ? states : sf::RenderStates::Default);
+				}
 				ImageManager::render(&frame, mPrimaryCharacter != Entity::CHARLOTTE ? states : sf::RenderStates::Default);
-			}
-
-			else if (mCharacters[j]->getEntityKind() == Entity::FENRIR && i == 2)
-			{
-				ImageManager::render(&mPortraitSprite[2].getSprite(), mPrimaryCharacter != Entity::FENRIR ? states : sf::RenderStates::Default);
+				break;
+			case 2:
+				if (mCharacters[j]->getEntityKind() == Entity::FENRIR)
+				{
+					ImageManager::render(&mPortraitSprite[2].getSprite(), mPrimaryCharacter != Entity::FENRIR ? states : sf::RenderStates::Default);
+				}
 				ImageManager::render(&frame, mPrimaryCharacter != Entity::FENRIR ? states : sf::RenderStates::Default);
-			}
-
-			else if (mCharacters[j]->getEntityKind() == Entity::SHEEKA && i == 3)
-			{
-				ImageManager::render(&mPortraitSprite[3].getSprite(), mPrimaryCharacter != Entity::SHEEKA ? states : sf::RenderStates::Default);
+				break;
+			case 3:
+				if (mCharacters[j]->getEntityKind() == Entity::SHEEKA) 
+				{
+					ImageManager::render(&mPortraitSprite[3].getSprite(), mPrimaryCharacter != Entity::SHEEKA ? states : sf::RenderStates::Default);
+				}
 				ImageManager::render(&frame, mPrimaryCharacter != Entity::SHEEKA ? states : sf::RenderStates::Default);
+				break;
 			}
 		}
 		mPortraitSprite[i].setPosition(	mView->getCenter() - sf::Vector2f(503 - i * frameTexture.getSize().x, 351));
@@ -328,7 +350,11 @@ void EntityManager::updatePrimaryCharacter()
 	{
 		if(mCharacters[i]->getEntityKind() == tempEntityKind)
 		{
-			mPrimaryCharacter = tempEntityKind;
+			if(tempEntityKind != mPrimaryCharacter)
+			{
+				Sounds::getInstance()->Play("switch char 1.1.wav", 6);
+				mPrimaryCharacter = tempEntityKind;
+			}
 		}
 	}
 }
@@ -445,4 +471,14 @@ void EntityManager::ClearAll()
 	}
 	mDynamicEntities.clear();
 	mCharacters.clear();
+}
+
+void EntityManager::setPlayerLifeMax()
+{
+	mPlayerLife = mMaxPlayerLife;
+}
+
+void EntityManager::setPlayerLifeZero()
+{
+	mPlayerLife = mZeroPlayerLife;
 }
