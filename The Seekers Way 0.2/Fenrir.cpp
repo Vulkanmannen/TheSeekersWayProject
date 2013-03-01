@@ -191,16 +191,12 @@ void Fenrir::interact(Entity *e)
 	
 	if(e->getEntityKind() == Entity::ARROW)
 	{
-		mIsHit = true;
+		takeDamageFromArrow();
 		e->destroy();
-	}
-	if(e->getEntityKind() == Entity::VINE)
-	{
-		mIsHit = true;
 	}
 	if(e->getEntityKind() == Entity::LAVA)
 	{
-		// die
+		takeLavaDamage();
 	}
 
 	if((*e) == SPIKETRAP || (*e) == FIREBALL || (*e) == VINE)

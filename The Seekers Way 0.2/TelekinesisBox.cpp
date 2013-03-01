@@ -30,12 +30,12 @@ void TelekinesisBox::update(EntityKind &currentEntity)
 
 void TelekinesisBox::render()
 {
-	sf::RectangleShape rect(sf::Vector2f(mWidth, mHeight));
-	rect.setPosition(mPosition);
-	rect.setOrigin(mWidth/2, mHeight/2);
-	sf::Color colo(255,255,255,128);
-	rect.setFillColor(colo);
-	ImageManager::render(&rect);
+	//sf::RectangleShape rect(sf::Vector2f(mWidth, mHeight));
+	//rect.setPosition(mPosition);
+	//rect.setOrigin(mWidth/2, mHeight/2);
+	//sf::Color colo(255,255,255,128);
+	//rect.setFillColor(colo);
+	//ImageManager::render(&rect);
 }
 
 void TelekinesisBox::interact(Entity* e)
