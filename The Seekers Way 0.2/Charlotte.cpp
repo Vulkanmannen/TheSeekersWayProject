@@ -54,7 +54,9 @@ void Charlotte::render()
 {
 	sf::RenderStates states;
 	if(mHurtShow)
+	{
 		states.shader = &mHurtShader;
+	}
 	mAnimation.update(mStatus * 2 + mDirLeft);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y - 71));
 	ImageManager::render(&getSprite(), states);
