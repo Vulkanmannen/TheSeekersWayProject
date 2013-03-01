@@ -99,6 +99,7 @@ void Kiba::teleStates()
 		mStone->mtelemove = true;
 
 		if((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) && mCanPressQ && mStone->onblock())
+
 		{
 			mCanPressQ = false;
 
