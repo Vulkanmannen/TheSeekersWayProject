@@ -8,12 +8,17 @@
 	
 	<Door name="DoorsLevel1">
 		<doorPosition X="1216" Y="1280"/>
-		<leverPosition X="128" Y="1664"/>		
+		<leverPosition X="64" Y="1664"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
 		<doorPosition X="1920" Y="960"/>
 		<leverPosition X="1152" Y="1664"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<doorPosition X="2304" Y="832"/>
+		<buttonPosition X="2240" Y="1472"/>
 	</Door>
 	
 	<Door name="DoorsLevel1">
@@ -23,8 +28,7 @@
 	
 	<Door name="DoorsLevel1">
 		<doorPosition X="1344" Y="1600" texture="magicdoor.png"/>
-		<magicSwitchPosition X="2048" Y="1664" timeOpen="8"/>
-			
+		<magicSwitchPosition X="2048" Y="1664" timeOpen="8"/>			
 	</Door>
   </Body>
   
