@@ -3,7 +3,7 @@
   <Body>
 	<Door name="DoorsLevel1">
 		<doorPosition X="896" Y="1344"/>
-		<buttonPosition X="832" Y="1088"/>		
+		<buttonPosition X="348" Y="320"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
@@ -32,12 +32,12 @@
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<doorPosition X="2112" Y="576"/>
+		<doorPosition X="2048" Y="576"/>
 		<leverPosition X="512" Y="768"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<doorPosition X="2112" Y="896"/>
+		<doorPosition X="2112" Y="960"/>
 		<leverPosition X="512" Y="768"/>		
 	</Door>
 	

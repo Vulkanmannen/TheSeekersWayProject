@@ -13,6 +13,6 @@ errorsound.wav
 snowmist.wav
 Level1Music.wav
 crazykoncept.wav
-pil mot sköld 1.1.wav
+arrowtosheild.wav
 shadowbolt 1.3.wav
 switch char 1.1.wav

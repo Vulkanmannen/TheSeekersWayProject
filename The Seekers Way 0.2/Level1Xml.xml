@@ -12,7 +12,7 @@
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<doorPosition X="3648" Y="768"/>
+		<smalBridgePosition X="3648" Y="880" Closed="0"/>
 		<buttonPosition X="3328" Y="640"/>		
 	</Door>
 	

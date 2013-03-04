@@ -11,7 +11,9 @@ const static float WIDTH = 60;
 
 Charlotte::Charlotte(sf::Vector2f &position):
 	mIsShield(false),
-	mActiveCharacter(false)
+	mActiveCharacter(false),
+	mTimeToTeleport(0.5),
+	mTeleporting(false)
 	{
 		mAnimation.init("charlotte.png", 60, 12);
 
@@ -28,7 +30,7 @@ void Charlotte::update(EntityKind &currentEntity)
 {
 	move();
 
-	if(mCanMove)
+	if(mCanMove && !mTeleporting)
 	{
 		if(currentEntity == mEntityKind)
 		{
@@ -37,6 +39,11 @@ void Charlotte::update(EntityKind &currentEntity)
 			SetShield();
 		}
 	}
+	else
+	{
+		teleporting();
+	}
+
 	GetShieldLife();
 
 	if(mEntityKind == currentEntity)
@@ -89,7 +96,9 @@ void Charlotte::SetShield()
 		}
 		mClock.restart();
 		mShield = new Shield(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 100, mPosition.y - 13), mDirLeft);
-			
+		
+		mStatus = ACTION2;
+
 		EntityManager::getInstance()->addEntity(mShield);
 
 		mIsShield = true;
@@ -104,8 +113,28 @@ void Charlotte::interact(Entity* e)
 		if((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::X)) && mClock.getElapsedTime().asSeconds() >=1) // tryck "Q" för att aktivera en sköld (1 sec cd)
 		{	
 			mClock.restart();
-			mPosition = static_cast<Portal*>(e)->getDestination();
+			mTeleporting = true;
+			mTeleportClock.restart();
+			mPortal = static_cast<Portal*>(e);
+			mStatus = ACTION1;
+
 			Sounds::getInstance()->Play("teleport.wav");
+		}
+	}
+}
+
+void Charlotte::teleporting()
+{
+	if(mTeleporting && mTeleportClock.getElapsedTime().asSeconds() > mTimeToTeleport)
+	{
+		if(mPortal != NULL)
+		{
+			mPosition = mPortal->getDestination();
+			mPortal = NULL;		
+		}
+		else if(mAnimation.getEndOfAnimation())
+		{
+			mTeleporting = false;
 		}
 	}
 }

@@ -193,12 +193,8 @@ void Fenrir::interact(Entity *e)
 	
 	if(e->getEntityKind() == Entity::ARROW)
 	{
-		mIsHit = true;
+		takeDamageFromArrow();
 		e->destroy();
-	}
-	if(e->getEntityKind() == Entity::VINE)
-	{
-		mIsHit = true;
 	}
 	if(e->getEntityKind() == Entity::LAVA)
 	{
@@ -454,7 +450,7 @@ void Fenrir::snowMistCountdown()
 void Fenrir::notInSnowMist()
 {
 	mInSnowMist = false;	
-	mFenrirCanJump = true;
+	//mFenrirCanJump = true;
 	mStatus = ACTION5;
 }
 
@@ -490,6 +486,6 @@ void Fenrir::updateSatatus()
 {
 	if(mStatus == ACTION3 && mAnimation.getEndOfAnimation())
 	{
-		//mStatus = ACTION4;
+		mStatus = ACTION4;
 	}
 }

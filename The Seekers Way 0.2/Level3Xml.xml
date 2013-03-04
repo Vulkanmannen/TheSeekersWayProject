@@ -45,7 +45,7 @@
 	</Portal>
 	
 	<Portal name="Level1">
-		<portalPosition X1="1152" Y1="512" X2="3380" Y2="320"/>
+		<portalPosition X1="1152" Y1="512" X2="3520" Y2="512"/>
 	</Portal>
 
   </Body2>
