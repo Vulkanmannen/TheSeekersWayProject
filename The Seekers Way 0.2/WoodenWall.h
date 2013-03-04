@@ -7,7 +7,7 @@
 class WoodenWall : public Block
 {
 public:
-	WoodenWall(sf::Vector2f &position);
+	WoodenWall(sf::Vector2f &position, std::string &texture = std::string("woodenwall.png"));
 	~WoodenWall();
 
 	void render();

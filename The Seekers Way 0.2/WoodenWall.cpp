@@ -4,15 +4,15 @@
 static const float WIDTH = 64;
 static const float HEIGHT = 128;
 
-WoodenWall::WoodenWall(sf::Vector2f &position):
-	mAnimation("woodenwall.png", 60, 12, HEIGHT, WIDTH)
+WoodenWall::WoodenWall(sf::Vector2f &position, std::string &texture):
+	mAnimation(texture, 30, 12, HEIGHT, WIDTH)
 	{
 		mPosition = position + sf::Vector2f(WIDTH/2 - 32, HEIGHT/2 - 32);
 		mAlive = true;
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
 		mEntityKind = WOODENWALL;
-	}
+	} 
 
 
 WoodenWall::~WoodenWall()

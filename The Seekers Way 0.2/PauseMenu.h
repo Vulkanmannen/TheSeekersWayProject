@@ -13,6 +13,7 @@ public:
 	void render();
 	void update();
 	void SetCanPressToFalse();
+	int setCurrentButton();
 	bool HowToPlayInst();
 
 private:
