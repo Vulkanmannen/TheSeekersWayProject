@@ -32,7 +32,7 @@
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<doorPosition X="2112" Y="576"/>
+		<doorPosition X="2048" Y="576"/>
 		<leverPosition X="512" Y="768"/>		
 	</Door>
 	

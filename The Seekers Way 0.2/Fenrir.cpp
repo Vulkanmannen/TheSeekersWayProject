@@ -483,6 +483,6 @@ void Fenrir::updateSatatus()
 {
 	if(mStatus == ACTION3 && mAnimation.getEndOfAnimation())
 	{
-		//mStatus = ACTION4;
+		mStatus = ACTION4;
 	}
 }
