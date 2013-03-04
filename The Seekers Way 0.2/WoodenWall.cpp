@@ -1,11 +1,15 @@
 #include "WoodenWall.h"
 #include "ImageManager.h"
 
-static const float WIDTH = 64;
+static const float WIDTH = 32;
 static const float HEIGHT = 128;
 
+static const float SPRITEWIDTH = 128;
+static const float SPRITEHEIGHT = 128;
+
 WoodenWall::WoodenWall(sf::Vector2f &position):
-	mAnimation("Door1.png", 60, 1, HEIGHT, WIDTH)
+	mAnimation("woodenwall.png", 60, 12, SPRITEHEIGHT, SPRITEWIDTH),
+	mHit(false)
 	{
 		mPosition = position + sf::Vector2f(WIDTH/2 - 32, HEIGHT/2 - 32);
 		mAlive = true;
@@ -20,13 +24,16 @@ WoodenWall::~WoodenWall()
 
 void WoodenWall::update(EntityKind &currentCharacter)
 {
-
+	mAnimation.update(mHit);
+	if(mAnimation.getEndOfAnimation() && mHit)
+	{
+		destroy();
+	}
 }
 
 void WoodenWall::render()
 {
-	mAnimation.update(0);
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH / 2, mPosition.y - HEIGHT / 2));
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH / 2, mPosition.y - SPRITEHEIGHT / 2));
 	ImageManager::render(&mAnimation.getSprite());
 }
 
@@ -42,5 +49,5 @@ void WoodenWall::interact(Entity *e)
 // öppnar dörren
 void WoodenWall::Activate()
 {
-	destroy();
+	mHit = true;
 }

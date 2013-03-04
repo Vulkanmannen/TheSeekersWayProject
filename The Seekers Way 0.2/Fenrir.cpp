@@ -447,7 +447,7 @@ void Fenrir::snowMistCountdown()
 void Fenrir::notInSnowMist()
 {
 	mInSnowMist = false;	
-	mFenrirCanJump = true;
+	//mFenrirCanJump = true;
 	mStatus = ACTION5;
 }
 

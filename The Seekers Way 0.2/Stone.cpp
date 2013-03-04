@@ -143,8 +143,8 @@ void Stone::interact(Entity* e)
 
 	// beräknar differansen mellan två objekt
 	float xDif = mPosition.x - e->getPosition().x;
-	float yDif = mPosition.y - e->getPosition().y;
-	
+	float yDif = mPosition.y - e->getPosition().y;	
+
 	if(*e == KIBA && yDif > yRadius - 20 && mBaseKind == OBJECT)
 	{
 		mPosition = sf::Vector2f(mPosition.x, e->getPosition().y + yRadius + 2);
@@ -177,13 +177,17 @@ void Stone::interact(Entity* e)
 				}
 			}
 		}
+
 		else
 		{
 			if(yDif > 0) // kollar om karaktären är under eller över
 			{
 				if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
 				{
-					mPosition -= sf::Vector2f(0, mPosition.y - (e->getPosition().y + yRadius - 0));
+					if((*e != STONE /*&& mCanMove*/) || mtelekinesis)
+					{
+						mPosition -= sf::Vector2f(0, mPosition.y - (e->getPosition().y + yRadius + 2));
+					}
 					mUblock = true;
 					if(e->getBaseKind() == CHARACTER || e->getEntityKind() == STONE)
 					{

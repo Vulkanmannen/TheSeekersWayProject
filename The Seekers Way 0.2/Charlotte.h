@@ -28,6 +28,13 @@ private:
 	bool mIsShield;
 
 	bool mActiveCharacter;
+
+	bool mTeleporting;
+	void teleporting();
+
+	sf::Clock mTeleportClock;
+	float mTimeToTeleport;
+	Portal* mPortal;
 };
 
 #endif
