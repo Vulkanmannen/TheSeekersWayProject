@@ -5,7 +5,7 @@ static const float WIDTH = 64;
 static const float HEIGHT = 128;
 
 WoodenWall::WoodenWall(sf::Vector2f &position):
-	mAnimation("Door1.png", 60, 1, HEIGHT, WIDTH)
+	mAnimation("woodenwall.png", 60, 12, HEIGHT, WIDTH)
 	{
 		mPosition = position + sf::Vector2f(WIDTH/2 - 32, HEIGHT/2 - 32);
 		mAlive = true;
