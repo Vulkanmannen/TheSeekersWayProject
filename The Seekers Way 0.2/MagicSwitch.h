@@ -24,7 +24,6 @@ private:
 	bool mIsPressed;
 	Block* mBlock;
 	float mTimeOpen;
-	bool mOpen;
 
 	sf::Clock mClockOpen;
 };

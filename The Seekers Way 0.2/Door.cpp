@@ -19,6 +19,7 @@ Door::Door(sf::Vector2f &position, std::string &texture):
 	mWidth = WIDTH;
 	mEntityKind = DOOR;	
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH/ 2, mPosition.y - SPRITEHEIGHT/ 2));
+	in = 0;
 }
 
 Door::~Door()
@@ -28,21 +29,21 @@ Door::~Door()
 
 void Door::Activate()
 {
-	if(mStatus != OPEN)
+	if(mStatus != OPENING || mStatus != CLOSING) 
 	{
-		mStatus = OPENING;
 		Sounds::getInstance()->Play("door.wav");
 	}
+	mStatus = OPENING;
 	mBaseKind = OBJECT;
 }
 
 void Door::DisActivate()
 {
-	if(mStatus != CLOSED)
+	if(mStatus != OPENING || mStatus != CLOSING) 
 	{
-		mStatus = CLOSING;
 		Sounds::getInstance()->Play("door.wav");
 	}
+	mStatus = CLOSING;
 	mBaseKind = BLOCK;
 }
 
@@ -60,7 +61,7 @@ void Door::update(EntityKind &currentEntity)
 }
 
 void Door::render()
-{
+{//, mStatus != OPENING || mStatus != CLOSING ? false : true
 	mAnimation.update(mStatus);
 	ImageManager::render(&mAnimation.getSprite());
 }

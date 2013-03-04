@@ -84,8 +84,7 @@ private:
 	void renderPortrait();
 	void updatePlayerPortrait();
 
-	sf::Texture frameTexture;
-	sf::Sprite frame;
+	Animation frame[4];
 	sf::Shader shadow;
 	// ----------------- background
 	sf::Texture mBackgroundTexture;

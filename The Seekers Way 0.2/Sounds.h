@@ -14,6 +14,7 @@ public:
 	static Sounds* getInstance();
 	void Play(std::string namn, float volume = 100, sf::Vector2f position = EntityManager::getInstance()->getView()->getCenter());
 	void Loop(std::string namn, float volume = 100, sf::Vector2f position = EntityManager::getInstance()->getView()->getCenter());
+	void Stop(std::string namn);
 	void StopAll();
 	void PauseAll();
 	void UnPauseAll();

@@ -9,7 +9,8 @@ static const float SPRITEHEIGHT = 64;
 
 Button::Button(sf::Vector2f &position, Block* target):
 	mBlock(target),
-	mAnimation("button.png", 60, 1, SPRITEHEIGHT, SPRITEWIDTH)
+	mAnimation("button.png", 60, 1, SPRITEHEIGHT, SPRITEWIDTH),
+	collision(false)
 {
 	isitpressed = false;
 	mPosition = position + sf::Vector2f(0, 29);
@@ -30,22 +31,25 @@ void Button::Activate()
 	if(isitpressed == false)
 	{
 		mBlock->Activate();
+		isitpressed = true;
 	}
-	isitpressed = true;
+	
 }
 
 void Button::DisActivate()
 {
-	if(isitpressed == false)
+	if(isitpressed == true)
 	{
 		mBlock->DisActivate();
+		isitpressed = false;
 	}
-	isitpressed = false;
+	
 }
 
 void Button::update(EntityKind &currentEntity)
 {
-	DisActivate();
+	collision ? Activate() : DisActivate();
+	collision = false;
 }
 
 void Button::render()
@@ -56,14 +60,14 @@ void Button::render()
 
 void Button::interact(Entity* e)
 {
-		switch(e->getEntityKind())
-		{
-		case CHARLOTTE:
-		case KIBA:
-		case FENRIR:
-		case SHEEKA:
-		case STONE:
-			Activate();
-			break;
-		}
+	switch(e->getEntityKind())
+	{
+	case CHARLOTTE:
+	case KIBA:
+	case FENRIR:
+	case SHEEKA:
+	case STONE:
+		collision = true;
+		break;
+	}
 }

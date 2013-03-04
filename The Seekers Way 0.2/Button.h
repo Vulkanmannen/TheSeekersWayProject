@@ -24,6 +24,7 @@ private:
 
 	Block* mBlock;
 	bool isitpressed;
+	bool collision;
 };
 
 #endif

@@ -20,10 +20,11 @@ EntityManager::EntityManager():
 	mZeroPlayerLife(0),
 	mMapTop(360),
 	mMapLeft(512)
-{
-		frameTexture.loadFromFile("frame.png");
-		frame.setTexture(frameTexture);
-		
+{		
+		frame[0] = Animation("frame.png", 60, 1, 84, 84);
+		frame[1] = Animation("frame.png", 60, 1, 84, 84);
+		frame[2] = Animation("frame.png", 60, 1, 84, 84);
+		frame[3] = Animation("frame.png", 60, 1, 84, 84);
 		mPortraitSprite[0] = Animation("PortraitesKiba.png", 60, 1, 64, 64);
 		mPortraitSprite[1] = Animation("PortraitesCharlotte.png", 60, 1, 64, 64);
 		mPortraitSprite[2] = Animation("Fenrir Face sprite 1_1.png", 60, 1, 64, 64);
@@ -171,7 +172,7 @@ void EntityManager::render()
 void EntityManager::renderLifeAndMask()
 {
 	ImageManager::render(&mMaskSprite);
-	mLifeSprite.setPosition(mLifeSprite.getPosition() + sf::Vector2f(20, frame.getLocalBounds().height + 10));
+	mLifeSprite.setPosition(mLifeSprite.getPosition() + sf::Vector2f(20, frame[0].getSprite().getLocalBounds().height + 10));
 	for(int i = 0; i < mPlayerLife; ++i)
 	{
 		ImageManager::render(&mLifeSprite);
@@ -185,12 +186,13 @@ void EntityManager::renderPortrait()
 
 	for(int i = 0; i < 4; i++)
 	{
-		frame.setPosition(	mPortraitSprite[i].getSprite().getPosition() - sf::Vector2f(9 , 9));
+		frame[i].setPosition(	mPortraitSprite[i].getSprite().getPosition() - sf::Vector2f(9 , 9));
 		sf::RenderStates states;
 		states.shader = &shadow;
+		frame[i].update(i);
 		for(CharacterVector::size_type j = 0; j < mCharacters.size(); j++)
 		{
-			//peter är kass
+			//totte är kass
 			switch(i)
 			{
 			case 0:
@@ -198,32 +200,32 @@ void EntityManager::renderPortrait()
 				{
 					ImageManager::render(&mPortraitSprite[0].getSprite(), mPrimaryCharacter != Entity::KIBA ? states : sf::RenderStates::Default);
 				}
-				ImageManager::render(&frame, mPrimaryCharacter != Entity::KIBA ? states : sf::RenderStates::Default);
+				ImageManager::render(&frame[i].getSprite(), mPrimaryCharacter != Entity::KIBA ? states : sf::RenderStates::Default);
 				break;
 			case 1:
 				if (mCharacters[j]->getEntityKind() == Entity::CHARLOTTE) 
 				{
 					ImageManager::render(&mPortraitSprite[1].getSprite(), mPrimaryCharacter != Entity::CHARLOTTE ? states : sf::RenderStates::Default);
 				}
-				ImageManager::render(&frame, mPrimaryCharacter != Entity::CHARLOTTE ? states : sf::RenderStates::Default);
+				ImageManager::render(&frame[i].getSprite(), mPrimaryCharacter != Entity::CHARLOTTE ? states : sf::RenderStates::Default);
 				break;
 			case 2:
 				if (mCharacters[j]->getEntityKind() == Entity::FENRIR)
 				{
 					ImageManager::render(&mPortraitSprite[2].getSprite(), mPrimaryCharacter != Entity::FENRIR ? states : sf::RenderStates::Default);
 				}
-				ImageManager::render(&frame, mPrimaryCharacter != Entity::FENRIR ? states : sf::RenderStates::Default);
+				ImageManager::render(&frame[i].getSprite(), mPrimaryCharacter != Entity::FENRIR ? states : sf::RenderStates::Default);
 				break;
 			case 3:
 				if (mCharacters[j]->getEntityKind() == Entity::SHEEKA) 
 				{
 					ImageManager::render(&mPortraitSprite[3].getSprite(), mPrimaryCharacter != Entity::SHEEKA ? states : sf::RenderStates::Default);
 				}
-				ImageManager::render(&frame, mPrimaryCharacter != Entity::SHEEKA ? states : sf::RenderStates::Default);
+				ImageManager::render(&frame[i].getSprite(), mPrimaryCharacter != Entity::SHEEKA ? states : sf::RenderStates::Default);
 				break;
 			}
 		}
-		mPortraitSprite[i].setPosition(	mView->getCenter() - sf::Vector2f(503 - i * frameTexture.getSize().x, 351));
+		mPortraitSprite[i].setPosition(	mView->getCenter() - sf::Vector2f(503 - i * frame[i].getSprite().getLocalBounds().width, 351));
 	}
 	
 }

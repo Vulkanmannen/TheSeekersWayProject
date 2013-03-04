@@ -102,7 +102,7 @@ void Sounds::Playbase(std::string namn, sf::Vector2f position, float volume, boo
 							+ mSounds[x]->getAttenuation() 
 							* (std::max<float>(Distance, mSounds[x]->getMinDistance()) 
 								- mSounds[x]->getMinDistance()));
-					std::cout<<Factor<<std::endl;
+					//std::cout<<Factor<<std::endl;
 					mSounds[x]->setVolume(volume * Factor);
 					mSounds[x]->setLoop(repeat);
 					if(Factor > 0.1)

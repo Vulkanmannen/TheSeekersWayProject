@@ -16,7 +16,7 @@ public:
 
 	void init(std::string fileName, int timePerFrame, int numberOfFrames);
 
-	void update(int rowOfSprite);
+	void update(int rowOfSprite, bool keepframe = false);
 	void setPosition(sf::Vector2f &position);
 	sf::Sprite getSprite()const;
 	bool getEndOfAnimation()const;

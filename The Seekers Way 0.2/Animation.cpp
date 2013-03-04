@@ -44,7 +44,7 @@ void Animation::init(std::string fileName, int timePerFrame, int numberOfFrames)
 // uppdaterar spriteframen
 // kollar om det är dags o byta frame
 // byter frame om det är dags
-void Animation::update(int rowOfSprite)
+void Animation::update(int rowOfSprite, bool keepframe)
 {
 	if(mFrameTimer.getElapsedTime().asMilliseconds() > mTimePerFrame) // kollar om det är dags att byta frame
 	{
@@ -73,7 +73,10 @@ void Animation::update(int rowOfSprite)
 		}
 		else
 		{
-			mCurrentFrame = 0;
+			if(!keepframe) 
+			{
+				mCurrentFrame = 0;
+			}
 			mEndOfAnimation = false;
 		}
 

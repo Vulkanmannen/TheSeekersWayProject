@@ -8,8 +8,7 @@ MagicSwitch::MagicSwitch(sf::Vector2f &position, Block* door, float timeOpen):
 	mIsPressed(false),
 	mAnimation("MagicSwitch.png", 60, 1, HEIGHT, WIDTH),
 	mTimeOpen(timeOpen),
-	mBlock(door),
-	mOpen(false)
+	mBlock(door)
 	{
 		mPosition = position;
 		mAlive = true;
@@ -29,7 +28,7 @@ void MagicSwitch::update(EntityKind &currentCharacter)
 
 void MagicSwitch::render()
 {
-	mAnimation.update(mOpen);
+	mAnimation.update(mIsPressed);
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH / 2, mPosition.y - HEIGHT / 2));
 	ImageManager::render(&mAnimation.getSprite());
 }
@@ -40,7 +39,6 @@ void MagicSwitch::interact(Entity *e)
 	if(e->getEntityKind() == DARKBINDING)
 	{
 		Activate();
-		mOpen = true;
 	}
 }
 
@@ -51,17 +49,18 @@ void MagicSwitch::Activate()
 	{
 		mBlock->Activate();
 		mClockOpen.restart();
+		mIsPressed = true;
 	}
-	mIsPressed = true;
+	
 }
 
 // stänger dörren
 void MagicSwitch::DisActivate()
 {
-	if(mIsPressed == false && mClockOpen.getElapsedTime().asSeconds() > mTimeOpen)
+	if(mIsPressed == true && mClockOpen.getElapsedTime().asSeconds() > mTimeOpen)
 	{
 		mBlock->DisActivate();
-		mOpen = false;
+		mIsPressed = false;
 	}
-	mIsPressed = false;
+	
 }

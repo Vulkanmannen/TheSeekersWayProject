@@ -25,7 +25,7 @@ private:
 	Animation mAnimation;
 	
 	enum Status {CLOSED, OPENING, OPEN, CLOSING};
-
+	int in;
 	Status mStatus;
 };
 
