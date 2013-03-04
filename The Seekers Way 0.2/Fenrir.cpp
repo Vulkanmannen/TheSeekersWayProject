@@ -103,7 +103,9 @@ void Fenrir::render()
 	}
 	sf::RenderStates states;
 	if(mHurtShow)
+	{
 		states.shader = &mHurtShader;
+	}
 	ImageManager::render(&mAnimation.getSprite(), states);
 }
 
@@ -200,14 +202,14 @@ void Fenrir::interact(Entity *e)
 	}
 	if(e->getEntityKind() == Entity::LAVA)
 	{
-		// die
+		takeLavaDamage();
 	}
 
 	if((*e) == SPIKETRAP || (*e) == FIREBALL || (*e) == VINE)
 	{
 		if((*e) == VINE && yDif < 0)
 		{
-			if(std::abs(xDif) > yRadius - 10)
+			if(std::abs(xDif) > xRadius - 10)
 			{
 				return;
 			}
@@ -229,10 +231,11 @@ void Fenrir::interact(Entity *e)
 
 		dirVector.x *= 10;
 		dirVector.y *= 30;
-
+		
 		mMovementSpeed = sf::Vector2f(0, 0);
 
 		mMovementSpeed = dirVector;
+ 
 
 		takeDamage();
 	}

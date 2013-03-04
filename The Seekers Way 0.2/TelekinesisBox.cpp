@@ -1,13 +1,16 @@
 #include "TelekinesisBox.h"
 #include "ImageManager.h"
 #include "NormalBlock.h"
+#include "SFML\Graphics.hpp"
 
 
-static const float WIDTH = 384;
-static const float HEIGHT = 320+64;
+static const float WIDTH = 448;
+static const float HEIGHT = 448;
 
-TelekinesisBox::TelekinesisBox(sf::Vector2f &position):
-	b(0)
+TelekinesisBox::TelekinesisBox(sf::Vector2f &position, Stone* noStone):
+	mSelectedStone(0),
+	mNoStone(noStone),
+	mCanPressChange(true)
 {
 	mPosition = position;
 	mHeight = HEIGHT;
@@ -22,7 +25,7 @@ TelekinesisBox::~TelekinesisBox()
 
 void TelekinesisBox::update(EntityKind &currentEntity)
 {
-	//stone.clear();
+
 }
 
 void TelekinesisBox::render()
@@ -39,21 +42,64 @@ void TelekinesisBox::interact(Entity* e)
 {
 	if(e->getEntityKind() == STONE)
 	{
+		for(std::vector<Stone*>::size_type i = 0; i < stone.size(); ++i)
+		{
+			if(e == stone[i])
+			{
+				return;
+			}
+		}
 		stone.push_back(static_cast<Stone*>(e)); 
 	}
 }
 
-Stone* TelekinesisBox::getStone(int a)
+Stone* TelekinesisBox::getStone()
 {
-	b += a;
-
-	if(stone.size() <= b || b < 0)
+	if(mSelectedStone < static_cast<int>(stone.size()))
 	{
-		b = 0;
+		return stone[mSelectedStone];	
+	}
+	else
+	{
+		return NULL;
+	}
+}
+
+void TelekinesisBox::clearStoneVector()
+{
+	stone.clear();
+	mSelectedStone = 0;
+}
+
+TelekinesisBox::StoneVector TelekinesisBox::getStoneVector()const
+{
+	return stone;
+}
+
+void TelekinesisBox::changeStone()
+{
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && mCanPressChange)
+	{
+		mSelectedStone++;
+		mCanPressChange = false;
+	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && mCanPressChange)
+	{
+		mSelectedStone--;
+		mCanPressChange = false;
+	}
+	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		mCanPressChange = true;
 	}
 
-	if(stone.size() != 0)
+	if(mSelectedStone >= static_cast<int>(stone.size()))
 	{
-		return stone[b];
+		mSelectedStone = 0;
 	}
+	else if(mSelectedStone < 0)
+	{
+		mSelectedStone = static_cast<int>(stone.size()) - 1;
+	}
+
 }

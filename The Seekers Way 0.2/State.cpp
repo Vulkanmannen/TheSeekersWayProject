@@ -5,6 +5,8 @@
 #include "PauseMenu.h"
 #include "Sounds.h"
 #include "DialogState.h"
+#include "Dialogue.h"
+#include "LevelManager.h"
 
 State* State::sInstance = 0;
 
@@ -93,6 +95,11 @@ void State::update()
 
 			mDialogState->render();
 			mDialogState->update();
+
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && mEsc)
+			{
+				mEsc = false;
+			}
 			break;
 	}
 
