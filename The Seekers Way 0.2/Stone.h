@@ -15,39 +15,28 @@ public:
 	void render();
 	void interact(Entity* e);
 
-	void move();
-	void falling();
-	void telekinesis();
-	void attraction();
+	enum StoneState {ONGROUND, INAIR, SELECTED};
 	
-	bool onblock();
-
-	bool mtelekinesis;
-	bool mtelemove;
-	
-	sf::Vector2f mKibaPos;
-
-	enum StoneState {ONGROUND, INTELE, SELECTED};
 	void setStoneState(StoneState);
+	void setMoveing(bool moving);
+	void setKibaPos(sf::Vector2f kibaPos);
 
+	bool getOnBlock()const;
+
+	void move();
 private:
 	Animation mAnimation;
+
+	sf::Vector2f mKibaPos;
+	float mRange;
+
 	StoneState mStoneState;
 
-	sf::Vector2f mMovementSpeed;
-	float mDecrease;
-	float mGravity;
-	float radius;
-	float mRange;
-	bool mFalling;
-	bool mRblock;
-	bool mLblock;
-	bool mUblock;
-	bool mDblock;
-
+	bool mMoveing;
+	bool mCanMove;
 	bool mOnBlock;
 
-	bool mCanMove;
+	float mMoveSpeed;
 };
 
 #endif
