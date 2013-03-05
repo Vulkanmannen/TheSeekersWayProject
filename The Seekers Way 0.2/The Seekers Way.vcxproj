@@ -157,13 +157,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\SFML-2.0-rc\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SFML-2.0-rc\include;C:\sfeMovie-1.0-windows-vs2010\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\SFML-2.0-rc\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-window-d.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\sfeMovie-1.0-windows-vs2010\lib;C:\SFML-2.0-rc\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-window-d.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-system-d.lib;sfeMovie.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
