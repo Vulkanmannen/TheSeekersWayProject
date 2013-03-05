@@ -192,6 +192,11 @@ void PauseMenu::buttonActivate()
 	}
 }
 
+int PauseMenu::setCurrentButton()
+{
+	return currentButton = 0;
+}
+
 void PauseMenu::SetCanPressToFalse()
 {
 	canPressReturn = false;
