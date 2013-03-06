@@ -17,7 +17,8 @@ Stone::Stone(sf::Vector2f Position):
 	mStoneState(ONGROUND),
 	mKibaPos(sf::Vector2f(0, 0)),
 	mMoveSpeed(5),
-	mCanMove(true)
+	mCharacterOnStone(false),
+	mStoneOnStone(false)
 {
 	mPosition = Position + sf::Vector2f(WIDTH/2 - 32, HEIGHT/2 - 32);
 	mAlive = true;
@@ -66,13 +67,12 @@ void Stone::interact(Entity* e)
 	float xDif = mPosition.x - e->getPosition().x;
 	float yDif = mPosition.y - e->getPosition().y;
 
-	if(*e == CHARACTER && yDif < -(yRadius - 30))
+	if((*e == CHARACTER) && yDif > yRadius - 20)
 	{
-		//mCanMove = false;
-		return;
+		mCharacterOnStone = true;
 	}
 
-	if(((*e) == BLOCK || *e == CHARACTER) && (*e) != DOOR && (*e) != BRIDGE && (*e) != BIGBRIDGE && mMoveing)
+	if(((	*e) == BLOCK || *e == CHARACTER) && (*e) != DOOR && (*e) != BRIDGE && (*e) != BIGBRIDGE &&	mMoveing)
 	{
 		// fråga vilken sida caraktären finns på.
 		if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius)) // är karaktären höger/vänster eller över/under om blocket
@@ -99,6 +99,15 @@ void Stone::interact(Entity* e)
 				if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
 				{
 					mPosition = sf::Vector2f(mPosition.x, e->getPosition().y + yRadius);
+
+					if(*e == CHARACTER)
+					{
+						mCharacterOnStone = true;
+					}
+					else if(*e == STONE)
+					{
+						mStoneOnStone = true;
+					}
 				}
 			}
 			else
@@ -135,27 +144,24 @@ bool Stone::getOnBlock()const
 
 void Stone::move()
 {
-	if(mCanMove)
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mKibaPos.y - mPosition.y < mRange && !mCharacterOnStone && !mStoneOnStone)
 	{
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mKibaPos.y - mPosition.y < mRange)
-		{
-			mPosition.y -= mMoveSpeed;
-			mOnBlock = false;
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mPosition.y - mKibaPos.y < mRange)
-		{
-			mPosition.y += mMoveSpeed;
-			mOnBlock = false;
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && mPosition.x - mKibaPos.x < mRange)
-		{
-			mPosition.x += mMoveSpeed;
-			mOnBlock = false;
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && mKibaPos.x - mPosition.x < mRange)
-		{
-			mPosition.x -= mMoveSpeed;
-			mOnBlock = false;
-		}
+		mPosition.y -= mMoveSpeed;
+		mOnBlock = false;
+	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mPosition.y - mKibaPos.y < mRange)
+	{
+		mPosition.y += mMoveSpeed;
+		mOnBlock = false;
+	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && mPosition.x - mKibaPos.x < mRange && !mCharacterOnStone && !mStoneOnStone)
+	{
+		mPosition.x += mMoveSpeed;
+		mOnBlock = false;
+	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && mKibaPos.x - mPosition.x < mRange && !mCharacterOnStone && !mStoneOnStone)
+	{
+		mPosition.x -= mMoveSpeed;
+		mOnBlock = false;
 	}
 }

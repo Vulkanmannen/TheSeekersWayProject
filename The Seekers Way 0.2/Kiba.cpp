@@ -47,6 +47,13 @@ void Kiba::update(EntityKind &currentEntity)
 				selectedStone();
 			}
 		}
+		else
+		{
+			if(mStone != NULL)
+			{
+				mStone->setMoveing(false);
+			}
+		}
 	}
 
 	Character::update(currentEntity);
@@ -65,7 +72,10 @@ void Kiba::render()
 {
 	sf::RenderStates states;
 	if(mHurtShow)
+	{
 		states.shader = &mHurtShader;
+	}
+	
 	mAnimation.update(mStatus * 2 + mDirLeft);
 
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y -68));
@@ -95,7 +105,7 @@ void Kiba::noStone()
 	{
 		//mTelekinesisBox->clear();
 
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && mCanPressStone)
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && mCanPressStone && !mFalling && !mJumping)
 		{
 			mCanPressStone = false;
 			if(mTelekinesisBox->getNumberOfStones() != 0)

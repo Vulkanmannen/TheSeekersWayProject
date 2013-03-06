@@ -33,7 +33,8 @@ private:
 	StoneState mStoneState;
 
 	bool mMoveing;
-	bool mCanMove;
+	bool mCharacterOnStone;
+	bool mStoneOnStone;
 	bool mOnBlock;
 
 	float mMoveSpeed;
