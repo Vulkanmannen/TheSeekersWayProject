@@ -33,7 +33,7 @@ EntityManager::EntityManager():
 		shadow.setParameter("texture", sf::Shader::CurrentTexture);
 		mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
 		mLifeSprite.setTexture(mLifeTexture);
-		mDeathTexture.loadFromFile("DieScreen.png");
+		mDeathTexture.loadFromImage(*ImageManager::getImage("DieScreen.png"));
 		mDeathSprite.setTexture(mDeathTexture);
 		mMaskTexture.loadFromImage(*ImageManager::getImage("mask.png"));
 		mMaskSprite.setTexture(mMaskTexture);

@@ -50,9 +50,9 @@ sf::Image* ImageManager::getImage(const std::string &fileName)
 sf::Image* ImageManager::loadImage(const std::string &fileName)
 {
 	sf::Image* image = new sf::Image();
-	image->loadFromFile(fileName);
+	image->loadFromFile("Images/" + fileName);
 
-	assert(image->loadFromFile(fileName));
+	assert(image->loadFromFile("Images/" + fileName));
 
 	return image;
 }

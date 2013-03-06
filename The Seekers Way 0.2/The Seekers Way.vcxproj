@@ -31,7 +31,6 @@
     <ClInclude Include="FinishDoor.h" />
     <ClInclude Include="FireBall.h" />
     <ClInclude Include="FireRune.h" />
-    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameMenu.h" />
     <ClInclude Include="GenerateDoor.h" />
     <ClInclude Include="ImageManager.h" />
@@ -83,7 +82,6 @@
     <ClCompile Include="FinishDoor.cpp" />
     <ClCompile Include="FireBall.cpp" />
     <ClCompile Include="FireRune.cpp" />
-    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="GenerateDoor.cpp" />
     <ClCompile Include="ImageManager.cpp" />

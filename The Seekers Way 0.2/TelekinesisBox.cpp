@@ -25,18 +25,7 @@ TelekinesisBox::~TelekinesisBox()
 
 void TelekinesisBox::update(EntityKind &currentEntity)
 {
-	//// clerar vectorn om man trycker på q
-	//if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && mCanPressClear)
-	//{
-	//	mCanPressClear = false;
-	//	mStones.clear();
-	//	mCurrentStone = 0;
-	//}
 
-	//else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-	//{
-	//	mCanPressClear = true;
-	//}
 }
 
 void TelekinesisBox::render()

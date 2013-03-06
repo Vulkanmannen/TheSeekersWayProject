@@ -38,8 +38,7 @@ void Kiba::update(EntityKind &currentEntity)
 				jump();
 				slash();
 
-				noStone();
-						
+				noStone();			
 			}
 			else
 			{
@@ -103,31 +102,13 @@ void Kiba::noStone()
 {
 	if(mTeleState == NOSTONE)
 	{
-		//mTelekinesisBox->clear();
+		mTelekinesisBox->clear();
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && mCanPressStone && !mFalling && !mJumping)
 		{
 			mCanPressStone = false;
-			if(mTelekinesisBox->getNumberOfStones() != 0)
-			{
-				if(mTelekinesisBox->getNumberOfStones() == 1)
-				{
-					mStone = mTelekinesisBox->getCurrentStone();
 
-					if(mStone != NULL)
-					{
-						mStone->setStoneState(Stone::INAIR);
-						mTeleState = SELECTEDSTONE;
-					}
-				}
-				else
-				{
-					mTeleState = CHOOSING;
-				}
-
-				mStatus = IDLE;
-				mMovementSpeed.x = 0;
-			}
+			mTeleState = CHOOSING;
 		}
 	}
 }
@@ -137,19 +118,40 @@ void Kiba::choosing()
 {
 	if(mTeleState == CHOOSING)
 	{
+		// kollar om det bara finns en sten i vektorn
 		if(mTelekinesisBox->getNumberOfStones() != 0)
 		{
-			mTelekinesisBox->getCurrentStone()->setStoneState(Stone::ONGROUND);
+			if(mTelekinesisBox->getNumberOfStones() == 1)
+			{
+				mStone = mTelekinesisBox->getCurrentStone();
+
+				if(mStone != NULL)
+				{
+					mStone->setStoneState(Stone::INAIR);
+					mTeleState = SELECTEDSTONE;
+				}
+			}
+			else
+			{
+				// byt sten
+				mTelekinesisBox->getCurrentStone()->setStoneState(Stone::ONGROUND);
+			
+				mTelekinesisBox->changeCurrenStone();// ändrar sten
+			
+				mTelekinesisBox->getCurrentStone()->setStoneState(Stone::SELECTED);
+			}
+
+			mStatus = IDLE;
+			mMovementSpeed.x = 0;
 		}
-
-		mTelekinesisBox->changeCurrenStone();// ändrar sten
-
-		if(mTelekinesisBox->getNumberOfStones() != 0)
+		else
 		{
-			mTelekinesisBox->getCurrentStone()->setStoneState(Stone::SELECTED);
+			mTeleState = NOSTONE;
 		}
 
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && mCanPressStone)
+
+		// kollaar knaptryck
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && mCanPressStone && mTelekinesisBox->getNumberOfStones() != 0)
 		{
 			mCanPressStone = false;
 			

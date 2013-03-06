@@ -15,9 +15,9 @@ StartMenu::StartMenu():
 	Resumedraw(true),
 	currentButton(1)
 {
-	mStartText.loadFromFile("StartMenurelease.PNG");
+	mStartText.loadFromImage(*ImageManager::getImage("StartMenurelease.PNG"));
 	mStartSprite.setTexture(mStartText);
-	mHowToPlay.loadFromFile("HowToPlayinst.png");
+	mHowToPlay.loadFromImage(*ImageManager::getImage("HowToPlayinst.png"));
 	mHowToPlaySprite.setTexture(mHowToPlay);
 	generateButtons();
 }

@@ -30,7 +30,7 @@ void MapGenerator::generateMap(std::string imageNameBlock, std::string imageName
 	GenerateDoor::GenerateDoors();
 
 	sf::Image image;
-	image.loadFromFile(imageNameBlock);
+	image.loadFromFile("Maps/" + imageNameBlock);
 	EntityManager* entityManager = EntityManager::getInstance();
 	//
 	//------------------------------------------------------skapar block och karaktärer
@@ -101,7 +101,7 @@ void MapGenerator::generateMap(std::string imageNameBlock, std::string imageName
 	//------------------------------------------------------------------------skapar objekt
 	//
 
-	image.loadFromFile(imageNameObject);
+	image.loadFromFile("Maps/" + imageNameObject);
 
 	for(int i = 0; i < image.getSize().x; ++i)
 	{
