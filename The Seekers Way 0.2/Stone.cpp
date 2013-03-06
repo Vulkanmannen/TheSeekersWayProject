@@ -72,7 +72,7 @@ void Stone::interact(Entity* e)
 		mCharacterOnStone = true;
 	}
 
-	if(((	*e) == BLOCK || *e == CHARACTER) && (*e) != DOOR && (*e) != BRIDGE && (*e) != BIGBRIDGE &&	mMoveing)
+	if(((	*e) == BLOCK || *e == CHARACTER) && (*e) != DOOR && (*e) != BRIDGE && (*e) != BIGBRIDGE &&	mMoveing && !mCharacterOnStone)
 	{
 		// fråga vilken sida caraktären finns på.
 		if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius)) // är karaktären höger/vänster eller över/under om blocket
