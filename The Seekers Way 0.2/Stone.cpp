@@ -37,7 +37,7 @@ Stone::~Stone()
 
 void Stone::update(EntityKind &currentEntity)
 {
-	if(mMoveing)
+	if(mMoveing && !mCharacterOnStone)
 	{
 		mBaseKind = OBJECT;
 	}
@@ -47,7 +47,10 @@ void Stone::update(EntityKind &currentEntity)
 	}
 
 	mAnimation.update(mStoneState);
+
 	mOnBlock = false;
+	mCharacterOnStone = false;
+	mStoneOnStone = false;
 }
 
 void Stone::render()
@@ -72,7 +75,7 @@ void Stone::interact(Entity* e)
 		mCharacterOnStone = true;
 	}
 
-	if(((	*e) == BLOCK || *e == CHARACTER) && (*e) != DOOR && (*e) != BRIDGE && (*e) != BIGBRIDGE &&	mMoveing && !mCharacterOnStone)
+	if(*e == BLOCK && *e != DOOR && *e != BRIDGE && *e != BIGBRIDGE || *e == CHARACTER && mMoveing && !mCharacterOnStone)
 	{
 		// fråga vilken sida caraktären finns på.
 		if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius)) // är karaktären höger/vänster eller över/under om blocket
@@ -149,7 +152,7 @@ void Stone::move()
 		mPosition.y -= mMoveSpeed;
 		mOnBlock = false;
 	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mPosition.y - mKibaPos.y < mRange)
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mPosition.y - mKibaPos.y < mRange && !mCharacterOnStone)
 	{
 		mPosition.y += mMoveSpeed;
 		mOnBlock = false;
