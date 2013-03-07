@@ -20,7 +20,8 @@
 #include "Portal.h"
 #include "Dialogue.h"
 
-#include <sfTheora\Video.h>
+//#include <sfTheora\Video.h>
+
 
 int main()
 {	
@@ -36,18 +37,18 @@ int main()
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
 
-	//sf::View view;
-	//view.setCenter(512, 360);
-	//view.setSize(1024, 720);
+	sf::View view;
+	view.setCenter(512, 360);
+	view.setSize(1024, 720);
 
 	window.setMouseCursorVisible(false);
 
-	//EntityManager::getInstance()->setView(&view);
+	EntityManager::getInstance()->setView(&view);
 
 	Sounds::getInstance();
 
 	sf::Clock mVideoClock;
-	sftheora::Video mVideo("INTRO.OGG");
+	//sftheora::Video mVideo("INTRO.OGG");
 
    while (window.isOpen())
     {
@@ -67,12 +68,15 @@ int main()
         }
 
 		window.clear(sf::Color::Black);
-		//State::getInstance()->update();
 
-		mVideo.update(mVideoClock.restart());
-		window.draw(mVideo);
+		State::getInstance()->update();
 
-		//window.setView(view); 
+		//mVideo.update(mVideoClock.restart());
+		//window.draw(mVideo);
+
+		State::getInstance()->update();
+
+		window.setView(view); 
 
 		window.display();
 	}

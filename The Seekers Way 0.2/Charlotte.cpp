@@ -13,7 +13,8 @@ Charlotte::Charlotte(sf::Vector2f &position):
 	mIsShield(false),
 	mActiveCharacter(false),
 	mTimeToTeleport(0.5),
-	mTeleporting(false)
+	mTeleporting(false),
+	mActivatingShield(false)
 	{
 		mAnimation.init("charlotte.png", 60, 12);
 
@@ -30,7 +31,7 @@ void Charlotte::update(EntityKind &currentEntity)
 {
 	move();
 
-	if(mCanMove && !mTeleporting)
+	if(mCanMove && !mTeleporting && !mActivatingShield)
 	{
 		if(currentEntity == mEntityKind)
 		{
@@ -39,12 +40,13 @@ void Charlotte::update(EntityKind &currentEntity)
 			SetShield();
 		}
 	}
-	else
+	else if(mTeleporting)
 	{
 		teleporting();
 	}
 
 	GetShieldLife();
+	shieldTime();
 
 	if(mEntityKind == currentEntity)
 	{
@@ -54,6 +56,7 @@ void Charlotte::update(EntityKind &currentEntity)
 	{
 		mActiveCharacter = false;
 	}
+
 	Character::update(currentEntity);
 }
 
@@ -97,10 +100,16 @@ void Charlotte::SetShield()
 		mClock.restart();
 		mShield = new Shield(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 100, mPosition.y - 13), mDirLeft);
 		
-		mStatus = ACTION2;
+		if(!mJumping && !mFalling)
+		{
+			mStatus = ACTION2;
+		}
+		mShieldClock.restart();
+		mMovementSpeed.x = 0;
 
 		EntityManager::getInstance()->addEntity(mShield);
 
+		mActivatingShield = true;
 		mIsShield = true;
 	}
 }
@@ -136,5 +145,13 @@ void Charlotte::teleporting()
 		{
 			mTeleporting = false;
 		}
+	}
+}
+
+void Charlotte::shieldTime()
+{
+	if(mShieldClock.getElapsedTime().asSeconds() > 0.6 && mActivatingShield)
+	{
+		mActivatingShield = false;
 	}
 }

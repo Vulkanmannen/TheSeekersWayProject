@@ -8,34 +8,30 @@
 #include "Slash.h"
 #include "Stone.h"
 
-
 class Kiba: public Character
 {
 public:
 	Kiba(sf::Vector2f &position);
 	~Kiba();
 
-	enum tele {choice, moving, free};
-	tele telestate;
-
-	void telekinesis();
 	void update(EntityKind &currentEntity);
 	void render();
-	void getStone();
-	void slash();
-
+	
 private:
-	void teleStates();
-
-	bool mCanPressQ;
-	bool mCanPressChange;
-
-	Stone *mStone;
-	Stone mNoStone;
-
-	TelekinesisBox *mTeleBox;
-	//sf::Clock teletimer;
+	void slash();
 	sf::Clock mslashtimer;
+
+	TelekinesisBox* mTelekinesisBox;
+
+	enum TeleState {NOSTONE, CHOOSING, SELECTEDSTONE};
+	TeleState mTeleState;
+
+	Stone* mStone;
+	bool mCanPressStone;
+
+	void noStone();
+	void choosing();
+	void selectedStone();
 };
 
 #endif
