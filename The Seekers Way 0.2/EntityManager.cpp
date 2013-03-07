@@ -11,11 +11,10 @@
 #include "Sounds.h"
 #include <cmath>
 #include <algorithm>
+#include "MyLightSystem.h"
 
-#include <LTBL\Light\LightSystem.h>
 #include <LTBL\Light\Light_Point.h>
-#include <LTBL\Utils.h>
-#include <LTBL\Constructs\AABB.h>
+#include <LTBL\Constructs\Vec2f.h>
 
 EntityManager* EntityManager::sInstance = 0;
 
@@ -49,8 +48,23 @@ EntityManager::EntityManager():
 		createBackground();
 		setMapSize(61, 28);
 
-		//ltbl::LightSystem ls(AABB(Vec2f(0.0f, 0.0f), Vec2f(mView->getSize().x , mView->getSize().y)), &ImageManager::getWindow(), "lightFin.png", "shaders/lightAttenuationShader.frag");
-
+		mLightSystem = MyLightSystem::getLightSystem();
+		
+		mLight = new ltbl::Light_Point(); 
+		mLight->m_intensity = 50.0f; 
+		mLight->m_center = Vec2f(1200.0f, 1200.0f); 
+		mLight->m_radius = 100000.0f; 
+		mLight->m_size = 100000.0f; 
+		mLight->m_spreadAngle = ltbl::pifTimes2; 
+		mLight->m_softSpreadAngle = 0.0f;
+		mLight->m_color.r = 0.39f; 
+		mLight->m_color.g = 0.50f; 
+		mLight->m_color.b = 0.11f; 
+		mLight->CalculateAABB(); 
+		mLight->m_bleed = 1.0f; 
+		mLight->m_linearizeFactor = 0.3f; 
+		mLightSystem->AddLight(mLight); 
+		mLight->SetAlwaysUpdate(true); 
 }
 
 
@@ -95,6 +109,8 @@ void EntityManager::update()
 	}
 	
 	killPlayers();
+
+	mLight->SetCenter(Vec2f(mView->getCenter().x, mView->getCenter().y));
 }
 
 // uppdaterar lifeposition
@@ -168,7 +184,7 @@ void EntityManager::render()
 			}
 		}
 	}
-	
+
 	renderLifeAndMask();
 	renderPortrait();
 	lifeAndMaskPosition();
@@ -177,12 +193,22 @@ void EntityManager::render()
 	//sf::Color colo(255,255,255,128);
 	//rect.setFillColor(colo);
 	//ImageManager::render(&rect);
+
+	//mLightSystem->SetView(*mView);
+	//
+	//// Calculate the lights 
+	//mLightSystem->RenderLights(); 
+	//// Draw the lights 
+	//mLightSystem->RenderLightTexture(); 
+
+	//mLightSystem->DebugRender(); 
 }
 
 // renderar livet
 void EntityManager::renderLifeAndMask()
 {
 	ImageManager::render(&mMaskSprite);
+	
 	mLifeSprite.setPosition(mLifeSprite.getPosition() + sf::Vector2f(20, frame[0].getSprite().getLocalBounds().height + 10));
 	for(int i = 0; i < mPlayerLife; ++i)
 	{

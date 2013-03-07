@@ -41,6 +41,7 @@
     <ClInclude Include="Lever.h" />
     <ClInclude Include="MagicSwitch.h" />
     <ClInclude Include="MapGenerator.h" />
+    <ClInclude Include="MyLightSystem.h" />
     <ClInclude Include="NormalBlock.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="PauseMenu.h" />
@@ -109,6 +110,7 @@
     <ClCompile Include="MagicSwitch.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapGenerator.cpp" />
+    <ClCompile Include="MyLightSystem.cpp" />
     <ClCompile Include="NormalBlock.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PauseMenu.cpp" />

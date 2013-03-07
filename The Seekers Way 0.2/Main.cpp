@@ -19,11 +19,15 @@
 #include "WoodenWall.h"
 #include "Portal.h"
 #include "Dialogue.h"
+#include "MyLightSystem.h"
 
+#include <LTBL\Light\LightSystem.h>
+#include <LTBL\Light\Light_Point.h>
+#include <LTBL\Utils.h>
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1024, 720), "The Seekers Way"/*, sf::Style::Fullscreen*/);
+	sf::RenderWindow window(sf::VideoMode(1024, 720), "The Seekers Way", sf::Style::Fullscreen);
 	ImageManager::setWindow(&window);
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
@@ -32,13 +36,16 @@ int main()
 	view.setCenter(512, 360);
 	view.setSize(1024, 720);
 
-	window.setMouseCursorVisible(false);
+	ltbl::LightSystem lightSystem = ltbl::LightSystem(AABB(Vec2f(0.0f, 0.0f), Vec2f(view.getSize().x , view.getSize().y)), 
+		&ImageManager::getWindow(), "lightFin.png", "shaders/lightAttenuationShader.frag");
+	// sätter ett lightsystem till lightmanagern
+	MyLightSystem::setLightSystem(&lightSystem);
 
-	EntityManager::getInstance()->setView(&view);
+	window.setMouseCursorVisible(false);
 
 	Sounds::getInstance();
 
-	
+	EntityManager::getInstance()->setView(&view);
 
     while (window.isOpen())
     {
@@ -58,7 +65,7 @@ int main()
         }
 		
 		window.clear(sf::Color::Black);
-
+		
 		State::getInstance()->update();
 
 		window.setView(view); 

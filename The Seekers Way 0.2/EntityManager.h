@@ -7,6 +7,9 @@
 #include "Animation.h"
 #include <vector>
 
+#include <LTBL\Light\Light_Point.h>
+#include <LTBL\Light\LightSystem.h>
+
 class Block;
 class Character;
 
@@ -98,6 +101,10 @@ private:
 	int mMapLeft;
 	int mMapTop;
 	int mMapBottom;
+
+	//------------light
+	ltbl::Light_Point* mLight;
+	ltbl::LightSystem* mLightSystem;
 };
 
 #endif 
