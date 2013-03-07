@@ -172,6 +172,51 @@
     <ClCompile Include="Decoration.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Source\LTBL\Utils.cpp">
+      <Filter>Entities\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\QuadTree\QuadTree.cpp">
+      <Filter>Entities\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\QuadTree\QuadTreeNode.cpp">
+      <Filter>Entities\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\QuadTree\QuadTreeOccupant.cpp">
+      <Filter>Entities\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\QuadTree\StaticQuadTree.cpp">
+      <Filter>Entities\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Light\ConvexHull.cpp">
+      <Filter>Entities\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Light\EmissiveLight.cpp">
+      <Filter>Entities\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Light\Light.cpp">
+      <Filter>Entities\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Light\Light_Point.cpp">
+      <Filter>Entities\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Light\LightSystem.cpp">
+      <Filter>Entities\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Light\ShadowFin.cpp">
+      <Filter>Entities\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Constructs\AABB.cpp">
+      <Filter>Entities\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Constructs\Color3f.cpp">
+      <Filter>Entities\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Constructs\Point2i.cpp">
+      <Filter>Entities\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Constructs\Vec2f.cpp">
+      <Filter>Entities\Light</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -336,6 +381,54 @@
     <ClInclude Include="Decoration.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Source\LTBL\Constructs.h">
+      <Filter>Entities\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Utils.h">
+      <Filter>Entities\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\QuadTree\QuadTree.h">
+      <Filter>Entities\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\QuadTree\QuadTreeNode.h">
+      <Filter>Entities\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\QuadTree\QuadTreeOccupant.h">
+      <Filter>Entities\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\QuadTree\StaticQuadTree.h">
+      <Filter>Entities\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Light\ConvexHull.h">
+      <Filter>Entities\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Light\EmissiveLight.h">
+      <Filter>Entities\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Light\Light.h">
+      <Filter>Entities\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Light\Light_Point.h">
+      <Filter>Entities\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Light\LightSystem.h">
+      <Filter>Entities\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Light\ShadowFin.h">
+      <Filter>Entities\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Constructs\AABB.h">
+      <Filter>Entities\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Constructs\Color3f.h">
+      <Filter>Entities\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Constructs\Point2i.h">
+      <Filter>Entities\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Constructs\Vec2f.h">
+      <Filter>Entities\Light</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">
@@ -361,6 +454,9 @@
     </Filter>
     <Filter Include="States">
       <UniqueIdentifier>{10b94e57-7da4-489d-8149-e5e669b64a14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Light">
+      <UniqueIdentifier>{ec3ae496-5037-451c-b799-710e67988299}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

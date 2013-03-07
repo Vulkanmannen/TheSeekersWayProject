@@ -20,6 +20,7 @@
 #include "Portal.h"
 #include "Dialogue.h"
 
+
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1024, 720), "The Seekers Way"/*, sf::Style::Fullscreen*/);
@@ -36,6 +37,8 @@ int main()
 	EntityManager::getInstance()->setView(&view);
 
 	Sounds::getInstance();
+
+	
 
     while (window.isOpen())
     {

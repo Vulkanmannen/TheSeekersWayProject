@@ -56,3 +56,8 @@ sf::Image* ImageManager::loadImage(const std::string &fileName)
 
 	return image;
 }
+
+sf::RenderWindow& ImageManager::getWindow()
+{
+	return *sWindow;
+}

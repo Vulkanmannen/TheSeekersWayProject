@@ -12,6 +12,11 @@
 #include <cmath>
 #include <algorithm>
 
+#include <LTBL\Light\LightSystem.h>
+#include <LTBL\Light\Light_Point.h>
+#include <LTBL\Utils.h>
+#include <LTBL\Constructs\AABB.h>
+
 EntityManager* EntityManager::sInstance = 0;
 
 EntityManager::EntityManager():
@@ -25,12 +30,15 @@ EntityManager::EntityManager():
 		frame[1] = Animation("frame.png", 60, 1, 84, 84);
 		frame[2] = Animation("frame.png", 60, 1, 84, 84);
 		frame[3] = Animation("frame.png", 60, 1, 84, 84);
+		
 		mPortraitSprite[0] = Animation("PortraitesKiba.png", 60, 1, 64, 64);
 		mPortraitSprite[1] = Animation("PortraitesCharlotte.png", 60, 1, 64, 64);
 		mPortraitSprite[2] = Animation("Fenrir Face sprite 1_1.png", 60, 1, 64, 64);
 		mPortraitSprite[3] = Animation("Sheeka Face sprite 1_1.png", 60, 1, 64, 64);
+		
 		shadow.loadFromFile("greyscale.frag", sf::Shader::Fragment);
 		shadow.setParameter("texture", sf::Shader::CurrentTexture);
+		
 		mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
 		mLifeSprite.setTexture(mLifeTexture);
 		mDeathTexture.loadFromImage(*ImageManager::getImage("DieScreen.png"));
@@ -40,6 +48,9 @@ EntityManager::EntityManager():
 		mBackgroundTexture.loadFromImage(*ImageManager::getImage("background.png"));
 		createBackground();
 		setMapSize(61, 28);
+
+		//ltbl::LightSystem ls(AABB(Vec2f(0.0f, 0.0f), Vec2f(mView->getSize().x , mView->getSize().y)), &ImageManager::getWindow(), "lightFin.png", "shaders/lightAttenuationShader.frag");
+
 }
 
 

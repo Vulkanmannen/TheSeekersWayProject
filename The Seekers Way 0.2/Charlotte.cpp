@@ -100,7 +100,10 @@ void Charlotte::SetShield()
 		mClock.restart();
 		mShield = new Shield(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 100, mPosition.y - 13), mDirLeft);
 		
-		mStatus = ACTION2;
+		if(!mJumping && !mFalling)
+		{
+			mStatus = ACTION2;
+		}
 		mShieldClock.restart();
 		mMovementSpeed.x = 0;
 
