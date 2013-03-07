@@ -14,7 +14,7 @@ MagicSwitch::MagicSwitch(sf::Vector2f &position, Block* door, float timeOpen):
 		mAlive = true;
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
-		mEntityKind = BUTTON;
+		mEntityKind = MAGICSWITCH;
 	}
 
 

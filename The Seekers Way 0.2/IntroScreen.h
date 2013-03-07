@@ -4,7 +4,6 @@
 #include "Animation.h"
 #include <sfTheora\Video.h>
 
-
 class IntroScreen
 {
 public:
