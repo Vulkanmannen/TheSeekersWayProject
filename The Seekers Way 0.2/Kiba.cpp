@@ -104,7 +104,6 @@ void Kiba::teleStates()
 			mCanPressQ = false;
 
 			telestate = free;
-
 			if(mStone != NULL)
 			{
 				mStone->mtelekinesis = false;

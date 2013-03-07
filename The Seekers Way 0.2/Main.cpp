@@ -23,10 +23,7 @@
 #include <sfTheora\Video.h>
 
 int main()
-{	
-
-
-	
+{		
 	//sf::RenderWindow window;
 	//mVideo.setPosition(512, 360);
 	sf::RenderWindow window(sf::VideoMode(1024, 720), "The Seekers Way"/*, sf::Style::Fullscreen*/);
@@ -36,22 +33,22 @@ int main()
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
 
-	//sf::View view;
-	//view.setCenter(512, 360);
-	//view.setSize(1024, 720);
+	sf::View view;
+	view.setCenter(512, 360);
+	view.setSize(1024, 720);
 
 	window.setMouseCursorVisible(false);
 
-	//EntityManager::getInstance()->setView(&view);
+	EntityManager::getInstance()->setView(&view);
 
 	Sounds::getInstance();
 
-	sf::Clock mVideoClock;
-	sftheora::Video mVideo("INTRO.OGG");
+	//sf::Clock mVideoClock;
+	//sftheora::Video mVideo("INTRO.OGG");
 
    while (window.isOpen())
     {
-		/*sf::Listener::setPosition(view.getCenter().x, view.getCenter().y, 0);*/
+		sf::Listener::setPosition(view.getCenter().x, view.getCenter().y, 0);
         sf::Event event;
 
 		if (State::getInstance()->getExit())
@@ -67,12 +64,12 @@ int main()
         }
 
 		window.clear(sf::Color::Black);
-		//State::getInstance()->update();
+		State::getInstance()->update();
 
-		mVideo.update(mVideoClock.restart());
-		window.draw(mVideo);
+		//mVideo.update(mVideoClock.restart());
+		//window.draw(mVideo);
 
-		//window.setView(view); 
+		window.setView(view); 
 
 		window.display();
 	}

@@ -22,6 +22,8 @@ public:
 	bool getIsHit()const;
 	sf::Vector2f getMovementSpeed()const;
 	void setIsHitToFalse();
+	void setStatusIdle();
+
 protected:
 
 	enum Status
