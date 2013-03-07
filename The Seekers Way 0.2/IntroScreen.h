@@ -2,7 +2,7 @@
 #define INCLUDED_INTROSCREEN
 #include "State.h"
 #include "Animation.h"
-#include <sfeMovie\Movie.hpp>
+#include <sfTheora\Video.h>
 
 
 class IntroScreen
@@ -12,10 +12,13 @@ public:
 	~IntroScreen();
 
 	void render();
+	void update();
 
 private:
 
-	sfe::Movie mMovie;
+	sf::Clock mVideoClock;
+	sftheora::Video mVideo;
+
 	sf::Texture mIntroText;
 	sf::Sprite mIntroSprite;
 

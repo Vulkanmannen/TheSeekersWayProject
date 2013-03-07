@@ -20,26 +20,38 @@
 #include "Portal.h"
 #include "Dialogue.h"
 
+#include <sfTheora\Video.h>
+
 int main()
-{
+{	
+
+
+	
+	//sf::RenderWindow window;
+	//mVideo.setPosition(512, 360);
 	sf::RenderWindow window(sf::VideoMode(1024, 720), "The Seekers Way"/*, sf::Style::Fullscreen*/);
+	//mVideo.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(256, 220));
+
 	ImageManager::setWindow(&window);
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
-	
-	sf::View view;
-	view.setCenter(512, 360);
-	view.setSize(1024, 720);
+
+	//sf::View view;
+	//view.setCenter(512, 360);
+	//view.setSize(1024, 720);
 
 	window.setMouseCursorVisible(false);
 
-	EntityManager::getInstance()->setView(&view);
+	//EntityManager::getInstance()->setView(&view);
 
 	Sounds::getInstance();
 
-    while (window.isOpen())
+	sf::Clock mVideoClock;
+	sftheora::Video mVideo("INTRO.OGG");
+
+   while (window.isOpen())
     {
-		sf::Listener::setPosition(view.getCenter().x, view.getCenter().y, 0);
+		/*sf::Listener::setPosition(view.getCenter().x, view.getCenter().y, 0);*/
         sf::Event event;
 
 		if (State::getInstance()->getExit())
@@ -53,15 +65,17 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-		
-		window.clear(sf::Color::Black);
-	/*	view.setCenter(sf::Vector2f(512, 360));*/
-		State::getInstance()->update();
 
-		window.setView(view); 
+		window.clear(sf::Color::Black);
+		//State::getInstance()->update();
+
+		mVideo.update(mVideoClock.restart());
+		window.draw(mVideo);
+
+		//window.setView(view); 
 
 		window.display();
-    }
+	}
 	delete EntityManager::getInstance();
 	delete Dialogue::getInstance();
 	delete Sounds::getInstance();
