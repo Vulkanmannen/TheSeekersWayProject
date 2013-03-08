@@ -15,6 +15,7 @@
 
 #include <LTBL\Light\Light_Point.h>
 #include <LTBL\Constructs\Vec2f.h>
+#include <LTBL\Utils.h>
 
 EntityManager* EntityManager::sInstance = 0;
 
@@ -51,18 +52,18 @@ EntityManager::EntityManager():
 		mLightSystem = MyLightSystem::getLightSystem();
 		
 		mLight = new ltbl::Light_Point(); 
-		mLight->m_intensity = 50.0f; 
-		mLight->m_center = Vec2f(1200.0f, 1200.0f); 
-		mLight->m_radius = 100000.0f; 
-		mLight->m_size = 100000.0f; 
+		mLight->m_intensity = 100.0f; 
+		mLight->m_radius = 400.0f; 
+		mLight->m_size = 700.0f; 
 		mLight->m_spreadAngle = ltbl::pifTimes2; 
 		mLight->m_softSpreadAngle = 0.0f;
-		mLight->m_color.r = 0.39f; 
-		mLight->m_color.g = 0.50f; 
-		mLight->m_color.b = 0.11f; 
-		mLight->CalculateAABB(); 
+		mLight->CalculateAABB();
+		mLight->m_color.r = 0.5f; 
+		mLight->m_color.g = 0.5f; 
+		mLight->m_color.b = 0.5f;
 		mLight->m_bleed = 1.0f; 
-		mLight->m_linearizeFactor = 0.3f; 
+		mLight->m_linearizeFactor = 2.0f; 
+
 		mLightSystem->AddLight(mLight); 
 		mLight->SetAlwaysUpdate(true); 
 }
@@ -110,7 +111,7 @@ void EntityManager::update()
 	
 	killPlayers();
 
-	mLight->SetCenter(Vec2f(mView->getCenter().x, mView->getCenter().y));
+	
 }
 
 // uppdaterar lifeposition
@@ -160,6 +161,10 @@ void EntityManager::updatePlayerPortrait()
 // ritarut alla objekt
 void EntityManager::render()
 {
+	
+	
+	mLight->SetCenter(Vec2f(mCharacters[mPrimaryCharacter]->getPosition().x, mVideoMode->height - mCharacters[mPrimaryCharacter]->getPosition().y));
+
 	renderBackground();
 	updateView();
 	
@@ -194,20 +199,16 @@ void EntityManager::render()
 	//rect.setFillColor(colo);
 	//ImageManager::render(&rect);
 
-	//mLightSystem->SetView(*mView);
-	//
-	//// Calculate the lights 
-	//mLightSystem->RenderLights(); 
-	//// Draw the lights 
-	//mLightSystem->RenderLightTexture(); 
-
-	//mLightSystem->DebugRender(); 
+	// Calculate the lights 
+	mLightSystem->RenderLights(); 
+	// Draw the lights 
+	mLightSystem->RenderLightTexture();
 }
 
 // renderar livet
 void EntityManager::renderLifeAndMask()
 {
-	ImageManager::render(&mMaskSprite);
+	//ImageManager::render(&mMaskSprite);
 	
 	mLifeSprite.setPosition(mLifeSprite.getPosition() + sf::Vector2f(20, frame[0].getSprite().getLocalBounds().height + 10));
 	for(int i = 0; i < mPlayerLife; ++i)
@@ -270,13 +271,13 @@ void EntityManager::renderPortrait()
 // tilar bakgrunden
 void EntityManager::createBackground()
 {
-	for(int i = 0; i < 3; ++i)
+	for(int i = 0; i < 7; ++i)
 	{
-		for(int j = 0; j < 3; ++j)
+		for(int j = 0; j < 5; ++j)
 		{
 			sf::Sprite background;
 			background.setTexture(mBackgroundTexture);
-			background.setPosition(i *1952, j * 896);
+			background.setPosition(i *512, j * 512);
 			mBackgroundSprites.push_back(background);
 		}
 	}
@@ -439,9 +440,10 @@ void EntityManager::interact()
 }
 
 // sätter viewn
-void EntityManager::setView(sf::View* view)
+void EntityManager::setView(sf::View* view, sf::VideoMode* videoMode)
 {
 	mView = view;
+	mVideoMode = videoMode;
 }
 
 sf::View* EntityManager::getView()

@@ -36,7 +36,7 @@ public:
 	sf::Vector2f getCharacterPos()const;
 	void setPrimaryCharacter(Entity::EntityKind);
 
-	void setView(sf::View* view);
+	void setView(sf::View* view, sf::VideoMode* videoMode);
 	sf::View* getView();
 	void updateView();
 	
@@ -63,6 +63,7 @@ private:
 	CharacterVector		mCharacters;
 	
 	sf::View* mView;
+	sf::VideoMode* mVideoMode;
 	
 	//--------------life
 	int mZeroPlayerLife;
