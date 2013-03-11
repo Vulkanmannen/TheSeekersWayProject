@@ -11,6 +11,11 @@
 #include "Sounds.h"
 #include <cmath>
 #include <algorithm>
+#include "MyLightSystem.h"
+
+#include <LTBL\Light\Light_Point.h>
+#include <LTBL\Constructs\Vec2f.h>
+#include <LTBL\Utils.h>
 
 EntityManager* EntityManager::sInstance = 0;
 
@@ -25,21 +30,44 @@ EntityManager::EntityManager():
 		frame[1] = Animation("frame.png", 60, 1, 84, 84);
 		frame[2] = Animation("frame.png", 60, 1, 84, 84);
 		frame[3] = Animation("frame.png", 60, 1, 84, 84);
+		
 		mPortraitSprite[0] = Animation("PortraitesKiba.png", 60, 1, 64, 64);
 		mPortraitSprite[1] = Animation("PortraitesCharlotte.png", 60, 1, 64, 64);
 		mPortraitSprite[2] = Animation("Fenrir Face sprite 1_1.png", 60, 1, 64, 64);
 		mPortraitSprite[3] = Animation("Sheeka Face sprite 1_1.png", 60, 1, 64, 64);
+		
 		shadow.loadFromFile("greyscale.frag", sf::Shader::Fragment);
 		shadow.setParameter("texture", sf::Shader::CurrentTexture);
+		
 		mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
 		mLifeSprite.setTexture(mLifeTexture);
-		mDeathTexture.loadFromFile("DieScreen.png");
+		mDeathTexture.loadFromImage(*ImageManager::getImage("DieScreen.png"));
 		mDeathSprite.setTexture(mDeathTexture);
 		mMaskTexture.loadFromImage(*ImageManager::getImage("mask.png"));
 		mMaskSprite.setTexture(mMaskTexture);
 		mBackgroundTexture.loadFromImage(*ImageManager::getImage("background.png"));
 		createBackground();
 		setMapSize(61, 28);
+
+
+		mLightSystem = MyLightSystem::getLightSystem();
+		
+		mLight = new ltbl::Light_Point(); 
+		mLight->m_intensity = 100.0f; 
+		mLight->m_radius = 400.0f; 
+		mLight->m_size = 700.0f; 
+		mLight->m_spreadAngle = ltbl::pifTimes2; 
+		mLight->m_softSpreadAngle = 0.0f;
+		mLight->CalculateAABB();
+		mLight->m_color.r = 0.5f; 
+		mLight->m_color.g = 0.5f; 
+		mLight->m_color.b = 0.5f;
+		mLight->m_bleed = 1.0f; 
+		mLight->m_linearizeFactor = 2.0f; 
+
+		mLightSystem->AddLight(mLight); 
+		mLight->SetAlwaysUpdate(true); 
+
 }
 
 
@@ -84,6 +112,8 @@ void EntityManager::update()
 	}
 	
 	killPlayers();
+
+	
 }
 
 // uppdaterar lifeposition
@@ -133,6 +163,9 @@ void EntityManager::updatePlayerPortrait()
 // ritarut alla objekt
 void EntityManager::render()
 {
+
+	mLight->SetCenter(Vec2f(mCharacters[mPrimaryCharacter]->getPosition().x, mVideoMode->height - mCharacters[mPrimaryCharacter]->getPosition().y));
+
 	renderBackground();
 	updateView();
 	
@@ -157,7 +190,7 @@ void EntityManager::render()
 			}
 		}
 	}
-	
+
 	renderLifeAndMask();
 	renderPortrait();
 	lifeAndMaskPosition();
@@ -166,6 +199,12 @@ void EntityManager::render()
 	//sf::Color colo(255,255,255,128);
 	//rect.setFillColor(colo);
 	//ImageManager::render(&rect);
+
+	//// Calculate the lights 
+	//mLightSystem->RenderLights(); 
+	//// Draw the lights 
+	//mLightSystem->RenderLightTexture();
+
 }
 
 // renderar livet
@@ -233,13 +272,13 @@ void EntityManager::renderPortrait()
 // tilar bakgrunden
 void EntityManager::createBackground()
 {
-	for(int i = 0; i < 3; ++i)
+	for(int i = 0; i < 7; ++i)
 	{
-		for(int j = 0; j < 3; ++j)
+		for(int j = 0; j < 5; ++j)
 		{
 			sf::Sprite background;
 			background.setTexture(mBackgroundTexture);
-			background.setPosition(i *1952, j * 896);
+			background.setPosition(i *512, j * 512);
 			mBackgroundSprites.push_back(background);
 		}
 	}
@@ -402,9 +441,10 @@ void EntityManager::interact()
 }
 
 // sätter viewn
-void EntityManager::setView(sf::View* view)
+void EntityManager::setView(sf::View* view, sf::VideoMode* videoMode)
 {
 	mView = view;
+	mVideoMode = videoMode;
 }
 
 sf::View* EntityManager::getView()

@@ -25,7 +25,10 @@ private:
 
 	void SetShield();
 	void GetShieldLife();
+	void shieldTime();
+	bool mActivatingShield;
 	bool mIsShield;
+	sf::Clock mShieldClock;
 
 	bool mActiveCharacter;
 

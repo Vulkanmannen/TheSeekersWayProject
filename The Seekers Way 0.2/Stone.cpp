@@ -10,17 +10,15 @@ static const float SPRITEWIDTH = 140;
 static const float SPRITEHEIGHT = 140;
 
 Stone::Stone(sf::Vector2f Position):
-	mMovementSpeed(0,0),
-	mGravity(5),
-	mDecrease(0.6),
-	mFalling(false),
-	mtelekinesis(false),
-	mtelemove(false),
-	mOnBlock(false),
-	mCanMove(true),
+	mAnimation("stone.png", 80, 6, SPRITEHEIGHT, SPRITEWIDTH),
+	mMoveing(false),
+	mOnBlock(true),
 	mRange(288),
 	mStoneState(ONGROUND),
-	mAnimation("stone.png", 80, 6, SPRITEHEIGHT, SPRITEWIDTH)
+	mKibaPos(sf::Vector2f(0, 0)),
+	mMoveSpeed(3),
+	mCharacterOnStone(false),
+	mStoneOnStone(false)
 {
 	mPosition = Position + sf::Vector2f(WIDTH/2 - 32, HEIGHT/2 - 32);
 	mAlive = true;
@@ -28,12 +26,7 @@ Stone::Stone(sf::Vector2f Position):
 	mWidth = WIDTH;
 	mEntityKind = STONE;
 	mLayer = FORGROUND;
-	//radius = sqrt (float(
-	//	TelekinesisBox(sf::Vector2f(0,0)).getHeight() 
-	//	* TelekinesisBox(sf::Vector2f(0,0)).getHeight() 
-	//	+ TelekinesisBox(sf::Vector2f(0,0)).getWidth() 
-	//	* TelekinesisBox(sf::Vector2f(0,0)).getWidth()
-	//	)/4)-0.1;
+
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH / 2, mPosition.y - SPRITEHEIGHT / 2));
 }
 
@@ -44,19 +37,7 @@ Stone::~Stone()
 
 void Stone::update(EntityKind &currentEntity)
 {
-	move();
-
-	if(mtelekinesis)
-	{
-		telekinesis();
-	}
-
-	else 
-	{
-		falling();
-	}
-
-	if(mtelemove && mtelekinesis && mCanMove)
+	if(mMoveing && !mCharacterOnStone)
 	{
 		mBaseKind = OBJECT;
 	}
@@ -65,11 +46,11 @@ void Stone::update(EntityKind &currentEntity)
 		mBaseKind = BLOCK;
 	}
 
-	//attraction();
-	mFalling = true;
-	mCanMove = true;
-
 	mAnimation.update(mStoneState);
+
+	mOnBlock = false;
+	mCharacterOnStone = false;
+	mStoneOnStone = false;
 }
 
 void Stone::render()
@@ -78,62 +59,6 @@ void Stone::render()
 	ImageManager::render(&mAnimation.getSprite());
 }
 
-void Stone::telekinesis()
-{
-	if(mMovementSpeed.x * mMovementSpeed.x + mMovementSpeed.y * mMovementSpeed.y < 10)
-	{
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && mPosition.x > mKibaPos.x - mRange )
-		{
-			mMovementSpeed.x -= 1;
-			mOnBlock = false;
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && mPosition.x < mKibaPos.x + mRange)
-		{
-			mMovementSpeed.x += 1;
-			mOnBlock = false;
-		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mPosition.y > mKibaPos.y - mRange)
-		{
-			mMovementSpeed.y -= 1;
-			mOnBlock = false;
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mPosition.y < mKibaPos.y + mRange)
-		{
-			mMovementSpeed.y += 1;
-			mOnBlock = false;
-		}
-	}
-}
-
-void Stone::move()	   
-{
-	//float xdif = ;mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x
-	//float ydif = ;mKibaPos.y - mPosition.y, mKibaPos.x - mPosition.x
-	//mRblock || !(mPosition.x - mKibaPos.x < radius*cos(atan2(mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x)) || mPosition.x - mKibaPos.x <= 0) ? (mMovementSpeed.x > 0 ? mMovementSpeed.x = 0 : NULL ) : NULL;
-	//mLblock || !(mPosition.x - mKibaPos.x > radius*cos(atan2(mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x)) || mPosition.x - mKibaPos.x >= 0) ? (mMovementSpeed.x < 0 ? mMovementSpeed.x = 0 : NULL ) : NULL;
-	//mUblock || !(mPosition.y - mKibaPos.y > radius*sin(atan2(mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x)) || mPosition.y - mKibaPos.y >= 0) ? (mMovementSpeed.y < 0 ? mMovementSpeed.y = 0 : NULL ) : NULL;
-	//mDblock || !(mPosition.y - mKibaPos.y < radius*sin(atan2(mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x)) || mPosition.y - mKibaPos.y <= 0) ? (mMovementSpeed.y > 0 ? mMovementSpeed.y = 0 : NULL ) : NULL;
-	
-	if(mtelemove && mCanMove)
-	{
-		mPosition	+= mMovementSpeed;
-	}
-	mMovementSpeed -= sf::Vector2f( 0.2*mMovementSpeed.x, 0.2*mMovementSpeed.y);
-
-	mRblock	= false;
-	mLblock	= false;
-	mUblock	= false;
-	mDblock	= false;
-}
-
-void Stone::falling() 
-{
-	mPosition.y	+= mGravity;
-	if(mFalling)
-	{
-		mMovementSpeed.y += mDecrease;
-	}
-}
 
 void Stone::interact(Entity* e)
 {
@@ -143,19 +68,19 @@ void Stone::interact(Entity* e)
 
 	// beräknar differansen mellan två objekt
 	float xDif = mPosition.x - e->getPosition().x;
-	float yDif = mPosition.y - e->getPosition().y;	
+	float yDif = mPosition.y - e->getPosition().y;
 
-	if(*e == KIBA && yDif > yRadius - 20 && mBaseKind == OBJECT)
+	if(*e == KIBA && yDif > yRadius - 20 && mMoveing)
 	{
-		mPosition = sf::Vector2f(mPosition.x, e->getPosition().y + yRadius + 2);
+		mPosition = sf::Vector2f(mPosition.x, e->getPosition().y + yRadius + 0.1);
 	}
 
-	if((*e == CHARACTER || *e == STONE) && yDif > yRadius - 20)
+	if((*e == CHARACTER) && yDif > yRadius - 20)
 	{
-		mCanMove = false;
+		mCharacterOnStone = true;
 	}
 
-	if(((*e) == BLOCK && (*e) != DOOR && (*e) != BRIDGE && (*e) != BIGBRIDGE) || (e->getBaseKind() == Entity::CHARACTER && mtelekinesis && mtelemove) && mCanMove)
+	if(*e == BLOCK && *e != DOOR && *e != BRIDGE && *e != BIGBRIDGE || *e == CHARACTER && mMoveing && !mCharacterOnStone)
 	{
 		// fråga vilken sida caraktären finns på.
 		if(std::abs(xDif / xRadius) > std::abs(yDif / yRadius)) // är karaktären höger/vänster eller över/under om blocket
@@ -164,78 +89,87 @@ void Stone::interact(Entity* e)
 			{
 				if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
 				{
-					mPosition -= sf::Vector2f(mPosition.x - (e->getPosition().x + xRadius - 0), 0);
-					mLblock = true;
+					mPosition = sf::Vector2f(e->getPosition().x + xRadius, mPosition.y);
 				}
 			}
 			else
 			{
 				if(std::abs(yDif) < yRadius - 10)
 				{
-					mPosition -= sf::Vector2f(mPosition.x - (e->getPosition().x - (xRadius - 0)), 0);
-					mRblock = true;
+					mPosition = sf::Vector2f(e->getPosition().x - (xRadius), mPosition.y);
 				}
 			}
 		}
-
 		else
 		{
 			if(yDif > 0) // kollar om karaktären är under eller över
 			{
 				if(std::abs(xDif) < xRadius - 10) // kollar om blocket ligger snett över
 				{
-					if((*e != STONE /*&& mCanMove*/) || mtelekinesis)
+					mPosition = sf::Vector2f(mPosition.x, e->getPosition().y + yRadius);
+
+					if(*e == STONE)
 					{
-						mPosition -= sf::Vector2f(0, mPosition.y - (e->getPosition().y + yRadius + 2));
+						mStoneOnStone = true;
 					}
-					mUblock = true;
-					if(e->getBaseKind() == CHARACTER || e->getEntityKind() == STONE)
-					{
-						mRblock = true; 
-						mLblock = true;
-					}
-					//mJumping = 0;
-					//mIsJumping = false;
 				}
 			}
 			else
 			{
 				if(std::abs(xDif) < xRadius - 10)
 				{
-					mPosition -= sf::Vector2f(0, mPosition.y - (e->getPosition().y - (yRadius - 0)));
-					mDblock = true;
-					if(e->getBaseKind() == BLOCK)
+					mPosition = sf::Vector2f(mPosition.x, e->getPosition().y - yRadius);
+					if(*e == BLOCK)
 					{
 						mOnBlock = true;
 					}
-					//mMovementSpeed.y = 0;
-					//onblock();
-					mFalling = false;
 				}
 			}
 		}
 	}
 }
 
-void Stone::attraction()
+void Stone::setStoneState(StoneState stoneState)
 {
-	if(mtelekinesis == true && mtelemove == false)
-	{
-		if((mPosition.x - mKibaPos.x) * (mPosition.x - mKibaPos.x) + (mPosition.y - mKibaPos.y) * (mPosition.y - mKibaPos.y) > (radius - 1) * (radius - 1))
-		{
-			
-			mPosition = sf::Vector2f(	mKibaPos.x + radius*cos(atan2(mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x)),	
-										mKibaPos.y + radius*sin(atan2(mPosition.y - mKibaPos.y, mPosition.x - mKibaPos.x)));
-		}
-	}
+	mStoneState = stoneState;
 }
 
-bool Stone::onblock()
+void Stone::setMoveing(bool moveing)
+{
+	mMoveing = moveing;
+}
+
+void Stone::setKibaPos(sf::Vector2f kibaPos)
+{
+	mKibaPos = kibaPos;
+}
+
+bool Stone::getOnBlock()const
 {
 	return mOnBlock;
 }
 
-void Stone::setStoneState(StoneState stoneState)
+void Stone::move()
 {
-	mStoneState = stoneState;
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mKibaPos.y - mPosition.y < mRange && !mCharacterOnStone && !mStoneOnStone)
+	{
+		mPosition.y -= mMoveSpeed;
+		mOnBlock = false;
+	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mPosition.y - mKibaPos.y < mRange && !mCharacterOnStone && !mOnBlock)
+	{
+		mPosition.y += mMoveSpeed;
+		mOnBlock = false;
+	}
+	
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && mPosition.x - mKibaPos.x < mRange && !mCharacterOnStone && (!mStoneOnStone || !mOnBlock))
+	{
+		mPosition.x += mMoveSpeed;
+		mOnBlock = false;
+	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && mKibaPos.x - mPosition.x < mRange && !mCharacterOnStone && (!mStoneOnStone || !mOnBlock))
+	{
+		mPosition.x -= mMoveSpeed;
+		mOnBlock = false;
+	}
 }

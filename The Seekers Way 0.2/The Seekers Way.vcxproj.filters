@@ -145,9 +145,6 @@
     <ClCompile Include="MagicSwitch.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>States</Filter>
-    </ClCompile>
     <ClCompile Include="GameMenu.cpp">
       <Filter>States</Filter>
     </ClCompile>
@@ -174,6 +171,57 @@
     </ClCompile>
     <ClCompile Include="Decoration.cpp">
       <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Utils.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\QuadTree\QuadTree.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\QuadTree\QuadTreeNode.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\QuadTree\QuadTreeOccupant.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\QuadTree\StaticQuadTree.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Light\ConvexHull.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Light\EmissiveLight.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Light\Light.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Light\Light_Point.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Light\LightSystem.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Light\ShadowFin.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Constructs\AABB.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Constructs\Color3f.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Constructs\Point2i.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LTBL\Constructs\Vec2f.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="MyLightSystem.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="MyLightSystem.cpp">
+      <Filter>Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -300,9 +348,6 @@
     <ClInclude Include="DialogState.h">
       <Filter>States</Filter>
     </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>States</Filter>
-    </ClInclude>
     <ClInclude Include="SpikeBlock.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
@@ -342,6 +387,60 @@
     <ClInclude Include="Decoration.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Source\LTBL\Constructs.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Utils.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\QuadTree\QuadTree.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\QuadTree\QuadTreeNode.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\QuadTree\QuadTreeOccupant.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\QuadTree\StaticQuadTree.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Light\ConvexHull.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Light\EmissiveLight.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Light\Light.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Light\Light_Point.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Light\LightSystem.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Light\ShadowFin.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Constructs\AABB.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Constructs\Color3f.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Constructs\Point2i.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LTBL\Constructs\Vec2f.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="MyLightSystem.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="MyLightSystem.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">
@@ -367,6 +466,9 @@
     </Filter>
     <Filter Include="States">
       <UniqueIdentifier>{10b94e57-7da4-489d-8149-e5e669b64a14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Light">
+      <UniqueIdentifier>{ec3ae496-5037-451c-b799-710e67988299}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

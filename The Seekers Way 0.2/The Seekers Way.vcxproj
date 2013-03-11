@@ -31,7 +31,6 @@
     <ClInclude Include="FinishDoor.h" />
     <ClInclude Include="FireBall.h" />
     <ClInclude Include="FireRune.h" />
-    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameMenu.h" />
     <ClInclude Include="GenerateDoor.h" />
     <ClInclude Include="ImageManager.h" />
@@ -42,6 +41,7 @@
     <ClInclude Include="Lever.h" />
     <ClInclude Include="MagicSwitch.h" />
     <ClInclude Include="MapGenerator.h" />
+    <ClInclude Include="MyLightSystem.h" />
     <ClInclude Include="NormalBlock.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="PauseMenu.h" />
@@ -51,6 +51,22 @@
     <ClInclude Include="ShottingTrap.h" />
     <ClInclude Include="Slash.h" />
     <ClInclude Include="Sounds.h" />
+    <ClInclude Include="Source\LTBL\Constructs.h" />
+    <ClInclude Include="Source\LTBL\Constructs\AABB.h" />
+    <ClInclude Include="Source\LTBL\Constructs\Color3f.h" />
+    <ClInclude Include="Source\LTBL\Constructs\Point2i.h" />
+    <ClInclude Include="Source\LTBL\Constructs\Vec2f.h" />
+    <ClInclude Include="Source\LTBL\Light\ConvexHull.h" />
+    <ClInclude Include="Source\LTBL\Light\EmissiveLight.h" />
+    <ClInclude Include="Source\LTBL\Light\Light.h" />
+    <ClInclude Include="Source\LTBL\Light\LightSystem.h" />
+    <ClInclude Include="Source\LTBL\Light\Light_Point.h" />
+    <ClInclude Include="Source\LTBL\Light\ShadowFin.h" />
+    <ClInclude Include="Source\LTBL\QuadTree\QuadTree.h" />
+    <ClInclude Include="Source\LTBL\QuadTree\QuadTreeNode.h" />
+    <ClInclude Include="Source\LTBL\QuadTree\QuadTreeOccupant.h" />
+    <ClInclude Include="Source\LTBL\QuadTree\StaticQuadTree.h" />
+    <ClInclude Include="Source\LTBL\Utils.h" />
     <ClInclude Include="SpikeBlock.h" />
     <ClInclude Include="Spiketrap.h" />
     <ClInclude Include="StartMenu.h" />
@@ -83,7 +99,6 @@
     <ClCompile Include="FinishDoor.cpp" />
     <ClCompile Include="FireBall.cpp" />
     <ClCompile Include="FireRune.cpp" />
-    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="GenerateDoor.cpp" />
     <ClCompile Include="ImageManager.cpp" />
@@ -95,6 +110,7 @@
     <ClCompile Include="MagicSwitch.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapGenerator.cpp" />
+    <ClCompile Include="MyLightSystem.cpp" />
     <ClCompile Include="NormalBlock.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PauseMenu.cpp" />
@@ -104,6 +120,21 @@
     <ClCompile Include="ShottingTrap.cpp" />
     <ClCompile Include="Slash.cpp" />
     <ClCompile Include="Sounds.cpp" />
+    <ClCompile Include="Source\LTBL\Constructs\AABB.cpp" />
+    <ClCompile Include="Source\LTBL\Constructs\Color3f.cpp" />
+    <ClCompile Include="Source\LTBL\Constructs\Point2i.cpp" />
+    <ClCompile Include="Source\LTBL\Constructs\Vec2f.cpp" />
+    <ClCompile Include="Source\LTBL\Light\ConvexHull.cpp" />
+    <ClCompile Include="Source\LTBL\Light\EmissiveLight.cpp" />
+    <ClCompile Include="Source\LTBL\Light\Light.cpp" />
+    <ClCompile Include="Source\LTBL\Light\LightSystem.cpp" />
+    <ClCompile Include="Source\LTBL\Light\Light_Point.cpp" />
+    <ClCompile Include="Source\LTBL\Light\ShadowFin.cpp" />
+    <ClCompile Include="Source\LTBL\QuadTree\QuadTree.cpp" />
+    <ClCompile Include="Source\LTBL\QuadTree\QuadTreeNode.cpp" />
+    <ClCompile Include="Source\LTBL\QuadTree\QuadTreeOccupant.cpp" />
+    <ClCompile Include="Source\LTBL\QuadTree\StaticQuadTree.cpp" />
+    <ClCompile Include="Source\LTBL\Utils.cpp" />
     <ClCompile Include="SpikeBlock.cpp" />
     <ClCompile Include="Spiketrap.cpp" />
     <ClCompile Include="StartMenu.cpp" />
@@ -157,17 +188,26 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+
       <AdditionalIncludeDirectories>C:\TheSeekersWayProject\TheSeekersWayProject\sfeMovie-1.0-windows-vs2010\include;C:\SFML-2.0-rc\include</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>C:\TheSeekersWayProject\TheSeekersWayProject\sfeMovie-1.0-windows-vs2010\include;C:\SFML-2.0-rc\include</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>C:\sfeMovie-1.0-windows-vs2010\include;C:\SFML-2.0-rc\include</AdditionalIncludeDirectories>
+
+      <AdditionalIncludeDirectories>C:\SFML-2.0-rc\include;C:\TheSeekersWayProject\The Seekers Way 0.2\Source</AdditionalIncludeDirectories>
+
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+
       <AdditionalLibraryDirectories>C:\TheSeekersWayProject\TheSeekersWayProject\sfeMovie-1.0-windows-vs2010\lib;C:\SFML-2.0-rc\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalLibraryDirectories>C:\TheSeekersWayProject\TheSeekersWayProject\sfeMovie-1.0-windows-vs2010\lib;C:\SFML-2.0-rc\lib</AdditionalLibraryDirectories>
       <AdditionalLibraryDirectories>C:\sfeMovie-1.0-windows-vs2010\lib;C:\SFML-2.0-rc\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-window-d.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-system-d.lib;sfeMovie.lib;%(AdditionalDependencies)</AdditionalDependencies>
+
+      <AdditionalLibraryDirectories>C:\SFML-2.0-rc\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-window-d.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-system-d.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -179,19 +219,28 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+
       <AdditionalIncludeDirectories>C:\TheSeekersWayProject\TheSeekersWayProject\sfeMovie-1.0-windows-vs2010\include;C:\SFML-2.0-rc\include</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>C:\TheSeekersWayProject\TheSeekersWayProject\sfeMovie-1.0-windows-vs2010\include;C:\SFML-2.0-rc\include</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>C:\sfeMovie-1.0-windows-vs2010\include;C:\SFML-2.0-rc\include</AdditionalIncludeDirectories>
+
+      <AdditionalIncludeDirectories>C:\SFML-2.0-rc\include</AdditionalIncludeDirectories>
+
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+
       <AdditionalLibraryDirectories>C:\TheSeekersWayProject\TheSeekersWayProject\sfeMovie-1.0-windows-vs2010\lib;C:\SFML-2.0-rc\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalLibraryDirectories>C:\TheSeekersWayProject\TheSeekersWayProject\sfeMovie-1.0-windows-vs2010\lib;C:\SFML-2.0-rc\lib</AdditionalLibraryDirectories>
       <AdditionalLibraryDirectories>C:\sfeMovie-1.0-windows-vs2010\lib;C:\SFML-2.0-rc\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-window.lib;sfml-audio.lib;sfml-graphics.lib;sfml-system.lib;sfeMovie.lib;%(AdditionalDependencies)</AdditionalDependencies>
+
+      <AdditionalLibraryDirectories>C:\SFML-2.0-rc\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-window.lib;sfml-audio.lib;sfml-graphics.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

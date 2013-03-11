@@ -14,8 +14,8 @@ GameMenu::~GameMenu()
 
 void GameMenu::update()
 {
-	EntityManager::getInstance()->update();
 	EntityManager::getInstance()->updatePrimaryCharacter();
+	EntityManager::getInstance()->update();
 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::M))
 	{

@@ -131,7 +131,7 @@ void Dialogue::empthyDialogue()
 
 void Dialogue::loadDialogue(std::string dialogueName)
 {
-	std::ifstream fil(dialogueName);
+	std::ifstream fil("Dialogues/" + dialogueName);
 	std::string file;
 	char backslash = 92;
 	Speaker speaker = kiba;
