@@ -66,6 +66,8 @@ EntityManager::EntityManager():
 		mLight->m_bleed = 1.0f; 
 		mLight->m_linearizeFactor = 2.0f; 
 
+		//mLight->
+
 		mLightSystem->AddLight(mLight); 
 		mLight->SetAlwaysUpdate(true);
 }
@@ -197,17 +199,17 @@ void EntityManager::render()
 	//rect.setFillColor(colo);
 	//ImageManager::render(&rect);
 
-	//// Calculate the lights 
-	//mLightSystem->RenderLights(); 
-	//// Draw the lights 
-	//mLightSystem->RenderLightTexture();
+	// Calculate the lights 
+	mLightSystem->RenderLights(); 
+	// Draw the lights 
+	mLightSystem->RenderLightTexture();
 
 }
 
 // renderar livet
 void EntityManager::renderLifeAndMask()
 {
-	ImageManager::render(&mMaskSprite);
+	//ImageManager::render(&mMaskSprite);
 	mLifeSprite.setPosition(mLifeSprite.getPosition() + sf::Vector2f(20, frame[0].getSprite().getLocalBounds().height + 10));
 	for(int i = 0; i < mPlayerLife; ++i)
 	{
