@@ -35,7 +35,7 @@ void LevelManager::LoadLevel(int level)
 	
 	Sounds::getInstance()->StopAll();
 	Sounds::getInstance()->setMasterVolume(100);
-	Sounds::getInstance()->Loop("Level1Music.wav", 30);
+	Sounds::getInstance()->Loop("Level1Music.wav", 20);
 
 	EntityManager::getInstance()->setPlayerLifeMax();
 }
