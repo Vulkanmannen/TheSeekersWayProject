@@ -43,6 +43,10 @@ public:
 	void setMapSize(int numberOfBlocksWidth, int numberOfBlocksHeight);
 
 	int getSizeOfCharacterVector()const;
+
+	//------------FinishDoor Animations on Char
+	void SetAniToIdle();
+
 private:
 	EntityManager();
 	EntityManager(const EntityManager &e);

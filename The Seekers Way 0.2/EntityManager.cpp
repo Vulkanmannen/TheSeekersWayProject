@@ -524,3 +524,11 @@ void EntityManager::setPlayerLifeZero()
 {
 	mPlayerLife = mZeroPlayerLife;
 }
+
+void EntityManager::SetAniToIdle()
+{
+	for(CharacterVector::size_type i = 0; i < mCharacters.size(); i++)
+	{
+		mCharacters[i]->setStatusIdle();
+	}
+}

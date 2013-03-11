@@ -5,6 +5,7 @@
 #include "NormalBlock.h"
 #include "Animation.h"
 #include "StartMenu.h"
+#include "IntroScreen.h"
 
 #include <string>
 
@@ -21,12 +22,12 @@
 #include "Dialogue.h"
 #include "MyLightSystem.h"
 
+
 #include <LTBL\Light\LightSystem.h>
 #include <LTBL\Light\Light_Point.h>
 #include <LTBL\Utils.h>
 
 int main()
-
 {
 	sf::VideoMode videoMode(1024, 720);
 	sf::RenderWindow window(videoMode, "The Seekers Way"/*, sf::Style::Fullscreen*/);
@@ -59,14 +60,12 @@ int main()
    while (window.isOpen())
     {
 		sf::Listener::setPosition(view.getCenter().x, view.getCenter().y, 0);
-       
 		sf::Event event;
 
 		if (State::getInstance()->getExit())
 		{	
 			window.close();
 		}
-		
 
         while (window.pollEvent(event))
         {
@@ -75,10 +74,9 @@ int main()
         }
 
 		window.clear(sf::Color::Black);
-		
-		State::getInstance()->update();
 
 		window.setView(view); 
+
 		lightSystem.SetView(view);
 
 		window.display();

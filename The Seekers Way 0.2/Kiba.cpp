@@ -3,6 +3,7 @@
 #include "ImageManager.h"
 #include "Sounds.h"
 #include <iostream>
+
 const static float HEIGHT = 120;
 const static float WIDTH = 56;
 
