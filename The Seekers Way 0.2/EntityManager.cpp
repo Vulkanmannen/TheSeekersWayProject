@@ -13,10 +13,9 @@
 #include <algorithm>
 #include "MyLightSystem.h"
 
-#include <LTBL\Light\LightSystem.h>
 #include <LTBL\Light\Light_Point.h>
+#include <LTBL\Constructs\Vec2f.h>
 #include <LTBL\Utils.h>
-#include <LTBL\Constructs\AABB.h>
 
 EntityManager* EntityManager::sInstance = 0;
 
@@ -66,10 +65,9 @@ EntityManager::EntityManager():
 		mLight->m_bleed = 1.0f; 
 		mLight->m_linearizeFactor = 2.0f; 
 
-		//mLight->
-
 		mLightSystem->AddLight(mLight); 
-		mLight->SetAlwaysUpdate(true);
+		mLight->SetAlwaysUpdate(true); 
+
 }
 
 
@@ -114,6 +112,8 @@ void EntityManager::update()
 	}
 	
 	killPlayers();
+
+	
 }
 
 // uppdaterar lifeposition
@@ -163,6 +163,7 @@ void EntityManager::updatePlayerPortrait()
 // ritarut alla objekt
 void EntityManager::render()
 {
+
 	mLight->SetCenter(Vec2f(mCharacters[mPrimaryCharacter]->getPosition().x, mVideoMode->height - mCharacters[mPrimaryCharacter]->getPosition().y));
 
 	renderBackground();
@@ -189,7 +190,7 @@ void EntityManager::render()
 			}
 		}
 	}
-	
+
 	renderLifeAndMask();
 	renderPortrait();
 	lifeAndMaskPosition();
@@ -271,13 +272,13 @@ void EntityManager::renderPortrait()
 // tilar bakgrunden
 void EntityManager::createBackground()
 {
-	for(int i = 0; i < 3; ++i)
+	for(int i = 0; i < 7; ++i)
 	{
-		for(int j = 0; j < 3; ++j)
+		for(int j = 0; j < 5; ++j)
 		{
 			sf::Sprite background;
 			background.setTexture(mBackgroundTexture);
-			background.setPosition(i *1952, j * 896);
+			background.setPosition(i *512, j * 512);
 			mBackgroundSprites.push_back(background);
 		}
 	}

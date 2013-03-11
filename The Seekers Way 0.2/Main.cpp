@@ -26,14 +26,13 @@
 #include <LTBL\Utils.h>
 
 int main()
-{	
 
-
-	
+{
 	sf::VideoMode videoMode(1024, 720);
 	sf::RenderWindow window(videoMode, "The Seekers Way"/*, sf::Style::Fullscreen*/);
-
+	
 	ImageManager::setWindow(&window);
+
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
 
@@ -46,17 +45,16 @@ int main()
 
 	lightSystem.m_ambientColor = sf::Color(80,80,80);
 	lightSystem.m_useBloom = true;
-	
+
 	// sätter ett lightsystem till lightmanagern
 	MyLightSystem::setLightSystem(&lightSystem);
 
 	window.setMouseCursorVisible(false);
 
-	EntityManager::getInstance()->setView(&view, &videoMode);
-
 	Sounds::getInstance();
 
-	sf::Clock mVideoClock;
+	EntityManager::getInstance()->setView(&view, &videoMode);
+
 
    while (window.isOpen())
     {
@@ -75,7 +73,7 @@ int main()
         }
 
 		window.clear(sf::Color::Black);
-
+		
 		State::getInstance()->update();
 
 		State::getInstance()->update();

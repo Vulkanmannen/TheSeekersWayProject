@@ -106,7 +106,6 @@ private:
 	//------------light
 	ltbl::Light_Point* mLight;
 	ltbl::LightSystem* mLightSystem;
-
 };
 
 #endif 
