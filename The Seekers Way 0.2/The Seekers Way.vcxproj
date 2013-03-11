@@ -158,11 +158,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\TheSeekersWayProject\TheSeekersWayProject\sfeMovie-1.0-windows-vs2010\include;C:\SFML-2.0-rc\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\TheSeekersWayProject\TheSeekersWayProject\sfeMovie-1.0-windows-vs2010\include;C:\SFML-2.0-rc\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\TheSeekersWayProject\TheSeekersWayProject\sfeMovie-1.0-windows-vs2010\lib;C:\SFML-2.0-rc\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\TheSeekersWayProject\TheSeekersWayProject\sfeMovie-1.0-windows-vs2010\lib;C:\SFML-2.0-rc\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-window-d.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-system-d.lib;sfeMovie.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -176,6 +178,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\TheSeekersWayProject\TheSeekersWayProject\sfeMovie-1.0-windows-vs2010\include;C:\SFML-2.0-rc\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\TheSeekersWayProject\TheSeekersWayProject\sfeMovie-1.0-windows-vs2010\include;C:\SFML-2.0-rc\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -183,6 +186,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>C:\TheSeekersWayProject\TheSeekersWayProject\sfeMovie-1.0-windows-vs2010\lib;C:\SFML-2.0-rc\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\TheSeekersWayProject\TheSeekersWayProject\sfeMovie-1.0-windows-vs2010\lib;C:\SFML-2.0-rc\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-window.lib;sfml-audio.lib;sfml-graphics.lib;sfml-system.lib;sfeMovie.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

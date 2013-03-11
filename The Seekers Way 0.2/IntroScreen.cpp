@@ -4,9 +4,9 @@
 
 
 IntroScreen::IntroScreen()
-//mAnimation("intro.png", 150, 24, 512, 512)
 {
-	/*mAnimation.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(256, 220));*/
+	mMovie.openFromFile("INTRO.ogg");
+	mMovie.play();
 }
 
 
@@ -21,6 +21,5 @@ void IntroScreen::update()
 
 void IntroScreen::render()
 {
-	//mAnimation.update(0);
-	//ImageManager::render(&mAnimation.getSprite());
+	ImageManager::render(&mMovie);
 }

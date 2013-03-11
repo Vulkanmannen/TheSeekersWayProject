@@ -4,6 +4,7 @@
 #include "Animation.h"
 #include "sfeMovie\Movie.hpp"
 
+
 class IntroScreen
 {
 public:
@@ -14,6 +15,8 @@ public:
 	void update();
 
 private:
+
+	sfe::Movie mMovie;
 
 	sf::Texture mIntroText;
 	sf::Sprite mIntroSprite;
