@@ -11,7 +11,7 @@
 State* State::sInstance = 0;
 
 State::State():
-	mMenuStates(Intro),
+	mMenuStates(StartState),
 	mEsc()
 {
 	IntroSplash = new IntroScreen();
