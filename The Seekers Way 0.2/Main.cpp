@@ -22,34 +22,21 @@
 #include "Dialogue.h"
 #include "MyLightSystem.h"
 
-<<<<<<< HEAD
 
-int main()
-{	
-	sf::RenderWindow window(sf::VideoMode(1024, 720), "The Seekers Way"/*, sf::Style::Fullscreen*/);
-	//mVideo.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(256, 220));
-
-=======
 #include <LTBL\Light\LightSystem.h>
 #include <LTBL\Light\Light_Point.h>
 #include <LTBL\Utils.h>
 
 int main()
-
 {
 	sf::VideoMode videoMode(1024, 720);
 	sf::RenderWindow window(videoMode, "The Seekers Way"/*, sf::Style::Fullscreen*/);
 	
->>>>>>> origin/master
 	ImageManager::setWindow(&window);
 
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> origin/master
 	sf::View view;
 	view.setCenter(512, 360);
 	view.setSize(1024, 720);
@@ -60,15 +47,6 @@ int main()
 	lightSystem.m_ambientColor = sf::Color(80,80,80);
 	lightSystem.m_useBloom = true;
 
-<<<<<<< HEAD
-	EntityManager::getInstance()->setView(&view);
-
-	Sounds::getInstance();
-
-   while (window.isOpen())
-    {
-		sf::Listener::setPosition(view.getCenter().x, view.getCenter().y, 0);
-=======
 	// sätter ett lightsystem till lightmanagern
 	MyLightSystem::setLightSystem(&lightSystem);
 
@@ -81,8 +59,8 @@ int main()
 
    while (window.isOpen())
     {
->>>>>>> origin/master
         sf::Event event;
+		sf::Listener::setPosition(view.getCenter().x, view.getCenter().y, 0);
 
 		if (State::getInstance()->getExit())
 		{	
@@ -96,19 +74,12 @@ int main()
         }
 
 		window.clear(sf::Color::Black);
-<<<<<<< HEAD
-		State::getInstance()->update();
-
-		window.setView(view); 
-=======
-		
-		State::getInstance()->update();
 
 		State::getInstance()->update();
 
 		window.setView(view); 
+
 		lightSystem.SetView(view);
->>>>>>> origin/master
 
 		window.display();
 	}

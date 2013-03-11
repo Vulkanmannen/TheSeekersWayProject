@@ -3,6 +3,7 @@
 #include "ImageManager.h"
 #include "Sounds.h"
 #include <iostream>
+
 const static float HEIGHT = 120;
 const static float WIDTH = 56;
 
@@ -48,12 +49,6 @@ void Kiba::update(EntityKind &currentEntity)
 		}
 		else
 		{
-<<<<<<< HEAD
-			mCanPressQ = false;
-
-			telestate = free;
-=======
->>>>>>> origin/master
 			if(mStone != NULL)
 			{
 				mStone->setMoveing(false);
