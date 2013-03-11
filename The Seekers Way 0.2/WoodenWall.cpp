@@ -16,7 +16,7 @@ WoodenWall::WoodenWall(sf::Vector2f &position):
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
 		mEntityKind = WOODENWALL;
-	}
+	} 
 
 
 WoodenWall::~WoodenWall()

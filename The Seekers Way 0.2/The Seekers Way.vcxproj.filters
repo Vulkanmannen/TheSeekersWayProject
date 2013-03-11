@@ -220,6 +220,9 @@
     <ClCompile Include="MyLightSystem.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
+    <ClCompile Include="MyLightSystem.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -431,6 +434,9 @@
     </ClInclude>
     <ClInclude Include="Source\LTBL\Constructs\Vec2f.h">
       <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="MyLightSystem.h">
+      <Filter>Managers</Filter>
     </ClInclude>
     <ClInclude Include="MyLightSystem.h">
       <Filter>Managers</Filter>

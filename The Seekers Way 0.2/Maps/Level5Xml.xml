@@ -25,11 +25,6 @@
 		<doorPosition X="3200" Y="640"/>
 		<leverPosition X="3904" Y="384"/>		
 	</Door>
-  
-  	<Door name="DoorsLevel1">
-		<smalBridgePosition X="2176" Y="256" Closed ="1"/>
-		<leverPosition X="512" Y="768"/>		
-	</Door>
 	
 	<Door name="DoorsLevel1">
 		<doorPosition X="2048" Y="576"/>

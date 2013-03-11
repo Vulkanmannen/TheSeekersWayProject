@@ -49,6 +49,7 @@ EntityManager::EntityManager():
 		createBackground();
 		setMapSize(61, 28);
 
+
 		mLightSystem = MyLightSystem::getLightSystem();
 		
 		mLight = new ltbl::Light_Point(); 
@@ -64,8 +65,10 @@ EntityManager::EntityManager():
 		mLight->m_bleed = 1.0f; 
 		mLight->m_linearizeFactor = 2.0f; 
 
+
 		mLightSystem->AddLight(mLight); 
 		mLight->SetAlwaysUpdate(true); 
+
 }
 
 
@@ -161,8 +164,7 @@ void EntityManager::updatePlayerPortrait()
 // ritarut alla objekt
 void EntityManager::render()
 {
-	
-	
+
 	mLight->SetCenter(Vec2f(mCharacters[mPrimaryCharacter]->getPosition().x, mVideoMode->height - mCharacters[mPrimaryCharacter]->getPosition().y));
 
 	renderBackground();
@@ -209,7 +211,6 @@ void EntityManager::render()
 void EntityManager::renderLifeAndMask()
 {
 	//ImageManager::render(&mMaskSprite);
-	
 	mLifeSprite.setPosition(mLifeSprite.getPosition() + sf::Vector2f(20, frame[0].getSprite().getLocalBounds().height + 10));
 	for(int i = 0; i < mPlayerLife; ++i)
 	{

@@ -188,7 +188,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\SFML-2.0-rc\include;C:\TheSeekersWay\TheSeekersWayProject\The Seekers Way 0.2\Source</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SFML-2.0-rc\include;C:\TheSeekersWayProject\The Seekers Way 0.2\Source</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
