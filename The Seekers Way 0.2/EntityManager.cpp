@@ -11,6 +11,7 @@
 #include "Sounds.h"
 #include <cmath>
 #include <algorithm>
+#include "MyLightSystem.h"
 
 #include <LTBL\Light\LightSystem.h>
 #include <LTBL\Light\Light_Point.h>
@@ -49,8 +50,24 @@ EntityManager::EntityManager():
 		createBackground();
 		setMapSize(61, 28);
 
-		//ltbl::LightSystem ls(AABB(Vec2f(0.0f, 0.0f), Vec2f(mView->getSize().x , mView->getSize().y)), &ImageManager::getWindow(), "lightFin.png", "shaders/lightAttenuationShader.frag");
 
+		mLightSystem = MyLightSystem::getLightSystem();
+		
+		mLight = new ltbl::Light_Point(); 
+		mLight->m_intensity = 100.0f; 
+		mLight->m_radius = 400.0f; 
+		mLight->m_size = 700.0f; 
+		mLight->m_spreadAngle = ltbl::pifTimes2; 
+		mLight->m_softSpreadAngle = 0.0f;
+		mLight->CalculateAABB();
+		mLight->m_color.r = 0.5f; 
+		mLight->m_color.g = 0.5f; 
+		mLight->m_color.b = 0.5f;
+		mLight->m_bleed = 1.0f; 
+		mLight->m_linearizeFactor = 2.0f; 
+
+		mLightSystem->AddLight(mLight); 
+		mLight->SetAlwaysUpdate(true);
 }
 
 
@@ -144,6 +161,8 @@ void EntityManager::updatePlayerPortrait()
 // ritarut alla objekt
 void EntityManager::render()
 {
+	mLight->SetCenter(Vec2f(mCharacters[mPrimaryCharacter]->getPosition().x, mVideoMode->height - mCharacters[mPrimaryCharacter]->getPosition().y));
+
 	renderBackground();
 	updateView();
 	
@@ -177,6 +196,12 @@ void EntityManager::render()
 	//sf::Color colo(255,255,255,128);
 	//rect.setFillColor(colo);
 	//ImageManager::render(&rect);
+
+	//// Calculate the lights 
+	//mLightSystem->RenderLights(); 
+	//// Draw the lights 
+	//mLightSystem->RenderLightTexture();
+
 }
 
 // renderar livet
@@ -413,9 +438,10 @@ void EntityManager::interact()
 }
 
 // sätter viewn
-void EntityManager::setView(sf::View* view)
+void EntityManager::setView(sf::View* view, sf::VideoMode* videoMode)
 {
 	mView = view;
+	mVideoMode = videoMode;
 }
 
 sf::View* EntityManager::getView()

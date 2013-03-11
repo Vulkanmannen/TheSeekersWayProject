@@ -19,19 +19,19 @@
 #include "WoodenWall.h"
 #include "Portal.h"
 #include "Dialogue.h"
+#include "MyLightSystem.h"
 
-//#include <sfTheora\Video.h>
-
+#include <LTBL\Light\LightSystem.h>
+#include <LTBL\Light\Light_Point.h>
+#include <LTBL\Utils.h>
 
 int main()
 {	
 
 
 	
-	//sf::RenderWindow window;
-	//mVideo.setPosition(512, 360);
-	sf::RenderWindow window(sf::VideoMode(1024, 720), "The Seekers Way"/*, sf::Style::Fullscreen*/);
-	//mVideo.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(256, 220));
+	sf::VideoMode videoMode(1024, 720);
+	sf::RenderWindow window(videoMode, "The Seekers Way"/*, sf::Style::Fullscreen*/);
 
 	ImageManager::setWindow(&window);
 	window.setVerticalSyncEnabled(true);
@@ -41,18 +41,25 @@ int main()
 	view.setCenter(512, 360);
 	view.setSize(1024, 720);
 
+	ltbl::LightSystem lightSystem = ltbl::LightSystem(AABB(Vec2f(0.0f, 0.0f), Vec2f(view.getSize().x , view.getSize().y)), 
+		&ImageManager::getWindow(), "lightFin.png", "shaders/lightAttenuationShader.frag");
+
+	lightSystem.m_ambientColor = sf::Color(80,80,80);
+	lightSystem.m_useBloom = true;
+	
+	// sätter ett lightsystem till lightmanagern
+	MyLightSystem::setLightSystem(&lightSystem);
+
 	window.setMouseCursorVisible(false);
 
-	EntityManager::getInstance()->setView(&view);
+	EntityManager::getInstance()->setView(&view, &videoMode);
 
 	Sounds::getInstance();
 
 	sf::Clock mVideoClock;
-	//sftheora::Video mVideo("INTRO.OGG");
 
    while (window.isOpen())
     {
-		/*sf::Listener::setPosition(view.getCenter().x, view.getCenter().y, 0);*/
         sf::Event event;
 
 		if (State::getInstance()->getExit())
@@ -71,12 +78,10 @@ int main()
 
 		State::getInstance()->update();
 
-		//mVideo.update(mVideoClock.restart());
-		//window.draw(mVideo);
-
 		State::getInstance()->update();
 
 		window.setView(view); 
+		lightSystem.SetView(view);
 
 		window.display();
 	}
