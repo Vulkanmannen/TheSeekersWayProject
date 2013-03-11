@@ -58,7 +58,9 @@ int main()
 
    while (window.isOpen())
     {
-        sf::Event event;
+		sf::Listener::setPosition(view.getCenter().x, view.getCenter().y, 0);
+       
+		sf::Event event;
 
 		if (State::getInstance()->getExit())
 		{	
@@ -74,8 +76,6 @@ int main()
 
 		window.clear(sf::Color::Black);
 		
-		State::getInstance()->update();
-
 		State::getInstance()->update();
 
 		window.setView(view); 
