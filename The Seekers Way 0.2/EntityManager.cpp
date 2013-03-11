@@ -50,23 +50,23 @@ EntityManager::EntityManager():
 		setMapSize(61, 28);
 
 
-		mLightSystem = MyLightSystem::getLightSystem();
-		
-		mLight = new ltbl::Light_Point(); 
-		mLight->m_intensity = 100.0f; 
-		mLight->m_radius = 400.0f; 
-		mLight->m_size = 700.0f; 
-		mLight->m_spreadAngle = ltbl::pifTimes2; 
-		mLight->m_softSpreadAngle = 0.0f;
-		mLight->CalculateAABB();
-		mLight->m_color.r = 0.5f; 
-		mLight->m_color.g = 0.5f; 
-		mLight->m_color.b = 0.5f;
-		mLight->m_bleed = 1.0f; 
-		mLight->m_linearizeFactor = 2.0f; 
+		//mLightSystem = MyLightSystem::getLightSystem();
+		//
+		//mLight = new ltbl::Light_Point(); 
+		//mLight->m_intensity = 100.0f; 
+		//mLight->m_radius = 400.0f; 
+		//mLight->m_size = 700.0f; 
+		//mLight->m_spreadAngle = ltbl::pifTimes2; 
+		//mLight->m_softSpreadAngle = 0.0f;
+		//mLight->CalculateAABB();
+		//mLight->m_color.r = 0.5f; 
+		//mLight->m_color.g = 0.5f; 
+		//mLight->m_color.b = 0.5f;
+		//mLight->m_bleed = 1.0f; 
+		//mLight->m_linearizeFactor = 2.0f; 
 
-		mLightSystem->AddLight(mLight); 
-		mLight->SetAlwaysUpdate(true); 
+		//mLightSystem->AddLight(mLight); 
+		//mLight->SetAlwaysUpdate(true); 
 
 }
 
@@ -164,7 +164,7 @@ void EntityManager::updatePlayerPortrait()
 void EntityManager::render()
 {
 
-	mLight->SetCenter(Vec2f(mCharacters[mPrimaryCharacter]->getPosition().x, mVideoMode->height - mCharacters[mPrimaryCharacter]->getPosition().y));
+	//mLight->SetCenter(Vec2f(mCharacters[mPrimaryCharacter]->getPosition().x, mVideoMode->height - mCharacters[mPrimaryCharacter]->getPosition().y));
 
 	renderBackground();
 	updateView();
