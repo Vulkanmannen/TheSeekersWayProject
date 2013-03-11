@@ -583,7 +583,7 @@ namespace ltbl
 
 			glColor4f(0.0f, 0.0f, 0.0f, 0.0f);
 
-			glBlendFunc(GL_ONE, GL_ZERO);
+			glBlendFunc(GL_ONE, GL_SRC_ALPHA);//GL_ZERO);
 
 			// Clear with quad, since glClear is not working for some reason... if results in very ugly artifacts
 			glBegin(GL_QUADS);
@@ -603,7 +603,7 @@ namespace ltbl
 
 		glColor4b(m_ambientColor.r, m_ambientColor.g, m_ambientColor.b, m_ambientColor.a);
 
-		glBlendFunc(GL_ONE, GL_ZERO);
+		glBlendFunc(GL_ONE, GL_SRC_ALPHA);//GL_ZERO);
 
 		// Clear with quad, since glClear is not working for some reason... if results in very ugly artifacts
 		glBegin(GL_QUADS);
@@ -965,7 +965,7 @@ namespace ltbl
 		m_compositionTexture.getTexture().bind();
 
 		// Set up color function to multiply the existing color with the render texture color
-		glBlendFunc(GL_DST_COLOR, GL_ZERO); // Seperate allows you to set color and alpha functions seperately
+		glBlendFunc(GL_DST_COLOR, GL_ONE_MINUS_DST_COLOR);// GL_ZERO); // Seperate allows you to set color and alpha functions seperately
 
 		glBegin(GL_QUADS);
 			glTexCoord2i(0, 0); glVertex2f(0.0f, 0.0f);
@@ -978,7 +978,7 @@ namespace ltbl
 		{
 			m_bloomTexture.getTexture().bind();
 
-			glBlendFunc(GL_ONE, GL_ONE);
+			glBlendFunc(GL_ONE, GL_ONE_MINUS_DST_COLOR);// GL_ONE);
 
 			glBegin(GL_QUADS);
 				glTexCoord2i(0, 0); glVertex2f(0.0f, 0.0f);
