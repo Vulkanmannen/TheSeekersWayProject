@@ -129,6 +129,7 @@ void Kiba::choosing()
 				{
 					mStone->setStoneState(Stone::INAIR);
 					mTeleState = SELECTEDSTONE;
+					Sounds::getInstance()->Play("levitate.wav");
 				}
 			}
 			else
@@ -158,6 +159,7 @@ void Kiba::choosing()
 			
 			mStone = mTelekinesisBox->getCurrentStone();
 			mTeleState = SELECTEDSTONE;
+			Sounds::getInstance()->Play("levitate.wav");
 			
 			if(mStone != NULL)
 			{	
