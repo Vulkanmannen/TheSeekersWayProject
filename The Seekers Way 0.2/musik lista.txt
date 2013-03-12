@@ -16,3 +16,9 @@ crazykoncept.wav
 arrowtosheild.wav
 shadowbolt 1.3.wav
 switch char 1.1.wav
+arrowtosheild.wav
+button.wav
+jump.wav
+land.wav
+lever.wav
+magicdoor.wav
