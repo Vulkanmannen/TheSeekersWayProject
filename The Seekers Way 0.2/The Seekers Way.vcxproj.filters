@@ -223,6 +223,9 @@
     <ClCompile Include="MyLightSystem.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
+    <ClCompile Include="TutorialSign.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -440,6 +443,9 @@
     </ClInclude>
     <ClInclude Include="MyLightSystem.h">
       <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="TutorialSign.h">
+      <Filter>Entities\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

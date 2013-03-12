@@ -24,7 +24,7 @@ void IntroScreen::update()
 
 void IntroScreen::render()
 {
-	/*ImageManager::render(&mMovie);*/
+	//ImageManager::render(&mMovie);
 
 	//mAnimation.update(0);
 	//ImageManager::render(&mAnimation.getSprite());
