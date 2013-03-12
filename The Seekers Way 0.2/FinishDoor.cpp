@@ -79,8 +79,7 @@ void FinishDoor::LoadNextLevel()
 	{
 		mAllInGoal = false;
 	}
-
-	if(mClockAllIn.getElapsedTime().asMilliseconds() > 1000 && mAllInGoal)
+	if(mClockAllIn.getElapsedTime().asSeconds() > 2 && mAllInGoal)
 	{
 		EntityManager::getInstance()->SetAniToIdle();
 		LevelManager::getInstance()->LoadEndLevel();

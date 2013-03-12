@@ -5,10 +5,10 @@
 
 IntroScreen::IntroScreen()
 {
-	//mMovie.openFromFile("IntroMovie.wmv");
+	/*mAnimation.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(256, 220));*/
+	//mMovie.openFromFile("Intro.wmv");
 	//mMovie.setPosition(400, 300);
 	//mMovie.play();
-	/*mAnimation.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(256, 220));*/
 }
 
 
@@ -24,6 +24,7 @@ void IntroScreen::update()
 void IntroScreen::render()
 {
 	//ImageManager::render(&mMovie);
+
 	//mAnimation.update(0);
 	//ImageManager::render(&mAnimation.getSprite());
 }

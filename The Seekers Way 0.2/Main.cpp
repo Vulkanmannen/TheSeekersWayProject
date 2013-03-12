@@ -41,14 +41,14 @@ int main()
 	view.setCenter(512, 360);
 	view.setSize(1024, 720);
 
-	ltbl::LightSystem lightSystem = ltbl::LightSystem(AABB(Vec2f(0.0f, 0.0f), Vec2f(view.getSize().x , view.getSize().y)), 
-		&ImageManager::getWindow(), "lightFin.png", "shaders/lightAttenuationShader.frag");
+	//ltbl::LightSystem lightSystem = ltbl::LightSystem(AABB(Vec2f(0.0f, 0.0f), Vec2f(view.getSize().x , view.getSize().y)), 
+	//	&ImageManager::getWindow(), "lightFin.png", "shaders/lightAttenuationShader.frag");
 
-	lightSystem.m_ambientColor = sf::Color(80,80,80);
-	lightSystem.m_useBloom = true;
+	//lightSystem.m_ambientColor = sf::Color(80,80,80);
+	//lightSystem.m_useBloom = true;
 
-	// sätter ett lightsystem till lightmanagern
-	MyLightSystem::setLightSystem(&lightSystem);
+	//// sätter ett lightsystem till lightmanagern
+	//MyLightSystem::setLightSystem(&lightSystem);
 
 	window.setMouseCursorVisible(false);
 
@@ -75,9 +75,9 @@ int main()
 
 		window.clear(sf::Color::Black);
 
+		State::getInstance()->update();
 		window.setView(view); 
-
-		lightSystem.SetView(view);
+		//lightSystem.SetView(view);
 
 		window.display();
 	}

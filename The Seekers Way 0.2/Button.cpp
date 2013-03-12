@@ -1,5 +1,6 @@
 #include "Button.h"
 #include "ImageManager.h"
+#include "Sounds.h"
 
 static const float WIDTH = 54;
 static const float HEIGHT = 5;
@@ -32,6 +33,7 @@ void Button::Activate()
 	{
 		mBlock->Activate();
 		isitpressed = true;
+		Sounds::getInstance()->Play("button.wav", 30);
 	}
 	
 }

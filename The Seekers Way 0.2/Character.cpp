@@ -5,6 +5,8 @@
 #include "ImageManager.h"
 #include "Spiketrap.h"
 #include "EntityManager.h"
+#include "Sounds.h"
+
 
 Character::Character():
 	mMovementSpeed(0, 0),
@@ -31,7 +33,8 @@ Character::Character():
 	mCanMoveCount(0),
 	mCanMoveTime(30),
 	mCanPressJump(true),
-	mHurtShow(false)
+	mHurtShow(false),
+	mJumpSound(0)
 {
 	mAlive = true;
 	mBaseKind = CHARACTER;
@@ -41,7 +44,8 @@ Character::Character():
 }
 
 Character::~Character()
-	{}
+	{
+	}
 
 void Character::update(EntityKind &currentEntity)
 {
@@ -67,6 +71,11 @@ void Character::onblock()
 		if(mStatus == INAIR)
 		{
 			mStatus = IDLE;
+
+			if(mMovementSpeed.y > 1)
+			{
+				Sounds::getInstance()->Play("land.wav", 70);
+			}
 		}
 		mMovementSpeed.y = 0;
 	}
@@ -214,6 +223,10 @@ void Character::jump()
 			mStatus = JUMP;
 			mIsJumping = true;
 			mMovementSpeed.y = -mJump;
+
+
+			playJumpSound();
+
 		}
 		else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		{
@@ -221,6 +234,31 @@ void Character::jump()
 		}
 	}
 }
+
+void Character::playJumpSound()
+{
+	if(mJumpSound == 0)
+	{
+		Sounds::getInstance()->Play("jump1.wav", 80);
+	}
+	else if(mJumpSound == 1)
+	{
+		Sounds::getInstance()->Play("jump2.wav", 50);
+	}
+	else if(mJumpSound == 2)
+	{
+		Sounds::getInstance()->Play("jump3.wav", 80);
+	}
+
+
+	mJumpSound++;
+	
+	if(mJumpSound > 2)
+	{
+		mJumpSound = 0;
+	}
+}
+
 
 // uppdaterar hoppet
 void Character::jumping()

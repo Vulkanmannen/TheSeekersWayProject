@@ -44,6 +44,7 @@ void Shield::interact(Entity* e)
 	if((*e) == ARROW)
 	{
 		mShieldCount++;
+		Sounds::getInstance()->Play("arrowtosheild.wav");
 	}
 	if((*e) == BLOCK || (*e) == FIREBALL)
 	{

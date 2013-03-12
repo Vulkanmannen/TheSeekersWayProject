@@ -2,6 +2,7 @@
 #include "ImageManager.h"
 #include "NormalBlock.h"
 #include "SFML\Graphics.hpp"
+#include "Sounds.h"
 
 
 static const float WIDTH = 448;
@@ -70,11 +71,13 @@ void TelekinesisBox::changeCurrenStone()
 	{
 		mCurrentStone++;
 		mCanPressChange = false;
+		Sounds::getInstance()->Play("changestone.wav");
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && mCanPressChange)// tar in knapptryck och ändrar currentstone
 	{
 		mCurrentStone--;
 		mCanPressChange = false;
+		Sounds::getInstance()->Play("changestone.wav");
 	}
 	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{

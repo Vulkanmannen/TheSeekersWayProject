@@ -62,9 +62,21 @@
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<smalBridgePosition X="4352" Y="1152" Closed ="0"/>
-		<buttonPosition X="4224" Y="1344"/>		
+		<smalBridgePosition X="4320" Y="1152" Closed ="0"/>
+		<buttonPosition X="4480" Y="1344"/>		
 	</Door>
+	
+	<Door name="DoorsLevel1">
+		<smalBridgePosition X="1088" Y="896" Closed ="0"/>
+		<buttonPosition X="2688" Y="640"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<bigBridgePosition X="1152" Y="1216" Closed ="0"/>
+		<buttonPosition X="2688" Y="640"/>		
+	</Door>
+	
+	
 	
 	<Door name="DoorsLevel1">
 		<bigBridgePosition X="2304" Y="704" Closed ="0"/>
@@ -100,6 +112,8 @@
 		<doorPosition X="3328" Y="1536" texture="magicdoor.png"/>
 		<magicSwitchPosition X="3456" Y="2048" timeOpen="8"/>		
 	</Door>
+	
+	
 	
    </Body>
    
