@@ -4,12 +4,10 @@
 
 
 IntroScreen::IntroScreen()
-//mAnimation("intro.png", 150, 24, 512, 512)
 {
-	/*mAnimation.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(256, 220));*/
-	//mMovie.openFromFile("Intro.wmv");
-	//mMovie.setPosition(400, 300);
-	//mMovie.play();
+	mMovie.openFromFile("Kim_1.WMV");
+	mMovie.setPosition(0, 0);
+	mMovie.play();
 }
 
 
@@ -24,8 +22,5 @@ void IntroScreen::update()
 
 void IntroScreen::render()
 {
-	/*ImageManager::render(&mMovie);*/
-
-	//mAnimation.update(0);
-	//ImageManager::render(&mAnimation.getSprite());
+	ImageManager::render(&mMovie);
 }

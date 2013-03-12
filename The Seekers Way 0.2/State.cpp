@@ -19,7 +19,7 @@ State::State():
 	mGameMenu = new GameMenu();
 	mPauseMenu = new PauseMenu();
 	mDialogState = new DialogState();
-	Sounds::getInstance()->Loop("crazykoncept.wav", 30);
+	//Sounds::getInstance()->Loop("crazykoncept.wav", 30);
 }
 
 

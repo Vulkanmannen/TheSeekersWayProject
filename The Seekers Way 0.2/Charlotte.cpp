@@ -14,7 +14,8 @@ Charlotte::Charlotte(sf::Vector2f &position):
 	mActiveCharacter(false),
 	mTimeToTeleport(0.5),
 	mTeleporting(false),
-	mActivatingShield(false)
+	mActivatingShield(false),
+	mPlayCantTeleport(false)
 	{
 		mAnimation.init("charlotte.png", 60, 12);
 
@@ -38,6 +39,16 @@ void Charlotte::update(EntityKind &currentEntity)
 			walk();
 			jump();
 			SetShield();
+
+			if(mPlayCantTeleport)
+			{
+				Sounds::getInstance()->Play("errorsound.wav",30);
+				mPlayCantTeleport = false;
+			}
+			else if(!mTeleporting && (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::X)))
+			{
+				mPlayCantTeleport = true;
+			}
 		}
 	}
 	else if(mTeleporting)
@@ -56,6 +67,7 @@ void Charlotte::update(EntityKind &currentEntity)
 	{
 		mActiveCharacter = false;
 	}
+
 
 	Character::update(currentEntity);
 }
@@ -128,6 +140,7 @@ void Charlotte::interact(Entity* e)
 			mStatus = ACTION1;
 
 			Sounds::getInstance()->Play("teleport.wav");
+			mPlayCantTeleport = false;
 		}
 	}
 }

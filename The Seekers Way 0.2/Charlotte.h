@@ -33,6 +33,7 @@ private:
 	bool mActiveCharacter;
 
 	bool mTeleporting;
+	bool mPlayCantTeleport;
 	void teleporting();
 
 	sf::Clock mTeleportClock;
