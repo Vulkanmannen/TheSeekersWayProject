@@ -206,15 +206,15 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\SFML-2.0-rc\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SFML-2.0-rc\include;C:\TheSeekersWayProject\The Seekers Way 0.2\SfeMovie\include;C:\TheSeekersWayProject\The Seekers Way 0.2\Source</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\SFML-2.0-rc\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-window.lib;sfml-audio.lib;sfml-graphics.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\SFML-2.0-rc\lib;C:\TheSeekersWayProject\The Seekers Way 0.2\SfeMovie\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-window.lib;sfml-audio.lib;sfml-graphics.lib;sfml-system.lib;sfeMovie.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

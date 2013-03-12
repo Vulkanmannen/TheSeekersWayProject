@@ -147,6 +147,7 @@ void Kiba::choosing()
 		else
 		{
 			mTeleState = NOSTONE;
+			Sounds::getInstance()->Play("errorsound.wav", 30);
 		}
 
 
@@ -188,6 +189,10 @@ void Kiba::selectedStone()
 				mStone->setStoneState(Stone::ONGROUND);
 				mStone->setMoveing(false);
 				mStone == NULL;
+			}
+			else
+			{
+				Sounds::getInstance()->Play("errorsound.wav", 30);
 			}
 		}
 	}
