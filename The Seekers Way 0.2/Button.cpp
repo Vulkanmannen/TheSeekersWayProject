@@ -33,7 +33,7 @@ void Button::Activate()
 	{
 		mBlock->Activate();
 		isitpressed = true;
-		Sounds::getInstance()->Play("button.wav", 50);
+		Sounds::getInstance()->Play("button.wav", 30);
 	}
 	
 }

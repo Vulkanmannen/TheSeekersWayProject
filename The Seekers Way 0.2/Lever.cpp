@@ -1,5 +1,6 @@
 #include "Lever.h"
 #include "ImageManager.h"
+#include "Sounds.h"
 
 static const float WIDTH = 40;
 static const float HEIGHT = 15;
@@ -31,6 +32,7 @@ void Lever::Activate()
 	if(mDrawn == false)
 	{
 		mBlock->Activate();
+		Sounds::getInstance()->Play("lever.wav",30);
 	}
 	mDrawn = true;
 }

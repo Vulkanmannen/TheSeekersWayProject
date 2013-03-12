@@ -4,6 +4,7 @@
 #include "Animation.h"
 #include "SFML\Graphics.hpp"
 #include "Entity.h"
+#include <SFML/Audio.hpp>
 
 class Character: public Entity
 {
@@ -82,10 +83,15 @@ protected:
 	bool mCanMove;
 	int mCanMoveCount;
 	int mCanMoveTime;
-	
+
+	// hurt
 	sf::Shader mHurtShader;
 	sf::Clock mHurtClock;
 	bool mHurtShow;
+
+	// sound
+	int mJumpSound;
+	void playJumpSound();
 };
 
 #endif
