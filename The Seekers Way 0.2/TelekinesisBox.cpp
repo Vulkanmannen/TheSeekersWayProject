@@ -2,15 +2,16 @@
 #include "ImageManager.h"
 #include "NormalBlock.h"
 #include "SFML\Graphics.hpp"
+#include "Sounds.h"
 
 
 static const float WIDTH = 448;
 static const float HEIGHT = 448;
 
-TelekinesisBox::TelekinesisBox(sf::Vector2f &position, Stone* noStone):
-	mSelectedStone(0),
-	mNoStone(noStone),
-	mCanPressChange(true)
+TelekinesisBox::TelekinesisBox(sf::Vector2f &position):
+	mCurrentStone(0),
+	mCanPressChange(true),
+	mCanPressClear(true)
 {
 	mPosition = position;
 	mHeight = HEIGHT;
@@ -30,34 +31,32 @@ void TelekinesisBox::update(EntityKind &currentEntity)
 
 void TelekinesisBox::render()
 {
-	sf::RectangleShape rect(sf::Vector2f(mWidth, mHeight));
-	rect.setPosition(mPosition);
-	rect.setOrigin(mWidth/2, mHeight/2);
-	sf::Color colo(255,255,255,128);
-	rect.setFillColor(colo);
-	ImageManager::render(&rect);
+
 }
 
+// lägger till en sten i vektorn om den inte redan finns
 void TelekinesisBox::interact(Entity* e)
 {
-	if(e->getEntityKind() == STONE)
+	if(*e == STONE)
 	{
-		for(std::vector<Stone*>::size_type i = 0; i < stone.size(); ++i)
+		for(auto i = mStones.begin(); i < mStones.end(); ++i)
 		{
-			if(e == stone[i])
+			if(*i == e)
 			{
 				return;
 			}
 		}
-		stone.push_back(static_cast<Stone*>(e)); 
+
+		mStones.push_back(static_cast<Stone*>(e));
 	}
 }
 
-Stone* TelekinesisBox::getStone()
+// returnerar nuvarande sten, eller NULL om vektorn e tom
+Stone* TelekinesisBox::getCurrentStone()
 {
-	if(mSelectedStone < static_cast<int>(stone.size()))
+	if(mCurrentStone < mStones.size())
 	{
-		return stone[mSelectedStone];	
+		return mStones[mCurrentStone];
 	}
 	else
 	{
@@ -65,41 +64,43 @@ Stone* TelekinesisBox::getStone()
 	}
 }
 
-void TelekinesisBox::clearStoneVector()
+// byter nuvarande sten
+void TelekinesisBox::changeCurrenStone()
 {
-	stone.clear();
-	mSelectedStone = 0;
-}
-
-TelekinesisBox::StoneVector TelekinesisBox::getStoneVector()const
-{
-	return stone;
-}
-
-void TelekinesisBox::changeStone()
-{
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && mCanPressChange)
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && mCanPressChange) // tar in knapptryck och ändrar currentstone
 	{
-		mSelectedStone++;
+		mCurrentStone++;
 		mCanPressChange = false;
+		Sounds::getInstance()->Play("changestone.wav");
 	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && mCanPressChange)
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && mCanPressChange)// tar in knapptryck och ändrar currentstone
 	{
-		mSelectedStone--;
+		mCurrentStone--;
 		mCanPressChange = false;
+		Sounds::getInstance()->Play("changestone.wav");
 	}
-	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		mCanPressChange = true;
 	}
 
-	if(mSelectedStone >= static_cast<int>(stone.size()))
+	if(mCurrentStone >= static_cast<int>(mStones.size())) // ser till att mCurentStone inte blir för hög eller låg
 	{
-		mSelectedStone = 0;
+		mCurrentStone = 0;
 	}
-	else if(mSelectedStone < 0)
+	else if(mCurrentStone < 0)
 	{
-		mSelectedStone = static_cast<int>(stone.size()) - 1;
+		mCurrentStone = static_cast<int>(mStones.size() - 1);
 	}
+}
 
+int TelekinesisBox::getNumberOfStones()const
+{
+	return static_cast<int>(mStones.size());
+}
+
+void TelekinesisBox::clear()
+{
+	mStones.clear();
+	mCurrentStone = 0;
 }

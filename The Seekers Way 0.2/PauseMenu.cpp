@@ -11,11 +11,11 @@ PauseMenu::PauseMenu():
 	currentButton(0),
 	currentJournalFrame(0)
 {
-	mPauseText.loadFromFile("journal.PNG");
-	mHowToPlayKiba.loadFromFile("journal_Kiba.png");
-	mHowToPlayCharlotte.loadFromFile("journal_Charlotte.png");
-	mHowToPlayFenrir.loadFromFile("journal_Fenrir.png");
-	mHowToPlaySheeka.loadFromFile("journal_Sheeka.png");
+	mPauseText.loadFromImage(*ImageManager::getImage("journal.PNG"));
+	mHowToPlayKiba.loadFromImage(*ImageManager::getImage("journal_Kiba.png"));
+	mHowToPlayCharlotte.loadFromImage(*ImageManager::getImage("journal_Charlotte.png"));
+	mHowToPlayFenrir.loadFromImage(*ImageManager::getImage("journal_Fenrir.png"));
+	mHowToPlaySheeka.loadFromImage(*ImageManager::getImage("journal_Sheeka.png"));
 
 	mPauseSprite.setTexture(mPauseText);
 	mHowToPlaySpriteSheeka.setTexture(mHowToPlaySheeka);
@@ -190,6 +190,11 @@ void PauseMenu::buttonActivate()
 	{
 		canPressReturn = true;
 	}
+}
+
+int PauseMenu::setCurrentButton()
+{
+	return currentButton = 0;
 }
 
 void PauseMenu::SetCanPressToFalse()

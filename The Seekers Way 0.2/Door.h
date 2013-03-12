@@ -27,6 +27,8 @@ private:
 	enum Status {CLOSED, OPENING, OPEN, CLOSING};
 	int in;
 	Status mStatus;
+
+	bool mMagicDoor;
 };
 
 #endif

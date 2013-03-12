@@ -18,7 +18,7 @@ soundlimit(10)
 		std::string filnamn;
 		std::getline(fil, filnamn, '\n');
 		sf::SoundBuffer* buff = new sf::SoundBuffer();
-		buff->loadFromFile(filnamn);
+		buff->loadFromFile("Sound/" + filnamn);
 		bufferlista.insert(std::pair<std::string, sf::SoundBuffer*>(filnamn, buff));
 		filnamn.clear();
 	}

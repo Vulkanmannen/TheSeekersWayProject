@@ -85,6 +85,7 @@ void State::update()
 				{
 					mMenuStates = GameState;
 					mEsc = false;
+					mPauseMenu->setCurrentButton();
 				}
 			}
 			break;

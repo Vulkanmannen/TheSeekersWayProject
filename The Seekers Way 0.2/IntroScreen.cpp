@@ -2,10 +2,14 @@
 #include "ImageManager.h"
 #include "EntityManager.h"
 
-IntroScreen::IntroScreen():
-mAnimation("intro.png", 150, 24, 512, 512)
+
+IntroScreen::IntroScreen()
+//mAnimation("intro.png", 150, 24, 512, 512)
 {
-	mAnimation.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(256, 220));
+	/*mAnimation.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(256, 220));*/
+	//mMovie.openFromFile("Intro.wmv");
+	//mMovie.setPosition(400, 300);
+	//mMovie.play();
 }
 
 
@@ -13,10 +17,15 @@ IntroScreen::~IntroScreen()
 {
 }
 
+void IntroScreen::update()
+{
+	
+}
+
 void IntroScreen::render()
 {
+	/*ImageManager::render(&mMovie);*/
 
-	mAnimation.update(0);
-	ImageManager::render(&mAnimation.getSprite());
-
+	//mAnimation.update(0);
+	//ImageManager::render(&mAnimation.getSprite());
 }

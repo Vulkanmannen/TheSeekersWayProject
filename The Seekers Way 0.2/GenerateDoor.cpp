@@ -298,5 +298,5 @@ void GenerateDoor::GenerateDoors()
 
 void GenerateDoor::loadDocument(std::string s)
 {
-	sDocument.LoadFile(s.c_str());
+	sDocument.LoadFile(("Maps/" + s).c_str());
 }

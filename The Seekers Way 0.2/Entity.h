@@ -37,7 +37,6 @@ public:
 	EntityKind getEntityKind()const;
 	BaseKind getBaseKind()const;
 	Layer getLayer()const;
-
 	bool getAliveStatus()const;
 
 	void destroy();

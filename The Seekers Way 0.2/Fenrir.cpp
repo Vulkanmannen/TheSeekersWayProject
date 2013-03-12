@@ -40,7 +40,7 @@ void Fenrir::update(EntityKind &currentEntity)
 	move();
 	isWallJumping();
 	updateHitbox();
-	snowMistCountdown();
+	snowMistCountdown(currentEntity);
 	updateSatatus();
 	hurtTime();
 	
@@ -65,12 +65,14 @@ void Fenrir::update(EntityKind &currentEntity)
 			}
 			
 			snowMist();
+
+			if(!mInSnowMist)
+			{
+				wallJump();	
+			}
 		}
 
-		if(!mInSnowMist)
-		{
-			wallJump();	
-		}	
+	
 		dontWalk(currentEntity);
 	}
 
@@ -193,12 +195,8 @@ void Fenrir::interact(Entity *e)
 	
 	if(e->getEntityKind() == Entity::ARROW)
 	{
-		mIsHit = true;
+		takeDamageFromArrow();
 		e->destroy();
-	}
-	if(e->getEntityKind() == Entity::VINE)
-	{
-		mIsHit = true;
 	}
 	if(e->getEntityKind() == Entity::LAVA)
 	{
@@ -348,6 +346,8 @@ void Fenrir::wallJump()
 				
 				mMovementSpeed.y = -(mJump);
 				
+				playJumpSound();
+
 				if(mWallJumpDirLeft)
 				{
 					mDirLeft = true;
@@ -442,9 +442,14 @@ void Fenrir::snowMist()
 }
 
 // när tiden gått så tar misten slut
-void Fenrir::snowMistCountdown()
+void Fenrir::snowMistCountdown(EntityKind &currentEntity)
 {
-	if(mSnowMistTime.getElapsedTime().asSeconds() > 1 && mInSnowMist && !mHitVine)
+	if(mSnowMistTime.getElapsedTime().asSeconds() > 1 && mInSnowMist && !mHitVine && 
+		(!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) 
+		|| currentEntity != mEntityKind 
+		|| sf::Keyboard::isKeyPressed(sf::Keyboard::Up) 
+		|| sf::Keyboard::isKeyPressed(sf::Keyboard::Right) 
+		|| sf::Keyboard::isKeyPressed(sf::Keyboard::Left)))
 	{
 		notInSnowMist();
 	}
@@ -454,7 +459,7 @@ void Fenrir::snowMistCountdown()
 void Fenrir::notInSnowMist()
 {
 	mInSnowMist = false;	
-	mFenrirCanJump = true;
+	//mFenrirCanJump = true;
 	mStatus = ACTION5;
 }
 
@@ -490,6 +495,6 @@ void Fenrir::updateSatatus()
 {
 	if(mStatus == ACTION3 && mAnimation.getEndOfAnimation())
 	{
-		//mStatus = ACTION4;
+		mStatus = ACTION4;
 	}
 }

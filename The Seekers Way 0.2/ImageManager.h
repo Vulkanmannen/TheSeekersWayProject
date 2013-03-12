@@ -16,6 +16,7 @@ public:
 	static sf::Image* getImage(const std::string &fileName);
 
 	static void	setWindow(sf::RenderWindow *window);
+	static sf::RenderWindow& getWindow();
 private:
 	static sf::RenderWindow *sWindow;
 

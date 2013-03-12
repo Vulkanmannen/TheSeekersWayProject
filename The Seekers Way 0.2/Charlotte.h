@@ -25,9 +25,19 @@ private:
 
 	void SetShield();
 	void GetShieldLife();
+	void shieldTime();
+	bool mActivatingShield;
 	bool mIsShield;
+	sf::Clock mShieldClock;
 
 	bool mActiveCharacter;
+
+	bool mTeleporting;
+	void teleporting();
+
+	sf::Clock mTeleportClock;
+	float mTimeToTeleport;
+	Portal* mPortal;
 };
 
 #endif

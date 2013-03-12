@@ -36,6 +36,8 @@ private:
 	bool mDashPressed;
 
 	bool mCanPressDarkBinding;
+	bool mDarkBinding;
+	sf::Clock mDarkClock;
 };
 
 #endif

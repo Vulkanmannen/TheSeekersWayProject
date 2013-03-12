@@ -20,6 +20,8 @@ private:
 	Animation mAnimation;
 
 	sf::Clock mClockOpen;
+
+	bool mHit;
 };
 
 #endif
