@@ -40,7 +40,7 @@ void Fenrir::update(EntityKind &currentEntity)
 	move();
 	isWallJumping();
 	updateHitbox();
-	snowMistCountdown();
+	snowMistCountdown(currentEntity);
 	updateSatatus();
 	hurtTime();
 	
@@ -438,9 +438,14 @@ void Fenrir::snowMist()
 }
 
 // när tiden gått så tar misten slut
-void Fenrir::snowMistCountdown()
+void Fenrir::snowMistCountdown(EntityKind &currentEntity)
 {
-	if(mSnowMistTime.getElapsedTime().asSeconds() > 1 && mInSnowMist && !mHitVine)
+	if(mSnowMistTime.getElapsedTime().asSeconds() > 1 && mInSnowMist && !mHitVine && 
+		(!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) 
+		|| currentEntity != mEntityKind 
+		|| sf::Keyboard::isKeyPressed(sf::Keyboard::Up) 
+		|| sf::Keyboard::isKeyPressed(sf::Keyboard::Right) 
+		|| sf::Keyboard::isKeyPressed(sf::Keyboard::Left)))
 	{
 		notInSnowMist();
 	}

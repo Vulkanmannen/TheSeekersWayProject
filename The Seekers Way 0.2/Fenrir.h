@@ -50,7 +50,7 @@ private:
 	void snowMist();
 	void notInSnowMist();
 	void moveInSnowMist();
-	void snowMistCountdown();
+	void snowMistCountdown(EntityKind &currentEntity);
 
 	bool mCanPressSnowMist;
 	bool mInSnowMist;
