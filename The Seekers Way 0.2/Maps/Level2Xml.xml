@@ -4,7 +4,7 @@
 	
 	<Door name="DoorsLevel1">
 		<smalBridgePosition X="192" Y="896"/>
-		<leverPosition X="512" Y="448"/>		
+		<leverPosition X="1792" Y="704"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
