@@ -65,12 +65,14 @@ void Fenrir::update(EntityKind &currentEntity)
 			}
 			
 			snowMist();
+
+			if(!mInSnowMist)
+			{
+				wallJump();	
+			}
 		}
 
-		if(!mInSnowMist)
-		{
-			wallJump();	
-		}	
+	
 		dontWalk(currentEntity);
 	}
 
@@ -344,6 +346,8 @@ void Fenrir::wallJump()
 				
 				mMovementSpeed.y = -(mJump);
 				
+				playJumpSound();
+
 				if(mWallJumpDirLeft)
 				{
 					mDirLeft = true;

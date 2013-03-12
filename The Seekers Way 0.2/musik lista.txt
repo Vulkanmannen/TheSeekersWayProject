@@ -18,7 +18,9 @@ shadowbolt 1.3.wav
 switch char 1.1.wav
 arrowtosheild.wav
 button.wav
-jump.wav
+jump1.wav
+jump2.wav
+jump3.wav
 land.wav
 lever.wav
 magicdoor.wav
