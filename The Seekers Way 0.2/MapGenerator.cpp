@@ -16,6 +16,7 @@
 #include "WoodenWall.h"
 #include "FinishDoor.h"
 #include "Decoration.h"
+#include "TutorialSign.h"
 
 MapGenerator::MapGenerator()
 	{}
@@ -132,6 +133,10 @@ void MapGenerator::generateMap(std::string imageNameBlock, std::string imageName
 				else if(color.g == 200)
 				{
 					entityManager->addEntity(new Decoration(position, color.b, true));
+				}
+				else if(color.g == 250)
+				{
+					entityManager->addEntity(new TutorialSign(position));
 				}
 			}
 		}
