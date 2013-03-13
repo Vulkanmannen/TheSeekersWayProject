@@ -1,51 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
 
   <Body>
-	<Door name="DoorsLevel1">
-		<doorPosition X="448" Y="256"/>
-		<buttonPosition X="820" Y="512"/>		
-	</Door>
-	
-	<Door name="DoorsLevel1">
-		<doorPosition X="960" Y="704"/>
-		<buttonPosition X="890" Y="512"/>
-	</Door>	
-	
-	<Door name="DoorsLevel1">
-		<doorPosition X="448" Y="1280"/>
-		<buttonPosition X="955" Y="512"/>
-	</Door>	
-	
-	<Door name="DoorsLevel1">
-		<doorPosition X="2048" Y="320"/>
-		<buttonPosition X="1020" Y="512"/>
-	</Door>	
-	
-	<Door name="DoorsLevel1">
-		<doorPosition X="3136" Y="1216"/>
-		<buttonPosition X="1092" Y="512"/>
-	</Door>	
-	
-	
-	
-	<Door name="DoorsLevel1">
-		<doorPosition X="1600" Y="1024"texture="magicdoor.png"/>
-		<magicSwitchPosition X="64" Y="1344" timeOpen="8"/>
-	</Door>
-	
-
-	
-	
-	
-  </Body>
   
-  <Body2>
-	<Portal name="Level1">
-		<portalPosition X1="576" Y1="1664" X2="704" Y2="512"/>
-	</Portal>
+	Kiba Fall lever
+	<Door name="DoorsLevel1">
+		<smalBridgePosition X="1280" Y="1280" Closed="0"/>
+		<leverPosition X="1280" Y="1472"/>
+	</Door>
 	
+	<Door name="DoorsLevel1">
+		<smalBridgePosition X="1280" Y="1088" Closed="0"/>
+		<leverPosition X="1280" Y="1472"/>
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<doorPosition X="1232" Y="1152"/>
+		<leverPosition X="1280" Y="1472"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<doorPosition X="1328" Y="1152"/>
+		<leverPosition X="1280" Y="1472"/>		
+	</Door>
+	
+	Finish lever
+	<Door name="DoorsLevel1">
+		<doorPosition X="2112" Y="1408"/>
+		<leverPosition X="2240" Y="1472"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<doorPosition X="1920" Y="1408"/>
+		<leverPosition X="2240" Y="1472"/>		
+	</Door>
+	
+	Stone Finish
+	<Door name="DoorsLevel1">
+		<doorPosition X="2112" Y="960"/>
+		<buttonPosition X="2048" Y="1472"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<doorPosition X="2368" Y="1408"/>
+		<buttonPosition X="2048" Y="1472"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<smalBridgePosition X="384" Y="1536" Closed="1"/>
+		<buttonPosition X="576" Y="1664"/>		
+	</Door>
+	
+	ID 1
+	<Door name="DoorsLevel1">
+		<doorPosition X="1152" Y="1600"/>
+		<buttonPosition X="576" Y="448"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<doorPosition X="576" Y="1152"/>
+		<buttonPosition X="576" Y="448"/>		
+	</Door>
+	
+	ID 2
+	<Door name="DoorsLevel1">
+		<doorPosition X="1024" Y="1600"/>
+		<buttonPosition X="576" Y="1024"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<doorPosition X="576" Y="1216"/>
+		<buttonPosition X="576" Y="1024"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<doorPosition X="1024" Y="1152"/>
+		<buttonPosition X="576" Y="1024"/>		
+	</Door>
+	
+	ID 3
+	<Door name="DoorsLevel1">
+		<doorPosition X="1408" Y="1600"/>
+		<buttonPosition X="960" Y="384"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<doorPosition X="960" Y="1600"/>
+		<buttonPosition X="960" Y="384"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<doorPosition X="576" Y="1280"/>
+		<buttonPosition X="960" Y="384"/>		
+	</Door>
+	
+	ID 4
+	<Door name="DoorsLevel1">
+		<doorPosition X="1216" Y="1600"/>
+		<buttonPosition X="1600" Y="384"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<doorPosition X="1472" Y="1152"/>
+		<buttonPosition X="1600" Y="384"/>		
+	</Door>
+	
+	ID 5
+	<Door name="DoorsLevel1">
+		<doorPosition X="896" Y="1600"/>
+		<buttonPosition X="1664" Y="1024"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<smalBridgePosition X="384" Y="1280" Closed="1"/>
+		<buttonPosition X="1664" Y="1024"/>		
+	</Door>
+	
+	ID 6
+	<Door name="DoorsLevel1">
+		<doorPosition X="1472" Y="1600"/>
+		<buttonPosition X="1984" Y="448"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<smalBridgePosition X="384" Y="1472" Closed="1"/>
+		<buttonPosition X="1984" Y="448"/>		
+	</Door>
+	
+	ID 7
+	<Door name="DoorsLevel1">
+		<doorPosition X="1280" Y="1600"/>
+		<buttonPosition X="1984" Y="704"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<smalBridgePosition X="384" Y="1408" Closed="1"/>
+		<buttonPosition X="1984" Y="704"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<bigBridgePosition X="1536" Y="832" Closed="0"/>
+		<buttonPosition X="1984" Y="704"/>		
+	</Door>
+	
+	ID 8
+	<Door name="DoorsLevel1">
+		<doorPosition X="1536" Y="1600"/>
+		<buttonPosition X="2432" Y="576"/>		
+	</Door>
+	
+	<Door name="DoorsLevel1">
+		<smalBridgePosition X="1984" Y="1280" Closed="1"/>
+		<buttonPosition X="2432" Y="576"/>		
+	</Door>
+	
+	
+	<Door name="DoorsLevel1">
+		<doorPosition X="704" Y="960" texture="magicdoor.png"/>
+		<magicSwitchPosition X="512" Y="832" timeOpen="5"/>		
+	</Door>
+	
+   </Body>
+   
+<Body2>
+
 	<Portal name="Level1">
-		<portalPosition X1="1152" Y1="512" X2="3520" Y2="512"/>
+		<portalPosition X1="1410" Y1="768" X2="1472" Y2="448"/>
 	</Portal>
 
-  </Body2>
+</Body2>
