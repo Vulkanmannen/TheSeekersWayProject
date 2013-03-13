@@ -14,9 +14,15 @@
 	</Door>
 	
 	<Door name="DoorsLevel1">
+<<<<<<< HEAD
 		<doorPosition X="1232" Y="1152"/>
 		<leverPosition X="1280" Y="1472"/>		
 	</Door>
+=======
+		<doorPosition X="448" Y="1280"/>
+		<buttonPosition X="704" Y="768"/>
+	</Door>	
+>>>>>>> dce7c2a16569a0326ea7313d193f0d2ec505f809
 	
 	<Door name="DoorsLevel1">
 		<doorPosition X="1328" Y="1152"/>
