@@ -19,11 +19,6 @@
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<doorPosition X="448" Y="1280"/>
-		<buttonPosition X="704" Y="768"/>
-	</Door>	
-	
-	<Door name="DoorsLevel1">
 		<doorPosition X="1328" Y="1152"/>
 		<leverPosition X="1280" Y="1472"/>		
 	</Door>
