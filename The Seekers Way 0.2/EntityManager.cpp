@@ -26,15 +26,18 @@ EntityManager::EntityManager():
 	mMapTop(360),
 	mMapLeft(512)
 {		
+		emote[0] = 0;
+		emote[1] = 0;
+		emote[2] = 0;
+		emote[3] = 0;
 		frame[0] = Animation("frame.png", 60, 1, 84, 84);
 		frame[1] = Animation("frame.png", 60, 1, 84, 84);
 		frame[2] = Animation("frame.png", 60, 1, 84, 84);
 		frame[3] = Animation("frame.png", 60, 1, 84, 84);
-		
-		mPortraitSprite[0] = Animation("PortraitesKiba.png", 60, 1, 64, 64);
-		mPortraitSprite[1] = Animation("PortraitesCharlotte.png", 60, 1, 64, 64);
-		mPortraitSprite[2] = Animation("Fenrir Face sprite 1_1.png", 60, 1, 64, 64);
-		mPortraitSprite[3] = Animation("Sheeka Face sprite 1_1.png", 60, 1, 64, 64);
+		mPortraitSprite[0] = Animation("Kiba portraites spritesheet.png",	60, 1, 64, 64);
+		mPortraitSprite[1] = Animation("charlotteportrait.png",				60, 1, 64, 64);
+		mPortraitSprite[2] = Animation("Fenrir Face sprite 1_1.png",		60, 1, 64, 64);
+		mPortraitSprite[3] = Animation("Sheeka Face sprite 1_1.png",		60, 1, 64, 64);
 		
 		shadow.loadFromFile("greyscale.frag", sf::Shader::Fragment);
 		shadow.setParameter("texture", sf::Shader::CurrentTexture);
@@ -154,10 +157,16 @@ void EntityManager::updatePlayerLife()
 // uppdaterar Portraiten spelaren har
 void EntityManager::updatePlayerPortrait()
 {
-	mPortraitSprite[0].update(0);
-	mPortraitSprite[1].update(0);
-	mPortraitSprite[2].update(0);
-	mPortraitSprite[3].update(0);
+	mPortraitSprite[0].update(emote[0]);
+	mPortraitSprite[1].update(emote[1]);
+	mPortraitSprite[2].update(emote[2]);
+	mPortraitSprite[3].update(emote[3]);
+}
+
+void EntityManager::setEmotion(int a, int b)
+{
+	emote[a] = b;
+	mPortraitSprite[a].update(emote[a]);
 }
 
 // ritarut alla objekt

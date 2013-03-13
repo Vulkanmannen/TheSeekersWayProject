@@ -41,6 +41,7 @@ public:
 	void updateView();
 	
 	void setMapSize(int numberOfBlocksWidth, int numberOfBlocksHeight);
+	void setEmotion(int character, int emotion);
 
 	int getSizeOfCharacterVector()const;
 
@@ -92,6 +93,7 @@ private:
 	void renderPortrait();
 	void updatePlayerPortrait();
 
+	int emote[4];
 	Animation frame[4];
 	sf::Shader shadow;
 	// ----------------- background
