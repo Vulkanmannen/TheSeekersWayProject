@@ -226,6 +226,7 @@
     <ClCompile Include="TutorialSign.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
+    <ClCompile Include="ZoomedSign.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -447,6 +448,7 @@
     <ClInclude Include="TutorialSign.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
+    <ClInclude Include="ZoomedSign.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">
