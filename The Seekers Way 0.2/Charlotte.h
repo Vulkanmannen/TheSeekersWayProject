@@ -34,6 +34,7 @@ private:
 
 	bool mTeleporting;
 	bool mPlayCantTeleport;
+	bool mCanPressTeleport;
 	void teleporting();
 
 	sf::Clock mTeleportClock;
