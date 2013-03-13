@@ -223,6 +223,9 @@
     <ClCompile Include="MyLightSystem.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
+    <ClCompile Include="VideoState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -440,6 +443,9 @@
     </ClInclude>
     <ClInclude Include="MyLightSystem.h">
       <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoState.h">
+      <Filter>States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

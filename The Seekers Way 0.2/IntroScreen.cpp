@@ -5,9 +5,9 @@
 
 IntroScreen::IntroScreen()
 {
-	mMovie.openFromFile("Kim_1.WMV");
-	mMovie.setPosition(0, 0);
-	mMovie.play();
+	//mMovie.openFromFile("Kim_1.WMV");
+	//mMovie.setPosition(0, 0);
+	//mMovie.play();
 }
 
 
@@ -22,5 +22,5 @@ void IntroScreen::update()
 
 void IntroScreen::render()
 {
-	ImageManager::render(&mMovie);
+	//ImageManager::render(&mMovie);
 }

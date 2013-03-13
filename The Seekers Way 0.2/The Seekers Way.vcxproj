@@ -75,6 +75,7 @@
     <ClInclude Include="TelekinesisBox.h" />
     <ClInclude Include="tinystr.h" />
     <ClInclude Include="tinyxml.h" />
+    <ClInclude Include="VideoState.h" />
     <ClInclude Include="Vine.h" />
     <ClInclude Include="WoodenWall.h" />
   </ItemGroup>
@@ -145,6 +146,7 @@
     <ClCompile Include="tinyxml.cpp" />
     <ClCompile Include="tinyxmlerror.cpp" />
     <ClCompile Include="tinyxmlparser.cpp" />
+    <ClCompile Include="VideoState.cpp" />
     <ClCompile Include="Vine.cpp" />
     <ClCompile Include="WoodenWall.cpp" />
   </ItemGroup>

@@ -19,7 +19,7 @@ Shield::Shield(sf::Vector2f &position, bool dirLeft):
 	mEntityKind = SHIELD;
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
 	mAnimation.update(mShieldCount * 2 + mDirLeft);
-	Sounds::getInstance()->Play("sheild.wav", 40);
+	Sounds::getInstance()->Play("shield.wav", 40);
 }
 
 
@@ -44,7 +44,7 @@ void Shield::interact(Entity* e)
 	if((*e) == ARROW)
 	{
 		mShieldCount++;
-		Sounds::getInstance()->Play("arrowtosheild.wav");
+		Sounds::getInstance()->Play("arrowtoshield.wav");
 	}
 	if((*e) == BLOCK || (*e) == FIREBALL)
 	{
