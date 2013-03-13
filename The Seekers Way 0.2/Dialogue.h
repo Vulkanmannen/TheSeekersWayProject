@@ -62,7 +62,7 @@ public:
 	bool getStartDialogue()const;
 	void setStartDialogue(bool stardDialogue = true);
 	
-	TextVector textBox(sf::Text &, sf::Vector2f textboxsize, int textsize);
+	TextVector textBox(sf::Text &, sf::Vector2f textboxsize, int textsize, std::string fontnamn);
 
 private:
 	static Dialogue *sInstance;
@@ -87,8 +87,8 @@ private:
 	bool mEndofDialogue;
 
 	fontMap fonts;
-	sf::Font *journal_font;
-	sf::Font *character_font;
+	/*sf::Font *journal_font;
+	sf::Font *character_font;*/
 
 	sf::Sprite mSprite;
 	sf::Texture mTexture[4];

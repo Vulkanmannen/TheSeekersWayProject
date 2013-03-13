@@ -16,14 +16,14 @@ Dialogue::Dialogue():
 	currentLetter(0),
 	mStartDialogue(true)
 {
-	journal_font = new sf::Font;
+	/*journal_font = new sf::Font;
 	if(!journal_font->loadFromFile("journal.ttf"))
 		assert(!"FONT NOT LOADED");
 
-	character_font = new sf::Font(journal_font->getDefaultFont());
+	character_font = new sf::Font(journal_font->getDefaultFont());*/
 	/*if(!character_font->loadFromFile("journal.ttf"))
-		assert(!"FONT NOT LOADED");*/
-	character_font->loadFromFile("");
+		assert(!"FONT NOT LOADED");
+	character_font->loadFromFile("");*/
 	mTexture[0].loadFromImage(*ImageManager::getImage("dialog0.png"));
 	mTexture[1].loadFromImage(*ImageManager::getImage("dialog1.png"));
 	mTexture[2].loadFromImage(*ImageManager::getImage("dialog2.png"));
@@ -34,8 +34,9 @@ Dialogue::Dialogue():
 Dialogue::~Dialogue()
 {
 	empthyDialogue();
+	/*
 	delete journal_font;
-	delete character_font;
+	delete character_font;*/
 }
 
 Dialogue* Dialogue::getInstance()
@@ -186,6 +187,7 @@ void Dialogue::empthyDialogue()
 	speakerlista.clear();
 	while(!dialogs.empty())
 	{
+		//delete dialogs.back()->text;
 		delete dialogs.back();
 		dialogs.pop_back();
 	}
@@ -274,15 +276,19 @@ void Dialogue::load(std::string dialogueName)
 				}
 			}
 
-			TextVector temptext = textBox(tempDialog.text, tempDialog.textbox, tempDialog.size);
-
+			TextVector temptext = textBox(tempDialog.text, tempDialog.textbox, tempDialog.size, tempDialog.fontnamn);
+			
 			for(int i = 0; temptext.size() > i; i++)
 			{
 				dialogbase *okDialog = new dialogbase(tempDialog);
 				okDialog->text.setString(temptext[i]->getString().toAnsiString());
 				dialogs.push_back(okDialog);
 			}
-
+			while(!temptext.empty())
+			{
+				delete temptext.back();
+				temptext.pop_back();
+			}
 		}
 		root = root->NextSiblingElement("Dialog");
 	}
@@ -290,140 +296,140 @@ void Dialogue::load(std::string dialogueName)
 
 void Dialogue::loadDialogue(std::string dialogueName)
 {
-	std::ifstream fil("Dialogues/" + dialogueName);
-	std::string file;
-	char backslash = 92;
-	Speaker speaker = kiba;
-	while(!fil.eof())
-	{
-		std::getline(fil, file, backslash);
-		std::string filen;
-		filen =	file.substr(	0, file.find('/'));
-		if(file.find('/') != std::string::npos)
-		{
-			file.erase(		0, file.find('/') + 1);
-		}
-		else 
-		{
-			file.erase(		0, file.find('/'));
-		}
-		if(	filen.find('1') != std::string::npos || 
-			filen.find('2') != std::string::npos || 
-			filen.find('3') != std::string::npos || 
-			filen.find('4') != std::string::npos)
-		{
-			int i = 0;
-			std::vector<int> j;
-			filen.find('1') != std::string::npos ? j.push_back(filen.find('1')) : NULL;
-			filen.find('2') != std::string::npos ? j.push_back(filen.find('2')) : NULL;
-			filen.find('3') != std::string::npos ? j.push_back(filen.find('3')) : NULL;
-			filen.find('4') != std::string::npos ? j.push_back(filen.find('4')) : NULL;
-			for(int o = 0; o < j.size(); o++)
-			{
-				if(j[o] < j[i])
-				{
-					i = o;
-				}
-			}
-			switch(filen[j[i]])
-			{
-				case '1':
-					speaker = kiba;
-					break;
-				case '2':
-					speaker = charlotte;
-					break;
-				case '3':
-					speaker = fenrir;
-					break;
-				case '4':
-					speaker = sheeka;
-					break;
-			}
-
-		}
-
-		while(!file.empty())
-		{
-			std::string filnamn, oldest, newest;
-			filnamn =	file.substr(	0, file.find('\n'));
-			file.erase(					0, file.find('\n'));
-			file.erase(0,1);
-			while(!filnamn.empty())
-			{
-				while(filnamn.rfind(' ') == 0 || filnamn.rfind('\n') == 0)
-				{
-					filnamn.erase(0, 1);
-				}
-				newest = filnamn[0];
-				oldest = "";
-				sf::Text *text = new sf::Text;
-				text->setFont(*character_font);
-				for(bool j = true; j == true;)
-				{
-					//std::cout<<oldest<<std::endl;
-					//std::cout<<newest<<std::endl;
-					//std::cout<<filnamn<<std::endl;
-
-					text->setString(sf::String(newest.c_str()));
-					if(filnamn.length() > 1)
-					{
-						if(text->getLocalBounds().width < 300 && text->getLocalBounds().height < 110)
-						{
-							oldest = newest;
-							newest += filnamn[1];
-							filnamn = filnamn.substr(1);
-						}
-						else 
-						{
-							if(text->getLocalBounds().height < 110)
-							{
-								bool split = true;
-								if(newest.rfind(' ') != std::string::npos && newest.rfind('\n') != std::string::npos)
-								{
-									if(newest.rfind(' ') > newest.rfind('\n'))
-									{
-										split = false;
-									}
-								}
-								else if(newest.rfind(' ') != std::string::npos && newest.rfind('\n') == std::string::npos)
-								{
-									split = false;
-								}
-
-								switch(split)
-								{
-								case true:
-									newest = oldest + '\n' + newest.back();
-									break;
-								case false:
-									newest.insert(newest.rfind(' ') + 1, "\n");
-									oldest = newest.substr(0, newest.size() - 1);
-									break;
-								}
-							}
-							else
-							{
-								filnamn = oldest.substr(oldest.rfind(' ') + 1) + filnamn;
-								oldest = oldest.substr(0, oldest.rfind(' '));
-
-								text->setString(sf::String(oldest.c_str()));
-								j = false;
-							}
-						}
-					}
-					else
-					{
-						filnamn.erase(0, 1);
-						j = false;
-					}
-				}
-				speakerlista.insert(std::pair<sf::Text*, Speaker>(text, speaker));
-				texts.push_back(text);
-			}
-			filnamn.clear();
-		}
-	}
+//	std::ifstream fil("Dialogues/" + dialogueName);
+//	std::string file;
+//	char backslash = 92;
+//	Speaker speaker = kiba;
+//	while(!fil.eof())
+//	{
+//		std::getline(fil, file, backslash);
+//		std::string filen;
+//		filen =	file.substr(	0, file.find('/'));
+//		if(file.find('/') != std::string::npos)
+//		{
+//			file.erase(		0, file.find('/') + 1);
+//		}
+//		else 
+//		{
+//			file.erase(		0, file.find('/'));
+//		}
+//		if(	filen.find('1') != std::string::npos || 
+//			filen.find('2') != std::string::npos || 
+//			filen.find('3') != std::string::npos || 
+//			filen.find('4') != std::string::npos)
+//		{
+//			int i = 0;
+//			std::vector<int> j;
+//			filen.find('1') != std::string::npos ? j.push_back(filen.find('1')) : NULL;
+//			filen.find('2') != std::string::npos ? j.push_back(filen.find('2')) : NULL;
+//			filen.find('3') != std::string::npos ? j.push_back(filen.find('3')) : NULL;
+//			filen.find('4') != std::string::npos ? j.push_back(filen.find('4')) : NULL;
+//			for(int o = 0; o < j.size(); o++)
+//			{
+//				if(j[o] < j[i])
+//				{
+//					i = o;
+//				}
+//			}
+//			switch(filen[j[i]])
+//			{
+//				case '1':
+//					speaker = kiba;
+//					break;
+//				case '2':
+//					speaker = charlotte;
+//					break;
+//				case '3':
+//					speaker = fenrir;
+//					break;
+//				case '4':
+//					speaker = sheeka;
+//					break;
+//			}
+//
+//		}
+//
+//		while(!file.empty())
+//		{
+//			std::string filnamn, oldest, newest;
+//			filnamn =	file.substr(	0, file.find('\n'));
+//			file.erase(					0, file.find('\n'));
+//			file.erase(0,1);
+//			while(!filnamn.empty())
+//			{
+//				while(filnamn.rfind(' ') == 0 || filnamn.rfind('\n') == 0)
+//				{
+//					filnamn.erase(0, 1);
+//				}
+//				newest = filnamn[0];
+//				oldest = "";
+//				sf::Text *text = new sf::Text;
+//				text->setFont(*character_font);
+//				for(bool j = true; j == true;)
+//				{
+//					//std::cout<<oldest<<std::endl;
+//					//std::cout<<newest<<std::endl;
+//					//std::cout<<filnamn<<std::endl;
+//
+//					text->setString(sf::String(newest.c_str()));
+//					if(filnamn.length() > 1)
+//					{
+//						if(text->getLocalBounds().width < 300 && text->getLocalBounds().height < 110)
+//						{
+//							oldest = newest;
+//							newest += filnamn[1];
+//							filnamn = filnamn.substr(1);
+//						}
+//						else 
+//						{
+//							if(text->getLocalBounds().height < 110)
+//							{
+//								bool split = true;
+//								if(newest.rfind(' ') != std::string::npos && newest.rfind('\n') != std::string::npos)
+//								{
+//									if(newest.rfind(' ') > newest.rfind('\n'))
+//									{
+//										split = false;
+//									}
+//								}
+//								else if(newest.rfind(' ') != std::string::npos && newest.rfind('\n') == std::string::npos)
+//								{
+//									split = false;
+//								}
+//
+//								switch(split)
+//								{
+//								case true:
+//									newest = oldest + '\n' + newest.back();
+//									break;
+//								case false:
+//									newest.insert(newest.rfind(' ') + 1, "\n");
+//									oldest = newest.substr(0, newest.size() - 1);
+//									break;
+//								}
+//							}
+//							else
+//							{
+//								filnamn = oldest.substr(oldest.rfind(' ') + 1) + filnamn;
+//								oldest = oldest.substr(0, oldest.rfind(' '));
+//
+//								text->setString(sf::String(oldest.c_str()));
+//								j = false;
+//							}
+//						}
+//					}
+//					else
+//					{
+//						filnamn.erase(0, 1);
+//						j = false;
+//					}
+//				}
+//				speakerlista.insert(std::pair<sf::Text*, Speaker>(text, speaker));
+//				texts.push_back(text);
+//			}
+//			filnamn.clear();
+//		}
+//	}
 }
 
 void Dialogue::playNext()
@@ -467,7 +473,7 @@ void Dialogue::playNext()
 }
 
 
-Dialogue::TextVector Dialogue::textBox(sf::Text &rawText, sf::Vector2f textboxsize, int textsize)
+Dialogue::TextVector Dialogue::textBox(sf::Text &rawText, sf::Vector2f textboxsize, int textsize, std::string fontnamn)
 {
 	TextVector om;
 	
@@ -488,7 +494,8 @@ Dialogue::TextVector Dialogue::textBox(sf::Text &rawText, sf::Vector2f textboxsi
 			newest = filnamn[0];
 			oldest = "";
 			sf::Text *text = new sf::Text;
-			text->setFont(*character_font);
+			text->setFont(getfont(fontnamn));
+			text->setCharacterSize(textsize);
 			for(bool j = true; j == true;)
 			{
 				//std::cout<<oldest<<std::endl;
@@ -552,7 +559,6 @@ Dialogue::TextVector Dialogue::textBox(sf::Text &rawText, sf::Vector2f textboxsi
 		}
 		filnamn.clear();
 	}
-
 	return om;
 }
 
@@ -572,7 +578,7 @@ sf::Font& Dialogue::getfont(std::string string)
 	{
 		fonts[string] = new sf::Font;
 		fonts[string]->loadFromFile("Fonts/" + string);
-		if(!journal_font->loadFromFile("journal.ttf"))
+		if(!fonts[string]->loadFromFile("Fonts/" + string))
 		{
 			assert(!"FONT NOT LOADED");
 		}

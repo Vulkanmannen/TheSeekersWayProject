@@ -34,10 +34,10 @@ EntityManager::EntityManager():
 		frame[1] = Animation("frame.png", 60, 1, 84, 84);
 		frame[2] = Animation("frame.png", 60, 1, 84, 84);
 		frame[3] = Animation("frame.png", 60, 1, 84, 84);
-		mPortraitSprite[0] = Animation("Kiba portraites spritesheet.png", 60, 1, 64, 64);
-		mPortraitSprite[1] = Animation("charlotteportrait.png", 60, 1, 64, 64);
-		mPortraitSprite[2] = Animation("Fenrir Face sprite 1_1.png", 60, 1, 64, 64);
-		mPortraitSprite[3] = Animation("Sheeka Face sprite 1_1.png", 60, 1, 64, 64);
+		mPortraitSprite[0] = Animation("Kiba portraites spritesheet.png",	60, 1, 64, 64);
+		mPortraitSprite[1] = Animation("charlotteportrait.png",				60, 1, 64, 64);
+		mPortraitSprite[2] = Animation("Fenrir Face sprite 1_1.png",		60, 1, 64, 64);
+		mPortraitSprite[3] = Animation("Sheeka Face sprite 1_1.png",		60, 1, 64, 64);
 		
 		shadow.loadFromFile("greyscale.frag", sf::Shader::Fragment);
 		shadow.setParameter("texture", sf::Shader::CurrentTexture);

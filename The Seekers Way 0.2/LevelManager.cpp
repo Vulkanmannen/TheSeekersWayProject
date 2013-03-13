@@ -66,7 +66,6 @@ void LevelManager::generateLevels()
 
 void LevelManager::generateDialogues()
 {
-<<<<<<< HEAD
 	mStartDialogues.push_back("Level1StartDialogue");
 	mStartDialogues.push_back("Level2StartDialogue");
 	mStartDialogues.push_back("Level3StartDialogue");
@@ -78,21 +77,6 @@ void LevelManager::generateDialogues()
 	mEndDialogues.push_back("Level3EndDialogue");
 	mEndDialogues.push_back("Level4EndDialogue");
 	mEndDialogues.push_back("Level5EndDialogue");
-=======
-	mStartDialogues.push_back("Level1StartDialogue.txt");
-	mStartDialogues.push_back("Level2StartDialogue.txt");
-	mStartDialogues.push_back("Level3StartDialogue.txt");
-	mStartDialogues.push_back("Level4StartDialogue.txt");
-	mStartDialogues.push_back("Level5StartDialogue.txt");
-	//mStartDialogues.push_back("Level6StartDialogue.txt");
-
-	mEndDialogues.push_back("Level1EndDialogue.txt");
-	mEndDialogues.push_back("Level2EndDialogue.txt");
-	mEndDialogues.push_back("Level3EndDialogue.txt");
-	mEndDialogues.push_back("Level4EndDialogue.txt");
-	mEndDialogues.push_back("Level5EndDialogue.txt");
-	//mEndDialogues.push_back("Level6EndDialogue.txt");
->>>>>>> origin/master
 }
 
 int LevelManager::getCurrentLevel()
