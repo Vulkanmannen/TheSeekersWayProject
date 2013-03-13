@@ -2,12 +2,12 @@
 
   <Body>
 	<Dialog name="DoorsLevel1">
-		<speech textX="10" textY="94" text="Will they be okay?" speaker="1" size="30" bild="dialog1.png"
+		<speech textX="10" textY="94" text="Will they be okay?" speaker="2" size="30" bild="dialog1.png"
 		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="1" font="segoeui.ttf"/>
 	</Dialog>
 
 	<Dialog name="DoorsLevel1">
-		<speech textX="10" textY="94" text="..." speaker="1" size="30" bild="dialog1.png"
+		<speech textX="10" textY="94" text="..." speaker="2" size="30" bild="dialog1.png"
 		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="1" font="segoeui.ttf"/>
 	</Dialog>
 	
