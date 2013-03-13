@@ -191,11 +191,11 @@ float Sounds::getMasterVolume()
 }
 
 //funktion som lettar efter musikbuffer och returnerar den
-sf::SoundBuffer Sounds::getBuffer(std::string namn)
+sf::SoundBuffer* Sounds::getBuffer(std::string namn)
 {
 	if(bufferlista[namn]!=NULL)
 	{
-		return *bufferlista[namn];
+		return bufferlista[namn];
 	}
 
 	else
@@ -223,5 +223,21 @@ sf::SoundBuffer Sounds::getBuffer(std::string namn)
 		//"Failed to load sound file: "
 		MessageBox(NULL, result, (LPCWSTR)L"CANNOT LOAD", MB_OK);
         std::exit(EXIT_FAILURE);
+	}
+}
+
+void Sounds::Stop(std::string namn)
+{
+	for(int i = 0; i < soundlimit; i++)
+	{
+		mSounds[i]->getBuffer() == bufferlista[namn]? mSounds[i]->stop() : NULL;
+	}
+}
+
+void Sounds::Pause(std::string namn)
+{
+	for(int i = 0; i < soundlimit; i++)
+	{
+		mSounds[i]->getBuffer() == bufferlista[namn]? mSounds[i]->pause() : NULL;
 	}
 }

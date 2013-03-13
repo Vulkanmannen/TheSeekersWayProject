@@ -5,6 +5,7 @@
 #include "NormalBlock.h"
 #include "Animation.h"
 #include "StartMenu.h"
+#include "IntroScreen.h"
 
 #include <string>
 
@@ -21,12 +22,12 @@
 #include "Dialogue.h"
 #include "MyLightSystem.h"
 
+
 #include <LTBL\Light\LightSystem.h>
 #include <LTBL\Light\Light_Point.h>
 #include <LTBL\Utils.h>
 
 int main()
-
 {
 	sf::VideoMode videoMode(1024, 720);
 	sf::RenderWindow window(videoMode, "The Seekers Way"/*, sf::Style::Fullscreen*/);
@@ -40,14 +41,14 @@ int main()
 	view.setCenter(512, 360);
 	view.setSize(1024, 720);
 
-	ltbl::LightSystem lightSystem = ltbl::LightSystem(AABB(Vec2f(0.0f, 0.0f), Vec2f(view.getSize().x , view.getSize().y)), 
-		&ImageManager::getWindow(), "lightFin.png", "shaders/lightAttenuationShader.frag");
+	//ltbl::LightSystem lightSystem = ltbl::LightSystem(AABB(Vec2f(0.0f, 0.0f), Vec2f(view.getSize().x , view.getSize().y)), 
+	//	&ImageManager::getWindow(), "lightFin.png", "shaders/lightAttenuationShader.frag");
 
-	lightSystem.m_ambientColor = sf::Color(80,80,80);
-	lightSystem.m_useBloom = true;
+	//lightSystem.m_ambientColor = sf::Color(80,80,80);
+	//lightSystem.m_useBloom = true;
 
-	// sätter ett lightsystem till lightmanagern
-	MyLightSystem::setLightSystem(&lightSystem);
+	//// sätter ett lightsystem till lightmanagern
+	//MyLightSystem::setLightSystem(&lightSystem);
 
 	window.setMouseCursorVisible(false);
 
@@ -59,14 +60,12 @@ int main()
    while (window.isOpen())
     {
 		sf::Listener::setPosition(view.getCenter().x, view.getCenter().y, 0);
-       
 		sf::Event event;
 
 		if (State::getInstance()->getExit())
 		{	
 			window.close();
 		}
-		
 
         while (window.pollEvent(event))
         {
@@ -75,11 +74,10 @@ int main()
         }
 
 		window.clear(sf::Color::Black);
-		
-		State::getInstance()->update();
 
+		State::getInstance()->update();
 		window.setView(view); 
-		lightSystem.SetView(view);
+		//lightSystem.SetView(view);
 
 		window.display();
 	}

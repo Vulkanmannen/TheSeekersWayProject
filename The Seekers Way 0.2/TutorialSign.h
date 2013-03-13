@@ -3,6 +3,7 @@
 
 #include "Object.h"
 
+class ZoomedSign;
 
 class TutorialSign: public Object
 {
@@ -17,15 +18,11 @@ public:
 private:
 
 	sf::Clock mClock;
-	sf::Texture mZoomedSignTexture;
-	sf::Sprite mZoomedSignSprite;
 
 	void onSignFalse();
+	EntityKind mCurrent;
 
-	bool kibaOnSign;
-	bool charlotteOnSign;
-	bool fenrirOnSign;
-	bool sheekaOnSign;
+	ZoomedSign *mZoomedSign;
 };
 
 #endif
