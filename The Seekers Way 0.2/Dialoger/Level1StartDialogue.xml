@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 
   <Body>
+
+	KIBA
 	<Dialog name="DoorsLevel1">
-		<speech textX="10" textY="94" text="Will they be okay?" speaker="1" size="30" bild="dialog1.png" 
-		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="1" font="segoeui.ttf"/>
+		<speech textX="10" textY="105" text="Phew! I thought we were goners for sure! Are you OK?" speaker="0" size="24" bild="dialog0.png" 
+		bildX="2" bildY="80" textboxWidth="290" textboxHeight="100" emotion="0" font="segoeui.ttf"/>
+	</Dialog>
+	
+	CHARLOTTE
+	<Dialog name="DoorsLevel1">
+		<speech textX="10" textY="105" text="I'll manage. But where's Fenrir and Sheeka?" speaker="1" size="24" bild="dialog1.png" 
+		bildX="2" bildY="80" textboxWidth="290" textboxHeight="100" emotion="0" font="segoeui.ttf"/>
 	</Dialog>
 
+	KIBA
 	<Dialog name="DoorsLevel1">
-		<speech textX="10" textY="94" text="..." speaker="1" size="30" bild="dialog1.png" 
-		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="1" font="segoeui.ttf"/>
+		<speech textX="10" textY="105" text="No idea. But, they will be fine. Fenrir's a wolf, he protects every member of his pack." speaker="0" size="24" bild="dialog0.png" 
+		bildX="2" bildY="80" textboxWidth="290" textboxHeight="100" emotion="0" font="segoeui.ttf"/>
 	</Dialog>
+
+	CHARLOTTE
+	<Dialog name="DoorsLevel1">
+		<speech textX="10" textY="105" text="You do know they hate each other, right?" speaker="1" size="24" bild="dialog1.png" 
+		bildX="2" bildY="80" textboxWidth="290" textboxHeight="100" emotion="0" font="segoeui.ttf"/>
+	</Dialog>
+
+	KIBA
+	<Dialog name="DoorsLevel1">
+		<speech textX="10" textY="105" text="Yeah, sure, but..." speaker="0" size="24" bild="dialog0.png" 
+		bildX="2" bildY="80" textboxWidth="290" textboxHeight="100" emotion="0" font="segoeui.ttf"/>
+	</Dialog>
+
+	KIBA SIGHS
+	<Dialog name="DoorsLevel1">
+		<speech textX="10" textY="105" text="You're right. We have to find them." speaker="0" size="24" bild="dialog0.png" 
+		bildX="2" bildY="80" textboxWidth="290" textboxHeight="100" emotion="1" font="segoeui.ttf"/>
+	</Dialog>
+
+	CHARLOTTE
+	<Dialog name="DoorsLevel1">
+		<speech textX="10" textY="105" text="Let's go then." speaker="1" size="24" bild="dialog1.png" 
+		bildX="2" bildY="80" textboxWidth="290" textboxHeight="100" emotion="0" font="segoeui.ttf"/>
+	</Dialog>
+
 	
   </Body>

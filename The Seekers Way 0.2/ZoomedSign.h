@@ -6,7 +6,7 @@
 class ZoomedSign: public Object
 {
 public:
-	ZoomedSign(sf::Vector2f &position);
+	ZoomedSign(sf::Vector2f &position, unsigned char spriteNumber);
 	~ZoomedSign();
 
 	void update(EntityKind &currentEntity);
