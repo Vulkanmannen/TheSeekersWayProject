@@ -45,6 +45,10 @@ public:
 	void setShadeAll(bool);
 
 	int getSizeOfCharacterVector()const;
+
+	//------------FinishDoor Animations on Char
+	void SetAniToIdle();
+
 private:
 	EntityManager();
 	EntityManager(const EntityManager &e);

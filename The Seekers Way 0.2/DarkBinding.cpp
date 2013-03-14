@@ -40,7 +40,7 @@ void DarkBinding::render()
 
 void DarkBinding::interact(Entity* e)
 {
-	if(((*e) == BLOCK && (*e) != VINE) || *e == DARKBINDING)
+	if(((*e) == BLOCK && (*e) != VINE) || *e == MAGICSWITCH)
 	{
 		destroy();
 	}
