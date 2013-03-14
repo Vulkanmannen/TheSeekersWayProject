@@ -124,7 +124,7 @@ void Dialogue::render()
 			}
 			tempText.setString(tempString);
 			mSprite.setPosition(	sf::Vector2f(camX + dialogs[currentText]->bildposition.x, camY + dialogs[currentText]->bildposition.y));
-			tempText.setPosition(	sf::Vector2f(camX + dialogs[currentText]->textposition.x, camY + dialogs[currentText]->textposition.y));
+			tempText.setPosition(	sf::Vector2f(camX + dialogs[currentText]->textposition.x , camY + dialogs[currentText]->textposition.y));
 			sf::Texture temptexture;
 			if(dialogs[currentText]->bildnamn == "")
 			{
@@ -519,8 +519,8 @@ Dialogue::TextVector Dialogue::textBox(sf::Text &rawText, sf::Vector2f textboxsi
 	while(!file.empty())
 	{
 		std::string filnamn, oldest, newest;
-		filnamn =	file.substr(	0, file.find('\n'));
-		file.erase(					0, file.find('\n'));
+		filnamn =	file.substr(	0, file.find(char(92)));
+		file.erase(					0, file.find(char(92)));
 		file.erase(0,1);
 		while(!filnamn.empty())
 		{
@@ -538,7 +538,6 @@ Dialogue::TextVector Dialogue::textBox(sf::Text &rawText, sf::Vector2f textboxsi
 				//std::cout<<oldest<<std::endl;
 				//std::cout<<newest<<std::endl;
 				//std::cout<<filnamn<<std::endl;
-
 				text->setString(sf::String(newest.c_str()));
 				if(filnamn.length() > 1)
 				{
