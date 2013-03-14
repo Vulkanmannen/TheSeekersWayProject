@@ -42,7 +42,7 @@ void State::update()
 			{
 				Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() - 1);
 			}
-			if(mIntroClock.getElapsedTime().asSeconds() > 0.5 
+			if(mIntroClock.getElapsedTime().asSeconds() > 8 
 				|| (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || sf::Keyboard::isKeyPressed(sf::Keyboard::Return)))
 			{
 				mMenuStates = StartState;

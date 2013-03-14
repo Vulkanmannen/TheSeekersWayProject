@@ -3,7 +3,7 @@
 
 #include "State.h"
 #include "Animation.h"
-//#include "SfeMovie\include\sfeMovie\Movie.hpp"
+#include "SfeMovie\Movie.hpp"
 
 
 class IntroScreen

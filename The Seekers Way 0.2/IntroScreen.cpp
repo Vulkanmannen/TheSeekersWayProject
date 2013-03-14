@@ -9,7 +9,7 @@ IntroScreen::IntroScreen()
 	//mMovie.openFromFile("Intro.wmv");
 	//mMovie.setPosition(400, 300);
 	//mMovie.play();
-}
+} 
 
 
 IntroScreen::~IntroScreen()
