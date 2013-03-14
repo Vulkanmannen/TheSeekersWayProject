@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <Body>
+	SHEEKA
+	<Dialog name="DoorsLevel1">
+		<speech text="Sheeka: You don't have to follow me." speaker="3" bild="dialog3.png" emotion="0"/>
+	</Dialog>
+	
+	FENRIR SIGHS
+	<Dialog name="DoorsLevel1">
+		<speech text="Fenrir: I know you're a cat and all, but even you can get lost here." speaker="2" bild="dialog2.png" emotion="1"/>
+	</Dialog>
+
+	SHEEKA
+	<Dialog name="DoorsLevel1">
+		<speech text="Sheeka: Whatever you say, pup. Just don't get in my way." speaker="3" bild="dialog3.png" emotion="0"/>
+	</Dialog>
+	
+	FENRIR ANGRY
+	<Dialog name="DoorsLevel1">
+		<speech text="Fenrir: Now listen here, cat! You wouldn't even be alive if it wasn't for me. That fall would've killed you. Stop being so stuck-up and show some humility for once." speaker="2" bild="dialog2.png" emotion="3"/>
+	</Dialog>
+
+	Kiba's journal
+	<Dialog name="DoorsLevel1">
+		<speech text="But at least one of them was trying..." bild="dialog4.png"
+		textX="512" textY="360"
+		bildX="512" bildY="360"
+		font="journal.ttf"/>
+	</Dialog>
+
+	FENRIR
+	<Dialog name="DoorsLevel1">
+		<speech text="Fenrir: Come on. We have to find Kiba and Charlotte." speaker="2" bild="dialog2.png" emotion="0"/>
+	</Dialog>
+	
+  </Body>

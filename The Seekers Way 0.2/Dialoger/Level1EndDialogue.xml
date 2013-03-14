@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <Body>
+	KIBA
+	<Dialog name="DoorsLevel1">
+		<speech text="Kiba: Well, that wasn't too hard. Hopefully, we will find Fenrir and Sheeka somewhere." speaker="0" bild="dialog0.png" emotion="0"/>
+	</Dialog>
+
+	CHARLOTTE
+	<Dialog name="DoorsLevel1">
+		<speech text="Charlotte: I don't want to find them growling at each other, though." speaker="1" bild="dialog1.png" emotion="0"/>
+	</Dialog>
+	
+	KIBA SMILES
+	<Dialog name="DoorsLevel1">
+		<speech text="Kiba: Glad the two of us don't have that problem." speaker="0" bild="dialog0.png" emotion="2"/>
+	</Dialog>
+	
+	CHARLOTTE SMILES
+	<Dialog name="DoorsLevel1">
+		<speech text="Charlotte: Not yet, at least." speaker="1" bild="dialog1.png" emotion="2"/>
+	</Dialog>
+	<Dialog name="DoorsLevel1">
+		<speech text="By the way, Kiba. Why do you want to become the Seeker so bad?" speaker="1" bild="dialog1.png" emotion="2"/>
+	</Dialog>
+
+	KIBA SMILES
+	<Dialog name="DoorsLevel1">
+		<speech text="Kiba: I like setting goals for myself. Don't you want it too?" speaker="0" bild="dialog0.png" emotion="2"/>
+	</Dialog>
+	
+	CHARLOTTE SMILES
+	<Dialog name="DoorsLevel1">
+		<speech text="Charlotte: I just want to see the world. But I will try my hardest. It will be our little competition." speaker="1" bild="dialog1.png" emotion="2"/>
+	</Dialog>
+	
+  </Body>

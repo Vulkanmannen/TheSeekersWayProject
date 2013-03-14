@@ -17,6 +17,15 @@ Door::Door(sf::Vector2f &position, std::string &texture):
 	mAlive = true;
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
+	if(texture == "magicdoor.png")
+	{
+		mMagicDoor = true;
+	}
+	else
+	{
+		mMagicDoor = false;
+	}
+
 	mEntityKind = DOOR;	
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH/ 2, mPosition.y - SPRITEHEIGHT/ 2));
 	in = 0;
@@ -31,7 +40,14 @@ void Door::Activate()
 {
 	if(mStatus != OPENING || mStatus != CLOSING) 
 	{
-		Sounds::getInstance()->Play("door.wav");
+		if(mMagicDoor)
+		{
+			Sounds::getInstance()->Play("magicdoor.wav", 50);
+		}
+		else
+		{
+			Sounds::getInstance()->Play("door.wav");
+		}
 	}
 	mStatus = OPENING;
 	mBaseKind = OBJECT;
@@ -41,7 +57,10 @@ void Door::DisActivate()
 {
 	if(mStatus != OPENING || mStatus != CLOSING) 
 	{
-		Sounds::getInstance()->Play("door.wav");
+		if(!mMagicDoor)
+		{
+			Sounds::getInstance()->Play("door.wav");
+		}
 	}
 	mStatus = CLOSING;
 	mBaseKind = BLOCK;

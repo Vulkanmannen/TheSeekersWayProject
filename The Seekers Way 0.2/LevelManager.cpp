@@ -35,7 +35,7 @@ void LevelManager::LoadLevel(int level)
 	
 	Sounds::getInstance()->StopAll();
 	Sounds::getInstance()->setMasterVolume(100);
-	Sounds::getInstance()->Loop("Level1Music.wav", 20);
+	Sounds::getInstance()->Loop("Level1Music.wav", 10);
 
 	EntityManager::getInstance()->setPlayerLifeMax();
 }
@@ -66,19 +66,17 @@ void LevelManager::generateLevels()
 
 void LevelManager::generateDialogues()
 {
-	mStartDialogues.push_back("Level1StartDialogue.txt");
-	mStartDialogues.push_back("Level2StartDialogue.txt");
-	mStartDialogues.push_back("Level3StartDialogue.txt");
-	mStartDialogues.push_back("Level4StartDialogue.txt");
-	mStartDialogues.push_back("Level5StartDialogue.txt");
-	//mStartDialogues.push_back("Level6StartDialogue.txt");
+	mStartDialogues.push_back("Level1StartDialogue");
+	mStartDialogues.push_back("Level2StartDialogue");
+	mStartDialogues.push_back("Level3StartDialogue");
+	mStartDialogues.push_back("Level4StartDialogue");
+	mStartDialogues.push_back("Level5StartDialogue");
 
-	mEndDialogues.push_back("Level1EndDialogue.txt");
-	mEndDialogues.push_back("Level2EndDialogue.txt");
-	mEndDialogues.push_back("Level3EndDialogue.txt");
-	mEndDialogues.push_back("Level4EndDialogue.txt");
-	mEndDialogues.push_back("Level5EndDialogue.txt");
-	//mEndDialogues.push_back("Level6EndDialogue.txt");
+	mEndDialogues.push_back("Level1EndDialogue");
+	mEndDialogues.push_back("Level2EndDialogue");
+	mEndDialogues.push_back("Level3EndDialogue");
+	mEndDialogues.push_back("Level4EndDialogue");
+	mEndDialogues.push_back("Level5EndDialogue");
 }
 
 int LevelManager::getCurrentLevel()

@@ -3,6 +3,7 @@
 #include "ImageManager.h"
 #include "Sounds.h"
 #include <iostream>
+
 const static float HEIGHT = 120;
 const static float WIDTH = 56;
 
@@ -129,6 +130,7 @@ void Kiba::choosing()
 				{
 					mStone->setStoneState(Stone::INAIR);
 					mTeleState = SELECTEDSTONE;
+					Sounds::getInstance()->Play("levitate.wav");
 				}
 			}
 			else
@@ -158,6 +160,7 @@ void Kiba::choosing()
 			
 			mStone = mTelekinesisBox->getCurrentStone();
 			mTeleState = SELECTEDSTONE;
+			Sounds::getInstance()->Play("levitate.wav");
 			
 			if(mStone != NULL)
 			{	

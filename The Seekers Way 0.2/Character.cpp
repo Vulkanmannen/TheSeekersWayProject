@@ -450,3 +450,8 @@ void Character::takeLavaDamage()
 {
 	EntityManager::getInstance()->setPlayerLifeZero();
 }
+
+void Character::setStatusIdle()
+{
+	mStatus = IDLE;
+}

@@ -18,7 +18,8 @@ DarkBinding::DarkBinding(sf::Vector2f &position, bool dirLeft):
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
 		mPosition = position;
-		Sounds::getInstance()->Play("shadowbolt 1.3.wav", 100, mPosition);
+		mLayer = MIDDLE;
+		Sounds::getInstance()->Play("shadowbolt.wav", 100, mPosition);
 	}
 
 
@@ -39,7 +40,7 @@ void DarkBinding::render()
 
 void DarkBinding::interact(Entity* e)
 {
-	if(((*e) == BLOCK && (*e) != VINE) || *e == DARKBINDING)
+	if(((*e) == BLOCK && (*e) != VINE) || *e == MAGICSWITCH)
 	{
 		destroy();
 	}

@@ -24,17 +24,21 @@ EntityManager::EntityManager():
 	mPlayerLife(mMaxPlayerLife),
 	mZeroPlayerLife(0),
 	mMapTop(360),
-	mMapLeft(512)
+	mMapLeft(512),
+	shadeAll(false)
 {		
+		emote[0] = 0;
+		emote[1] = 0;
+		emote[2] = 0;
+		emote[3] = 0;
 		frame[0] = Animation("frame.png", 60, 1, 84, 84);
 		frame[1] = Animation("frame.png", 60, 1, 84, 84);
 		frame[2] = Animation("frame.png", 60, 1, 84, 84);
 		frame[3] = Animation("frame.png", 60, 1, 84, 84);
-		
-		mPortraitSprite[0] = Animation("PortraitesKiba.png", 60, 1, 64, 64);
-		mPortraitSprite[1] = Animation("PortraitesCharlotte.png", 60, 1, 64, 64);
-		mPortraitSprite[2] = Animation("Fenrir Face sprite 1_1.png", 60, 1, 64, 64);
-		mPortraitSprite[3] = Animation("Sheeka Face sprite 1_1.png", 60, 1, 64, 64);
+		mPortraitSprite[0] = Animation("Kiba portraites spritesheet.png",	60, 1, 64, 64);
+		mPortraitSprite[1] = Animation("charlotteportrait.png",				60, 1, 64, 64);
+		mPortraitSprite[2] = Animation("Fenrir Face sprite 1_1.png",		60, 1, 64, 64);
+		mPortraitSprite[3] = Animation("Sheeka Face sprite 1_1.png",		60, 1, 64, 64);
 		
 		shadow.loadFromFile("greyscale.frag", sf::Shader::Fragment);
 		shadow.setParameter("texture", sf::Shader::CurrentTexture);
@@ -154,10 +158,16 @@ void EntityManager::updatePlayerLife()
 // uppdaterar Portraiten spelaren har
 void EntityManager::updatePlayerPortrait()
 {
-	mPortraitSprite[0].update(0);
-	mPortraitSprite[1].update(0);
-	mPortraitSprite[2].update(0);
-	mPortraitSprite[3].update(0);
+	mPortraitSprite[0].update(emote[0]);
+	mPortraitSprite[1].update(emote[1]);
+	mPortraitSprite[2].update(emote[2]);
+	mPortraitSprite[3].update(emote[3]);
+}
+
+void EntityManager::setEmotion(int a, int b)
+{
+	emote[a] = b;
+	mPortraitSprite[a].update(emote[a]);
 }
 
 // ritarut alla objekt
@@ -237,30 +247,30 @@ void EntityManager::renderPortrait()
 			case 0:
 				if (mCharacters[j]->getEntityKind() == Entity::KIBA) 
 				{
-					ImageManager::render(&mPortraitSprite[0].getSprite(), mPrimaryCharacter != Entity::KIBA ? states : sf::RenderStates::Default);
+					ImageManager::render(&mPortraitSprite[0].getSprite(),	mPrimaryCharacter != Entity::KIBA || shadeAll? states : sf::RenderStates::Default);
 				}
-				ImageManager::render(&frame[i].getSprite(), mPrimaryCharacter != Entity::KIBA ? states : sf::RenderStates::Default);
+					ImageManager::render(&frame[i].getSprite(),				mPrimaryCharacter != Entity::KIBA || shadeAll? states : sf::RenderStates::Default);
 				break;
 			case 1:
 				if (mCharacters[j]->getEntityKind() == Entity::CHARLOTTE) 
 				{
-					ImageManager::render(&mPortraitSprite[1].getSprite(), mPrimaryCharacter != Entity::CHARLOTTE ? states : sf::RenderStates::Default);
+					ImageManager::render(&mPortraitSprite[1].getSprite(),	mPrimaryCharacter != Entity::CHARLOTTE || shadeAll? states : sf::RenderStates::Default);
 				}
-				ImageManager::render(&frame[i].getSprite(), mPrimaryCharacter != Entity::CHARLOTTE ? states : sf::RenderStates::Default);
+					ImageManager::render(&frame[i].getSprite(),				mPrimaryCharacter != Entity::CHARLOTTE || shadeAll? states : sf::RenderStates::Default);
 				break;
 			case 2:
 				if (mCharacters[j]->getEntityKind() == Entity::FENRIR)
 				{
-					ImageManager::render(&mPortraitSprite[2].getSprite(), mPrimaryCharacter != Entity::FENRIR ? states : sf::RenderStates::Default);
+					ImageManager::render(&mPortraitSprite[2].getSprite(),	mPrimaryCharacter != Entity::FENRIR || shadeAll? states : sf::RenderStates::Default);
 				}
-				ImageManager::render(&frame[i].getSprite(), mPrimaryCharacter != Entity::FENRIR ? states : sf::RenderStates::Default);
+					ImageManager::render(&frame[i].getSprite(),				mPrimaryCharacter != Entity::FENRIR || shadeAll? states : sf::RenderStates::Default);
 				break;
 			case 3:
 				if (mCharacters[j]->getEntityKind() == Entity::SHEEKA) 
 				{
-					ImageManager::render(&mPortraitSprite[3].getSprite(), mPrimaryCharacter != Entity::SHEEKA ? states : sf::RenderStates::Default);
+					ImageManager::render(&mPortraitSprite[3].getSprite(),	mPrimaryCharacter != Entity::SHEEKA || shadeAll? states : sf::RenderStates::Default);
 				}
-				ImageManager::render(&frame[i].getSprite(), mPrimaryCharacter != Entity::SHEEKA ? states : sf::RenderStates::Default);
+					ImageManager::render(&frame[i].getSprite(),				mPrimaryCharacter != Entity::SHEEKA || shadeAll? states : sf::RenderStates::Default);
 				break;
 			}
 		}
@@ -523,4 +533,17 @@ void EntityManager::setPlayerLifeMax()
 void EntityManager::setPlayerLifeZero()
 {
 	mPlayerLife = mZeroPlayerLife;
+}
+
+void EntityManager::setShadeAll(bool a)
+{
+	shadeAll = a;
+}
+
+void EntityManager::SetAniToIdle()
+{
+	for(CharacterVector::size_type i = 0; i < mCharacters.size(); i++)
+	{
+		mCharacters[i]->setStatusIdle();
+	}
 }

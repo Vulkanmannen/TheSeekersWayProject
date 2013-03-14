@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <Body>
+	KIBA
+	<Dialog name="DoorsLevel1">
+		<speech text="Kiba: Wait, you’re not gonna fight before we go through here?" speaker="0" bild="dialog0.png" emotion="0"/>
+	</Dialog>
+
+	FENRIR
+	<Dialog name="DoorsLevel1">
+		<speech text="Fenrir: ..." speaker="2" bild="dialog2.png" emotion="0"/>
+	</Dialog>
+
+	SHEEKA
+	<Dialog name="DoorsLevel1">
+		<speech text="Sheeka: ..." speaker="3" bild="dialog3.png" emotion="0"/>
+	</Dialog>
+
+	CHARLOTTE
+	<Dialog name="DoorsLevel1">
+		<speech text="Charlotte: Don't encourage them, Kiba. Let's just go." speaker="1" bild="dialog1.png" emotion="2"/>
+	</Dialog>
+	
+  </Body>

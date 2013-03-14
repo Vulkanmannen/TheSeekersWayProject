@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <Body>
+  
+	FENRIR
+	<Dialog name="DoorsLevel1">
+		<speech text="Fenrir: Just who the heck built this temple, anyway?" speaker="2" bild="dialog2.png" emotion="0"/>
+	</Dialog>
+
+	SHEEKA
+	<Dialog name="DoorsLevel1">
+		<speech text="Sheeka: Someone who really didn't want his or her necklace stolen. I sure hope it's more than just an accessory." speaker="3" bild="dialog3.png" emotion="0"/>
+	</Dialog>
+
+	CHARLOTTE
+	<Dialog name="DoorsLevel1">
+		<speech text="Charlotte: I kind of hope it's not. It's so pretty." speaker="1" bild="dialog1.png" emotion="2"/>
+	</Dialog>
+
+	KIBA
+	<Dialog name="DoorsLevel1">
+		<speech text="Kiba: We'll take it to an appraiser once we’re out of here. If it's not worth anything, you can have it, Charlotte." speaker="0" bild="dialog0.png" emotion="0"/>
+	</Dialog>
+	KIBA SMILES
+	<Dialog name="DoorsLevel1">
+		<speech text="I promise."speaker="0" bild="dialog0.png" emotion="2"/>
+	</Dialog>
+
+  </Body>

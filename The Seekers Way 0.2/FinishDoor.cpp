@@ -75,9 +75,13 @@ void FinishDoor::LoadNextLevel()
 		}
 		mAllInGoal = true;
 	}
-
+	else
+	{
+		mAllInGoal = false;
+	}
 	if(mClockAllIn.getElapsedTime().asSeconds() > 2 && mAllInGoal)
 	{
+		EntityManager::getInstance()->SetAniToIdle();
 		LevelManager::getInstance()->LoadEndLevel();
 		Dialogue::getInstance()->setStartDialogue(false);
 		State::getInstance()->setState(State::DialogueState);
@@ -107,12 +111,8 @@ void FinishDoor::updateCharactersInGoal()
 
 void FinishDoor::inGoalfalse()
 {
-	if(mClock.getElapsedTime().asSeconds() >= 3)
-	{
 		sheekaInGoal = false;
 		fenrirInGoal = false;
 		charlotteInGoal = false;
 		kibaInGoal = false;
-		mClock.restart();
-	}
 }

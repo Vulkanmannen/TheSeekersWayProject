@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <Body>
+	FENRIR SURPRISED
+	<Dialog name="DoorsLevel1">
+		<speech text="Fenrir: Oh, you're here?!" speaker="2" bild="dialog2.png" emotion="4"/>
+	</Dialog>
+
+	KIBA SMILES
+	<Dialog name="DoorsLevel1">
+		<speech text="Kiba: So are you, I see." speaker="0" bild="dialog0.png" emotion="2"/>
+	</Dialog>
+
+	CHARLOTTE SMILES
+	<Dialog name="DoorsLevel1">
+		<speech text="Charlotte: Glad to see you all right." speaker="1" bild="dialog1.png" emotion="2"/>
+	</Dialog>
+
+	SHEEKA
+	<Dialog name="DoorsLevel1">
+		<speech text="Sheeka: Just barely managing his nagging." speaker="3" bild="dialog3.png" emotion="0"/>
+	</Dialog>
+
+	FENRIR ANGRY
+	<Dialog name="DoorsLevel1">
+		<speech text="Fenrir: Oh, for the love of- You just don't stop, do you?" speaker="2" bild="dialog2.png" emotion="3"/>
+	</Dialog>
+
+	KIBA
+	<Dialog name="DoorsLevel1">
+		<speech text="Kiba: Hey, no growling! That's no way to celebrate a reunion." speaker="0" bild="dialog0.png" emotion="0"/>
+	</Dialog>
+	
+	SHEEKA
+	<Dialog name="DoorsLevel1">
+		<speech text="Sheeka: I just want to get out of here. So, shall we?" speaker="3" bild="dialog3.png" emotion="0"/>
+	</Dialog>
+
+	
+  </Body>

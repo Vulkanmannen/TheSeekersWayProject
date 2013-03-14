@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <Body>
+	FENRIR
+	<Dialog name="DoorsLevel1">
+		<speech text="Fenrir: Well?" speaker="2" bild="dialog2.png" emotion="0"/>
+	</Dialog>
+	
+	SHEEKA
+	<Dialog name="DoorsLevel1">
+		<speech text="Sheeka: What?" speaker="3" bild="dialog3.png" emotion="0"/>
+	</Dialog>
+	
+	FENRIR
+	<Dialog name="DoorsLevel1">
+		<speech text="Fenrir: You're not going to apologize?" speaker="2" bild="dialog2.png" emotion="0"/>
+	</Dialog>
+	
+	SHEEKA
+	<Dialog name="DoorsLevel1">
+		<speech text="Sheeka: Oh, sure. If it makes you feel better, I'm sorry" speaker="3" bild="dialog3.png" emotion="0"/>
+	</Dialog>
+	
+  </Body>
