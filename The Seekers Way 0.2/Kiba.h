@@ -16,6 +16,8 @@ public:
 
 	void update(EntityKind &currentEntity);
 	void render();
+
+	void onblock();
 	
 private:
 	void slash();

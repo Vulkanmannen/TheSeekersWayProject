@@ -432,7 +432,19 @@ sf::Vector2f EntityManager::getCharacterPos()const
 // sätter primarycharacter
 void EntityManager::setPrimaryCharacter(Entity::EntityKind entityKind)
 {
-	mPrimaryCharacter = entityKind;
+	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i) // kollar om den valda karaktären finns i vektorn
+	{
+		if(mCharacters[i]->getEntityKind() == entityKind)
+		{
+			mPrimaryCharacter = entityKind;
+			return;
+		}
+	}
+
+	if(mCharacters.size() > 0)
+	{
+		mPrimaryCharacter = mCharacters[0]->getEntityKind();
+	}
 }
 
 void EntityManager::interact()
