@@ -13,8 +13,7 @@ errorsound.wav
 snowmist.wav
 Level1Music.wav
 crazykoncept.wav
-arrowtosheild.wav
-shadowbolt 1.3.wav
+shadowbolt.wav
 switch char 1.1.wav
 arrowtosheild.wav
 button.wav
@@ -24,3 +23,5 @@ jump3.wav
 land.wav
 lever.wav
 magicdoor.wav
+changestone.wav
+levitate.wav
