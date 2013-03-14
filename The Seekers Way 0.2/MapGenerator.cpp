@@ -136,7 +136,7 @@ void MapGenerator::generateMap(std::string imageNameBlock, std::string imageName
 				}
 				else if(color.g == 250)
 				{
-					entityManager->addEntity(new TutorialSign(position));
+					entityManager->addEntity(new TutorialSign(position, color.b));
 				}
 			}
 		}

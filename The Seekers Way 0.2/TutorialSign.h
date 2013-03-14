@@ -20,7 +20,10 @@ private:
 	sf::Clock mClock;
 
 	void onSignFalse();
+
 	EntityKind mCurrent;
+	EntityKind mCharacterSign;
+	BaseKind mBaseSign;
 
 	ZoomedSign *mZoomedSign;
 };

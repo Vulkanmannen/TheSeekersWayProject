@@ -18,7 +18,7 @@ TutorialSign::TutorialSign(sf::Vector2f &position, unsigned char spriteNumber)
 	mEntityKind = TUTORIALSIGN;	
 	mLayer = MIDDLE;
 
-	mZoomedSign = new ZoomedSign(mPosition, 11);
+	mZoomedSign = new ZoomedSign(mPosition, spriteNumber);
 	EntityManager::getInstance()->addEntity(mZoomedSign);
 
 	mTexture.loadFromImage(*ImageManager::getImage("TutorialSign.PNG"));
@@ -28,40 +28,60 @@ TutorialSign::TutorialSign(sf::Vector2f &position, unsigned char spriteNumber)
 
 	switch(spriteNumber)
 	{
+		case 0:
+			mBaseSign = Entity::CHARACTER;
+			break;
+
 		case 1:
+			mCharacterSign = Entity::KIBA;
 			break;
 
 		case 2:
+			mCharacterSign = Entity::CHARLOTTE;
 			break;
 
 		case 3:
+			mCharacterSign = Entity::CHARLOTTE;
 			break;
 
 		case 4:
+			mBaseSign = Entity::CHARACTER;
 			break;
 
 		case 5:
+			mCharacterSign = Entity::KIBA;
 			break;
 
 		case 6:
+			mCharacterSign = Entity::CHARLOTTE;
 			break;
 
 		case 7:
+			mCharacterSign = Entity::FENRIR;
 			break;
 
 		case 8:
+			mBaseSign = Entity::CHARACTER;
 			break;
 
 		case 9:
+			mCharacterSign = Entity::SHEEKA;
 			break;
 
 		case 10:
+			mCharacterSign = Entity::SHEEKA;
 			break;
 
 		case 11:
+			mCharacterSign = Entity::FENRIR;
 			break;
 
 		case 12:
+			mCharacterSign = Entity::SHEEKA;
+			break;
+
+		case 13:
+			mCharacterSign = Entity::FENRIR;
 			break;
 	}
 }
@@ -84,7 +104,7 @@ void TutorialSign::render()
 
 void TutorialSign::interact(Entity* e)
 {
-	if((*e) == CHARACTER && e->getEntityKind() == mCurrent)
+	if((*e) == CHARACTER && e->getEntityKind() == mCurrent && (mCharacterSign == mCurrent || mBaseSign == CHARACTER))
 	{
 		mZoomedSign->setCharacterOnSign(true);
 	}
