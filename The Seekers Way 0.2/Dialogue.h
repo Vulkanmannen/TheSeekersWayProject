@@ -19,6 +19,16 @@ class Dialogue
 	
 	struct dialogbase
 	{
+		sf::Vector2f	textposition;
+		sf::Vector2f	bildposition;
+		sf::Vector2f	textbox;
+		sf::Text		text;
+		std::string		bildnamn;
+		std::string		fontnamn;
+		float			size;
+		Emotion			emotion;
+		Speaker			speaker;
+
 		dialogbase()
 		{
 			bildnamn		= "";
@@ -30,16 +40,83 @@ class Dialogue
 			text.setString("");
 			textbox			= sf::Vector2f(300, 110);
 			textposition	= sf::Vector2f(10, 94);
+			//defaultvärden som bestäms av en config fil
+			{
+				TiXmlDocument zDocument;
+				zDocument.LoadFile("Dialoger/config.xml");
+				TiXmlElement* root = zDocument.FirstChildElement("Body");
+				root = root->FirstChildElement("Dialog");
+				while(root)
+				{
+					TiXmlAttribute* attribute = root->FirstAttribute();
+					std::string string = attribute->Name();
+					if(std::strcmp(string.c_str(), "name") == 0)
+					{
+						TiXmlElement* element;
+						element = root->FirstChildElement("speech");
+						if(element)
+						{
+
+							TiXmlAttribute* positionAttribute = element->FirstAttribute();
+							while(positionAttribute)
+							{
+								std::string name = positionAttribute->Name();
+								if(name == "bild")
+								{
+									bildnamn = positionAttribute->Value();
+								}
+								else if(name == "bildX")
+								{
+									bildposition.x = static_cast<float>(positionAttribute->IntValue());
+								}
+								else if(name == "bildY")
+								{
+									bildposition.y = static_cast<float>(positionAttribute->IntValue());
+								}
+								else if(name == "text")
+								{
+									text.setString(positionAttribute->Value());
+								}
+								else if(name == "textX")
+								{
+									textposition.x = static_cast<float>(positionAttribute->IntValue());
+								}
+								else if(name == "textY")
+								{
+									textposition.y = static_cast<float>(positionAttribute->IntValue());
+								}
+								else if(name == "speaker")
+								{
+									speaker = Speaker(positionAttribute->IntValue());
+								}
+								else if(name == "size")
+								{
+									size = (positionAttribute->IntValue());
+								}
+								else if(name == "font")
+								{
+									fontnamn = positionAttribute->Value();
+								}
+								else if(name == "textboxWidth")
+								{
+									textbox.x = positionAttribute->IntValue();
+								}
+								else if(name == "textboxHeight")
+								{
+									textbox.y = positionAttribute->IntValue();
+								}
+								else if(name == "emotion")
+								{
+									emotion = Emotion(positionAttribute->IntValue());
+								}
+								positionAttribute = positionAttribute->Next();
+							}
+						}
+					}
+					root = root->NextSiblingElement("Dialog");
+				}
+			}
 		}
-		sf::Vector2f	textposition;
-		sf::Vector2f	bildposition;
-		sf::Vector2f	textbox;
-		sf::Text		text;
-		std::string		bildnamn;
-		std::string		fontnamn;
-		float			size;
-		Emotion			emotion;
-		Speaker			speaker;
 	};
 	
 	typedef std::vector<sf::Text*> TextVector;

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <Body>
+	<Dialog name="DoorsLevel1">
+		<speech textX="10" textY="94" text="" speaker="0" size="30" bild="dialog0.png"
+		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="0" font="segoeui.ttf"/>
+	</Dialog>
+  </Body>
