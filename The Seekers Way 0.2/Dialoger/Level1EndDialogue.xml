@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 
   <Body>
+  KIBA
 	<Dialog name="DoorsLevel1">
-		<speech textX="10" textY="94" text="Will they be okay?" speaker="1" size="30" bild="dialog1.png"
-		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="1" font="segoeui.ttf"/>
+		<speech textX="10" textY="94" text="Well, that wasn't too hard. Hopefully, we will find Fenrir and Sheeka somewhere." speaker="0" size="30" bild="dialog0.png" 
+		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="0" font="segoeui.ttf"/>
 	</Dialog>
 
+	CHARLOTTE
 	<Dialog name="DoorsLevel1">
-		<speech textX="10" textY="94" text="..." speaker="1" size="30" bild="dialog1.png"
-		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="1" font="segoeui.ttf"/>
+		<speech textX="10" textY="94" text="I don't want to find them growling at each other, though." speaker="1" size="30" bild="dialog1.png"
+		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="0" font="segoeui.ttf"/>
+	</Dialog>
+	
+	  KIBA SMILES
+	<Dialog name="DoorsLevel1">
+		<speech textX="10" textY="94" text="Glad the two of us don't have that problem." speaker="0" size="30" bild="dialog0.png" 
+		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="2" font="segoeui.ttf"/>
+	</Dialog>
+	
+	CHARLOTTE SMILES
+	<Dialog name="DoorsLevel1">
+		<speech textX="10" textY="94" text="Not yet, at least." speaker="1" size="30" bild="dialog1.png"
+		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="2" font="segoeui.ttf"/>
+	</Dialog>
+	<Dialog name="DoorsLevel1">
+		<speech textX="10" textY="94" text="By the way, Kiba. Why do you want to become the Seeker so bad?" speaker="1" size="30" bild="dialog1.png"
+		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="2" font="segoeui.ttf"/>
+	</Dialog>
+
+	KIBA SMILES
+	<Dialog name="DoorsLevel1">
+		<speech textX="10" textY="94" text="I like setting goals for myself. Don't you want it too?" speaker="0" size="30" bild="dialog0.png" 
+		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="2" font="segoeui.ttf"/>
+	</Dialog>
+	
+	CHARLOTTE SMILES
+	<Dialog name="DoorsLevel1">
+		<speech textX="10" textY="94" text="I just want to see the world. But I will try my hardest. It will be our little competition." speaker="1" size="30" bild="dialog1.png"
+		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="2" font="segoeui.ttf"/>
 	</Dialog>
 	
   </Body>
