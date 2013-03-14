@@ -21,7 +21,5 @@ private:
 
 	sf::Texture mIntroText;
 	sf::Sprite mIntroSprite;
-
-	Animation mAnimation;
 };
 #endif

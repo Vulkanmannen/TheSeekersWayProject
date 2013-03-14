@@ -25,7 +25,9 @@ EntityManager::EntityManager():
 	mZeroPlayerLife(0),
 	mMapTop(360),
 	mMapLeft(512),
-	shadeAll(false)
+	shadeAll(false),
+	mCharacterLastPos(0, 0),
+	mCameraSpeed(3)
 {		
 		emote[0] = 0;
 		emote[1] = 0;
@@ -124,7 +126,8 @@ void EntityManager::update()
 void EntityManager::lifeAndMaskPosition()
 {
 	mLifeSprite.setPosition(mView->getCenter() - sf::Vector2f(512, 360));
-	mMaskSprite.setPosition(getCharacterPos() - sf::Vector2f(1024, 720));
+
+	mMaskSprite.setPosition(mView->getCenter() - sf::Vector2f(1024, 720));
 }
 
 void EntityManager::killPlayers()
@@ -282,7 +285,7 @@ void EntityManager::renderPortrait()
 // tilar bakgrunden
 void EntityManager::createBackground()
 {
-	for(int i = 0; i < 7; ++i)
+	for(int i = 0; i < 11; ++i)
 	{
 		for(int j = 0; j < 5; ++j)
 		{
@@ -383,18 +386,22 @@ void EntityManager::updatePrimaryCharacter()
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
 		tempEntityKind = Entity::KIBA;
+		setCameraSpeedToChangePos();
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 	{
 		tempEntityKind = Entity::CHARLOTTE;
+		setCameraSpeedToChangePos();
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
 	{
 		tempEntityKind = Entity::FENRIR;
+		setCameraSpeedToChangePos();
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
 	{
 		tempEntityKind = Entity::SHEEKA;
+		setCameraSpeedToChangePos();
 	}
 
 	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i) // kollar om den valda karaktären finns i vektorn
@@ -466,39 +473,89 @@ sf::View* EntityManager::getView()
 void EntityManager::updateView()
 {
 	sf::Vector2f playerPos = getCharacterPos();
+
+	//sf::Vector2f dist = playerPos - mCharacterLastPos;
+	sf::Vector2f dist = playerPos - mView->getCenter();
+
+	float length = std::sqrt(dist.x * dist.x + dist.y *dist.y);
 	
-	if(playerPos.x > mMapLeft && playerPos.x < mMapRight)
+	if(dist != sf::Vector2f(0, 0))
 	{
-		mView->setCenter(sf::Vector2f(playerPos.x, mView->getCenter().y));
+		
+		dist.x *= 1.0f / length;
+		dist.y *= 1.0f / length;
 	}
-	else
+	
+	if(length > 10)
 	{
-		if(playerPos.x > mMapRight / 2)
+		if(length < 100)
 		{
-			mView->setCenter(sf::Vector2f(mMapRight, mView->getCenter().y));
+			if(length > 20)
+			{
+				mCameraSpeed = 7;
+			}
+			else
+			{
+				mCameraSpeed = 3;	
+			}	
 		}
-		else
-		{
-			mView->setCenter(sf::Vector2f(mMapLeft, mView->getCenter().y));
-		}	
+		mView->setCenter(mView->getCenter() + sf::Vector2f(dist.x * mCameraSpeed, dist.y * mCameraSpeed));
 	}
-	// det står fan totte överallt
-	// jag vet!!! och det stör mig som faaan!
-	if(playerPos.y > mMapTop && playerPos.y < mMapBottom)
+	
+	
+	
+	mCharacterLastPos = getCharacterPos();
+	
+	if(mView->getCenter().x < mMapLeft)
 	{
-		mView->setCenter(sf::Vector2f(mView->getCenter().x, playerPos.y));
+		mView->setCenter(sf::Vector2f(mMapLeft, mView->getCenter().y));
 	}
-	else
+	else if(mView->getCenter().x > mMapRight)
 	{
-		if(playerPos.y > mMapBottom / 2)
-		{
-			mView->setCenter(sf::Vector2f(mView->getCenter().x, mMapBottom));
-		}
-		else
-		{
-			mView->setCenter(sf::Vector2f(mView->getCenter().x, mMapTop));
-		}
+		mView->setCenter(sf::Vector2f(mMapRight, mView->getCenter().y));
 	}
+	if(mView->getCenter().y < mMapTop)
+	{
+		mView->setCenter(sf::Vector2f(mView->getCenter().x, mMapTop));
+	}
+	else if(mView->getCenter().y > mMapBottom)
+	{
+		mView->setCenter(sf::Vector2f(mView->getCenter().x, mMapBottom));
+	}
+
+	//if(playerPos.x > mMapLeft && playerPos.x < mMapRight)
+	//{
+	//	mView->setCenter(sf::Vector2f(playerPos.x, mView->getCenter().y));
+	//}
+	//else
+	//{
+	//	if(playerPos.x > mMapRight / 2)
+	//	{
+	//		mView->setCenter(sf::Vector2f(mMapRight, mView->getCenter().y));
+	//	}
+	//	else
+	//	{
+	//		mView->setCenter(sf::Vector2f(mMapLeft, mView->getCenter().y));
+	//	}	
+	//}
+	//// det står fan totte överallt
+	//// jag vet!!! och det stör mig som faaan!
+	//if(playerPos.y > mMapTop && playerPos.y < mMapBottom)
+	//{
+	//	mView->setCenter(sf::Vector2f(mView->getCenter().x, playerPos.y));
+	//}
+	//else
+	//{
+	//	if(playerPos.y > mMapBottom / 2)
+	//	{
+	//		mView->setCenter(sf::Vector2f(mView->getCenter().x, mMapBottom));
+	//	}
+	//	else
+	//	{
+	//		mView->setCenter(sf::Vector2f(mView->getCenter().x, mMapTop));
+	//	}
+	//}
+	
 }
 
 // sätter storleken på mappen tar emot fyra inter, läng o höjd räknat i block samt antalet bakgrunder i höjdled och längd;
@@ -546,4 +603,9 @@ void EntityManager::SetAniToIdle()
 	{
 		mCharacters[i]->setStatusIdle();
 	}
+}
+
+void EntityManager::setCameraSpeedToChangePos()
+{
+	mCameraSpeed = 25;
 }
