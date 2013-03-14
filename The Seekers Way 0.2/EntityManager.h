@@ -42,6 +42,7 @@ public:
 	
 	void setMapSize(int numberOfBlocksWidth, int numberOfBlocksHeight);
 	void setEmotion(int character, int emotion);
+	void setShadeAll(bool);
 
 	int getSizeOfCharacterVector()const;
 
@@ -96,6 +97,7 @@ private:
 	int emote[4];
 	Animation frame[4];
 	sf::Shader shadow;
+	bool shadeAll;
 	// ----------------- background
 	sf::Texture mBackgroundTexture;
 	std::vector<sf::Sprite> mBackgroundSprites;

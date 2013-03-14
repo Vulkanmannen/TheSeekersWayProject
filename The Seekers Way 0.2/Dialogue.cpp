@@ -61,7 +61,15 @@ void Dialogue::update()
 				{	
 					currentLetter++;
 				}
-				EntityManager::getInstance()->setPrimaryCharacter(static_cast<Entity::EntityKind>(dialogs[currentText]->speaker));
+				if(dialogs[currentText]->speaker != 4)
+				{
+					EntityManager::getInstance()->setPrimaryCharacter(static_cast<Entity::EntityKind>(dialogs[currentText]->speaker));
+					EntityManager::getInstance()->setShadeAll(false);
+				}
+				else if(dialogs[currentText]->speaker == 4)
+				{
+					EntityManager::getInstance()->setShadeAll(true);
+				}
 			}
 		}
 	}
@@ -84,6 +92,8 @@ void Dialogue::update()
 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
+		
+		EntityManager::getInstance()->setShadeAll(false);
 		EntityManager::getInstance()->setEmotion(0, 0);
 		EntityManager::getInstance()->setEmotion(1, 0);
 		EntityManager::getInstance()->setEmotion(2, 0);
@@ -115,16 +125,17 @@ void Dialogue::render()
 			tempText.setString(tempString);
 			mSprite.setPosition(	sf::Vector2f(camX + dialogs[currentText]->bildposition.x, camY + dialogs[currentText]->bildposition.y));
 			tempText.setPosition(	sf::Vector2f(camX + dialogs[currentText]->textposition.x, camY + dialogs[currentText]->textposition.y));
-			sf::Texture temptext;
+			sf::Texture temptexture;
 			if(dialogs[currentText]->bildnamn == "")
 			{
 				mSprite.setTexture(mTexture[dialogs[currentText]->speaker]);
 			}
 			else
 			{
-				temptext.loadFromImage(*ImageManager::getImage(dialogs[currentText]->bildnamn));
-				mSprite.setTexture(temptext);
+				temptexture.loadFromImage(*ImageManager::getImage(dialogs[currentText]->bildnamn));
+				mSprite.setTexture(temptexture);
 			}
+			tempText.setCharacterSize(dialogs[currentText]->size);
 			EntityManager::getInstance()->setEmotion(int(dialogs[currentText]->speaker), int(dialogs[currentText]->emotion));
 			ImageManager::render(&mSprite);
 			ImageManager::render(&tempText);
@@ -152,6 +163,7 @@ void Dialogue::render()
 		}*/
 		else
 		{
+			EntityManager::getInstance()->setShadeAll(false);
 			EntityManager::getInstance()->setEmotion(0, 0);
 			EntityManager::getInstance()->setEmotion(1, 0);
 			EntityManager::getInstance()->setEmotion(2, 0);
