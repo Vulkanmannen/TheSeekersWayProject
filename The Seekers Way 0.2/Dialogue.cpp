@@ -136,6 +136,7 @@ void Dialogue::render()
 				mSprite.setTexture(temptexture);
 			}
 			tempText.setCharacterSize(dialogs[currentText]->size);
+			tempText.setColor(dialogs[currentText]->color);
 			EntityManager::getInstance()->setEmotion(int(dialogs[currentText]->speaker), int(dialogs[currentText]->emotion));
 			ImageManager::render(&mSprite);
 			ImageManager::render(&tempText);
@@ -280,6 +281,33 @@ void Dialogue::load(std::string dialogueName)
 					else if(name == "emotion")
 					{
 						tempDialog.emotion = Emotion(positionAttribute->IntValue());
+					}
+					else if(name == "color")
+					{
+						if(positionAttribute->Value() == "black")
+						{
+							tempDialog.color = tempDialog.color.Black;
+						}
+						if(positionAttribute->Value() == "white")
+						{
+							tempDialog.color = tempDialog.color.White;
+						}
+					}
+					else if(name == "colorR")
+					{
+						tempDialog.color.r = positionAttribute->IntValue();
+					}
+					else if(name == "colorG")
+					{
+						tempDialog.color.g = positionAttribute->IntValue();
+					}
+					else if(name == "colorB")
+					{
+						tempDialog.color.b = positionAttribute->IntValue();
+					}
+					else if(name == "colorA")
+					{
+						tempDialog.color.a = positionAttribute->IntValue();
 					}
 					positionAttribute = positionAttribute->Next();
 				}
