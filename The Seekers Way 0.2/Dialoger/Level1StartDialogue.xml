@@ -4,7 +4,7 @@
   
 	KIBA
 	<Dialog name="DoorsLevel1">
-		<speech text="Kiba: Fenrir: Now listen here, cat! You wouldn't even be alive if it wasn't for me. That fall would've killed you. Stop being so stuck-up and show some humility for once." speaker="0" bild="dialog0.png" emotion="0"/>
+		<speech text="Kiba: Phew! I thought we were goners for sure! Are you OK?" speaker="0" bild="dialog0.png" emotion="0"/>
 	</Dialog>
 	
 	CHARLOTTE
