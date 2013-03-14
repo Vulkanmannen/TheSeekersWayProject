@@ -226,6 +226,10 @@
     <ClCompile Include="VideoState.cpp">
       <Filter>States</Filter>
     </ClCompile>
+    <ClCompile Include="TutorialSign.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoomedSign.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -447,6 +451,10 @@
     <ClInclude Include="VideoState.h">
       <Filter>States</Filter>
     </ClInclude>
+    <ClInclude Include="TutorialSign.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoomedSign.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">

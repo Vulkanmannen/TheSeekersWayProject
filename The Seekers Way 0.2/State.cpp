@@ -21,7 +21,6 @@ State::State():
 	mPauseMenu = new PauseMenu();
 	mDialogState = new DialogState();
 	mVideoState = new VideoState();
-	//Sounds::getInstance()->Loop("crazykoncept.wav", 30);
 }
 
 
@@ -46,7 +45,7 @@ void State::update()
 			{
 				Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() - 1);
 			}
-			if(mIntroClock.getElapsedTime().asSeconds() > 8 
+			if(mIntroClock.getElapsedTime().asSeconds() > 0.5 
 				|| (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || sf::Keyboard::isKeyPressed(sf::Keyboard::Return)))
 			{
 				mMenuStates = StartState;
