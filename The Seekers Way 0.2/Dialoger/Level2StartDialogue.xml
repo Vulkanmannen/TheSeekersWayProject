@@ -3,35 +3,35 @@
   <Body>
 	SHEEKA
 	<Dialog name="DoorsLevel1">
-		<speech textX="10" textY="94" text="You don't have to follow me." speaker="3" size="30" bild="dialog3.png" 
-		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="0" font="segoeui.ttf"/>
+		<speech text="Sheeka: You don't have to follow me." speaker="3" bild="dialog3.png" emotion="0"/>
 	</Dialog>
 	
 	FENRIR SIGHS
 	<Dialog name="DoorsLevel1">
-		<speech textX="10" textY="94" text="I know you're a cat and all, but even you can get lost here." speaker="2" size="30" bild="dialog2.png" 
-		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="1" font="segoeui.ttf"/>
+		<speech text="Fenrir: I know you're a cat and all, but even you can get lost here." speaker="2" bild="dialog2.png" emotion="1"/>
 	</Dialog>
 
 	SHEEKA
 	<Dialog name="DoorsLevel1">
-		<speech textX="10" textY="94" text="Whatever you say, pup. Just don't get in my way." speaker="3" size="30" bild="dialog3.png" 
-		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="0" font="segoeui.ttf"/>
+		<speech text="Sheeka: Whatever you say, pup. Just don't get in my way." speaker="3" bild="dialog3.png" emotion="0"/>
 	</Dialog>
 	
 	FENRIR ANGRY
 	<Dialog name="DoorsLevel1">
-		<speech textX="10" textY="94" text="Now listen here, cat! You wouldn't even be alive if it wasn't for me. That fall would've killed you. Stop being so stuck-up and show some humility for once." speaker="2" size="30" bild="dialog2.png" 
-		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="3" font="segoeui.ttf"/>
+		<speech text="Fenrir: Now listen here, cat! You wouldn't even be alive if it wasn't for me. That fall would've killed you. Stop being so stuck-up and show some humility for once." speaker="2" bild="dialog2.png" emotion="3"/>
 	</Dialog>
 
-Kiba’s journal:
-	But at least one of them was trying...
+	Kiba's journal
+	<Dialog name="DoorsLevel1">
+		<speech text="But at least one of them was trying..." bild="dialog4.png"
+		textX="512" textY="360"
+		bildX="512" bildY="360"
+		font="journal.ttf"/>
+	</Dialog>
 
 	FENRIR
 	<Dialog name="DoorsLevel1">
-		<speech textX="10" textY="94" text="Come on. We have to find Kiba and Charlotte." speaker="2" size="30" bild="dialog2.png" 
-		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="0" font="segoeui.ttf"/>
+		<speech text="Fenrir: Come on. We have to find Kiba and Charlotte." speaker="2" bild="dialog2.png" emotion="0"/>
 	</Dialog>
 	
   </Body>
