@@ -18,7 +18,7 @@ TutorialSign::TutorialSign(sf::Vector2f &position)
 	mEntityKind = TUTORIALSIGN;	
 	mLayer = MIDDLE;
 
-	mZoomedSign = new ZoomedSign(mPosition);
+	mZoomedSign = new ZoomedSign(mPosition, 11);
 	EntityManager::getInstance()->addEntity(mZoomedSign);
 
 	mTexture.loadFromImage(*ImageManager::getImage("TutorialSign.PNG"));
