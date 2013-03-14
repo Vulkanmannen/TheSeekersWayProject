@@ -210,9 +210,6 @@ void Dialogue::load(std::string dialogueName)
 	sDocument.LoadFile(("Dialoger/" + dialogueName + ".xml").c_str());
 	TiXmlElement* root = sDocument.FirstChildElement("Body");
 	root = root->FirstChildElement("Dialog");
-	float	camX = EntityManager::getInstance()->getView()->getCenter().x - EntityManager::getInstance()->getView()->getSize().x/2, 
-			camY = EntityManager::getInstance()->getView()->getCenter().y - EntityManager::getInstance()->getView()->getSize().y/2;
-
 	while(root)
 	{
 
@@ -517,7 +514,7 @@ Dialogue::TextVector Dialogue::textBox(sf::Text &rawText, sf::Vector2f textboxsi
 				text->setString(sf::String(newest.c_str()));
 				if(filnamn.length() > 1)
 				{
-					if(text->getLocalBounds().width < 300 && text->getLocalBounds().height < 110)
+					if(text->getLocalBounds().width < textboxsize.x && text->getLocalBounds().height < textboxsize.y)
 					{
 						oldest = newest;
 						newest += filnamn[1];
@@ -525,7 +522,7 @@ Dialogue::TextVector Dialogue::textBox(sf::Text &rawText, sf::Vector2f textboxsi
 					}
 					else 
 					{
-						if(text->getLocalBounds().height < 110)
+						if(text->getLocalBounds().height < textboxsize.y)
 						{
 							bool split = true;
 							if(newest.rfind(' ') != std::string::npos && newest.rfind('\n') != std::string::npos)
