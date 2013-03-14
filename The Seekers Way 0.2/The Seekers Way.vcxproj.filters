@@ -229,7 +229,9 @@
     <ClCompile Include="TutorialSign.cpp">
       <Filter>Entities\Object</Filter>
     </ClCompile>
-    <ClCompile Include="ZoomedSign.cpp" />
+    <ClCompile Include="ZoomedSign.cpp">
+      <Filter>Entities\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -454,7 +456,9 @@
     <ClInclude Include="TutorialSign.h">
       <Filter>Entities\Object</Filter>
     </ClInclude>
-    <ClInclude Include="ZoomedSign.h" />
+    <ClInclude Include="ZoomedSign.h">
+      <Filter>Entities\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">

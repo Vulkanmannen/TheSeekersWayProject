@@ -32,6 +32,7 @@ void LevelManager::LoadLevel(int level)
 	EntityManager::getInstance()->setPrimaryCharacter(mLevels[level].mPrimaryCharacter);
 
 	EntityManager::getInstance()->setMapSize(mLevels[level].mMapRight, mLevels[level].mMapBottom);
+	EntityManager::getInstance()->setCameraSpeedToChangePos();
 	
 	Sounds::getInstance()->StopAll();
 	Sounds::getInstance()->setMasterVolume(100);

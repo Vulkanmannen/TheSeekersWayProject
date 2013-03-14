@@ -5,7 +5,7 @@
 
 IntroScreen::IntroScreen()
 {
-	//mMovie.openFromFile("Kim_1.WMV");
+	//mMovie.openFromFile("Intro.wmv");
 	//mMovie.setPosition(0, 0);
 	//mMovie.play();
 }

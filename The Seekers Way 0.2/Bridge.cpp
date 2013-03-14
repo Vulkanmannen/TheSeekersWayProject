@@ -81,11 +81,12 @@ void Bridge::update(EntityKind &currentEntity)
 	{
  		mStatus = CLOSED;
 	}
+	mAnimation.update(mStatus);
 }
 
 void Bridge::render()
 {
-	mAnimation.update(mStatus);
+	
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
 	ImageManager::render(&mAnimation.getSprite());
 }
@@ -109,12 +110,17 @@ void Bridge::interact(Entity* e)
 		if(std::abs(xDif) > xRadius - 10) // kollar så blocket inte ligger snett under
 		{
 			if(xDif > 0) // kollar om karaktären är höger eller vänster
-			{
-				e->setPosition(sf::Vector2f(mPosition.x + xRadius - 0, e->getPosition().y));
+			{	if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
+				{
+					e->setPosition(sf::Vector2f(mPosition.x + xRadius - 0, e->getPosition().y));
+				}
 			}
 			else
 			{
-				e->setPosition(sf::Vector2f(mPosition.x - (xRadius - 0), e->getPosition().y));
+				if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
+				{
+					e->setPosition(sf::Vector2f(mPosition.x - (xRadius - 0), e->getPosition().y));
+				}
 			}
 		}
 		else

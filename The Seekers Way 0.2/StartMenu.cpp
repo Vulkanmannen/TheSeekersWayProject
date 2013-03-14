@@ -47,7 +47,7 @@ void StartMenu::render()
 	renderButtons();
 	if(HowToPlay == true)
 	{
-		mHowToPlaySprite.setPosition(0, 0);
+		mHowToPlaySprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(512, 360));
 		ImageManager::render(&mHowToPlaySprite);
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -149,6 +149,7 @@ void StartMenu::buttonActivate()
 
 			case 1:
 				LevelManager::getInstance()->LoadLevel(0);
+				//State::getInstance()->setState(State::MyVideoState);
 				State::getInstance()->setState(State::DialogueState);
 				Resumedraw = false;
 				break;

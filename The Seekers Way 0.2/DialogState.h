@@ -12,8 +12,13 @@ public:
 	void update();
 	void render();
 private:
-	bool mPlayMovie;
-	float mTimeToMovie;
+	bool mEndOfDialouge;
+	bool mFadedIn;
+	bool mFadedThisTime;
+	float mFadeCount;
+
+	void fade();
+	void reset();
 
 	sf::Texture mTexture;
 	sf::Sprite mSprite;

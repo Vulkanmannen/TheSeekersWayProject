@@ -23,7 +23,7 @@ Charlotte::Charlotte(sf::Vector2f &position):
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
 		mEntityKind = CHARLOTTE;
-		mPosition = position + sf::Vector2f(0, 40);
+		mPosition = position + sf::Vector2f(0, 38);
 	}
 
 Charlotte::~Charlotte()
@@ -86,7 +86,7 @@ void Charlotte::render()
 		states.shader = &mHurtShader;
 	}
 	mAnimation.update(mStatus * 2 + mDirLeft);
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y - 71));
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y - 69));
 	ImageManager::render(&getSprite(), states);
 }
 
@@ -158,6 +158,7 @@ void Charlotte::teleporting()
 		if(mPortal != NULL)
 		{
 			mPosition = mPortal->getDestination();
+			EntityManager::getInstance()->setCameraSpeedToChangePos();
 			mPortal = NULL;		
 		}
 		else if(mAnimation.getEndOfAnimation())

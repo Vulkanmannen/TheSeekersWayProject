@@ -94,7 +94,7 @@ void State::update()
 
 	// dialogstate
 		case DialogueState:
-			mGameMenu->render();
+			//mGameMenu->render();
 
 			mDialogState->render();
 			mDialogState->update();
@@ -141,8 +141,8 @@ void State::setState(MenuStates menustate)
 
 	if(menustate == MyVideoState)
 	{
-		mVideoState->restartClock();
-		mVideoState->setVideo(LevelManager::getInstance()->getCurrentLevel());
+		//mVideoState->restartClock();
+		//mVideoState->setVideo(LevelManager::getInstance()->getCurrentLevel());
 	}
 }
 
