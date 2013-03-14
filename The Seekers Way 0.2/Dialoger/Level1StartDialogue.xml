@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
   <Body>
-
-  Kiba’s journal
-	<Dialog name="DoorsLevel1">
-		<speech text="In the mystical world of Zodiac, where magic is part of everyday-life, and dragons soar freely in the sky, many wanderers called “adventurers” walk the earth. These adventurers are searching for mysteries of old, searching for answers… and hidden treasures.
-	To help them on their journeys, the Adventurers’ Guild was founded. In every major city, a guild inn was built. There, adventurers from all over the world could find shelter, and accept contracts as temporary workers.
-	At the end of each year, the Adventurers’ Guild holds a gathering in the human capital of Caelum to present the number one adventurer of the year, the adventurer who is then entitled as the Seeker.
-" bild="dialog4.png"
-		bildX="240" bildY="160"
-		textX="250" textY="170"
-		textboxWidth="400" textboxHeight="110"
-		font="journal.ttf" size="40"/>
-	</Dialog>
   
 	KIBA
 	<Dialog name="DoorsLevel1">
-		<speech text="Kiba: Phew! I thought we were goners for sure! Are you OK?" speaker="0" bild="dialog0.png" emotion="0"/>
+		<speech text="Kiba: Fenrir: Now listen here, cat! You wouldn't even be alive if it wasn't for me. That fall would've killed you. Stop being so stuck-up and show some humility for once." speaker="0" bild="dialog0.png" emotion="0"/>
 	</Dialog>
 	
 	CHARLOTTE
