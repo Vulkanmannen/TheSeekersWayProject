@@ -8,7 +8,7 @@ class ZoomedSign;
 class TutorialSign: public Object
 {
 public:
-	TutorialSign(sf::Vector2f &position, unsigned char spriteNumber);
+	TutorialSign(sf::Vector2f &position);
 	~TutorialSign();
 
 	void update(EntityKind &currentEntity);
