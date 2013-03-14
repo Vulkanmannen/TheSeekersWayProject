@@ -21,4 +21,19 @@
 		<speech text="Charlotte: Don't encourage them, Kiba. Let's just go." speaker="1" bild="dialog1.png" emotion="2"/>
 	</Dialog>
 	
+	  Kiba’s journal
+	<Dialog name="DoorsLevel1">
+		<speech text="We had no idea what awaited us at the end of that passage..."
+		bild="dialog4.png"
+		bildX="212" bildY="360"
+		textX="212" textY="305"
+		textboxWidth="600" textboxHeight="110"
+		font="journal.ttf" size="40"
+		colorR="254"
+		colorG="243"
+		colorB="128"
+		/>
+	</Dialog>
+
+	
   </Body>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <Body>
+  
+  Kiba’s journal
+	<Dialog name="DoorsLevel1">
+		<speech text="Someone or something really did not want us to leave with that medallion, as we found ourselves in four separate rooms. Each of us had to find our own way to the exit."
+		bild="dialog4.png"
+		bildX="212" bildY="360"
+		textX="212" textY="305"
+		textboxWidth="600" textboxHeight="110"
+		font="journal.ttf" size="40"
+		colorR="254"
+		colorG="243"
+		colorB="128"
+		/>
+	</Dialog>
+
+	
+  </Body>
