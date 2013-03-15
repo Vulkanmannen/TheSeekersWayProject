@@ -196,7 +196,6 @@ private:
 	/*sf::Font *journal_font;
 	sf::Font *character_font;*/
 
-	sf::Sprite mSprite;
 	sf::Texture mTexture[4];
 
 	sf::Clock interval;
