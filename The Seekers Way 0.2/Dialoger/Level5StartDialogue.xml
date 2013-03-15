@@ -4,23 +4,22 @@
   
 	SHEEKA
 	<Dialog name="DoorsLevel1">
-		<speech text="Sheeka: Aw, seems like we're going separate ways, pup." speaker="3" bild="dialog3.png" emotion="0"/>
+		<speech text="Sheeka: Aw, seems like we're going separate ways, pup" speaker="3" bild="dialog3.png" emotion="0"/>
 	</Dialog>
-
+	
 	FENRIR
 	<Dialog name="DoorsLevel1">
-		<speech text="Fenrir: If you get stuck behind one of those magical walls, I'm not coming to fetch you." speaker="2" bild="dialog2.png" emotion="0"/>
+		<speech text="Fenrir: If you get stuck behind one of those magical walls,\ I'm not coming to fetch you." speaker="2" bild="dialog2.png" emotion="0"/>
 	</Dialog>
 
-	KIBA SIGHS
+	KIBA SIGH
 	<Dialog name="DoorsLevel1">
 		<speech text="Kiba: You really never quit, do you?" speaker="0" bild="dialog0.png" emotion="1"/>
 	</Dialog>
-
-	SHEEKA SMILES
+	
+	SHEEKA SMILE
 	<Dialog name="DoorsLevel1">
-		<speech text="Sheeka: Nope." speaker="3" bild="dialog3.png" emotion="2"/>
+		<speech text="Sheeka: Nope." speaker="3" bild="dialog3.png" emotion="3"/>
 	</Dialog>
-
 	
   </Body>
