@@ -42,9 +42,9 @@
 		textX="350" textY="0"
 		textboxWidth="620" textboxHeight="110"
 		font="journal.ttf" size="40"
-		colorR="254"
-		colorG="243"
-		colorB="128"
+		colorR="140"
+		colorG="127"
+		colorB="93"
 		/>
 	</Dialog>
 
