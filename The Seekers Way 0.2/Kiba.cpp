@@ -94,6 +94,7 @@ void Kiba::slash()
 		Slash *slash = new Slash(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 32, mPosition.y - 30), mDirLeft);
 		EntityManager::getInstance()->addEntity(slash);
 		Sounds::getInstance()->Play("slash.wav", 30);
+		mStatus = ACTION2;
 	}
 }
 
@@ -143,7 +144,7 @@ void Kiba::choosing()
 				mTelekinesisBox->getCurrentStone()->setStoneState(Stone::SELECTED);
 			}
 
-			mStatus = IDLE;
+			mStatus = ACTION1;
 			mMovementSpeed.x = 0;
 		}
 		else
@@ -175,6 +176,7 @@ void Kiba::selectedStone()
 {
 	if(mTeleState == SELECTEDSTONE)
 	{
+		mStatus = ACTION1;
 		if(mStone != NULL)
 		{
 			mStone->setKibaPos(mPosition);
@@ -198,5 +200,29 @@ void Kiba::selectedStone()
 				Sounds::getInstance()->Play("errorsound.wav", 30);
 			}
 		}
+	}
+}
+
+// omdefinerar
+void Kiba::onblock()
+{
+	if(mFalling)
+	{
+		mFalling = false;
+		if(mStatus == INAIR)
+		{
+			mStatus = IDLE;
+
+			if(mMovementSpeed.y > 1)
+			{
+				Sounds::getInstance()->Play("land.wav", 70);
+			}
+		}
+		mMovementSpeed.y = 0;
+	}
+
+	if(mStatus == ACTION2 && mAnimation.getEndOfAnimation() || (mStatus == JUMP && !mJumping) || (mStatus == ACTION1 && mAnimation.getEndOfAnimation() && mTeleState != SELECTEDSTONE))
+	{
+		mStatus = IDLE;
 	}
 }

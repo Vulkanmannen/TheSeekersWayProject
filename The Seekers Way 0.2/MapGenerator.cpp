@@ -128,11 +128,11 @@ void MapGenerator::generateMap(std::string imageNameBlock, std::string imageName
 				}
 				else if(color.g == 150)
 				{
-					entityManager->addEntity(new Decoration(position, color.b, false));
+					entityManager->addEntity(new Decoration(position, color.b, false, true));
 				}
 				else if(color.g == 200)
 				{
-					entityManager->addEntity(new Decoration(position, color.b, true));
+					entityManager->addEntity(new Decoration(position, color.b, true, true));
 				}
 				else if(color.g == 250)
 				{
