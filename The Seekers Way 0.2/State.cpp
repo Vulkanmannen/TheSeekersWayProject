@@ -51,8 +51,8 @@ void State::update()
 				mMenuStates = StartState;
 				Sounds::getInstance()->StopAll();
 				mEsc = false;
-				Sounds::getInstance()->setMasterVolume(30);
-				Sounds::getInstance()->Loop("fireball.wav", 30);
+				Sounds::getInstance()->setMasterVolume(100);
+				Sounds::getInstance()->Loop("fireball.wav", 20);
 			}
 			break;
 

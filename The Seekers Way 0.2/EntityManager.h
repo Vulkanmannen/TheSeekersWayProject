@@ -51,6 +51,7 @@ public:
 
 	void setCameraSpeedToChangePos();
 
+	sf::Vector2f getBackgroundPos()const;
 private:
 	EntityManager();
 	EntityManager(const EntityManager &e);
@@ -65,7 +66,6 @@ private:
 	void killEntity();
 
 	Entity::EntityKind mPrimaryCharacter;
-	sf::Vector2f mCharacterLastPos;
 
 	EntityVector		mEntities;
 	DynamicEntityVector mDynamicEntities;
@@ -73,6 +73,7 @@ private:
 	
 	sf::View* mView;
 	sf::VideoMode* mVideoMode;
+	sf::Vector2f mCameraLastPos;
 	
 	//--------------life
 	int mZeroPlayerLife;
@@ -105,9 +106,12 @@ private:
 	// ----------------- background
 	sf::Texture mBackgroundTexture;
 	std::vector<sf::Sprite> mBackgroundSprites;
+	sf::Vector2f mBackgroundPos;
 
 	void createBackground();
 	void renderBackground();
+	void updateBackgroundPos();
+	void updateBackgroundParalax();
 	
 	//------------mapsize
 	int mMapRight;
