@@ -535,9 +535,9 @@ Dialogue::TextVector Dialogue::textBox(sf::Text &rawText, sf::Vector2f textboxsi
 			text->setCharacterSize(textsize);
 			for(bool j = true; j == true;)
 			{
-				std::cout<<"old:["<<oldest<<"]"<<std::endl;
+				/*std::cout<<"old:["<<oldest<<"]"<<std::endl;
 				std::cout<<"new:["<<newest<<"]"<<std::endl;
-				std::cout<<"stuff:["<<filnamn<<"]"<<std::endl;
+				std::cout<<"stuff:["<<filnamn<<"]"<<std::endl;*/
 
 				text->setString(sf::String(newest.c_str()));
 				if(filnamn.length() > 1)
