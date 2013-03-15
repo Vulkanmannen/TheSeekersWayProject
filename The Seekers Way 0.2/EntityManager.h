@@ -52,6 +52,7 @@ public:
 	void setCameraSpeedToChangePos();
 
 	sf::Vector2f getBackgroundPos()const;
+	void updateCameraLastpos();
 private:
 	EntityManager();
 	EntityManager(const EntityManager &e);
@@ -74,6 +75,7 @@ private:
 	sf::View* mView;
 	sf::VideoMode* mVideoMode;
 	sf::Vector2f mCameraLastPos;
+	
 	
 	//--------------life
 	int mZeroPlayerLife;

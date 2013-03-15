@@ -503,6 +503,7 @@ void EntityManager::setView(sf::View* view, sf::VideoMode* videoMode)
 {
 	mView = view;
 	mVideoMode = videoMode;
+	mCameraLastPos = view->getCenter();
 }
 
 sf::View* EntityManager::getView()
@@ -665,4 +666,9 @@ void EntityManager::setCameraSpeedToChangePos()
 sf::Vector2f EntityManager::getBackgroundPos()const
 {
 	return mBackgroundPos;
+}
+
+void EntityManager::updateCameraLastpos()
+{
+	mCameraLastPos = mView->getCenter();
 }

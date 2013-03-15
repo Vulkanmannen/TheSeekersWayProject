@@ -4,10 +4,10 @@
 #include "Character.h"
 
 static const float WIDTH = 320;
-static const float HEIGHT = 64;
+static const float HEIGHT = 32;
 
 BigBridge::BigBridge(sf::Vector2f &position, bool closed):
-	mAnimation("Door2.png", 60, 1, HEIGHT, WIDTH),
+	mAnimation("bigbridge.png", 30, 9, HEIGHT, WIDTH),
 	isitclosed(closed)
 {
 	isitclosed? mBaseKind = BLOCK : mBaseKind = OBJECT; 
@@ -17,7 +17,6 @@ BigBridge::BigBridge(sf::Vector2f &position, bool closed):
 	mWidth = WIDTH;
 	mEntityKind = BIGBRIDGE;	
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
-
 }
 
 BigBridge::~BigBridge()
@@ -27,17 +26,54 @@ BigBridge::~BigBridge()
 
 void BigBridge::Activate()
 {
+	if(isitclosed)
+	{
+		if(mStatus != OPEN)
+		{
+			mStatus = OPENING;
+		}
+	}
+	else
+	{
+		if(mStatus != CLOSED)
+		{
+			mStatus = CLOSING;
+		}
+	}
 	!isitclosed? mBaseKind = BLOCK : mBaseKind = OBJECT; 
 }
 
 void BigBridge::DisActivate()
 {
+	if(!isitclosed)
+	{
+		if(mStatus != OPEN)
+		{
+			mStatus = OPENING;
+		}
+	}
+	else
+	{
+		if(mStatus != CLOSED)
+		{
+			mStatus = CLOSING;
+		}
+	}
 	isitclosed? mBaseKind = BLOCK : mBaseKind = OBJECT; 
 }
 
 void BigBridge::update(EntityKind &currentEntity)
 {
+	if(mStatus == OPENING && mAnimation.getEndOfAnimation())
+	{
+		mStatus = OPEN;
+	}
 
+	if(mStatus == CLOSING && mAnimation.getEndOfAnimation())
+	{
+ 		mStatus = CLOSED;
+	}
+	mAnimation.update(mStatus);
 }
 
 void BigBridge::render()
