@@ -7,7 +7,7 @@
 class Decoration: public Object
 {
 public:
-	Decoration(sf::Vector2f Position, unsigned char spriteNumber, bool bigDecoration = false);
+	Decoration(sf::Vector2f Position, unsigned char spriteNumber, bool bigDecoration = false, bool paralaxing = false);
 	~Decoration();
 
 	void update(EntityKind &currentEntity);
