@@ -6,7 +6,7 @@ dash.wav
 arrow.wav
 slash.wav
 door.wav
-sheild.wav
+shield.wav
 fireball.wav
 teleport.wav
 errorsound.wav
@@ -15,7 +15,7 @@ Level1Music.wav
 crazykoncept.wav
 shadowbolt.wav
 switch char 1.1.wav
-arrowtosheild.wav
+arrowtoshield.wav
 button.wav
 jump1.wav
 jump2.wav

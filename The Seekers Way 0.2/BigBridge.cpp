@@ -66,11 +66,17 @@ void BigBridge::interact(Entity* e)
 		{
 			if(xDif > 0) // kollar om karaktären är höger eller vänster
 			{
-				e->setPosition(sf::Vector2f(mPosition.x + xRadius - 0, e->getPosition().y));
+				if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
+				{
+					e->setPosition(sf::Vector2f(mPosition.x + xRadius - 0, e->getPosition().y));
+				}
 			}
 			else
 			{
-				e->setPosition(sf::Vector2f(mPosition.x - (xRadius - 0), e->getPosition().y));
+				if(std::abs(yDif) < yRadius - 10) // kollar så blocket inte ligger snett under
+				{
+					e->setPosition(sf::Vector2f(mPosition.x - (xRadius - 0), e->getPosition().y));
+				}
 			}
 		}
 		else

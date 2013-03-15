@@ -77,7 +77,7 @@ int main()
 
 		State::getInstance()->update();
 		window.setView(view); 
-		//lightSystem.SetView(view);
+		
 
 		window.display();
 	}

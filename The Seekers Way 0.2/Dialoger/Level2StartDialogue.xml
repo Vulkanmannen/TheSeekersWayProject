@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
   <Body>
+  
+  	Kiba’s journal
+	<Dialog name="DoorsLevel1">
+		<speech text="I cannot say Fenrir and Sheeka felt the same..."
+		bild="dialog4.png"
+		bildX="212" bildY="360"
+		textX="212" textY="305"
+		textboxWidth="600" textboxHeight="110"
+		font="journal.ttf" size="40"
+		colorR="254"
+		colorG="243"
+		colorB="128"
+		/>
+	</Dialog>
+  
 	SHEEKA
 	<Dialog name="DoorsLevel1">
 		<speech text="Sheeka: You don't have to follow me." speaker="3" bild="dialog3.png" emotion="0"/>
@@ -27,6 +42,20 @@
 		textX="512" textY="360"
 		bildX="512" bildY="360"
 		font="journal.ttf"/>
+	</Dialog>
+	
+	Kiba's journal
+	<Dialog name="DoorsLevel1">
+		<speech text="But at least one of them was trying..."
+		bild="dialog4.png"
+		bildX="212" bildY="360"
+		textX="212" textY="305"
+		textboxWidth="600" textboxHeight="110"
+		font="journal.ttf" size="40"
+		colorR="254"
+		colorG="243"
+		colorB="128"
+		/>
 	</Dialog>
 
 	FENRIR

@@ -18,7 +18,7 @@ Kiba::Kiba(sf::Vector2f &position):
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = KIBA;
-	mPosition = position + sf::Vector2f(0, 32);
+	mPosition = position + sf::Vector2f(0, 38);
 }
 
 
@@ -93,7 +93,7 @@ void Kiba::slash()
 		mslashtimer.restart();
 		Slash *slash = new Slash(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 32, mPosition.y - 30), mDirLeft);
 		EntityManager::getInstance()->addEntity(slash);
-		Sounds::getInstance()->Play("slash.wav");
+		Sounds::getInstance()->Play("slash.wav", 30);
 	}
 }
 
