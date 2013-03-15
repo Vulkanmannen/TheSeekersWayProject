@@ -77,11 +77,12 @@ void Door::update(EntityKind &currentEntity)
 	{
  		mStatus = CLOSED;
 	}
+	mAnimation.update(mStatus);
 }
 
 void Door::render()
 {//, mStatus != OPENING || mStatus != CLOSING ? false : true
-	mAnimation.update(mStatus);
+	
 	ImageManager::render(&mAnimation.getSprite());
 }
 

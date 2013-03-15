@@ -3,8 +3,8 @@
 #include <math.h>
 #include "TelekinesisBox.h"
 
-static const float WIDTH = 128;
-static const float HEIGHT = 128;
+static const float WIDTH = 124;
+static const float HEIGHT = 124;
 
 static const float SPRITEWIDTH = 140;
 static const float SPRITEHEIGHT = 140;
