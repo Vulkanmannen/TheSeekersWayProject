@@ -113,7 +113,7 @@ void Sheeka::darkBinding()
 {
 	if(((sf::Keyboard::isKeyPressed(sf::Keyboard::W)) || (sf::Keyboard::isKeyPressed(sf::Keyboard::X)) && !mDarkBinding)
 		&& mCanPressDarkBinding 
-		&& mDarkBindingClock.getElapsedTime().asSeconds() >= 1
+		&& mDarkBindingClock.getElapsedTime().asSeconds() >= 2
 		&& !mJumping
 		&& !mFalling)
 	{
@@ -121,6 +121,7 @@ void Sheeka::darkBinding()
 		mCanPressDarkBinding = false;
 		mDarkBinding = true;
 		mDarkClock.restart();
+		mMovementSpeed.x = 0;
 		mStatus = ACTION2;
 	}
 	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::X))
