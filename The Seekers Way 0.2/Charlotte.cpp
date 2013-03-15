@@ -14,14 +14,16 @@ Charlotte::Charlotte(sf::Vector2f &position):
 	mActiveCharacter(false),
 	mTimeToTeleport(0.5),
 	mTeleporting(false),
-	mActivatingShield(false)
+	mActivatingShield(false),
+	mPlayCantTeleport(false),
+	mCanPressTeleport(true)
 	{
 		mAnimation.init("charlotte.png", 60, 12);
 
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
 		mEntityKind = CHARLOTTE;
-		mPosition = position + sf::Vector2f(0, 40);
+		mPosition = position + sf::Vector2f(0, 38);
 	}
 
 Charlotte::~Charlotte()
@@ -38,6 +40,21 @@ void Charlotte::update(EntityKind &currentEntity)
 			walk();
 			jump();
 			SetShield();
+
+			if(mPlayCantTeleport)
+			{
+				Sounds::getInstance()->Play("errorsound.wav",30);
+				mPlayCantTeleport = false;
+			}
+			else if(!mTeleporting && (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::X)) && mCanPressTeleport)
+			{
+				mPlayCantTeleport = true;
+				mCanPressTeleport = false;
+			}
+			else if(!(sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::X)))
+			{
+				mCanPressTeleport = true;
+			}
 		}
 	}
 	else if(mTeleporting)
@@ -57,6 +74,7 @@ void Charlotte::update(EntityKind &currentEntity)
 		mActiveCharacter = false;
 	}
 
+
 	Character::update(currentEntity);
 }
 
@@ -68,7 +86,7 @@ void Charlotte::render()
 		states.shader = &mHurtShader;
 	}
 	mAnimation.update(mStatus * 2 + mDirLeft);
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y - 71));
+	mAnimation.setPosition(sf::Vector2f(mPosition.x - 64, mPosition.y - 69));
 	ImageManager::render(&getSprite(), states);
 }
 
@@ -128,6 +146,7 @@ void Charlotte::interact(Entity* e)
 			mStatus = ACTION1;
 
 			Sounds::getInstance()->Play("teleport.wav");
+			mPlayCantTeleport = false;
 		}
 	}
 }
@@ -139,6 +158,7 @@ void Charlotte::teleporting()
 		if(mPortal != NULL)
 		{
 			mPosition = mPortal->getDestination();
+			EntityManager::getInstance()->setCameraSpeedToChangePos();
 			mPortal = NULL;		
 		}
 		else if(mAnimation.getEndOfAnimation())

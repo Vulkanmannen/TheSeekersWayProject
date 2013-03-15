@@ -49,6 +49,8 @@ public:
 	//------------FinishDoor Animations on Char
 	void SetAniToIdle();
 
+	void setCameraSpeedToChangePos();
+
 private:
 	EntityManager();
 	EntityManager(const EntityManager &e);
@@ -63,6 +65,7 @@ private:
 	void killEntity();
 
 	Entity::EntityKind mPrimaryCharacter;
+	sf::Vector2f mCharacterLastPos;
 
 	EntityVector		mEntities;
 	DynamicEntityVector mDynamicEntities;
@@ -85,6 +88,7 @@ private:
 	//---------- mask
 	sf::Texture mMaskTexture;
 	sf::Sprite mMaskSprite;
+	float mCameraSpeed;
 
 	void renderLifeAndMask();
 	void lifeAndMaskPosition();
