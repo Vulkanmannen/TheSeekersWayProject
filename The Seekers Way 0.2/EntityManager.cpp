@@ -28,7 +28,8 @@ EntityManager::EntityManager():
 	shadeAll(false),
 	mCameraLastPos(0, 0),
 	mCameraSpeed(3),
-	mBackgroundPos(-1024, -1024)
+	mBackgroundPos(-1024, -1024),
+	mParalax(false)
 {		
 		emote[0] = 0;
 		emote[1] = 0;
@@ -316,7 +317,7 @@ void EntityManager::updateBackgroundParalax()
 
 	sf::Vector2f dist = cameraPos - mCameraLastPos;
 
-	if(mCameraSpeed < 20)
+	if(mParalax)
 	{
 		mBackgroundPos += sf::Vector2f(dist.x * 0.15, dist.y * 0.15);
 	}
@@ -415,21 +416,25 @@ void EntityManager::updatePrimaryCharacter()
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
 		tempEntityKind = Entity::KIBA;
+		mParalax = false;
 		setCameraSpeedToChangePos();
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 	{
 		tempEntityKind = Entity::CHARLOTTE;
+		mParalax = false;
 		setCameraSpeedToChangePos();
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
 	{
 		tempEntityKind = Entity::FENRIR;
+		mParalax = false;
 		setCameraSpeedToChangePos();
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
 	{
 		tempEntityKind = Entity::SHEEKA;
+		mParalax = false;
 		setCameraSpeedToChangePos();
 	}
 
@@ -538,7 +543,9 @@ void EntityManager::updateView()
 			else
 			{
 				mCameraSpeed = 3;	
+				mParalax = true;
 			}	
+			
 		}
 		mView->setCenter(mView->getCenter() + sf::Vector2f(dist.x * mCameraSpeed, dist.y * mCameraSpeed));
 	}
@@ -546,34 +553,22 @@ void EntityManager::updateView()
 	if(mView->getCenter().x < mMapLeft)
 	{
 		mView->setCenter(sf::Vector2f(mMapLeft, mView->getCenter().y));
-		if(mCameraSpeed > 19)
-		{
-			mCameraSpeed = 19;
-		}
+		mParalax = true;
 	}
 	else if(mView->getCenter().x > mMapRight)
 	{
 		mView->setCenter(sf::Vector2f(mMapRight, mView->getCenter().y));
-		if(mCameraSpeed > 19)
-		{
-			mCameraSpeed = 19;
-		}
+		mParalax = true;
 	}
 	if(mView->getCenter().y < mMapTop)
 	{
 		mView->setCenter(sf::Vector2f(mView->getCenter().x, mMapTop));
-		if(mCameraSpeed > 19)
-		{
-			mCameraSpeed = 19;
-		}
+		mParalax = true;
 	}
 	else if(mView->getCenter().y > mMapBottom)
 	{
 		mView->setCenter(sf::Vector2f(mView->getCenter().x, mMapBottom));
-		if(mCameraSpeed > 19)
-		{
-			mCameraSpeed = 19;
-		}
+		mParalax = true;
 	}
 
 	//if(playerPos.x > mMapLeft && playerPos.x < mMapRight)

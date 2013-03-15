@@ -109,6 +109,7 @@ private:
 	sf::Texture mBackgroundTexture;
 	std::vector<sf::Sprite> mBackgroundSprites;
 	sf::Vector2f mBackgroundPos;
+	bool mParalax;
 
 	void createBackground();
 	void renderBackground();

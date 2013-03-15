@@ -17,6 +17,15 @@ BigBridge::BigBridge(sf::Vector2f &position, bool closed):
 	mWidth = WIDTH;
 	mEntityKind = BIGBRIDGE;	
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
+
+	if(isitclosed)
+	{
+		mStatus = CLOSED;
+	}
+	else
+	{
+		mStatus = OPEN;
+	}
 }
 
 BigBridge::~BigBridge()
@@ -64,6 +73,7 @@ void BigBridge::DisActivate()
 
 void BigBridge::update(EntityKind &currentEntity)
 {
+	mAnimation.update(mStatus);
 	if(mStatus == OPENING && mAnimation.getEndOfAnimation())
 	{
 		mStatus = OPEN;
@@ -73,7 +83,7 @@ void BigBridge::update(EntityKind &currentEntity)
 	{
  		mStatus = CLOSED;
 	}
-	mAnimation.update(mStatus);
+
 }
 
 void BigBridge::render()

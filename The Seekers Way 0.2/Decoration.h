@@ -13,6 +13,7 @@ public:
 	void update(EntityKind &currentEntity);
 private:
 	bool mParalaxing;
+	sf::Vector2f mPositionToBackground;
 };
 
 #endif
