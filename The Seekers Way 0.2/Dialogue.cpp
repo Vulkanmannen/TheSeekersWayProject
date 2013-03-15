@@ -524,7 +524,7 @@ Dialogue::TextVector Dialogue::textBox(sf::Text &rawText, sf::Vector2f textboxsi
 		file.erase(0,1);
 		while(!filnamn.empty())
 		{
-			while(filnamn.rfind(' ') == 0 || filnamn.rfind('\n') == 0)
+			while(filnamn.find(' ') == 0 || filnamn.find('\n') == 0)
 			{
 				filnamn.erase(0, 1);
 			}
@@ -568,7 +568,8 @@ Dialogue::TextVector Dialogue::textBox(sf::Text &rawText, sf::Vector2f textboxsi
 							switch(split)
 							{
 							case true:
-								newest = oldest + '\n' + newest.back();
+								oldest = oldest + '\n';
+								newest = oldest + newest.back();
 								break;
 							case false:
 								newest.insert(newest.rfind(' ') + 1, "\n");

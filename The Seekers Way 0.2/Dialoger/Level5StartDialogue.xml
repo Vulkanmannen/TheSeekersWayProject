@@ -9,7 +9,7 @@
 	
 	FENRIR
 	<Dialog name="DoorsLevel1">
-		<speech text="Fenrir: If you get stuck behind one of those magical walls,\ I'm not coming to fetch you." speaker="2" bild="dialog2.png" emotion="0"/>
+		<speech text="Fenrir: If you get stuck behind one of those magical walls, I'm not coming to fetch you." speaker="2" bild="dialog2.png" emotion="0"/>
 	</Dialog>
 
 	KIBA SIGH
