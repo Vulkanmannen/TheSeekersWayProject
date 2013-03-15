@@ -62,11 +62,6 @@
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<smalBridgePosition X="4320" Y="1152" Closed ="0"/>
-		<buttonPosition X="4480" Y="1344"/>		
-	</Door>
-	
-	<Door name="DoorsLevel1">
 		<smalBridgePosition X="1088" Y="896" Closed ="0"/>
 		<buttonPosition X="2688" Y="640"/>		
 	</Door>

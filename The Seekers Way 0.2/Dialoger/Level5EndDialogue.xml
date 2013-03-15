@@ -3,7 +3,7 @@
   <Body>
 	KIBA
 	<Dialog name="DoorsLevel1">
-		<speech text="Kiba: Wait, you’re not gonna fight before we go through here?" speaker="0" bild="dialog0.png" emotion="0"/>
+		<speech text="Kiba: Wait, you're not gonna fight before we go through here?" speaker="0" bild="dialog0.png" emotion="0"/>
 	</Dialog>
 
 	FENRIR
@@ -25,13 +25,13 @@
 	<Dialog name="DoorsLevel1">
 		<speech text="We had no idea what awaited us at the end of that passage..."
 		bild="dialog4.png"
-		bildX="212" bildY="360"
-		textX="350" textY="0"
-		textboxWidth="620" textboxHeight="110"
-		font="journal.ttf" size="40"
-		colorR="254"
-		colorG="243"
-		colorB="128"
+		bildX="340" bildY="0"
+		textX="390" textY="10"
+		textboxWidth="540" textboxHeight="110"
+		font="journal.ttf" size="24"
+		colorR="0"
+		colorG="0"
+		colorB="0"
 		/>
 	</Dialog>
 
