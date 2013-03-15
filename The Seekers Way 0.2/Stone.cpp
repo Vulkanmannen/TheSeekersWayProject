@@ -20,7 +20,7 @@ Stone::Stone(sf::Vector2f Position):
 	mCharacterOnStone(false),
 	mStoneOnStone(false)
 {
-	mPosition = Position + sf::Vector2f(WIDTH/2 - 32, HEIGHT/2 - 32);
+	mPosition = Position + sf::Vector2f(WIDTH/2 - 32, HEIGHT/2 - 28);
 	mAlive = true;
 	mHeight = HEIGHT;
 	mWidth = WIDTH;

@@ -26,8 +26,9 @@ EntityManager::EntityManager():
 	mMapTop(360),
 	mMapLeft(512),
 	shadeAll(false),
-	mCharacterLastPos(0, 0),
-	mCameraSpeed(3)
+	mCameraLastPos(0, 0),
+	mCameraSpeed(3),
+	mBackgroundPos(-1024, -1024)
 {		
 		emote[0] = 0;
 		emote[1] = 0;
@@ -115,6 +116,7 @@ void EntityManager::update()
 		lifeAndMaskPosition();
 
 		updatePlayerPortrait();
+		updateBackgroundParalax();
 	}
 	
 	killPlayers();
@@ -285,13 +287,13 @@ void EntityManager::renderPortrait()
 // tilar bakgrunden
 void EntityManager::createBackground()
 {
-	for(int i = 0; i < 11; ++i)
+	for(int i = 0; i < 12; ++i)
 	{
-		for(int j = 0; j < 5; ++j)
+		for(int j = 0; j < 12; ++j)
 		{
 			sf::Sprite background;
 			background.setTexture(mBackgroundTexture);
-			background.setPosition(i *512, j * 512);
+			background.setPosition(sf::Vector2f(i *512, j * 512) + mBackgroundPos);
 			mBackgroundSprites.push_back(background);
 		}
 	}
@@ -303,6 +305,33 @@ void EntityManager::renderBackground()
 	for(std::vector<sf::Sprite>::size_type i = 0; i < mBackgroundSprites.size(); ++i)
 	{
 		ImageManager::render(&mBackgroundSprites[i]);
+	}
+}
+
+void EntityManager::updateBackgroundParalax()
+{
+	updateBackgroundPos();
+
+	sf::Vector2f cameraPos = mView->getCenter();
+
+	sf::Vector2f dist = cameraPos - mCameraLastPos;
+
+	if(mCameraSpeed < 20)
+	{
+		mBackgroundPos += sf::Vector2f(dist.x * 0.15, dist.y * 0.15);
+	}
+
+	mCameraLastPos = mView->getCenter();
+}
+
+void EntityManager::updateBackgroundPos()
+{
+	for(int i = 0; i < 12; ++i)
+	{
+		for(int j = 0; j < 12; ++j)
+		{
+			mBackgroundSprites[i * 12 + j].setPosition(sf::Vector2f(i *512, j * 512) + mBackgroundPos);	
+		}
 	}
 }
 
@@ -432,7 +461,19 @@ sf::Vector2f EntityManager::getCharacterPos()const
 // sätter primarycharacter
 void EntityManager::setPrimaryCharacter(Entity::EntityKind entityKind)
 {
-	mPrimaryCharacter = entityKind;
+	for(CharacterVector::size_type i = 0; i < mCharacters.size(); ++i) // kollar om den valda karaktären finns i vektorn
+	{
+		if(mCharacters[i]->getEntityKind() == entityKind)
+		{
+			mPrimaryCharacter = entityKind;
+			return;
+		}
+	}
+
+	if(mCharacters.size() > 0)
+	{
+		mPrimaryCharacter = mCharacters[0]->getEntityKind();
+	}
 }
 
 void EntityManager::interact()
@@ -474,7 +515,6 @@ void EntityManager::updateView()
 {
 	sf::Vector2f playerPos = getCharacterPos();
 
-	//sf::Vector2f dist = playerPos - mCharacterLastPos;
 	sf::Vector2f dist = playerPos - mView->getCenter();
 
 	float length = std::sqrt(dist.x * dist.x + dist.y *dist.y);
@@ -502,25 +542,37 @@ void EntityManager::updateView()
 		mView->setCenter(mView->getCenter() + sf::Vector2f(dist.x * mCameraSpeed, dist.y * mCameraSpeed));
 	}
 	
-	
-	
-	mCharacterLastPos = getCharacterPos();
-	
 	if(mView->getCenter().x < mMapLeft)
 	{
 		mView->setCenter(sf::Vector2f(mMapLeft, mView->getCenter().y));
+		if(mCameraSpeed > 19)
+		{
+			mCameraSpeed = 19;
+		}
 	}
 	else if(mView->getCenter().x > mMapRight)
 	{
 		mView->setCenter(sf::Vector2f(mMapRight, mView->getCenter().y));
+		if(mCameraSpeed > 19)
+		{
+			mCameraSpeed = 19;
+		}
 	}
 	if(mView->getCenter().y < mMapTop)
 	{
 		mView->setCenter(sf::Vector2f(mView->getCenter().x, mMapTop));
+		if(mCameraSpeed > 19)
+		{
+			mCameraSpeed = 19;
+		}
 	}
 	else if(mView->getCenter().y > mMapBottom)
 	{
 		mView->setCenter(sf::Vector2f(mView->getCenter().x, mMapBottom));
+		if(mCameraSpeed > 19)
+		{
+			mCameraSpeed = 19;
+		}
 	}
 
 	//if(playerPos.x > mMapLeft && playerPos.x < mMapRight)
@@ -608,4 +660,9 @@ void EntityManager::SetAniToIdle()
 void EntityManager::setCameraSpeedToChangePos()
 {
 	mCameraSpeed = 25;
+}
+
+sf::Vector2f EntityManager::getBackgroundPos()const
+{
+	return mBackgroundPos;
 }
