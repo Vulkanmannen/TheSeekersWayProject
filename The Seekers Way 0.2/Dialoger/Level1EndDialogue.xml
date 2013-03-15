@@ -3,7 +3,7 @@
   <Body>
 	KIBA
 	<Dialog name="DoorsLevel1">
-		<speech text="Kiba: Well, that wasn't too hard. Hopefully, we will find Fenrir and Sheeka somewhere." speaker="0" bild="dialog0.png" emotion="0"/>
+		<speech text="Kiba: Well, that wasn't too hard. Hopefully, we will find Fenrir and Sheeka\somewhere." speaker="0" bild="dialog0.png" emotion="0"/>
 	</Dialog>
 
 	CHARLOTTE
