@@ -76,8 +76,6 @@
 		<buttonPosition X="2688" Y="640"/>		
 	</Door>
 	
-	
-	
 	<Door name="DoorsLevel1">
 		<bigBridgePosition X="2304" Y="704" Closed ="0"/>
 		<buttonPosition X="3008" Y="1408"/>		
@@ -112,8 +110,6 @@
 		<doorPosition X="3328" Y="1536" texture="magicdoor.png"/>
 		<magicSwitchPosition X="3456" Y="2048" timeOpen="8"/>		
 	</Door>
-	
-	
 	
    </Body>
    

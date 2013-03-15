@@ -7,6 +7,7 @@
 #include "DialogState.h"
 #include "Dialogue.h"
 #include "LevelManager.h"
+#include "VideoState.h"
 
 State* State::sInstance = 0;
 
@@ -19,6 +20,7 @@ State::State():
 	mGameMenu = new GameMenu();
 	mPauseMenu = new PauseMenu();
 	mDialogState = new DialogState();
+	mVideoState = new VideoState();
 }
 
 
@@ -29,6 +31,7 @@ State::~State()
 	delete mGameMenu;
 	delete mPauseMenu;
 	delete mDialogState;
+	delete mVideoState;
 }
 
 void State::update()
@@ -48,8 +51,8 @@ void State::update()
 				mMenuStates = StartState;
 				Sounds::getInstance()->StopAll();
 				mEsc = false;
-				Sounds::getInstance()->setMasterVolume(30);
-				Sounds::getInstance()->Loop("fireball.wav", 30);
+				Sounds::getInstance()->setMasterVolume(100);
+				Sounds::getInstance()->Loop("fireball.wav", 20);
 			}
 			break;
 
@@ -91,7 +94,7 @@ void State::update()
 
 	// dialogstate
 		case DialogueState:
-			mGameMenu->render();
+			//mGameMenu->render();
 
 			mDialogState->render();
 			mDialogState->update();
@@ -100,6 +103,13 @@ void State::update()
 			{
 				mEsc = false;
 			}
+			break;
+		case MyVideoState:
+
+			mVideoState->render();
+			mVideoState->update();
+
+
 			break;
 	}
 
@@ -128,6 +138,12 @@ void State::setState(MenuStates menustate)
 	mMenuStates = menustate;
 	mStartMenu->SetCanPressToFalse();
 	mPauseMenu->SetCanPressToFalse();
+
+	if(menustate == MyVideoState)
+	{
+		//mVideoState->restartClock();
+		//mVideoState->setVideo(LevelManager::getInstance()->getCurrentLevel());
+	}
 }
 
 bool State::getExit()

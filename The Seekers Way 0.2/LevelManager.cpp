@@ -32,10 +32,11 @@ void LevelManager::LoadLevel(int level)
 	EntityManager::getInstance()->setPrimaryCharacter(mLevels[level].mPrimaryCharacter);
 
 	EntityManager::getInstance()->setMapSize(mLevels[level].mMapRight, mLevels[level].mMapBottom);
+	EntityManager::getInstance()->setCameraSpeedToChangePos();
 	
 	Sounds::getInstance()->StopAll();
 	Sounds::getInstance()->setMasterVolume(100);
-	Sounds::getInstance()->Loop("Level1Music.wav", 10);
+	Sounds::getInstance()->Loop("Level1Music.wav", 50);
 
 	EntityManager::getInstance()->setPlayerLifeMax();
 }

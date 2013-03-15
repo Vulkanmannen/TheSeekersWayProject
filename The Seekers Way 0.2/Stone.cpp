@@ -3,8 +3,8 @@
 #include <math.h>
 #include "TelekinesisBox.h"
 
-static const float WIDTH = 128;
-static const float HEIGHT = 128;
+static const float WIDTH = 124;
+static const float HEIGHT = 124;
 
 static const float SPRITEWIDTH = 140;
 static const float SPRITEHEIGHT = 140;
@@ -20,7 +20,7 @@ Stone::Stone(sf::Vector2f Position):
 	mCharacterOnStone(false),
 	mStoneOnStone(false)
 {
-	mPosition = Position + sf::Vector2f(WIDTH/2 - 32, HEIGHT/2 - 32);
+	mPosition = Position + sf::Vector2f(WIDTH/2 - 32, HEIGHT/2 - 28);
 	mAlive = true;
 	mHeight = HEIGHT;
 	mWidth = WIDTH;

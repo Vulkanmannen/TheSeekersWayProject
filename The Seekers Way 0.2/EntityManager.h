@@ -49,6 +49,9 @@ public:
 	//------------FinishDoor Animations on Char
 	void SetAniToIdle();
 
+	void setCameraSpeedToChangePos();
+
+	sf::Vector2f getBackgroundPos()const;
 private:
 	EntityManager();
 	EntityManager(const EntityManager &e);
@@ -70,6 +73,7 @@ private:
 	
 	sf::View* mView;
 	sf::VideoMode* mVideoMode;
+	sf::Vector2f mCameraLastPos;
 	
 	//--------------life
 	int mZeroPlayerLife;
@@ -85,6 +89,7 @@ private:
 	//---------- mask
 	sf::Texture mMaskTexture;
 	sf::Sprite mMaskSprite;
+	float mCameraSpeed;
 
 	void renderLifeAndMask();
 	void lifeAndMaskPosition();
@@ -101,9 +106,12 @@ private:
 	// ----------------- background
 	sf::Texture mBackgroundTexture;
 	std::vector<sf::Sprite> mBackgroundSprites;
+	sf::Vector2f mBackgroundPos;
 
 	void createBackground();
 	void renderBackground();
+	void updateBackgroundPos();
+	void updateBackgroundParalax();
 	
 	//------------mapsize
 	int mMapRight;

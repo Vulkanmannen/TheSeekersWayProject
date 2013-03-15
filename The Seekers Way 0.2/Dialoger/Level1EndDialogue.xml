@@ -3,7 +3,7 @@
   <Body>
 	KIBA
 	<Dialog name="DoorsLevel1">
-		<speech text="Kiba: Well, that wasn't too hard. Hopefully, we will find Fenrir and Sheeka somewhere." speaker="0" bild="dialog0.png" emotion="0"/>
+		<speech text="Kiba: Well, that wasn't too hard. Hopefully, we will find Fenrir and Sheeka\somewhere." speaker="0" bild="dialog0.png" emotion="0"/>
 	</Dialog>
 
 	CHARLOTTE
@@ -39,12 +39,12 @@
 		<speech text="I had only just been introduced to Charlotte, but I felt as if she had always been my friend, as if I had known her my whole life."
 		bild="dialog4.png"
 		bildX="212" bildY="360"
-		textX="212" textY="305"
-		textboxWidth="600" textboxHeight="110"
+		textX="350" textY="0"
+		textboxWidth="620" textboxHeight="110"
 		font="journal.ttf" size="40"
-		colorR="254"
-		colorG="243"
-		colorB="128"
+		colorR="140"
+		colorG="127"
+		colorB="93"
 		/>
 	</Dialog>
 
