@@ -48,12 +48,12 @@
 	ID 1
 	<Door name="DoorsLevel1">
 		<doorPosition X="512" Y="1600"/>
-		<buttonPosition X="512" Y="1024"/>		
+		<buttonPosition X="384" Y="1024"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
 		<doorPosition X="1600" Y="1152"/>
-		<buttonPosition X="512" Y="1024"/>		
+		<buttonPosition X="384" Y="1024"/>		
 	</Door>
 	
 	ID 2
