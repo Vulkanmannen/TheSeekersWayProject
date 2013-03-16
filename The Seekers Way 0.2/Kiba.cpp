@@ -11,7 +11,9 @@ Kiba::Kiba(sf::Vector2f &position):
 	mTelekinesisBox(new TelekinesisBox(position)),
 	mTeleState(NOSTONE),
 	mStone(NULL),
-	mCanPressStone(true)
+	mCanPressStone(true),
+	mSlashing(false),
+	mCanPressSlash(true)
 {	
 	EntityManager::getInstance()->addEntity(mTelekinesisBox);
 	mAnimation.init("Kiba.png", 60, 6);
@@ -28,12 +30,13 @@ Kiba::~Kiba()
 void Kiba::update(EntityKind &currentEntity)
 {	
 	move();
-	
+	slashing();
+
 	if(mCanMove)
 	{
 		if(currentEntity == mEntityKind)
 		{
-			if(mTeleState == NOSTONE)
+			if(mTeleState == NOSTONE && !mSlashing)
 			{
 				walk();
 				jump();
@@ -88,13 +91,23 @@ void Kiba::render()
 
 void Kiba::slash()
 { 
-	if((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::X)) && mslashtimer.getElapsedTime().asSeconds() >= 1)
+	if((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::X)) && mslashtimer.getElapsedTime().asSeconds() >= 0.6 && !mJumping && !mFalling && mCanPressSlash)
 	{	
+		mCanPressSlash = false;
+
 		mslashtimer.restart();
 		Slash *slash = new Slash(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 32, mPosition.y - 30), mDirLeft);
 		EntityManager::getInstance()->addEntity(slash);
 		Sounds::getInstance()->Play("slash.wav", 30);
 		mStatus = ACTION2;
+		mAnimationClock.restart();
+		
+		mMovementSpeed.x = 0;
+		mSlashing = true;
+	}
+	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+	{
+		mCanPressSlash = true;
 	}
 }
 
@@ -213,16 +226,32 @@ void Kiba::onblock()
 		{
 			mStatus = IDLE;
 
-			if(mMovementSpeed.y > 1)
+			if(mMovementSpeed.y > 1 && mMovementSpeed.y < 8)
+			{
+				Sounds::getInstance()->Play("jump2.wav", 20);
+				Sounds::getInstance()->Play("land.wav", 30);
+			}
+			else if(mMovementSpeed.y >= 8)
 			{
 				Sounds::getInstance()->Play("land.wav", 70);
+				Sounds::getInstance()->Play("land.wav", 30);
 			}
 		}
 		mMovementSpeed.y = 0;
 	}
-
-	if(mStatus == ACTION2 && mAnimation.getEndOfAnimation() || (mStatus == JUMP && !mJumping) || (mStatus == ACTION1 && mAnimation.getEndOfAnimation() && mTeleState != SELECTEDSTONE))
+	if(mAnimationClock.getElapsedTime().asMilliseconds() > 300)
 	{
-		mStatus = IDLE;
+		if(mStatus == ACTION2 && mAnimation.getEndOfAnimation() || (mStatus == JUMP && !mJumping) || (mStatus == ACTION1 && mAnimation.getEndOfAnimation() && mTeleState != SELECTEDSTONE))
+		{		
+			mStatus = IDLE;
+		}
+	}
+}
+
+void Kiba::slashing()
+{
+	if(mslashtimer.getElapsedTime().asSeconds() > 0.6)
+	{
+		mSlashing = false;
 	}
 }

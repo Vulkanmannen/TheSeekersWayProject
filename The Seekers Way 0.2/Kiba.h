@@ -21,7 +21,10 @@ public:
 	
 private:
 	void slash();
+	void slashing();
+	bool mSlashing;
 	sf::Clock mslashtimer;
+	bool mCanPressSlash;
 
 	TelekinesisBox* mTelekinesisBox;
 
