@@ -17,7 +17,7 @@ Decoration::Decoration(sf::Vector2f Position, unsigned char spriteNumber, bool b
 			
 			if(paralaxing)
 			{
-				mTexture.loadFromImage(*ImageManager::getImage("decoration128.png"));
+				mTexture.loadFromImage(*ImageManager::getImage("decoration128parallaxing.png"));
 				mLayer = BACKGROUND;
 			}
 			else
@@ -32,7 +32,7 @@ Decoration::Decoration(sf::Vector2f Position, unsigned char spriteNumber, bool b
 			mWidth = 64;
 			if(paralaxing)
 			{
-				mTexture.loadFromImage(*ImageManager::getImage("decoration64.png"));
+				mTexture.loadFromImage(*ImageManager::getImage("decoration64parallaxing.png"));
 				mLayer = BACKGROUND;
 			}
 			else
@@ -45,16 +45,9 @@ Decoration::Decoration(sf::Vector2f Position, unsigned char spriteNumber, bool b
 		{
 			mHeight = 192;
 			mWidth = 192;
-			if(paralaxing)
-			{
-				mTexture.loadFromImage(*ImageManager::getImage("decoration64.png"));
-				mLayer = BACKGROUND;
-			}
-			else
-			{
-				mTexture.loadFromImage(*ImageManager::getImage("decoration64.png"));
-				mLayer = MIDDLE;
-			}
+
+			mTexture.loadFromImage(*ImageManager::getImage("FinishDoor.png"));
+			mLayer = MIDDLE;
 		}
 		mPositionToBackground = Position - sf::Vector2f(32, 32);
 		mPosition = EntityManager::getInstance()->getBackgroundPos() + sf::Vector2f(1024, 1024) + mPositionToBackground; 

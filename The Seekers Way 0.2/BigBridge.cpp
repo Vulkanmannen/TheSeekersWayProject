@@ -2,6 +2,7 @@
 #include "ImageManager.h"
 #include <cmath>
 #include "Character.h"
+#include "Sounds.h"
 
 static const float WIDTH = 320;
 static const float HEIGHT = 32;
@@ -40,6 +41,13 @@ void BigBridge::Activate()
 		if(mStatus != OPEN)
 		{
 			mStatus = OPENING;
+			mAnimationClock.restart();
+
+			if(mSoundClock.getElapsedTime().asSeconds() > 1.2)
+			{
+				Sounds::getInstance()->Play("door.wav");
+				mSoundClock.restart();
+			}
 		}
 	}
 	else
@@ -47,6 +55,13 @@ void BigBridge::Activate()
 		if(mStatus != CLOSED)
 		{
 			mStatus = CLOSING;
+			mAnimationClock.restart();
+			
+			if(mSoundClock.getElapsedTime().asSeconds() > 1.2)
+			{
+				Sounds::getInstance()->Play("door.wav");
+				mSoundClock.restart();
+			}
 		}
 	}
 	!isitclosed? mBaseKind = BLOCK : mBaseKind = OBJECT; 
@@ -59,6 +74,13 @@ void BigBridge::DisActivate()
 		if(mStatus != OPEN)
 		{
 			mStatus = OPENING;
+			mAnimationClock.restart();
+			
+			if(mSoundClock.getElapsedTime().asSeconds() > 1.2)
+			{
+				Sounds::getInstance()->Play("door.wav");
+				mSoundClock.restart();
+			}
 		}
 	}
 	else
@@ -66,6 +88,13 @@ void BigBridge::DisActivate()
 		if(mStatus != CLOSED)
 		{
 			mStatus = CLOSING;
+			mAnimationClock.restart();
+			
+			if(mSoundClock.getElapsedTime().asSeconds() > 1.2)
+			{
+				Sounds::getInstance()->Play("door.wav");
+				mSoundClock.restart();
+			}
 		}
 	}
 	isitclosed? mBaseKind = BLOCK : mBaseKind = OBJECT; 
@@ -73,17 +102,16 @@ void BigBridge::DisActivate()
 
 void BigBridge::update(EntityKind &currentEntity)
 {
-	mAnimation.update(mStatus);
-	if(mStatus == OPENING && mAnimation.getEndOfAnimation())
+	if(mStatus == OPENING && mAnimation.getEndOfAnimation() && mAnimationClock.getElapsedTime().asMilliseconds() > 300)
 	{
 		mStatus = OPEN;
 	}
 
-	if(mStatus == CLOSING && mAnimation.getEndOfAnimation())
+	if(mStatus == CLOSING && mAnimation.getEndOfAnimation() && mAnimationClock.getElapsedTime().asMilliseconds() > 300)
 	{
  		mStatus = CLOSED;
 	}
-
+	mAnimation.update(mStatus);
 }
 
 void BigBridge::render()

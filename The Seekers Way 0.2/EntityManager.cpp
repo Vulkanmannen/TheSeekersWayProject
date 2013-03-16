@@ -29,7 +29,9 @@ EntityManager::EntityManager():
 	mCameraLastPos(0, 0),
 	mCameraSpeed(3),
 	mBackgroundPos(-1024, -1024),
-	mParalax(false)
+	mParalax(false),
+	mMovingCamera(false),
+	mCantMoveCharacters(false)
 {		
 		emote[0] = 0;
 		emote[1] = 0;
@@ -105,9 +107,16 @@ void EntityManager::update()
 	{
 		for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
 		{
-			mEntities[i]->update(mPrimaryCharacter);
-		}
-	
+			if(!mCantMoveCharacters)
+			{
+				mEntities[i]->update(mPrimaryCharacter);
+			}
+			else
+			{
+				Entity::EntityKind noCharacter = Entity::DOOR;
+				mEntities[i]->update(noCharacter);	
+			}
+		}	
 
 		updatePlayerLife();
 		interact();
@@ -317,7 +326,18 @@ void EntityManager::updateBackgroundParalax()
 
 	sf::Vector2f dist = cameraPos - mCameraLastPos;
 
-	if(mParalax)
+	if(dist.x == 0 && dist.y == 0 || (mParalaxClock.getElapsedTime().asMilliseconds() > 50 && !mCantMoveCharacters))
+	{
+		mMovingCamera = false;
+	}
+
+	if(dist.x < 0.0001, dist.y < 0.0001)
+	{
+		mParalaxClock.restart();
+		mCantMoveCharacters = false;
+	}
+
+	if(mParalax && !mMovingCamera)
 	{
 		mBackgroundPos += sf::Vector2f(dist.x * 0.15, dist.y * 0.15);
 	}
@@ -416,25 +436,21 @@ void EntityManager::updatePrimaryCharacter()
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
 		tempEntityKind = Entity::KIBA;
-		mParalax = false;
 		setCameraSpeedToChangePos();
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 	{
 		tempEntityKind = Entity::CHARLOTTE;
-		mParalax = false;
 		setCameraSpeedToChangePos();
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
 	{
 		tempEntityKind = Entity::FENRIR;
-		mParalax = false;
 		setCameraSpeedToChangePos();
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
 	{
 		tempEntityKind = Entity::SHEEKA;
-		mParalax = false;
 		setCameraSpeedToChangePos();
 	}
 
@@ -530,9 +546,9 @@ void EntityManager::updateView()
 		
 		dist.x *= 1.0f / length;
 		dist.y *= 1.0f / length;
-	}
-	
-	if(length > 10)
+	}	
+
+	if(length > 5)
 	{
 		if(length < 100)
 		{
@@ -548,6 +564,10 @@ void EntityManager::updateView()
 			
 		}
 		mView->setCenter(mView->getCenter() + sf::Vector2f(dist.x * mCameraSpeed, dist.y * mCameraSpeed));
+	}
+	else
+	{
+		mView->setCenter(playerPos);
 	}
 	
 	if(mView->getCenter().x < mMapLeft)
@@ -628,6 +648,8 @@ void EntityManager::ClearAll()
 	}
 	mDynamicEntities.clear();
 	mCharacters.clear();
+
+	mBackgroundPos = sf::Vector2f(-1024, -1024);
 }
 
 void EntityManager::setPlayerLifeMax()
@@ -656,6 +678,9 @@ void EntityManager::SetAniToIdle()
 void EntityManager::setCameraSpeedToChangePos()
 {
 	mCameraSpeed = 25;
+	mParalax = false;
+	mMovingCamera = true;
+	mCantMoveCharacters = true;
 }
 
 sf::Vector2f EntityManager::getBackgroundPos()const

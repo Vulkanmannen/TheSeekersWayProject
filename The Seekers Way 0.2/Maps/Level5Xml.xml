@@ -73,7 +73,7 @@
 	
 	<Door name="DoorsLevel1">
 		<bigBridgePosition X="1152" Y="1216" Closed ="0"/>
-		<buttonPosition X="2688" Y="640"/>		
+		<buttonPosition X="1536" Y="1152"/>	2688	640
 	</Door>
 	
 	<Door name="DoorsLevel1">

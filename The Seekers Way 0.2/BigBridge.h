@@ -20,6 +20,9 @@ public:
 	
 private:
 	Animation mAnimation;
+	sf::Clock mAnimationClock;
+	sf::Clock mSoundClock;
+
 	bool isitclosed;
 
 	enum Status {CLOSED, OPENING, OPEN, CLOSING};	
