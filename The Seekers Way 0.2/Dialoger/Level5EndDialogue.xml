@@ -25,10 +25,10 @@
 	<Dialog name="DoorsLevel1">
 		<speech text="We had no idea what awaited us at the end of that passage..."
 		bild="dialog4.png"
-		bildX="340" bildY="0"
-		textX="390" textY="10"
+		bildX="365" bildY="0"
+		textX="415" textY="10"
 		textboxWidth="540" textboxHeight="110"
-		font="journal.ttf" size="24"
+		font="journal.ttf" size="30"
 		colorR="0"
 		colorG="0"
 		colorB="0"

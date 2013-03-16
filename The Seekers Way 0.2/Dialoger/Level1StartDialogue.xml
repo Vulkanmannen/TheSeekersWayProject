@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
   <Body>
-	 
-	Kiba’s journal
-	<Dialog name="DoorsLevel1">
-		<speech text="I had only just been introduced to Charlotte, but I felt as if she had always been my friend, as if I had known her my whole life."
-		bild="dialog4.png"
-		bildX="365" bildY="0"
-		textX="415" textY="10"
-		textboxWidth="540" textboxHeight="110"
-		font="journal.ttf" size="30"
-		colorR="0"
-		colorG="0"
-		colorB="0"
-		/>
-	</Dialog>
-	
+
 	KIBA
 	<Dialog name="DoorsLevel1">
 		<speech text="Kiba: Phew! I thought we were goners for sure! Are you OK?" speaker="0" bild="dialog0.png" emotion="0"/>

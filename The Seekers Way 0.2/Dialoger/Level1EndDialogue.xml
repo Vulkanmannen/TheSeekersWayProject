@@ -36,12 +36,12 @@
 	
 	Kiba’s journal
 	<Dialog name="DoorsLevel1">
-		<speech text="I had only just been introduced to Charlotte, but I felt as if she had always been my friend, as if I had known her my whole life."
+		<speech text="I had only just been introduced to Charlotte, but I felt as if I had known her my whole life."
 		bild="dialog4.png"
-		bildX="340" bildY="0"
-		textX="390" textY="10"
+		bildX="365" bildY="0"
+		textX="415" textY="10"
 		textboxWidth="540" textboxHeight="110"
-		font="journal.ttf" size="24"
+		font="journal.ttf" size="30"
 		colorR="0"
 		colorG="0"
 		colorB="0"
