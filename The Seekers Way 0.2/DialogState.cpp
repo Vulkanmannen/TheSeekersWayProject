@@ -75,6 +75,7 @@ void DialogState::update()
 
 	if(Dialogue::getInstance()->getendofDialogue() && Dialogue::getInstance()->getStartDialogue())
 	{
+		EntityManager::getInstance()->updateCameraLastpos();
 		State::getInstance()->setState(State::GameState);
 		reset();
 	}

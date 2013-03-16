@@ -72,9 +72,15 @@ void Character::onblock()
 		{
 			mStatus = IDLE;
 
-			if(mMovementSpeed.y > 1)
+			if(mMovementSpeed.y > 1 && mMovementSpeed.y < 8)
+			{
+				Sounds::getInstance()->Play("jump2.wav", 20);
+				Sounds::getInstance()->Play("land.wav", 30);
+			}
+			else if(mMovementSpeed.y >= 8)
 			{
 				Sounds::getInstance()->Play("land.wav", 70);
+				Sounds::getInstance()->Play("land.wav", 30);
 			}
 		}
 		mMovementSpeed.y = 0;

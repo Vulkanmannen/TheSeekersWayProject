@@ -9,6 +9,9 @@
 const static float HEIGHT = 64;
 const static float WIDTH = 110;
 
+const static float WALLHEIGHT = 110;
+const static float WALLWIDTH = 59;
+
 Fenrir::Fenrir(sf::Vector2f &position):
 	mWallJumping(false),
 	mCanPressWallJump(true),
@@ -397,8 +400,8 @@ bool Fenrir::hitWall()
 					mPosition.y -= 5;
 				}
 
-				mHeight = WIDTH;
-				mWidth = HEIGHT;
+				mHeight = WALLHEIGHT;
+				mWidth = WALLWIDTH;
 
 				mVerticalHitbox = true;
 			}

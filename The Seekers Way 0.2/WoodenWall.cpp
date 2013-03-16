@@ -25,7 +25,7 @@ WoodenWall::~WoodenWall()
 void WoodenWall::update(EntityKind &currentCharacter)
 {
 	mAnimation.update(mHit);
-	if(mAnimation.getEndOfAnimation() && mHit)
+	if(mAnimation.getEndOfAnimation() && mHit && mAnimationClock.getElapsedTime().asMilliseconds() > 300)
 	{
 		destroy();
 	}
@@ -49,5 +49,9 @@ void WoodenWall::interact(Entity *e)
 // öppnar dörren
 void WoodenWall::Activate()
 {
+	if(!mHit)
+	{
+		mAnimationClock.restart();
+	}
 	mHit = true;
 }

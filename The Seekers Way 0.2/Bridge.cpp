@@ -1,6 +1,7 @@
 #include "Bridge.h"
 #include "ImageManager.h"
 #include "Character.h"
+#include "Sounds.h"
 
 static const float WIDTH = 128;
 static const float HEIGHT = 32;
@@ -39,6 +40,13 @@ void Bridge::Activate()
 		if(mStatus != OPEN)
 		{
 			mStatus = OPENING;
+			mAnimationClock.restart();
+
+			if(mSoundClock.getElapsedTime().asSeconds() > 1.2)
+			{
+				Sounds::getInstance()->Play("door.wav");
+				mSoundClock.restart();
+			}
 		}
 	}
 	else
@@ -46,6 +54,13 @@ void Bridge::Activate()
 		if(mStatus != CLOSED)
 		{
 			mStatus = CLOSING;
+			mAnimationClock.restart();
+			
+			if(mSoundClock.getElapsedTime().asSeconds() > 1.2)
+			{
+				Sounds::getInstance()->Play("door.wav");
+				mSoundClock.restart();
+			}
 		}
 	}
 	!isitclosed? mBaseKind = BLOCK : mBaseKind = OBJECT; 
@@ -58,6 +73,13 @@ void Bridge::DisActivate()
 		if(mStatus != OPEN)
 		{
 			mStatus = OPENING;
+			mAnimationClock.restart();
+			
+			if(mSoundClock.getElapsedTime().asSeconds() > 1.2)
+			{
+				Sounds::getInstance()->Play("door.wav");
+				mSoundClock.restart();
+			}
 		}
 	}
 	else
@@ -65,6 +87,13 @@ void Bridge::DisActivate()
 		if(mStatus != CLOSED)
 		{
 			mStatus = CLOSING;
+			mAnimationClock.restart();
+			
+			if(mSoundClock.getElapsedTime().asSeconds() > 1.2)
+			{
+				Sounds::getInstance()->Play("door.wav");
+				mSoundClock.restart();
+			}
 		}
 	}
 	isitclosed? mBaseKind = BLOCK : mBaseKind = OBJECT; 
@@ -72,12 +101,12 @@ void Bridge::DisActivate()
 
 void Bridge::update(EntityKind &currentEntity)
 {
-	if(mStatus == OPENING && mAnimation.getEndOfAnimation())
+	if(mStatus == OPENING && mAnimation.getEndOfAnimation() && mAnimationClock.getElapsedTime().asMilliseconds() > 300)
 	{
 		mStatus = OPEN;
 	}
 
-	if(mStatus == CLOSING && mAnimation.getEndOfAnimation())
+	if(mStatus == CLOSING && mAnimation.getEndOfAnimation() && mAnimationClock.getElapsedTime().asMilliseconds() > 300)
 	{
  		mStatus = CLOSED;
 	}
@@ -86,7 +115,6 @@ void Bridge::update(EntityKind &currentEntity)
 
 void Bridge::render()
 {
-	
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
 	ImageManager::render(&mAnimation.getSprite());
 }

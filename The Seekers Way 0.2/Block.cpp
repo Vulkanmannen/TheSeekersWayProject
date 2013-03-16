@@ -3,7 +3,7 @@
 Block::Block()
 {
 	mBaseKind = BLOCK;
-	mLayer = BACKGROUND;
+	mLayer = MIDDLE;
 }
 
 Block::~Block()

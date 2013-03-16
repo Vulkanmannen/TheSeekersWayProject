@@ -52,6 +52,7 @@ public:
 	void setCameraSpeedToChangePos();
 
 	sf::Vector2f getBackgroundPos()const;
+	void updateCameraLastpos();
 private:
 	EntityManager();
 	EntityManager(const EntityManager &e);
@@ -74,6 +75,10 @@ private:
 	sf::View* mView;
 	sf::VideoMode* mVideoMode;
 	sf::Vector2f mCameraLastPos;
+	bool mMovingCamera;
+	bool mCantMoveCharacters;
+	sf::Clock mParalaxClock;
+	
 	
 	//--------------life
 	int mZeroPlayerLife;
@@ -107,6 +112,7 @@ private:
 	sf::Texture mBackgroundTexture;
 	std::vector<sf::Sprite> mBackgroundSprites;
 	sf::Vector2f mBackgroundPos;
+	bool mParalax;
 
 	void createBackground();
 	void renderBackground();
