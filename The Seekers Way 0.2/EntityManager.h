@@ -52,6 +52,7 @@ public:
 	void setCameraSpeedToChangePos();
 
 	sf::Vector2f getBackgroundPos()const;
+	bool getMovingCamera()const;
 	void updateCameraLastpos();
 private:
 	EntityManager();
@@ -72,13 +73,14 @@ private:
 	DynamicEntityVector mDynamicEntities;
 	CharacterVector		mCharacters;
 	
+	// -------------------camera
 	sf::View* mView;
 	sf::VideoMode* mVideoMode;
 	sf::Vector2f mCameraLastPos;
 	bool mMovingCamera;
 	bool mCantMoveCharacters;
 	sf::Clock mParalaxClock;
-	
+	void updateMovingCamera();
 	
 	//--------------life
 	int mZeroPlayerLife;

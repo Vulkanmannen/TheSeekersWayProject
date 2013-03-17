@@ -219,6 +219,7 @@ void EntityManager::render()
 	renderLifeAndMask();
 	renderPortrait();
 	lifeAndMaskPosition();
+	updateMovingCamera();
 	//sf::RectangleShape rect(sf::Vector2f(mMapRight - 512, mMapBottom - 360));
 	//rect.setPosition(mMapLeft, mMapTop);
 	//sf::Color colo(255,255,255,128);
@@ -318,14 +319,14 @@ void EntityManager::renderBackground()
 	}
 }
 
-void EntityManager::updateBackgroundParalax()
+void EntityManager::updateMovingCamera()
 {
 	updateBackgroundPos();
 
 	sf::Vector2f cameraPos = mView->getCenter();
 
 	sf::Vector2f dist = cameraPos - mCameraLastPos;
-
+	
 	if(dist.x == 0 && dist.y == 0 || (mParalaxClock.getElapsedTime().asMilliseconds() > 50 && !mCantMoveCharacters))
 	{
 		mMovingCamera = false;
@@ -336,6 +337,14 @@ void EntityManager::updateBackgroundParalax()
 		mParalaxClock.restart();
 		mCantMoveCharacters = false;
 	}
+
+	mCameraLastPos = mView->getCenter();
+}
+void EntityManager::updateBackgroundParalax()
+{
+	sf::Vector2f cameraPos = mView->getCenter();
+
+	sf::Vector2f dist = cameraPos - mCameraLastPos;
 
 	if(mParalax && !mMovingCamera)
 	{
@@ -539,7 +548,8 @@ void EntityManager::updateView()
 
 	sf::Vector2f dist = playerPos - mView->getCenter();
 
-	float length = std::sqrt(dist.x * dist.x + dist.y *dist.y);
+	float length = 0;
+	length = std::sqrt((dist.x * dist.x) + (dist.y *dist.y));
 	
 	if(dist != sf::Vector2f(0, 0))
 	{
@@ -691,4 +701,9 @@ sf::Vector2f EntityManager::getBackgroundPos()const
 void EntityManager::updateCameraLastpos()
 {
 	mCameraLastPos = mView->getCenter();
+}
+
+bool EntityManager::getMovingCamera()const
+{
+	return mMovingCamera;
 }

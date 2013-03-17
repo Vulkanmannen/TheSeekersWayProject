@@ -259,9 +259,12 @@ void Fenrir::onblock()
 	// snowmist
 	mCanSnowMist = true;
 
-	if(mStatus == ACTION2 || mStatus == ACTION1 || (mStatus == ACTION5 && mAnimation.getEndOfAnimation()) || (mStatus == JUMP && !mJumping))
+	if(mAnimationClock.getElapsedTime().asMilliseconds() > 300)
 	{
-		mStatus = IDLE;
+		if(mStatus == ACTION2 || mStatus == ACTION1 || (mStatus == ACTION5 && mAnimation.getEndOfAnimation()) || (mStatus == JUMP && !mJumping))
+		{
+			mStatus = IDLE;
+		}
 	}
 }
 
@@ -464,6 +467,7 @@ void Fenrir::notInSnowMist()
 	mInSnowMist = false;	
 	//mFenrirCanJump = true;
 	mStatus = ACTION5;
+	mAnimationClock.restart();
 }
 
 // flyttar på fenrir i snomistmode

@@ -19,7 +19,8 @@ Sheeka::Sheeka(sf::Vector2f &position):
 	mCanPressDarkBinding(true),
 	mCanDashCount(60),
 	mCanDashTime(60),
-	mDarkBinding(false)
+	mDarkBinding(false),
+	mDarkBindingTime(false)
 	{
 		mAnimation.init("sheeka.PNG", 60, 8);
 		mHeight = HEIGHT;
@@ -34,10 +35,11 @@ Sheeka::~Sheeka()
 void Sheeka::update(EntityKind &currentEntity)
 {
 	move();
+	darkBindingTime();
 
 	if(mCanMove)
 	{
-		if(mDash == false)
+		if(!mDash && !mDarkBindingTime)
 		{
 			if(currentEntity == mEntityKind)
 			{
@@ -45,9 +47,8 @@ void Sheeka::update(EntityKind &currentEntity)
 				jump();
 				darkBinding();
 			}
-	
 		}
-		if(currentEntity == mEntityKind)
+		if(currentEntity == mEntityKind&& !mDarkBindingTime)
 		{
 			SheekaDash();
 		}
@@ -86,6 +87,7 @@ void Sheeka::SheekaDash()
 	{
 		mCanDashCount = 0;
 		mStatus = ACTION1;
+		mAnimationClock.restart();
 		Sounds::getInstance()->Play("dash.wav");
 		mMovementSpeed.y = 0;
 		mMovementSpeed.x = 0;
@@ -113,27 +115,38 @@ void Sheeka::darkBinding()
 {
 	if(((sf::Keyboard::isKeyPressed(sf::Keyboard::W)) || (sf::Keyboard::isKeyPressed(sf::Keyboard::X)) && !mDarkBinding)
 		&& mCanPressDarkBinding 
-		&& mDarkBindingClock.getElapsedTime().asSeconds() >= 2
+		&& mDarkBindingClock.getElapsedTime().asSeconds() >= 1
 		&& !mJumping
 		&& !mFalling)
 	{
 		mDarkBindingClock.restart();
 		mCanPressDarkBinding = false;
 		mDarkBinding = true;
+		mDarkBindingTime = true;
 		mDarkClock.restart();
 		mMovementSpeed.x = 0;
 		mStatus = ACTION2;
+		mAnimationClock.restart();
 	}
 	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::X))
 	{
 		mCanPressDarkBinding = true;
 	}
+}
 
+void Sheeka::darkBindingTime()
+{
 	if(mDarkBinding && mDarkClock.getElapsedTime().asMilliseconds() > 270)
 	{
 		EntityManager::getInstance()->addEntity(new DarkBinding(sf::Vector2f(mPosition.x + (35 * (mDirLeft? -1 : 1)), mPosition.y - 7), mDirLeft));
 		mDarkBinding = false;
 	}
+	
+	if(mDarkBindingTime && mDarkClock.getElapsedTime().asMilliseconds() > 550)
+	{
+		mDarkBindingTime = false;
+	}
+
 }
 
 // lägger till att dash = false i takedamage

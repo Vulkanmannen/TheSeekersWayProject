@@ -11,11 +11,14 @@ public:
 	~DialogState();
 	void update();
 	void render();
+
+	void restartClock();
 private:
 	bool mEndOfDialouge;
 	bool mFadedIn;
 	bool mFadedThisTime;
 	float mFadeCount;
+	sf::Clock mTimeToFadeIn;
 
 	void fade();
 	void reset();
