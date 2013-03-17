@@ -18,7 +18,7 @@ Sheeka::Sheeka(sf::Vector2f &position):
 	mDashCount(0),
 	mCanPressDarkBinding(true),
 	mCanDashCount(60),
-	mCanDashTime(60),
+	mCanDashTime(50),
 	mDarkBinding(false),
 	mDarkBindingTime(false)
 	{
