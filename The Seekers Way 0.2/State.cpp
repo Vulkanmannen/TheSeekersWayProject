@@ -144,6 +144,11 @@ void State::setState(MenuStates menustate)
 		//mVideoState->restartClock();
 		//mVideoState->setVideo(LevelManager::getInstance()->getCurrentLevel());
 	}
+
+	if(menustate == DialogueState)
+	{
+		mDialogState->restartClock();
+	}
 }
 
 bool State::getExit()
