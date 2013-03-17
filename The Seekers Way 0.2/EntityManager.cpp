@@ -348,7 +348,7 @@ void EntityManager::updateBackgroundParalax()
 
 	if(mParalax && !mMovingCamera)
 	{
-		mBackgroundPos += sf::Vector2f(dist.x * 0.15, dist.y * 0.15);
+		mBackgroundPos += sf::Vector2f(dist.x * 0.05, dist.y * 0.05);
 	}
 
 	mCameraLastPos = mView->getCenter();

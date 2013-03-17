@@ -293,9 +293,12 @@ void Fenrir::fall()
 	{
 		if(mFalling && !mWallJumping)
 		{
-			if(mStatus != ACTION1 || mAnimation.getEndOfAnimation())
+			if(mAnimationClock.getElapsedTime().asMilliseconds() > 300)
 			{
-  				mStatus = INAIR;
+				if(mStatus != ACTION1 && mStatus != ACTION5 || mAnimation.getEndOfAnimation())
+				{
+  					mStatus = INAIR;	
+				}
 			}
 		}
 		mFalling = true;
