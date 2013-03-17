@@ -105,16 +105,24 @@ void EntityManager::update()
 {
 	if(mPlayerLife > 0)
 	{
-		for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
+		for(EntityVector::size_type i = 0; i < mCharacters.size(); ++i)
 		{
 			if(!mCantMoveCharacters)
 			{
-				mEntities[i]->update(mPrimaryCharacter);
+				mCharacters[i]->update(mPrimaryCharacter);
 			}
 			else
 			{
 				Entity::EntityKind noCharacter = Entity::DOOR;
-				mEntities[i]->update(noCharacter);	
+				mCharacters[i]->update(noCharacter);	
+			}
+		}
+
+		for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
+		{
+			if(mEntities[i]->getBaseKind() != Entity::CHARACTER)
+			{
+				mEntities[i]->update(mPrimaryCharacter);
 			}
 		}	
 
@@ -348,7 +356,7 @@ void EntityManager::updateBackgroundParalax()
 
 	if(mParalax && !mMovingCamera)
 	{
-		mBackgroundPos += sf::Vector2f(dist.x * 0.05, dist.y * 0.05);
+		mBackgroundPos += sf::Vector2f(dist.x * 0.1, dist.y * 0.1);
 	}
 
 	mCameraLastPos = mView->getCenter();

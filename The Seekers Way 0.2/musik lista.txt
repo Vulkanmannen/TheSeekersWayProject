@@ -25,3 +25,4 @@ lever.wav
 magicdoor.wav
 changestone.wav
 levitate.wav
+shieldbreak.wav

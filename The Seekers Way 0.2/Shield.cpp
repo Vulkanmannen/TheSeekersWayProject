@@ -83,4 +83,5 @@ void Shield::setToDead()
 {
 	mDead = true;
 	mClock.restart();
+	Sounds::getInstance()->Play("shieldbreak.wav", 40);
 }
