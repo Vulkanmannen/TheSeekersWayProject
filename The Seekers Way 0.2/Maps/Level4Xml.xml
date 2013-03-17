@@ -4,20 +4,20 @@
   
 	Gauntlet - next room
 	<Door name="DoorsLevel1">
-		<doorPosition X="1600" Y="1600"/>
+		<doorPosition X="1616" Y="1600"/>
 		<leverPosition X="1600" Y="1088"/>		
 	</Door>
 	
 	Gauntlet - button
 	<Door name="DoorsLevel1">
-		<doorPosition X="1536" Y="1280"/>
+		<doorPosition X="1520" Y="1280"/>
 		<leverPosition X="1600" Y="1088"/>		
 	</Door>
 	
 	Bridge puzzle
 	<Door name="DoorsLevel1">
 		<doorPosition X="2256" Y="832"/>
-		<leverPosition X="2304" Y="640"/>		
+		<leverPosition X="2368" Y="640"/>		
 	</Door>
 	
 	Fenrir-stuck door
@@ -107,7 +107,7 @@
 	
 	Stone button
 	<Door name="DoorsLevel1">
-		<smalBridgePosition X="2640" Y="1216" Closed="1"/>
+		<smalBridgePosition X="2608" Y="1216" Closed="1"/>
 		<buttonPosition X="2368" Y="1664"/>		
 	</Door>
 	

@@ -6,10 +6,10 @@
 	<Dialog name="DoorsLevel1">
 		<speech text="I cannot say Fenrir and Sheeka felt the same..."
 		bild="dialog4.png"
-		bildX="340" bildY="0"
-		textX="390" textY="10"
+		bildX="365" bildY="0"
+		textX="415" textY="10"
 		textboxWidth="540" textboxHeight="110"
-		font="journal.ttf" size="24"
+		font="journal.ttf" size="30"
 		colorR="0"
 		colorG="0"
 		colorB="0"

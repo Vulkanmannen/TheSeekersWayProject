@@ -28,7 +28,7 @@
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<doorPosition X="3536" Y="768"/>
+		<doorPosition X="3472" Y="768"/>
 		<buttonPosition X="3328" Y="832"/>		
 	</Door>
 	
