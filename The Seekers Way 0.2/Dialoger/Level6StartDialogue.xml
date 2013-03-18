@@ -2,19 +2,24 @@
 
   <Body>
   
-  Kiba’s journal
+	SHEEKA
 	<Dialog name="DoorsLevel1">
-		<speech text="Someone or something really did not want us to leave with that medallion, as we found ourselves in four separate rooms. Each of us had to find our own way to the exit."
-		bild="dialog4.png"
-		bildX="212" bildY="360"
-		textX="350" textY="0"
-		textboxWidth="620" textboxHeight="110"
-		font="journal.ttf" size="40"
-		colorR="254"
-		colorG="243"
-		colorB="128"
-		/>
+		<speech text="Sheeka: Aw, seems like we're going separate ways, pup." speaker="3" bild="dialog3.png" emotion="0"/>
+	</Dialog>
+	
+	FENRIR
+	<Dialog name="DoorsLevel1">
+		<speech text="Fenrir: If you get stuck behind one of those magical walls,\I'm not coming to fetch you." speaker="2" bild="dialog2.png" emotion="0"/>
 	</Dialog>
 
+	KIBA SIGH
+	<Dialog name="DoorsLevel1">
+		<speech text="Kiba: You really never quit, do you?" speaker="0" bild="dialog0.png" emotion="1"/>
+	</Dialog>
+	
+	SHEEKA SMILE
+	<Dialog name="DoorsLevel1">
+		<speech text="Sheeka: Nope." speaker="3" bild="dialog3.png" emotion="3"/>
+	</Dialog>
 	
   </Body>
