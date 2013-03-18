@@ -9,7 +9,7 @@
 
 	SHEEKA
 	<Dialog name="DoorsLevel1">
-		<speech text="Sheeka: Someone who really didn't want his or her necklace stolen. I sure hope it's more than just an accessory." speaker="3" bild="dialog3.png" emotion="0"/>
+		<speech text="Sheeka: Someone who really didn't want his or her necklace stolen. I sure hope\it's more than just an accessory." speaker="3" bild="dialog3.png" emotion="0"/>
 	</Dialog>
 
 	CHARLOTTE
@@ -19,7 +19,7 @@
 
 	KIBA
 	<Dialog name="DoorsLevel1">
-		<speech text="Kiba: We'll take it to an appraiser once we’re out of here. If it's not worth anything, you can have it, Charlotte." speaker="0" bild="dialog0.png" emotion="0"/>
+		<speech text="Kiba: We'll take it to an appraiser once we're out of here. If it's not worth anything, you can have it, Charlotte." speaker="0" bild="dialog0.png" emotion="0"/>
 	</Dialog>
 	KIBA SMILES
 	<Dialog name="DoorsLevel1">

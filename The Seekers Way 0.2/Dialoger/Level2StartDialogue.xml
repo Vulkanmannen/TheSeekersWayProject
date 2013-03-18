@@ -6,13 +6,13 @@
 	<Dialog name="DoorsLevel1">
 		<speech text="I cannot say Fenrir and Sheeka felt the same..."
 		bild="dialog4.png"
-		bildX="212" bildY="360"
-		textX="350" textY="0"
-		textboxWidth="620" textboxHeight="110"
-		font="journal.ttf" size="40"
-		colorR="254"
-		colorG="243"
-		colorB="128"
+		bildX="365" bildY="0"
+		textX="415" textY="10"
+		textboxWidth="540" textboxHeight="110"
+		font="journal.ttf" size="30"
+		colorR="0"
+		colorG="0"
+		colorB="0"
 		/>
 	</Dialog>
   
@@ -33,20 +33,20 @@
 	
 	FENRIR ANGRY
 	<Dialog name="DoorsLevel1">
-		<speech text="Fenrir: Now listen here, cat! You wouldn't even be alive if it wasn't for me. That fall would've killed you. Stop being so stuck-up and show some humility for once." speaker="2" bild="dialog2.png" emotion="3"/>
+		<speech text="Fenrir: Now listen here, cat! You wouldn't even be alive if it wasn't for me. That fall\would've killed you. Stop being so stuck-up and show some humility for once." speaker="2" bild="dialog2.png" emotion="3"/>
 	</Dialog>
 
 	Kiba's journal
 	<Dialog name="DoorsLevel1">
 		<speech text="But at least one of them was trying..."
 		bild="dialog4.png"
-		bildX="212" bildY="360"
-		textX="350" textY="0"
-		textboxWidth="620" textboxHeight="110"
-		font="journal.ttf" size="40"
-		colorR="254"
-		colorG="243"
-		colorB="128"
+		bildX="365" bildY="0"
+		textX="415" textY="10"
+		textboxWidth="540" textboxHeight="110"
+		font="journal.ttf" size="30"
+		colorR="0"
+		colorG="0"
+		colorB="0"
 		/>
 	</Dialog>
 

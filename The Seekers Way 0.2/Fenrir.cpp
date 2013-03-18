@@ -9,6 +9,9 @@
 const static float HEIGHT = 64;
 const static float WIDTH = 110;
 
+const static float WALLHEIGHT = 110;
+const static float WALLWIDTH = 59;
+
 Fenrir::Fenrir(sf::Vector2f &position):
 	mWallJumping(false),
 	mCanPressWallJump(true),
@@ -256,9 +259,12 @@ void Fenrir::onblock()
 	// snowmist
 	mCanSnowMist = true;
 
-	if(mStatus == ACTION2 || mStatus == ACTION1 || (mStatus == ACTION5 && mAnimation.getEndOfAnimation()) || (mStatus == JUMP && !mJumping))
+	if(mAnimationClock.getElapsedTime().asMilliseconds() > 300)
 	{
-		mStatus = IDLE;
+		if(mStatus == ACTION2 || mStatus == ACTION1 || (mStatus == ACTION5 && mAnimation.getEndOfAnimation()) || (mStatus == JUMP && !mJumping))
+		{
+			mStatus = IDLE;
+		}
 	}
 }
 
@@ -287,9 +293,12 @@ void Fenrir::fall()
 	{
 		if(mFalling && !mWallJumping)
 		{
-			if(mStatus != ACTION1 || mAnimation.getEndOfAnimation())
+			if(mAnimationClock.getElapsedTime().asMilliseconds() > 300)
 			{
-  				mStatus = INAIR;
+				if(mStatus != ACTION1 && mStatus != ACTION5 || mAnimation.getEndOfAnimation())
+				{
+  					mStatus = INAIR;	
+				}
 			}
 		}
 		mFalling = true;
@@ -397,8 +406,8 @@ bool Fenrir::hitWall()
 					mPosition.y -= 5;
 				}
 
-				mHeight = WIDTH;
-				mWidth = HEIGHT;
+				mHeight = WALLHEIGHT;
+				mWidth = WALLWIDTH;
 
 				mVerticalHitbox = true;
 			}
@@ -461,6 +470,7 @@ void Fenrir::notInSnowMist()
 	mInSnowMist = false;	
 	//mFenrirCanJump = true;
 	mStatus = ACTION5;
+	mAnimationClock.restart();
 }
 
 // flyttar på fenrir i snomistmode

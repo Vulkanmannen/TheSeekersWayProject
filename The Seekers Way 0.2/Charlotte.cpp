@@ -101,7 +101,7 @@ void Charlotte::GetShieldLife()
 	{
 		if(mShield->GetShieldCount() >= 5)
 		{
-			mShield->destroy();
+			mShield->setToDead();
 			mIsShield = false;
 		}
 	}

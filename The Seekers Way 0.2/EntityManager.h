@@ -52,6 +52,8 @@ public:
 	void setCameraSpeedToChangePos();
 
 	sf::Vector2f getBackgroundPos()const;
+	bool getMovingCamera()const;
+	void updateCameraLastpos();
 private:
 	EntityManager();
 	EntityManager(const EntityManager &e);
@@ -71,9 +73,16 @@ private:
 	DynamicEntityVector mDynamicEntities;
 	CharacterVector		mCharacters;
 	
+	// -------------------camera
 	sf::View* mView;
 	sf::VideoMode* mVideoMode;
 	sf::Vector2f mCameraLastPos;
+	sf::Vector2f mCameraDist;
+	sf::Vector2f mCameraFakePos;
+	bool mMovingCamera;
+	bool mCantMoveCharacters;
+	sf::Clock mParalaxClock;
+	void updateMovingCamera();
 	
 	//--------------life
 	int mZeroPlayerLife;
@@ -107,6 +116,7 @@ private:
 	sf::Texture mBackgroundTexture;
 	std::vector<sf::Sprite> mBackgroundSprites;
 	sf::Vector2f mBackgroundPos;
+	bool mParalax;
 
 	void createBackground();
 	void renderBackground();

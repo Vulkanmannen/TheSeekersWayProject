@@ -18,7 +18,7 @@
 	
 	SHEEKA
 	<Dialog name="DoorsLevel1">
-		<speech text="Sheeka: Oh, sure. If it makes you feel better, I'm sorry" speaker="3" bild="dialog3.png" emotion="0"/>
+		<speech text="Sheeka: Oh, sure. If it makes you feel better, I'm sorry." speaker="3" bild="dialog3.png" emotion="0"/>
 	</Dialog>
 	
   </Body>
