@@ -27,11 +27,13 @@ EntityManager::EntityManager():
 	mMapLeft(512),
 	shadeAll(false),
 	mCameraLastPos(0, 0),
+	mCameraFakePos(0,0),
 	mCameraSpeed(3),
 	mBackgroundPos(-1024, -1024),
 	mParalax(false),
 	mMovingCamera(false),
-	mCantMoveCharacters(false)
+	mCantMoveCharacters(false),
+	mCameraDist(0,0)
 {		
 		emote[0] = 0;
 		emote[1] = 0;
@@ -107,15 +109,15 @@ void EntityManager::update()
 	{
 		for(EntityVector::size_type i = 0; i < mCharacters.size(); ++i)
 		{
-			if(!mCantMoveCharacters)
-			{
+			//if(!mCantMoveCharacters)
+			//{
 				mCharacters[i]->update(mPrimaryCharacter);
-			}
-			else
-			{
-				Entity::EntityKind noCharacter = Entity::DOOR;
-				mCharacters[i]->update(noCharacter);	
-			}
+			//}
+			//else
+			//{
+			//	Entity::EntityKind noCharacter = Entity::DOOR;
+			//	mCharacters[i]->update(noCharacter);	
+			//}
 		}
 
 		for(EntityVector::size_type i = 0; i < mEntities.size(); ++i)
@@ -333,14 +335,16 @@ void EntityManager::updateMovingCamera()
 
 	sf::Vector2f cameraPos = mView->getCenter();
 
-	sf::Vector2f dist = cameraPos - mCameraLastPos;
+	mCameraDist = cameraPos - mCameraLastPos;
+
+	sf::Vector2f fakeCameraDist = cameraPos - mCameraFakePos;
 	
-	if(dist.x == 0 && dist.y == 0 || (mParalaxClock.getElapsedTime().asMilliseconds() > 50 && !mCantMoveCharacters))
+	if(((fakeCameraDist.x == 0 && fakeCameraDist.y == 0 && mCameraDist.x == 0 && mCameraDist.y == 0) || (mParalaxClock.getElapsedTime().asMilliseconds() > 50 && !mCantMoveCharacters)) && mMovingCamera)
 	{
 		mMovingCamera = false;
 	}
 
-	if(dist.x < 0.0001, dist.y < 0.0001)
+	if(mCameraDist.x < 0.0001, mCameraDist.y < 0.0001)
 	{
 		mParalaxClock.restart();
 		mCantMoveCharacters = false;
@@ -350,16 +354,16 @@ void EntityManager::updateMovingCamera()
 }
 void EntityManager::updateBackgroundParalax()
 {
-	sf::Vector2f cameraPos = mView->getCenter();
+	//sf::Vector2f cameraPos = mView->getCenter();
 
-	sf::Vector2f dist = cameraPos - mCameraLastPos;
+	//sf::Vector2f dist = cameraPos - mCameraLastPos;
 
-	if(mParalax && !mMovingCamera)
-	{
-		mBackgroundPos += sf::Vector2f(dist.x * 0.1, dist.y * 0.1);
-	}
+	//if(mParalax && !mMovingCamera)
+	//{
+		mBackgroundPos += sf::Vector2f(mCameraDist.x * 0.1, mCameraDist.y * 0.1);
+	//}
 
-	mCameraLastPos = mView->getCenter();
+	//mCameraLastPos = mView->getCenter();
 }
 
 void EntityManager::updateBackgroundPos()
@@ -554,7 +558,7 @@ void EntityManager::updateView()
 {
 	sf::Vector2f playerPos = getCharacterPos();
 
-	sf::Vector2f dist = playerPos - mView->getCenter();
+	sf::Vector2f dist = playerPos - mCameraFakePos;
 
 	float length = 0;
 	length = std::sqrt((dist.x * dist.x) + (dist.y *dist.y));
@@ -572,21 +576,23 @@ void EntityManager::updateView()
 		{
 			if(length > 20)
 			{
-				mCameraSpeed = 7;
+				mCameraSpeed = 6;
 			}
 			else
 			{
-				mCameraSpeed = 3;	
+				mCameraSpeed = 1.5;	
 				mParalax = true;
 			}	
 			
 		}
-		mView->setCenter(mView->getCenter() + sf::Vector2f(dist.x * mCameraSpeed, dist.y * mCameraSpeed));
+		mCameraFakePos += sf::Vector2f(dist.x * mCameraSpeed, dist.y * mCameraSpeed);
 	}
 	else
 	{
-		mView->setCenter(playerPos);
+		mCameraFakePos = playerPos;
 	}
+	
+	mView->setCenter(mCameraFakePos);
 	
 	if(mView->getCenter().x < mMapLeft)
 	{
@@ -695,7 +701,7 @@ void EntityManager::SetAniToIdle()
 
 void EntityManager::setCameraSpeedToChangePos()
 {
-	mCameraSpeed = 25;
+	mCameraSpeed = 32;
 	mParalax = false;
 	mMovingCamera = true;
 	mCantMoveCharacters = true;

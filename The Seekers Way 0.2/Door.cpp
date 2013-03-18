@@ -49,7 +49,7 @@ void Door::Activate()
 			}
 			else
 			{
-				Sounds::getInstance()->Play("door.wav");
+				Sounds::getInstance()->Play("door2.wav");
 				mSoundClock.restart();
 			}
 		}
@@ -65,7 +65,7 @@ void Door::DisActivate()
 	{
 		if(!mMagicDoor && mSoundClock.getElapsedTime().asSeconds() > 1.2)
 		{
-			Sounds::getInstance()->Play("door.wav");
+			Sounds::getInstance()->Play("door2.wav");
 			mSoundClock.restart();
 		}
 		mAnimationClock.restart();
