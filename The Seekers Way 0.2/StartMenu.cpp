@@ -14,7 +14,7 @@ StartMenu::StartMenu():
 	HowToPlay(false),
 	Resumedraw(true),
 	currentButton(1)
-{
+{	
 	mStartText.loadFromImage(*ImageManager::getImage("StartMenurelease.PNG"));
 	mStartSprite.setTexture(mStartText);
 	mHowToPlay.loadFromImage(*ImageManager::getImage("HowToPlayinst.png"));
@@ -40,11 +40,11 @@ void StartMenu::update()
 }
 
 void StartMenu::render()
-{
+{ 	
 	mStartSprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(512, 360));
 	ImageManager::render(&mStartSprite);
-	updateButtons();
 	renderButtons();
+	updateButtons();
 	if(HowToPlay == true)
 	{
 		mHowToPlaySprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(512, 360));
@@ -54,8 +54,9 @@ void StartMenu::render()
 		{
 			HowToPlay = false;
 		}
-	}
+	} 
 }
+
 
 void StartMenu::generateButtons()
 {
@@ -71,9 +72,9 @@ void StartMenu::generateButtons()
 		updateButtons();
 		mButtons.push_back(animation3);
 
-		Animation animation4("StartAudio.png", 80, 1, 64, 192);
-		updateButtons();
-		mButtons.push_back(animation4);
+		//Animation animation4("StartAudio.png", 80, 1, 64, 192);
+		//updateButtons();
+		//mButtons.push_back(animation4);
 
 		Animation animation5("StartQuit.PNG", 80, 1, 64, 192);
 		updateButtons();
@@ -158,10 +159,10 @@ void StartMenu::buttonActivate()
 				HowToPlay = !HowToPlay;
 				break; 
 
-			case 3:
-				break;
+			//case 3:
+			//	break;
 
-			case 4:
+			case 3:
 				exit = true;
 				break;
 		}
