@@ -126,13 +126,29 @@ void MapGenerator::generateMap(std::string imageNameBlock, std::string imageName
 				{
 					entityManager->addEntity(new SpikeBlock(position));
 				}
-				else if(color.g == 150)
+				else if(color.g == 150)// liten som föjrer bakgrund
 				{
 					entityManager->addEntity(new Decoration(position, color.b, false, true));
 				}
-				else if(color.g == 200)
+				else if(color.g == 155)// stor som följer bakgrund
 				{
 					entityManager->addEntity(new Decoration(position, color.b, true, true));
+				}
+				else if(color.g == 160)// liten som INTE föjrer bakgrund
+				{
+					entityManager->addEntity(new Decoration(position, color.b, false, false));
+				}
+				else if(color.g == 170)// stor som INTE följer bakgrund
+				{
+					entityManager->addEntity(new Decoration(position, color.b, true, false));
+				}
+				else if(color.g == 180)// större som föjrer bakgrund
+				{
+					entityManager->addEntity(new Decoration(position, color.b, false, true, true));
+				}
+				else if(color.g == 190)// större som INTE följer bakgrund
+				{
+					entityManager->addEntity(new Decoration(position, color.b, false, false, true));
 				}
 				else if(color.g == 250)
 				{

@@ -61,8 +61,9 @@ void LevelManager::generateLevels()
 	mLevels.push_back(Level("Level2.png", "Level2Object.png", "Level2Xml.xml", 61, 28, Entity::FENRIR));	
 	mLevels.push_back(Level("Level3.png", "Level3Object.png", "Level3Xml.xml"));
 	mLevels.push_back(Level("Level4.png", "Level4Object.png", "Level4Xml.xml"));
-	mLevels.push_back(Level("Level5.png", "Level5Object.png", "Level5Xml.xml", 76, 34));
-	mLevels.push_back(Level("Level6.png", "Level6Object.png", "Level6Xml.xml", 73, 34));
+	mLevels.push_back(Level("Level5.png", "Level5Object.png", "Level5Xml.xml"));
+	mLevels.push_back(Level("Level6.png", "Level6Object.png", "Level6Xml.xml", 76, 34));
+	mLevels.push_back(Level("Level7.png", "Level7Object.png", "Level7Xml.xml", 73, 34));
 }
 
 void LevelManager::generateDialogues()
@@ -72,12 +73,16 @@ void LevelManager::generateDialogues()
 	mStartDialogues.push_back("Level3StartDialogue");
 	mStartDialogues.push_back("Level4StartDialogue");
 	mStartDialogues.push_back("Level5StartDialogue");
+	mStartDialogues.push_back("Level6StartDialogue");
+	mStartDialogues.push_back("Level7StartDialogue");
 
 	mEndDialogues.push_back("Level1EndDialogue");
 	mEndDialogues.push_back("Level2EndDialogue");
 	mEndDialogues.push_back("Level3EndDialogue");
 	mEndDialogues.push_back("Level4EndDialogue");
 	mEndDialogues.push_back("Level5EndDialogue");
+	mEndDialogues.push_back("Level6EndDialogue");
+	mEndDialogues.push_back("Level7EndDialogue");
 }
 
 int LevelManager::getCurrentLevel()

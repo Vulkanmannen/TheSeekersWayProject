@@ -23,19 +23,19 @@ DialogState::~DialogState()
 
 void DialogState::render()
 {
-	if(mFadeCount > 10 || mFadedThisTime || !Dialogue::getInstance()->getStartDialogue())
-	{
-		EntityManager::getInstance()->updateView();
+	//if(mFadeCount > 10 || mFadedThisTime || !Dialogue::getInstance()->getStartDialogue())
+	//{
+		//EntityManager::getInstance()->updateView();
 		EntityManager::getInstance()->render();
 		Dialogue::getInstance()->render();
-	}
+	//}
 	
 	fade();
 }
 
 void DialogState::fade()
 {
-	int timeTemp;
+	int timeTemp = 0;
 
 	if(mEndOfDialouge)
 	{
@@ -48,19 +48,27 @@ void DialogState::fade()
 
 		mSprite.setColor(sf::Color(0, 0, 0, timeTemp));
 	}
-	if(!mFadedIn && Dialogue::getInstance()->getStartDialogue())
+
+	if(/*mTimeToFadeIn.getElapsedTime().asSeconds() > 2 && */Dialogue::getInstance()->getStartDialogue())
 	{
-		timeTemp = mFadeCount * 5;
-
-		if(timeTemp > 249)
+		if(!mFadedIn && Dialogue::getInstance()->getStartDialogue())
 		{
-			timeTemp = 255;
-		}
+			timeTemp = mFadeCount * 5;
 
-		mSprite.setColor(sf::Color(0, 0, 0, 255 - timeTemp));
+			if(timeTemp > 249)
+			{
+				timeTemp = 255;
+			}
+
+			mSprite.setColor(sf::Color(0, 0, 0, 255 - timeTemp));
+		}
+	}
+	else if(Dialogue::getInstance()->getStartDialogue())
+	{
+		mSprite.setColor(sf::Color(0, 0, 0, 255));
 	}
 
-	mSprite.setPosition(EntityManager::getInstance()->getView()->getCenter());
+	mSprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(256, 120));
 	ImageManager::render(&mSprite);
 }
 
@@ -71,10 +79,11 @@ void DialogState::update()
 		Dialogue::getInstance()->update();
 	}
 	
-	EntityManager::getInstance()->updateView();
+	//EntityManager::getInstance()->updateView();
 
 	if(Dialogue::getInstance()->getendofDialogue() && Dialogue::getInstance()->getStartDialogue())
 	{
+		EntityManager::getInstance()->updateCameraLastpos();
 		State::getInstance()->setState(State::GameState);
 		reset();
 	}
@@ -94,7 +103,7 @@ void DialogState::update()
 		}
 	}
 
-	if(!mFadedIn && Dialogue::getInstance()->getStartDialogue() && !mFadedThisTime)
+	if(!mFadedIn && Dialogue::getInstance()->getStartDialogue() && !EntityManager::getInstance()->getMovingCamera())
 	{
 		mFadeCount += 1;
 		if(mFadeCount > 50)
@@ -112,4 +121,9 @@ void DialogState::reset()
 	mEndOfDialouge = false;
 	mFadeCount = 0;
 	mFadedIn = false;
+}
+
+void DialogState::restartClock()
+{
+	mTimeToFadeIn.restart();
 }

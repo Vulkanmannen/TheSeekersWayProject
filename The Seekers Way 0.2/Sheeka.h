@@ -25,6 +25,7 @@ private:
 	void dashTime();
 	void notDashing();
 	void darkBinding();
+	void darkBindingTime();
 
 	void takeDamage();
 	
@@ -37,6 +38,7 @@ private:
 
 	bool mCanPressDarkBinding;
 	bool mDarkBinding;
+	bool mDarkBindingTime;
 	sf::Clock mDarkClock;
 };
 

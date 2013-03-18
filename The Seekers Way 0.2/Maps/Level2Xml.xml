@@ -3,32 +3,32 @@
   <Body>
 	
 	<Door name="DoorsLevel1">
-		<smalBridgePosition X="192" Y="896" Closed="1"/>
+		<smalBridgePosition X="192" Y="880" Closed="1"/>
 		<leverPosition X="1792" Y="704"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<smalBridgePosition X="192" Y="1024" Closed="1"/>
+		<smalBridgePosition X="192" Y="1040" Closed="1"/>
 		<leverPosition X="512" Y="448"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<doorPosition X="2048" Y="1216"/>
+		<doorPosition X="2064" Y="1216"/>
 		<buttonPosition X="1216" Y="1152"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<doorPosition X="1728" Y="1088"/>
+		<doorPosition X="1744" Y="1088"/>
 		<buttonPosition X="2112" Y="1088"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<doorPosition X="2624" Y="704"/>
+		<doorPosition X="2608" Y="704"/>
 		<buttonPosition X="2688" Y="1472"/>		
 	</Door>
 	
 	<Door name="DoorsLevel1">
-		<doorPosition X="3520" Y="768"/>
+		<doorPosition X="3472" Y="768"/>
 		<buttonPosition X="3328" Y="832"/>		
 	</Door>
 	

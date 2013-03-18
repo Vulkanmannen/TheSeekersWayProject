@@ -2,7 +2,7 @@
 #define INCLUDED_SHIELD
 #include "Animation.h"
 #include "Object.h"
-
+#include "SFML\System.hpp"
 
 class Shield: public Object
 {
@@ -16,10 +16,18 @@ public:
 	int GetShieldCount()const;
 	void interact(Entity* e);
 
+	bool getEndOfAnimation()const;
+
+	void setToDead();
+
 private:
 	Animation mAnimation;
 	int mShieldCount;
 	bool mDirLeft;
+
+	bool mOpen;
+	bool mDead;
+	sf::Clock mClock;
 	
 };
 

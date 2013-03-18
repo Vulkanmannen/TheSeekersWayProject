@@ -6,6 +6,7 @@ dash.wav
 arrow.wav
 slash.wav
 door.wav
+door2.wav
 shield.wav
 fireball.wav
 teleport.wav
@@ -26,3 +27,4 @@ magicdoor.wav
 changestone.wav
 levitate.wav
 Dialog.wav
+shieldbreak.wav

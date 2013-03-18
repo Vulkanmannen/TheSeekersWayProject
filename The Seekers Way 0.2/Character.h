@@ -46,6 +46,7 @@ protected:
 	sf::Vector2f mMovementSpeed;
 
 	Animation mAnimation;
+	sf::Clock mAnimationClock;
 	
 	//-----------------funktioner som reglerar hur karaktärerna rör sig
 	virtual void move();

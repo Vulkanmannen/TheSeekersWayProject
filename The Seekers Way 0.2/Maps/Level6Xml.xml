@@ -1,9 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 
   <Body>
+	
+	Stone room
 	<Door name="DoorsLevel1">
-		<doorPosition X="320" Y="1792"/>
-		<leverPosition X="832" Y="1408"/>		
+		<doorPosition X="912" Y="1344"/>
+		<buttonPosition X="348" Y="320"/>		
+	</Door>
+	
+	Fenrir Lever
+	Upper
+	<Door name="DoorsLevel1">
+		<doorPosition X="2032" Y="576"/>
+		<leverPosition X="512" Y="768"/>		
+	</Door>
+	Lower
+	<Door name="DoorsLevel1">
+		<doorPosition X="2096" Y="960"/>
+		<leverPosition X="512" Y="768"/>		
+	</Door>
+	
+	Fenrir - help Kiba
+	<Door name="DoorsLevel1">
+		<smalBridgePosition X="1088" Y="912" Closed ="0"/>
+		<buttonPosition X="2752" Y="640"/>		
+	</Door>
+	
+	Sheeka - stuck
+	<Door name="DoorsLevel1">
+		<smalBridgePosition X="704" Y="2000" Closed ="0"/>
+		<leverPosition X="1792" Y="2048"/>		
+	</Door>
+	
+	Magic Switch puzzle finish
+	<Door name="DoorsLevel1">
+		<bigBridgePosition X="2688" Y="1456" Closed ="1"/>
+		<leverPosition X="3456" Y="1600"/>		
+	</Door>
+	
+	Magic Switch puzzle Finish
+	<Door name="DoorsLevel1">
+		<bigBridgePosition X="2304" Y="688" Closed ="0"/>
+		<buttonPosition X="2752" Y="640"/>		
+	</Door>
+	
+	Fenrir - button
+	<Door name="DoorsLevel1">
+		<smalBridgePosition X="3264" Y="496" Closed ="1"/>
+		<buttonPosition X="3264" Y="192"/>		
+	</Door>
+	
+	Lava button - For Charlotte
+	<Door name="DoorsLevel1">
+		<doorPosition X="3824" Y="320"/>
+		<buttonPosition X="4544" Y="576"/>		
+	</Door>
+	
+	Charlotte - First room button
+	<Door name="DoorsLevel1">
+		<smalBridgePosition X="3072" Y="752" Closed ="1"/>
+		<buttonPosition X="3264" Y="896"/>
+	</Door>
+	
+	Charlotte lever - 2nd room
+	<Door name="DoorsLevel1">
+		<doorPosition X="3216" Y="640"/>
+		<leverPosition X="3904" Y="384"/>		
+	</Door>
+	
+	Button - For Charlotte
+	<Door name="DoorsLevel1">
+		<doorPosition X="3018" Y="960"/>
+		<buttonPosition X="3200" Y="1152"/>		
+	</Door>
+		
+	Last Puzzle - Fenrir Button
+	<Door name="DoorsLevel1">
+		<doorPosition X="4048" Y="1600"/>
+		<buttonPosition X="3648" Y="1280"/>		
+	</Door>
+			
+	Last Puzzle
+	<Door name="DoorsLevel1">
+		<smalBridgePosition X="4352" Y="1920" Closed ="0"/>
+		<buttonPosition X="3648" Y="1728"/>		
+	</Door>
+	
+	Last Puzzle
+	<Door name="DoorsLevel1">
+		<smalBridgePosition X="4352" Y="1152" Closed ="0"/>
+		<buttonPosition X="4224" Y="1344"/>		
+	</Door>
+
+	Last puzzle
+	<Door name="DoorsLevel1">
+		<bigBridgePosition X="4160" Y="1712" Closed ="1"/>
+		<buttonPosition X="3584" Y="1856"/>		
+	</Door>
+	
+	Magic Switch puzzle
+	1
+	<Door name="DoorsLevel1">
+		<doorPosition X="2240" Y="1664" texture="magicdoor.png"/>
+		<magicSwitchPosition X="2752" Y="2048" timeOpen="8"/>		
+	</Door>
+	2
+	<Door name="DoorsLevel1">
+		<doorPosition X="3328" Y="1728" texture="magicdoor.png"/>
+		<magicSwitchPosition X="2176" Y="1728" timeOpen="8"/>		
+	</Door>
+	3
+	<Door name="DoorsLevel1">
+		<doorPosition X="2240" Y="1856" texture="magicdoor.png"/>
+		<magicSwitchPosition X="3456" Y="1792" timeOpen="8"/>		
+	</Door>
+	4
+	<Door name="DoorsLevel1">
+		<doorPosition X="3328" Y="1984" texture="magicdoor.png"/>
+		<magicSwitchPosition X="2176" Y="1920" timeOpen="8"/>		
+	</Door>
+	5
+	<Door name="DoorsLevel1">
+		<doorPosition X="3328" Y="1536" texture="magicdoor.png"/>
+		<magicSwitchPosition X="3456" Y="2048" timeOpen="8"/>		
 	</Door>
 	
    </Body>
@@ -11,11 +130,11 @@
 <Body2>
 
 	<Portal name="Level1">
-		<portalPosition X1="2944" Y1="1536" X2="3904" Y2="1472"/>
+		<portalPosition X1="2816" Y1="1024" X2="3520" Y2="896"/>
 	</Portal>
 	
 	<Portal name="Level1">
-		<portalPosition X1="4032" Y1="1728" X2="3008" Y2="1792"/>
+		<portalPosition X1="3328" Y1="896" X2="3584" Y2="384"/>
 	</Portal>
 
 </Body2>
