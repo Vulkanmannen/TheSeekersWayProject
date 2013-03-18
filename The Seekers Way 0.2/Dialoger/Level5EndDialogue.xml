@@ -1,39 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
   <Body>
-	KIBA
+  
+	KIBA SMILES
 	<Dialog name="DoorsLevel1">
-		<speech text="Kiba: Wait, you're not gonna fight before we go through here?" speaker="0" bild="dialog0.png" emotion="0"/>
+		<speech text="Kiba: Man, I am too good for this!" speaker="0" bild="dialog0.png" emotion="2"/>
 	</Dialog>
-
+		
 	FENRIR
 	<Dialog name="DoorsLevel1">
-		<speech text="Fenrir: ..." speaker="2" bild="dialog2.png" emotion="0"/>
+		<speech text="Fenrir: You didn't even do anything!" speaker="2" bild="dialog2.png" emotion="0"/>
 	</Dialog>
 
-	SHEEKA
+	KIBA
 	<Dialog name="DoorsLevel1">
-		<speech text="Sheeka: ..." speaker="3" bild="dialog3.png" emotion="0"/>
-	</Dialog>
-
-	CHARLOTTE
-	<Dialog name="DoorsLevel1">
-		<speech text="Charlotte: Don't encourage them, Kiba. Let's just go." speaker="1" bild="dialog1.png" emotion="2"/>
+		<speech text="Kiba: Oh, really? I'll let you lift the next two ton stone we find, then. See how you like that!" speaker="0" bild="dialog0.png" emotion="0"/>
 	</Dialog>
 	
-	  Kiba’s journal
+	SHEEKA
 	<Dialog name="DoorsLevel1">
-		<speech text="We had no idea what awaited us at the end of that passage..."
-		bild="dialog4.png"
-		bildX="365" bildY="0"
-		textX="415" textY="10"
-		textboxWidth="540" textboxHeight="110"
-		font="journal.ttf" size="30"
-		colorR="0"
-		colorG="0"
-		colorB="0"
-		/>
+		<speech text="Sheeka: Now that would be a wondrous sight!" speaker="3" bild="dialog3.png" emotion="0"/>
 	</Dialog>
-
 	
   </Body>
