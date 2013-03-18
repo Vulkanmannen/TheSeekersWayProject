@@ -43,7 +43,7 @@ void Arrow::interact(Entity* e)
 		case SHIELD:
 			Sounds::getInstance()->Play("arrowtoshield.wav", 20, mPosition);
 		}
-		if((*e) == Entity::BLOCK || (*e) == Entity::CHARACTER || (*e) == Entity::SHIELD || (*e) == Entity::STONE)
+		if((*e) == Entity::BLOCK || (*e) == Entity::CHARACTER || (*e) == Entity::SHIELD || (*e) == Entity::STONE /*|| (*e) == SLASH*/)
 		{
 			if(e->getEntityKind() != FENRIR)
 			{
