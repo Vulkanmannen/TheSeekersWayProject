@@ -36,7 +36,7 @@ void LevelManager::LoadLevel(int level)
 	
 	Sounds::getInstance()->StopAll();
 	Sounds::getInstance()->setMasterVolume(100);
-	Sounds::getInstance()->Loop("Level1Music.wav", 50);
+	Sounds::getInstance()->Loop(mLevels[level].mMusic, 50);
 
 	EntityManager::getInstance()->setPlayerLifeMax();
 }
@@ -50,20 +50,20 @@ LevelManager* LevelManager::getInstance()
 {
 	if(sInstance == 0)
 	{
-		sInstance = new LevelManager();
+		sInstance = new LevelManager(); 
 	}
 	return sInstance;
 }
 
 void LevelManager::generateLevels()
 {
-	mLevels.push_back(Level("Level1.png", "Level1Object.png", "Level1Xml.xml"));
-	mLevels.push_back(Level("Level2.png", "Level2Object.png", "Level2Xml.xml", 61, 28, Entity::FENRIR));	
-	mLevels.push_back(Level("Level3.png", "Level3Object.png", "Level3Xml.xml"));
-	mLevels.push_back(Level("Level4.png", "Level4Object.png", "Level4Xml.xml"));
-	mLevels.push_back(Level("Level5.png", "Level5Object.png", "Level5Xml.xml"));
-	mLevels.push_back(Level("Level6.png", "Level6Object.png", "Level6Xml.xml", 76, 34));
-	mLevels.push_back(Level("Level7.png", "Level7Object.png", "Level7Xml.xml", 73, 34));
+	mLevels.push_back(Level("Level1.png", "Level1Object.png", "Level1Xml.xml", "Level1Music.wav"));
+	mLevels.push_back(Level("Level2.png", "Level2Object.png", "Level2Xml.xml", "Level1Music.wav", 61, 28, Entity::FENRIR));	
+	mLevels.push_back(Level("Level3.png", "Level3Object.png", "Level3Xml.xml", "Level2Music.wav"));
+	mLevels.push_back(Level("Level4.png", "Level4Object.png", "Level4Xml.xml", "Level2Music.wav"));
+	mLevels.push_back(Level("Level5.png", "Level5Object.png", "Level5Xml.xml", "Level2Music.wav"));
+	mLevels.push_back(Level("Level6.png", "Level6Object.png", "Level6Xml.xml", "Level2Music.wav", 76, 34));
+	mLevels.push_back(Level("Level7.png", "Level7Object.png", "Level7Xml.xml", "Level2Music.wav", 73, 34));
 }
 
 void LevelManager::generateDialogues()
