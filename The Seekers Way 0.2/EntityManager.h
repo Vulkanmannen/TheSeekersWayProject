@@ -77,6 +77,8 @@ private:
 	sf::View* mView;
 	sf::VideoMode* mVideoMode;
 	sf::Vector2f mCameraLastPos;
+	sf::Vector2f mCameraDist;
+	sf::Vector2f mCameraFakePos;
 	bool mMovingCamera;
 	bool mCantMoveCharacters;
 	sf::Clock mParalaxClock;

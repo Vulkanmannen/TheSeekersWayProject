@@ -19,6 +19,8 @@ Shield::Shield(sf::Vector2f &position, bool dirLeft):
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = SHIELD;
+	mLayer = FORGROUND;
+
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
 	mAnimation.update(mDirLeft);
 	Sounds::getInstance()->Play("shield.wav", 40);
