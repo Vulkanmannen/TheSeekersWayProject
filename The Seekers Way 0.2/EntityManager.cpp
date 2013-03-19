@@ -53,6 +53,8 @@ EntityManager::EntityManager():
 		
 		mLifeTexture.loadFromImage(*ImageManager::getImage("heart.png"));
 		mLifeSprite.setTexture(mLifeTexture);
+		mLifeFrameTexture.loadFromImage(*ImageManager::getImage("LifeFrame.png"));
+		mLifeFrameSprite.setTexture(mLifeFrameTexture);
 		mDeathTexture.loadFromImage(*ImageManager::getImage("DieScreen.png"));
 		mDeathSprite.setTexture(mDeathTexture);
 		mMaskTexture.loadFromImage(*ImageManager::getImage("mask.png"));
@@ -148,6 +150,8 @@ void EntityManager::update()
 void EntityManager::lifeAndMaskPosition()
 {
 	mLifeSprite.setPosition(mView->getCenter() - sf::Vector2f(512, 360));
+
+	mLifeFrameSprite.setPosition(mView->getCenter() - sf::Vector2f(501, 275));
 
 	mMaskSprite.setPosition(mView->getCenter() - sf::Vector2f(1024, 720));
 }
@@ -247,11 +251,12 @@ void EntityManager::render()
 void EntityManager::renderLifeAndMask()
 {
 	ImageManager::render(&mMaskSprite);
+	ImageManager::render(&mLifeFrameSprite);
 	mLifeSprite.setPosition(mLifeSprite.getPosition() + sf::Vector2f(20, frame[0].getSprite().getLocalBounds().height + 10));
 	for(int i = 0; i < mPlayerLife; ++i)
 	{
 		ImageManager::render(&mLifeSprite);
-		mLifeSprite.setPosition(mLifeSprite.getPosition() + sf::Vector2f(50, 0));
+		mLifeSprite.setPosition(mLifeSprite.getPosition() + sf::Vector2f(32, 0));
 	}
 }
 

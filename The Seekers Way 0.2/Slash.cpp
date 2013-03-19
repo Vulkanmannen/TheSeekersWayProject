@@ -6,7 +6,7 @@ static const float HEIGHT = 64;
 
 Slash::Slash(sf::Vector2f &position, bool mdirleft):
 	mDirLeft(mdirleft),
-	mAnimation("SLASH.png", 60, 5, 128, WIDTH)
+	mAnimation("SLASH.png", 60, 7, 128, WIDTH)
 	{
 		mPosition = position;
 		mAlive = true;
@@ -35,7 +35,6 @@ void Slash::render()
 	//ImageManager::render(&mAnimation.getSprite());
 }
 
-// om en darkbinding åker in i switchen så öppnas dörren
 void Slash::interact(Entity *e)
 {
 

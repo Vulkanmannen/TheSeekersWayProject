@@ -3,8 +3,8 @@
 
 #include "State.h"
 #include "Animation.h"
-//#include "sfeMovie\Movie.hpp"
 
+//#include "sfeMovie\Movie.hpp"
 
 class IntroScreen
 {
@@ -17,9 +17,9 @@ public:
 
 private:
 
-	//sfe::Movie mMovie;
+	//sfe::Movie *mMovie;
 
 	sf::Texture mIntroText;
 	sf::Sprite mIntroSprite;
-};
+}; 
 #endif

@@ -92,6 +92,8 @@ private:
 	sf::Sprite mDeathSprite;
 	sf::Texture mLifeTexture;
 	sf::Sprite mLifeSprite;
+	sf::Texture mLifeFrameTexture;
+	sf::Sprite mLifeFrameSprite;
 	void updatePlayerLife();
 	void killPlayers();
 
