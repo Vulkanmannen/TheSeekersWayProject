@@ -144,7 +144,7 @@ void StartMenu::buttonActivate()
 				if(Resumedraw == false)
 				{
 					LevelManager::getInstance()->LoadLevel();
-					State::getInstance()->setState(State::DialogueState);
+					State::getInstance()->setState(State::GameState);
 				}
 				break;
 
