@@ -62,7 +62,7 @@ void Kiba::update(EntityKind &currentEntity)
 	Character::update(currentEntity);
 	mTelekinesisBox->setPosition(mPosition);
 
-	if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 	{
 		mCanPressStone = true;
 	}
@@ -119,7 +119,7 @@ void Kiba::noStone()
 	{
 		mTelekinesisBox->clear();
 
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && mCanPressStone && !mFalling && !mJumping)
+		if((sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) && mCanPressStone && !mFalling && !mJumping)
 		{
 			mCanPressStone = false;
 
