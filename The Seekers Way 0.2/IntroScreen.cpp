@@ -7,13 +7,13 @@
 IntroScreen::IntroScreen()
 {
 	/*mAnimation.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(256, 220));*/
-	//mMovie = new sfe::Movie();
+	/*mMovie = new sfe::Movie();
 
-	//mMovie->openFromFile("Intro.wmv");
+	mMovie->openFromFile("INTRO.OGG");
 
 
-	//mMovie->setPosition(400, 300);
-	//mMovie->play();
+	mMovie->setPosition(400, 300);
+	mMovie->play();*/
 } 
 
 IntroScreen::~IntroScreen()

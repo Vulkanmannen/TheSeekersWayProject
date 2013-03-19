@@ -11,28 +11,32 @@ PauseMenu::PauseMenu():
 	currentButton(0),
 	currentJournalFrame(0)
 {
-	mPauseText.loadFromImage(*ImageManager::getImage("journal.PNG"));
+	mPauseText.loadFromImage(*ImageManager::getImage("Howtoplayinst.PNG"));
 	mHowToPlayKiba.loadFromImage(*ImageManager::getImage("journal_Kiba.png"));
 	mHowToPlayCharlotte.loadFromImage(*ImageManager::getImage("journal_Charlotte.png"));
 	mHowToPlayFenrir.loadFromImage(*ImageManager::getImage("journal_Fenrir.png"));
 	mHowToPlaySheeka.loadFromImage(*ImageManager::getImage("journal_Sheeka.png"));
+	mMapTexture.loadFromImage(*ImageManager::getImage("journalMap.png"));
 
 	mPauseSprite.setTexture(mPauseText);
 	mHowToPlaySpriteSheeka.setTexture(mHowToPlaySheeka);
 	mHowToPlaySpriteFenrir.setTexture(mHowToPlayFenrir);
 	mHowToPlaySpriteCharlotte.setTexture(mHowToPlayCharlotte);
 	mHowToPlaySpriteKiba.setTexture(mHowToPlayKiba);
+	mMapSprite.setTexture(mMapTexture);
 
 	mPauseSprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
 	mHowToPlaySpriteKiba.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
 	mHowToPlaySpriteCharlotte.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
 	mHowToPlaySpriteFenrir.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
 	mHowToPlaySpriteSheeka.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
-
+	mMapSprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
+	
 	mSpriteVector.push_back(&mHowToPlaySpriteKiba);
 	mSpriteVector.push_back(&mHowToPlaySpriteCharlotte);
 	mSpriteVector.push_back(&mHowToPlaySpriteFenrir);
 	mSpriteVector.push_back(&mHowToPlaySpriteSheeka);
+	mSpriteVector.push_back(&mMapSprite);
 
 	generateButtons();
 }
@@ -80,6 +84,7 @@ void PauseMenu::render()
 	mHowToPlaySpriteCharlotte.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
 	mHowToPlaySpriteFenrir.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
 	mHowToPlaySpriteSheeka.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
+	mMapSprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
 
 }
 
@@ -97,9 +102,9 @@ void PauseMenu::generateButtons()
 		updateButtons();
 		mButtons.push_back(animation3);
 
-		Animation animation4("Audio.png", 80, 1, 64, 192);
-		updateButtons();
-		mButtons.push_back(animation4);
+		//Animation animation4("Audio.png", 80, 1, 64, 192);
+		//updateButtons();
+		//mButtons.push_back(animation4);
 		
 		Animation animation5("MainMenu.PNG", 80, 1,64 , 192);
 		updateButtons();
@@ -178,10 +183,10 @@ void PauseMenu::buttonActivate()
 				HowToPlay = !HowToPlay;
 				break;
 
-			case 3:
-				break;
+			//case 3:
+			//	break;
 
-			case 4:
+			case 3:
 				State::getInstance()->setState(State::StartState);
 				break;
 		}
@@ -228,10 +233,10 @@ void PauseMenu::changeJournalFrame()
 
 	if(currentJournalFrame < 0)
 	{
-		currentJournalFrame = 3;
+		currentJournalFrame = 4;
 	}
 
-	else if(currentJournalFrame > 3)
+	else if(currentJournalFrame > 4)
 	{
 		currentJournalFrame = 0;
 	}

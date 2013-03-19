@@ -47,7 +47,7 @@ void StartMenu::render()
 	updateButtons();
 	if(HowToPlay == true)
 	{
-		mHowToPlaySprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(512, 360));
+		mHowToPlaySprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
 		ImageManager::render(&mHowToPlaySprite);
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
