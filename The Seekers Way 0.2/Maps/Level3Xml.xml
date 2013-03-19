@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 
   <Body>
+	
+	Fenrir button - for Sheeka
 	<Door name="DoorsLevel1">
-		<doorPosition X="448" Y="256"/>
+		<doorPosition X="464" Y="1280"/>
+		<buttonPosition X="704" Y="768"/>
+	</Door>	
+	
+	Charlotte buttons
+	1
+	<Door name="DoorsLevel1">
+		<doorPosition X="432" Y="256"/>
 		<buttonPosition X="820" Y="512"/>		
 	</Door>
-	
+	2
 	<Door name="DoorsLevel1">
 		<doorPosition X="960" Y="704"/>
 		<buttonPosition X="890" Y="512"/>
 	</Door>	
-	
-	<Door name="DoorsLevel1">
-		<doorPosition X="448" Y="1280"/>
-		<buttonPosition X="704" Y="768"/>
-	</Door>	
-	
+	3	
 	<Door name="DoorsLevel1">
 		<doorPosition X="2048" Y="320"/>
 		<buttonPosition X="1020" Y="512"/>
 	</Door>	
-	
+	4
 	<Door name="DoorsLevel1">
-		<doorPosition X="3136" Y="1216"/>
+		<doorPosition X="3120" Y="1216"/>
 		<buttonPosition X="1092" Y="512"/>
 	</Door>	
-	
-	
-	
+		
 	<Door name="DoorsLevel1">
 		<doorPosition X="1600" Y="1024"texture="magicdoor.png"/>
 		<magicSwitchPosition X="64" Y="1344" timeOpen="8"/>

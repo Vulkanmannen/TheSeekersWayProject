@@ -2,24 +2,49 @@
 
   <Body>
   
-	SHEEKA
+
+	CHARLOTTE
 	<Dialog name="DoorsLevel1">
-		<speech text="Sheeka: Aw, seems like we're going separate ways, pup." speaker="3" bild="dialog3.png" emotion="0"/>
-	</Dialog>
-	
-	FENRIR
-	<Dialog name="DoorsLevel1">
-		<speech text="Fenrir: If you get stuck behind one of those magical walls,\I'm not coming to fetch you." speaker="2" bild="dialog2.png" emotion="0"/>
+		<speech text="Charlotte: This feels never-ending." speaker="1" bild="dialog1.png" emotion="2"/>
 	</Dialog>
 
-	KIBA SIGH
+	KIBA SMILES
 	<Dialog name="DoorsLevel1">
-		<speech text="Kiba: You really never quit, do you?" speaker="0" bild="dialog0.png" emotion="1"/>
+		<speech text="Kiba: Never-ending fun, right? Come on, I wanna solve this puzzle, too!" speaker="0" bild="dialog0.png" emotion="2"/>
+	</Dialog>
+
+	FENRIR
+	<Dialog name="DoorsLevel1">
+<<<<<<< HEAD
+<<<<<<< HEAD
+		<speech text="Fenrir: If you get stuck behind one of those magical walls, I'm not coming to fetch you." speaker="2" bild="dialog2.png" emotion="0"/>
+=======
+		<speech text="Fenrir: Where do you get that energy, seriously?" speaker="2" bild="dialog2.png" emotion="0"/>
+>>>>>>> origin/master
+=======
+		<speech text="Fenrir: Where do you get that energy, seriously?" speaker="2" bild="dialog2.png" emotion="0"/>
+>>>>>>> origin/master
+	</Dialog>
+
+	CHARLOTTE SIGHS
+	<Dialog name="DoorsLevel1">
+		<speech text="Charlotte: Bold and energetic, as all men are." speaker="1" bild="dialog1.png" emotion="1"/>
 	</Dialog>
 	
-	SHEEKA SMILE
+	FENRIR SURPRISED
 	<Dialog name="DoorsLevel1">
-		<speech text="Sheeka: Nope." speaker="3" bild="dialog3.png" emotion="3"/>
+		<speech text="Fenrir: Are you saying I'm not a male?" speaker="2" bild="dialog2.png" emotion="4"/>
 	</Dialog>
+	
+	SHEEKA
+	<Dialog name="DoorsLevel1">
+		<speech text="Sheeka: Would that be a lie?" speaker="3" bild="dialog3.png" emotion="0"/>
+	</Dialog>
+	
+	KIBA
+	<Dialog name="DoorsLevel1">
+		<speech text="Kiba: I said come on!" speaker="0" bild="dialog0.png" emotion="0"/>
+	</Dialog>
+
 	
   </Body>

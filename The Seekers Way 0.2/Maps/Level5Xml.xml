@@ -3,51 +3,54 @@
   <Body>
   
 	Kiba fall lever
+	Lower
 	<Door name="DoorsLevel1">
-		<smalBridgePosition X="1280" Y="1280" Closed="0"/>
+		<smalBridgePosition X="1280" Y="1264" Closed="0"/>
 		<leverPosition X="1280" Y="1472"/>		
 	</Door>
-	
+	Upper
 	<Door name="DoorsLevel1">
-		<smalBridgePosition X="1280" Y="1088" Closed="0"/>
+		<smalBridgePosition X="1280" Y="1072" Closed="0"/>
 		<leverPosition X="1280" Y="1472"/>		
 	</Door>
-	
+	Left
 	<Door name="DoorsLevel1">
-		<doorPosition X="1216" Y="1152"/>
+		<doorPosition X="1232" Y="1152"/>
 		<leverPosition X="1280" Y="1472"/>		
 	</Door>
-	
+	Right
 	<Door name="DoorsLevel1">
-		<doorPosition X="1344" Y="1152"/>
+		<doorPosition X="1328" Y="1152"/>
 		<leverPosition X="1280" Y="1472"/>		
 	</Door>
 	
 	Finish lever
+	Left
 	<Door name="DoorsLevel1">
-		<doorPosition X="2112" Y="1408"/>
+		<doorPosition X="1904" Y="1408"/>
 		<leverPosition X="2240" Y="1472"/>		
 	</Door>
-	
+	Right
 	<Door name="DoorsLevel1">
-		<doorPosition X="1920" Y="1408"/>
+		<doorPosition X="2096" Y="1408"/>
 		<leverPosition X="2240" Y="1472"/>		
 	</Door>
 	
 	Stone finish button
+	Upper
 	<Door name="DoorsLevel1">
-		<doorPosition X="2112" Y="960"/>
+		<doorPosition X="2096" Y="960"/>
 		<buttonPosition X="2048" Y="1472"/>		
 	</Door>
-	
+	Lower
 	<Door name="DoorsLevel1">
-		<doorPosition X="2368" Y="1408"/>
+		<doorPosition X="2352" Y="1408"/>
 		<buttonPosition X="2048" Y="1472"/>		
 	</Door>
 	
 	ID 1
 	<Door name="DoorsLevel1">
-		<doorPosition X="512" Y="1600"/>
+		<doorPosition X="496" Y="1600"/>
 		<buttonPosition X="384" Y="1024"/>		
 	</Door>
 	
@@ -64,7 +67,7 @@
 	
 	ID 3
 	<Door name="DoorsLevel1">
-		<smalBridgePosition X="384" Y="1536" Closed="1"/>
+		<smalBridgePosition X="384" Y="1552" Closed="1"/>
 		<buttonPosition X="1152" Y="384"/>		
 	</Door>
 	

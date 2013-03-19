@@ -1,72 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 
   <Body>
-  
-	KIBA SMILES
+	KIBA
 	<Dialog name="DoorsLevel1">
-		<speech text="Kiba: Finally! Freedom! I knew we could make it." speaker="0" bild="dialog0.png" emotion="2"/>
+		<speech text="Kiba: Wait, you're not gonna fight before we go through here?" speaker="0" bild="dialog0.png" emotion="0"/>
 	</Dialog>
 
-	CHARLOTTE
-	<Dialog name="DoorsLevel1">
-		<speech text="Charlotte: Only by working together." speaker="1" bild="dialog1.png" emotion="2"/>
-	</Dialog>
-	
 	FENRIR
 	<Dialog name="DoorsLevel1">
-		<speech text="Fenrir: Maybe..." speaker="2" bild="dialog2.png" emotion="0"/>
+		<speech text="Fenrir: ..." speaker="2" bild="dialog2.png" emotion="0"/>
 	</Dialog>
 
 	SHEEKA
 	<Dialog name="DoorsLevel1">
-		<speech text="Sheeka: I'm just glad we’re done here. Can we go now?\I really want to see your faces when we find out that our treasure is just a regular necklace." speaker="3" bild="dialog3.png" emotion="0"/>
-	</Dialog>
-	
-	KIBA SIGHS
-	<Dialog name="DoorsLevel1">
-		<speech text="Kiba: Cheerful and loving as always, Sheeka." speaker="0" bild="dialog0.png" emotion="1"/>
-	</Dialog>
-
-	SHEEKA SMILES
-	<Dialog name="DoorsLevel1">
-		<speech text="Sheeka: It's who I am." speaker="3" bild="dialog3.png" emotion="2"/>
-	</Dialog>
-
-	KIBA AND SHEEKA WALK OUT
-	
-	CHARLOTTE SMILES
-	<Dialog name="DoorsLevel1">
-		<speech text="Charlotte: See, she can smile too." speaker="1" bild="dialog1.png" emotion="2"/>
-	</Dialog>
-
-	FENRIR
-	<Dialog name="DoorsLevel1">
-		<speech text="Fenrir: She threatened to tear my tail off. To a wolf, that's the worst one can do." speaker="2" bild="dialog2.png" emotion="0"/>
+		<speech text="Sheeka: ..." speaker="3" bild="dialog3.png" emotion="0"/>
 	</Dialog>
 
 	CHARLOTTE
 	<Dialog name="DoorsLevel1">
-		<speech text="Charlotte: She will change, eventually." speaker="1" bild="dialog1.png" emotion="2"/>
-	</Dialog>
-
-	FENRIR
-	<Dialog name="DoorsLevel1">
-		<speech text="Fenrir: I wish I had your optimism." speaker="2" bild="dialog2.png" emotion="0"/>
-	</Dialog>
-
-	CHARLOTTE SMILES
-	<Dialog name="DoorsLevel1">
-		<speech text="Charlotte: Living your dream does make you optimistic. I still can't believe we're actually doing this. And I know you two will get along soon enough." speaker="1" bild="dialog1.png" emotion="2"/>
+		<speech text="Charlotte: Don't encourage them, Kiba. Let's just go." speaker="1" bild="dialog1.png" emotion="2"/>
 	</Dialog>
 	
-	FENRIR SMILES
+	  Kiba’s journal
 	<Dialog name="DoorsLevel1">
-		<speech text="Fenrir: Let's hope so." speaker="2" bild="dialog2.png" emotion="2"/>
-	</Dialog>
-
-	KIBA
-	<Dialog name="DoorsLevel1">
-		<speech text="Kiba: Hurry up, already!" speaker="0" bild="dialog0.png" emotion="0"/>
+		<speech text="We had no idea what awaited us at the end of that passage..."
+		bild="dialog4.png"
+		bildX="365" bildY="0"
+		textX="415" textY="10"
+		textboxWidth="540" textboxHeight="110"
+		font="journal.ttf" size="30"
+		colorR="0"
+		colorG="0"
+		colorB="0"
+		/>
 	</Dialog>
 
 	
