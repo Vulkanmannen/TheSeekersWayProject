@@ -43,6 +43,10 @@ void GameMenu::update()
 		{
 			LevelManager::getInstance()->LoadLevel(5);
 		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num7))
+		{
+			LevelManager::getInstance()->LoadLevel(6);
+		}
 	}
 }
 
