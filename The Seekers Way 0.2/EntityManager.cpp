@@ -31,7 +31,7 @@ EntityManager::EntityManager():
 	mCameraSpeed(3),
 	mBackgroundPos(-1024, -1024),
 	mParalax(false),
-	mMovingCamera(false),
+	mMovingCamera(true),
 	mCantMoveCharacters(false),
 	mCameraDist(0,0)
 {		
