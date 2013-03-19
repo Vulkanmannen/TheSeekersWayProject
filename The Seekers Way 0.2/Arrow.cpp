@@ -36,12 +36,12 @@ void Arrow::update(EntityKind &currentEntity)
 
 void Arrow::interact(Entity* e)
 {
-	if(mShottingTime.getElapsedTime().asMilliseconds() > 150 || (*e) != Entity::BLOCK)
+	if(mShottingTime.getElapsedTime().asMilliseconds() > 500 || (*e) != Entity::NORMALBLOCK)
 	{
 		switch(e->getEntityKind())
 		{
 		case SHIELD:
-			Sounds::getInstance()->Play("arrowtosheild.wav", 100, mPosition);
+			Sounds::getInstance()->Play("arrowtoshield.wav", 70, mPosition);
 		}
 		if((*e) == Entity::BLOCK || (*e) == Entity::CHARACTER || (*e) == Entity::SHIELD || (*e) == Entity::STONE)
 		{

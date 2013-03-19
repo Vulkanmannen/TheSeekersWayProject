@@ -13,6 +13,7 @@ Vine::Vine(sf::Vector2f &position, unsigned char spriteNumber)
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = VINE;
+	mLayer = FORGROUND;
 
 	mTexture.loadFromImage(*ImageManager::getImage("vines.png"));
 	mSprite.setTexture(mTexture);

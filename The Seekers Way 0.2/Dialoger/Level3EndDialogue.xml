@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 
   <Body>
+	KIBA SMILES
 	<Dialog name="DoorsLevel1">
-		<speech textX="10" textY="94" text="Will they be okay?" speaker="1" size="30" bild="dialog1.png"
-		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="1" font="segoeui.ttf"/>
+		<speech text="Kiba: Keep this up and we'll be out in no time." speaker="0" bild="dialog0.png" emotion="2"/>
 	</Dialog>
 
+	CHARLOTTE SMILES
 	<Dialog name="DoorsLevel1">
-		<speech textX="10" textY="94" text="..." speaker="1" size="30" bild="dialog1.png"
-		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="1" font="segoeui.ttf"/>
+		<speech text="Charlotte: It's so good to see you working together for once. Don't you agree?" speaker="1" bild="dialog1.png" emotion="2"/>
 	</Dialog>
+
+	FENRIR SMILES
+	<Dialog name="DoorsLevel1">
+		<speech text="Fenrir: Well..." speaker="2" bild="dialog2.png" emotion="2"/>
+	</Dialog>
+
+	SHEEKA
+	<Dialog name="DoorsLevel1">
+		<speech text="Sheeka: I only do it to help you two. Can't we just leave the pup here?" speaker="3" bild="dialog3.png" emotion="0"/>
+	</Dialog>
+	
+	FENRIR ANGRY
+	<Dialog name="DoorsLevel1">
+		<speech text="Fenrir: You arrogant little... Maybe you should do less barking and a little more biting!" speaker="2" bild="dialog2.png" emotion="3"/>
+	</Dialog>
+
+	SHEEKA ANGRY
+	<Dialog name="DoorsLevel1">
+		<speech text="Sheeka: Bring it, pup! I'll tear your precious tail off!" speaker="3" bild="dialog3.png" emotion="3"/>
+	</Dialog>
+
+	KIBA ANGRY
+	<Dialog name="DoorsLevel1">
+		<speech text="Kiba: Cut it out, already! You're both part of this group and we're not leaving\anyone behind or kicking anyone out. That's just how it is." speaker="0" bild="dialog0.png" emotion="3"/>
+	</Dialog>
+
 	
   </Body>

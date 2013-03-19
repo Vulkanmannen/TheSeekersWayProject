@@ -9,17 +9,21 @@ static const float SPRITEWIDTH = 64;
 static const float SPRITEHEIGHT = 128;
 
 Shield::Shield(sf::Vector2f &position, bool dirLeft):
-	mAnimation("shield.png", 60, 0, SPRITEHEIGHT, SPRITEWIDTH),
+	mAnimation("shield.png", 60, 7, SPRITEHEIGHT, SPRITEWIDTH),
 	mShieldCount(0),
-	mDirLeft(dirLeft)
+	mDirLeft(dirLeft),
+	mOpen(false),
+	mDead(false)
 {
 	mPosition = position;
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = SHIELD;
+	mLayer = FORGROUND;
+
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH/ 2, mPosition.y - HEIGHT/ 2));
-	mAnimation.update(mShieldCount * 2 + mDirLeft);
-	Sounds::getInstance()->Play("sheild.wav");
+	mAnimation.update(mDirLeft);
+	Sounds::getInstance()->Play("shield.wav", 40);
 }
 
 
@@ -29,12 +33,21 @@ Shield::~Shield()
 
 void Shield::update(EntityKind &currentEntity)
 {
+	mAnimation.update(mOpen * 2 + mShieldCount * 2 + mDirLeft);
 
+	if(!mOpen && mAnimation.getEndOfAnimation())
+	{
+		mOpen = true;
+	}
+	if(mDead && mAnimation.getEndOfAnimation() && mClock.getElapsedTime().asMilliseconds() > 300)
+	{
+		destroy();
+	}
 }
 
 void Shield::render()
 {
-	mAnimation.update(mShieldCount * 2 + mDirLeft);
+	
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH / 2, mPosition.y - HEIGHT / 2));
 	ImageManager::render(&mAnimation.getSprite());
 }
@@ -43,8 +56,14 @@ void Shield::interact(Entity* e)
 {
 	if((*e) == ARROW)
 	{
-		mShieldCount++;
-		Sounds::getInstance()->Play("arrowtosheild.wav");
+		if(mOpen)
+		{
+			mShieldCount++;
+		}
+		if(mShieldCount > 5)
+		{
+			mShieldCount = 5;
+		}
 	}
 	if((*e) == BLOCK || (*e) == FIREBALL)
 	{
@@ -55,4 +74,16 @@ void Shield::interact(Entity* e)
 int Shield::GetShieldCount()const
 {
 	return mShieldCount;
+}
+
+bool Shield::getEndOfAnimation()const
+{
+	return mAnimation.getEndOfAnimation();
+}
+
+void Shield::setToDead()
+{
+	mDead = true;
+	mClock.restart();
+	Sounds::getInstance()->Play("shieldbreak.wav", 40);
 }

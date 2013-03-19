@@ -28,6 +28,7 @@ class Dialogue
 		float			size;
 		Emotion			emotion;
 		Speaker			speaker;
+		sf::Color		color;
 
 		dialogbase()
 		{
@@ -40,6 +41,7 @@ class Dialogue
 			text.setString("");
 			textbox			= sf::Vector2f(300, 110);
 			textposition	= sf::Vector2f(10, 94);
+			color			= sf::Color(255, 255, 255, 255);
 			//defaultvärden som bestäms av en config fil
 			{
 				TiXmlDocument zDocument;
@@ -109,6 +111,33 @@ class Dialogue
 								{
 									emotion = Emotion(positionAttribute->IntValue());
 								}
+								else if(name == "color")
+								{
+									if(positionAttribute->Value() == "black")
+									{
+										color = color.Black;
+									}
+									if(positionAttribute->Value() == "white")
+									{
+										color = color.White;
+									}
+								}
+								else if(name == "colorR")
+								{
+									color.r = positionAttribute->IntValue();
+								}
+								else if(name == "colorG")
+								{
+									color.g = positionAttribute->IntValue();
+								}
+								else if(name == "colorB")
+								{
+									color.b = positionAttribute->IntValue();
+								}
+								else if(name == "colorA")
+								{
+									color.a = positionAttribute->IntValue();
+								}
 								positionAttribute = positionAttribute->Next();
 							}
 						}
@@ -167,7 +196,6 @@ private:
 	/*sf::Font *journal_font;
 	sf::Font *character_font;*/
 
-	sf::Sprite mSprite;
 	sf::Texture mTexture[4];
 
 	sf::Clock interval;

@@ -8,7 +8,7 @@ static const float SPRITEWIDTH = 64;
 static const float SPRITEHEIGHT = 64;
 
 Lava::Lava(sf::Vector2f & position):
-	mAnimation("lava.png", 120, 11, SPRITEHEIGHT, SPRITEWIDTH)
+	mAnimation("lava.png", 80, 5, SPRITEHEIGHT, SPRITEWIDTH)
 	{
 	mPosition = position + sf::Vector2f(0, 7);
 	mAlive = true;

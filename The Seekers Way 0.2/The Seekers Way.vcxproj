@@ -75,6 +75,7 @@
     <ClInclude Include="TelekinesisBox.h" />
     <ClInclude Include="tinystr.h" />
     <ClInclude Include="tinyxml.h" />
+    <ClInclude Include="VideoState.h" />
     <ClInclude Include="TutorialSign.h" />
     <ClInclude Include="Vine.h" />
     <ClInclude Include="WoodenWall.h" />
@@ -147,6 +148,7 @@
     <ClCompile Include="tinyxml.cpp" />
     <ClCompile Include="tinyxmlerror.cpp" />
     <ClCompile Include="tinyxmlparser.cpp" />
+    <ClCompile Include="VideoState.cpp" />
     <ClCompile Include="TutorialSign.cpp" />
     <ClCompile Include="Vine.cpp" />
     <ClCompile Include="WoodenWall.cpp" />
@@ -180,7 +182,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>false</LinkIncremental>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

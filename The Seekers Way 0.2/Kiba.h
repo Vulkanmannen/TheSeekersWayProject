@@ -16,10 +16,15 @@ public:
 
 	void update(EntityKind &currentEntity);
 	void render();
+
+	void onblock();
 	
 private:
 	void slash();
+	void slashing();
+	bool mSlashing;
 	sf::Clock mslashtimer;
+	bool mCanPressSlash;
 
 	TelekinesisBox* mTelekinesisBox;
 

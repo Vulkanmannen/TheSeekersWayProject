@@ -150,6 +150,7 @@ void StartMenu::buttonActivate()
 
 			case 1:
 				LevelManager::getInstance()->LoadLevel(0);
+				//State::getInstance()->setState(State::MyVideoState);
 				State::getInstance()->setState(State::DialogueState);
 				Resumedraw = false;
 				break;

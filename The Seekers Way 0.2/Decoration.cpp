@@ -1,10 +1,11 @@
 #include "Decoration.h"
 #include "ImageManager.h"
+#include "EntityManager.h"
 
 
-Decoration::Decoration(sf::Vector2f Position, unsigned char spriteNumber, bool bigDecoration)
+Decoration::Decoration(sf::Vector2f Position, unsigned char spriteNumber, bool bigDecoration, bool paralaxing, bool biggerDecoration):
+	mParalaxing(paralaxing)
 	{
-		mPosition = Position;
 		mAlive = true;
 		mEntityKind = DECORATION;
 		mLayer = MIDDLE;
@@ -13,21 +14,45 @@ Decoration::Decoration(sf::Vector2f Position, unsigned char spriteNumber, bool b
 		{
 			mHeight = 128;
 			mWidth = 128;
-			mTexture.loadFromImage(*ImageManager::getImage("decoration128.png"));
-			if(spriteNumber == 4)
+			
+			if(paralaxing)
 			{
-				mLayer = FORGROUND;
+				mTexture.loadFromImage(*ImageManager::getImage("decoration128parallaxing.png"));
+				mLayer = BACKGROUND;
+			}
+			else
+			{
+				mTexture.loadFromImage(*ImageManager::getImage("decoration128.png"));
+				mLayer = MIDDLE;
 			}
 		}
-		else
+		else if(!biggerDecoration)
 		{
 			mHeight = 64;
 			mWidth = 64;
-			mTexture.loadFromImage(*ImageManager::getImage("decoration64.png"));
+			if(paralaxing)
+			{
+				mTexture.loadFromImage(*ImageManager::getImage("decoration64parallaxing.png"));
+				mLayer = BACKGROUND;
+			}
+			else
+			{
+				mTexture.loadFromImage(*ImageManager::getImage("decoration64.png"));
+				mLayer = MIDDLE;
+			}
 		}
+		else if(biggerDecoration)
+		{
+			mHeight = 192;
+			mWidth = 192;
 
+			mTexture.loadFromImage(*ImageManager::getImage("FinishDoor.png"));
+			mLayer = MIDDLE;
+		}
+		mPositionToBackground = Position - sf::Vector2f(32, 32);
+		mPosition = EntityManager::getInstance()->getBackgroundPos() + sf::Vector2f(1024, 1024) + mPositionToBackground; 
 		mSprite.setTexture(mTexture);
-		mSprite.setPosition(Position - sf::Vector2f(32, 32));			
+		mSprite.setPosition(mPosition);			
 		
 		sf::IntRect textureRect(spriteNumber * mWidth, 0, mWidth, mHeight);
 		mSprite.setTextureRect(textureRect);
@@ -39,5 +64,9 @@ Decoration::~Decoration()
 
 void Decoration::update(EntityKind &currentEntity)
 {
-
+	if(mParalaxing)
+	{
+		mPosition = EntityManager::getInstance()->getBackgroundPos() + sf::Vector2f(1024, 1024) + mPositionToBackground;
+		mSprite.setPosition(mPosition);
+	}
 }

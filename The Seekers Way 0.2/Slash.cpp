@@ -30,9 +30,9 @@ void Slash::update(EntityKind &currentCharacter)
 
 void Slash::render()
 {
-	mAnimation.update(mDirLeft);
-	mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH / 2, mPosition.y - HEIGHT / 2));
-	ImageManager::render(&mAnimation.getSprite());
+	//mAnimation.update(mDirLeft);
+	//mAnimation.setPosition(sf::Vector2f(mPosition.x - WIDTH / 2, mPosition.y - HEIGHT / 2));
+	//ImageManager::render(&mAnimation.getSprite());
 }
 
 // om en darkbinding åker in i switchen så öppnas dörren

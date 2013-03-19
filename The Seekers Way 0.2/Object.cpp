@@ -3,7 +3,7 @@
 Object::Object()
 {
 	mBaseKind = OBJECT;
-	mLayer = FORGROUND;
+	mLayer = MIDDLE;
 }
 
 Object::~Object()

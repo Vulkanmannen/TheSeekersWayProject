@@ -6,7 +6,7 @@
 
 
 static const float WIDTH	= 40;
-static const float HEIGHT	= 64;
+static const float HEIGHT	= 60;
 
 
 TutorialSign::TutorialSign(sf::Vector2f &position, unsigned char spriteNumber)

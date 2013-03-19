@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 
   <Body>
+  
+	CHARLOTTE
 	<Dialog name="DoorsLevel1">
-		<speech textX="10" textY="94" text="Will they be okay?" speaker="1" size="30" bild="dialog1.png"
-		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="1" font="segoeui.ttf"/>
+		<speech text="Charlotte: Is it just me, or has the rooms changed?" speaker="1" bild="dialog1.png" emotion="0"/>
 	</Dialog>
 
+	FENRIR
 	<Dialog name="DoorsLevel1">
-		<speech textX="10" textY="94" text="..." speaker="1" size="30" bild="dialog1.png"
-		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="1" font="segoeui.ttf"/>
+		<speech text="Fenrir: You don't remember every single path being blocked with magical\doors and traps?" speaker="2" bild="dialog2.png" emotion="0"/>
 	</Dialog>
+
+	KIBA SMILES
+	<Dialog name="DoorsLevel1">
+		<speech text="Kiba: I would love to do some research on this matter. Everything has changed just\because we took that medallion. Isn't that exciting?" speaker="0" bild="dialog0.png" emotion="2"/>
+	</Dialog>
+
+	FENRIR SIGHS
+	<Dialog name="DoorsLevel1">
+		<speech text="Fenrir: Exciting as in being extremely bothersome? Why, yes." speaker="2" bild="dialog2.png" emotion="1"/>
+	</Dialog>
+
+	SHEEKA
+	<Dialog name="DoorsLevel1">
+		<speech text="Sheeka: I agree for once..." speaker="3" bild="dialog3.png" emotion="0"/>
+	</Dialog>
+
+	KIBA SIGHS
+	<Dialog name="DoorsLevel1">
+		<speech text="Kiba: Nothing pleases you two. Let's go then, crybabies." speaker="0" bild="dialog0.png" emotion="1"/>
+	</Dialog>
+
 	
   </Body>

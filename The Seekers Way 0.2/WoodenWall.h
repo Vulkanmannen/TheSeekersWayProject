@@ -18,8 +18,7 @@ public:
 	void Activate();
 private:
 	Animation mAnimation;
-
-	sf::Clock mClockOpen;
+	sf::Clock mAnimationClock;
 
 	bool mHit;
 };

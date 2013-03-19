@@ -2,7 +2,16 @@
 
   <Body>
 	<Dialog name="DoorsLevel1">
-		<speech textX="10" textY="94" text="" speaker="0" size="30" bild="dialog0.png"
-		bildX="0" bildY="84" textboxWidth="300" textboxHeight="110" emotion="0" font="segoeui.ttf"/>
+		<speech textX="18" textY="108" 
+		text="" speaker="0" 
+		size="22" 
+		bild="dialog0.png" bildX="3" bildY="80"
+		textboxWidth="290" textboxHeight="110" 
+		emotion="0" 
+		font="segoeui.ttf"
+		colorR="255"
+		colorB="255"
+		colorG="255"
+		colorA="255"/>
 	</Dialog>
   </Body>

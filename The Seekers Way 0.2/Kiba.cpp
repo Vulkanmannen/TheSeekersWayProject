@@ -11,14 +11,16 @@ Kiba::Kiba(sf::Vector2f &position):
 	mTelekinesisBox(new TelekinesisBox(position)),
 	mTeleState(NOSTONE),
 	mStone(NULL),
-	mCanPressStone(true)
+	mCanPressStone(true),
+	mSlashing(false),
+	mCanPressSlash(true)
 {	
 	EntityManager::getInstance()->addEntity(mTelekinesisBox);
 	mAnimation.init("Kiba.png", 60, 6);
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = KIBA;
-	mPosition = position + sf::Vector2f(0, 32);
+	mPosition = position + sf::Vector2f(0, 38);
 }
 
 
@@ -28,12 +30,13 @@ Kiba::~Kiba()
 void Kiba::update(EntityKind &currentEntity)
 {	
 	move();
-	
+	slashing();
+
 	if(mCanMove)
 	{
 		if(currentEntity == mEntityKind)
 		{
-			if(mTeleState == NOSTONE)
+			if(mTeleState == NOSTONE && !mSlashing)
 			{
 				walk();
 				jump();
@@ -88,12 +91,23 @@ void Kiba::render()
 
 void Kiba::slash()
 { 
-	if((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::X)) && mslashtimer.getElapsedTime().asSeconds() >= 1)
+	if((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::X)) && mslashtimer.getElapsedTime().asSeconds() >= 0.6 && !mJumping && !mFalling && mCanPressSlash)
 	{	
+		mCanPressSlash = false;
+
 		mslashtimer.restart();
 		Slash *slash = new Slash(sf::Vector2f(mPosition.x + (mDirLeft? -1 : 1) * 32, mPosition.y - 30), mDirLeft);
 		EntityManager::getInstance()->addEntity(slash);
-		Sounds::getInstance()->Play("slash.wav");
+		Sounds::getInstance()->Play("slash.wav", 30);
+		mStatus = ACTION2;
+		mAnimationClock.restart();
+		
+		mMovementSpeed.x = 0;
+		mSlashing = true;
+	}
+	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+	{
+		mCanPressSlash = true;
 	}
 }
 
@@ -130,7 +144,7 @@ void Kiba::choosing()
 				{
 					mStone->setStoneState(Stone::INAIR);
 					mTeleState = SELECTEDSTONE;
-					Sounds::getInstance()->Play("levitate.wav");
+					Sounds::getInstance()->Play("levitate.wav", 80);
 				}
 			}
 			else
@@ -143,7 +157,7 @@ void Kiba::choosing()
 				mTelekinesisBox->getCurrentStone()->setStoneState(Stone::SELECTED);
 			}
 
-			mStatus = IDLE;
+			mStatus = ACTION1;
 			mMovementSpeed.x = 0;
 		}
 		else
@@ -160,7 +174,7 @@ void Kiba::choosing()
 			
 			mStone = mTelekinesisBox->getCurrentStone();
 			mTeleState = SELECTEDSTONE;
-			Sounds::getInstance()->Play("levitate.wav");
+			Sounds::getInstance()->Play("levitate.wav", 80);
 			
 			if(mStone != NULL)
 			{	
@@ -175,6 +189,7 @@ void Kiba::selectedStone()
 {
 	if(mTeleState == SELECTEDSTONE)
 	{
+		mStatus = ACTION1;
 		if(mStone != NULL)
 		{
 			mStone->setKibaPos(mPosition);
@@ -198,5 +213,45 @@ void Kiba::selectedStone()
 				Sounds::getInstance()->Play("errorsound.wav", 30);
 			}
 		}
+	}
+}
+
+// omdefinerar
+void Kiba::onblock()
+{
+	if(mFalling)
+	{
+		mFalling = false;
+		if(mStatus == INAIR)
+		{
+			mStatus = IDLE;
+
+			if(mMovementSpeed.y > 1 && mMovementSpeed.y < 8)
+			{
+				Sounds::getInstance()->Play("jump2.wav", 20);
+				Sounds::getInstance()->Play("land.wav", 30);
+			}
+			else if(mMovementSpeed.y >= 8)
+			{
+				Sounds::getInstance()->Play("land.wav", 70);
+				Sounds::getInstance()->Play("land.wav", 30);
+			}
+		}
+		mMovementSpeed.y = 0;
+	}
+	if(mAnimationClock.getElapsedTime().asMilliseconds() > 300)
+	{
+		if(mStatus == ACTION2 && mAnimation.getEndOfAnimation() || (mStatus == JUMP && !mJumping) || (mStatus == ACTION1 && mAnimation.getEndOfAnimation() && mTeleState == NOSTONE))
+		{		
+			mStatus = IDLE;
+		}
+	}
+}
+
+void Kiba::slashing()
+{
+	if(mslashtimer.getElapsedTime().asSeconds() > 0.6)
+	{
+		mSlashing = false;
 	}
 }

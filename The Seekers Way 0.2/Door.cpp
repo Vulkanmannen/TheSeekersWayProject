@@ -40,14 +40,20 @@ void Door::Activate()
 {
 	if(mStatus != OPENING || mStatus != CLOSING) 
 	{
-		if(mMagicDoor)
+		if(mSoundClock.getElapsedTime().asSeconds() > 1.2)
 		{
-			Sounds::getInstance()->Play("magicdoor.wav", 50);
+			if(mMagicDoor)
+			{
+				Sounds::getInstance()->Play("magicdoor.wav", 50);
+				mSoundClock.restart();
+			}
+			else
+			{
+				Sounds::getInstance()->Play("door2.wav");
+				mSoundClock.restart();
+			}
 		}
-		else
-		{
-			Sounds::getInstance()->Play("door.wav");
-		}
+		mAnimationClock.restart();
 	}
 	mStatus = OPENING;
 	mBaseKind = OBJECT;
@@ -57,10 +63,12 @@ void Door::DisActivate()
 {
 	if(mStatus != OPENING || mStatus != CLOSING) 
 	{
-		if(!mMagicDoor)
+		if(!mMagicDoor && mSoundClock.getElapsedTime().asSeconds() > 1.2)
 		{
-			Sounds::getInstance()->Play("door.wav");
+			Sounds::getInstance()->Play("door2.wav");
+			mSoundClock.restart();
 		}
+		mAnimationClock.restart();
 	}
 	mStatus = CLOSING;
 	mBaseKind = BLOCK;
@@ -68,20 +76,21 @@ void Door::DisActivate()
 
 void Door::update(EntityKind &currentEntity)
 {
-	if(mStatus == OPENING && mAnimation.getEndOfAnimation())
+	if(mStatus == OPENING && mAnimation.getEndOfAnimation() && mAnimationClock.getElapsedTime().asMilliseconds() > 300)
 	{
 		mStatus = OPEN;
 	}
 
-	if(mStatus == CLOSING && mAnimation.getEndOfAnimation())
+	if(mStatus == CLOSING && mAnimation.getEndOfAnimation() && mAnimationClock.getElapsedTime().asMilliseconds() > 300)
 	{
  		mStatus = CLOSED;
 	}
+	mAnimation.update(mStatus);
 }
 
 void Door::render()
 {//, mStatus != OPENING || mStatus != CLOSING ? false : true
-	mAnimation.update(mStatus);
+	
 	ImageManager::render(&mAnimation.getSprite());
 }
 
