@@ -41,7 +41,7 @@
 	Magic Switch puzzle Finish
 	<Door name="DoorsLevel1">
 		<bigBridgePosition X="2304" Y="688" Closed ="0"/>
-		<buttonPosition X="2752" Y="640"/>		
+		<buttonPosition X="3200" Y="1408"/>		
 	</Door>
 	
 	Fenrir - button

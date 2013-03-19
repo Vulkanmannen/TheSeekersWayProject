@@ -95,7 +95,7 @@
 	Last puzzle
 	<Door name="DoorsLevel1">
 		<smalBridgePosition X="2368" Y="320" Closed="0"/>
-		<buttonPosition X="3072" Y="192"/>		
+		<buttonPosition X="3136" Y="192"/>		
 	</Door>
 	
 	Bridge to finish
