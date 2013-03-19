@@ -59,6 +59,10 @@ int main()
 
    while (window.isOpen())
     {
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{Sounds::getInstance()->UnPauseAll();}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		{Sounds::getInstance()->PauseAll();}
 		sf::Listener::setPosition(view.getCenter().x, view.getCenter().y, 0);
 		sf::Event event;
 

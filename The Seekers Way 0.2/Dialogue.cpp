@@ -1,7 +1,7 @@
 #include "Dialogue.h"
 #include <cassert>
 #include "ImageManager.h"
-
+#include "Sounds.h"
 #include <iostream>
 
 Dialogue* Dialogue::sInstance = 0;
@@ -176,11 +176,19 @@ void Dialogue::render()
 
 bool Dialogue::getendofDialogue()
 {
+	if(mEndofDialogue)
+	{
+		Sounds::getInstance()->Stop("Dialog.wav");
+		Sounds::getInstance()->UnPauseAll();
+	}
 	return mEndofDialogue;
 }
 
 void Dialogue::startDialogue(std::string dialogueName)
 {
+	Sounds::getInstance()->Stop("Dialog.wav");
+	Sounds::getInstance()->PauseAll();
+	//Sounds::getInstance()->Play("Dialog.wav");
 	currentText = 0;
 	currentLetter = 0;
 	empthyDialogue();
@@ -524,7 +532,7 @@ Dialogue::TextVector Dialogue::textBox(sf::Text &rawText, sf::Vector2f textboxsi
 		file.erase(0,1);
 		while(!filnamn.empty())
 		{
-			while(filnamn.rfind(' ') == 0 || filnamn.rfind('\n') == 0)
+			while(filnamn.find(' ') == 0 || filnamn.find('\n') == 0)
 			{
 				filnamn.erase(0, 1);
 			}
@@ -568,7 +576,8 @@ Dialogue::TextVector Dialogue::textBox(sf::Text &rawText, sf::Vector2f textboxsi
 							switch(split)
 							{
 							case true:
-								newest = oldest + '\n' + newest.back();
+								oldest = oldest + '\n';
+								newest = oldest + newest.back();
 								break;
 							case false:
 								newest.insert(newest.rfind(' ') + 1, "\n");

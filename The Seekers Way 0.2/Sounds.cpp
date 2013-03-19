@@ -228,7 +228,7 @@ sf::SoundBuffer* Sounds::getBuffer(std::string namn)
 
 void Sounds::Stop(std::string namn)
 {
-	for(int i = 0; i < soundlimit; i++)
+	for(int i = 0; i < mSounds.size(); i++)
 	{
 		mSounds[i]->getBuffer() == bufferlista[namn]? mSounds[i]->stop() : NULL;
 	}
@@ -236,7 +236,7 @@ void Sounds::Stop(std::string namn)
 
 void Sounds::Pause(std::string namn)
 {
-	for(int i = 0; i < soundlimit; i++)
+	for(int i = 0; i < mSounds.size(); i++)
 	{
 		mSounds[i]->getBuffer() == bufferlista[namn]? mSounds[i]->pause() : NULL;
 	}
