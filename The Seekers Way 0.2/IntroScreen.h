@@ -21,5 +21,5 @@ private:
 
 	sf::Texture mIntroText;
 	sf::Sprite mIntroSprite;
-};
+}; 
 #endif

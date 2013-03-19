@@ -5,7 +5,7 @@
 	Fenrir button - for Sheeka
 	<Door name="DoorsLevel1">
 		<doorPosition X="464" Y="1280"/>
-		<buttonPosition X="704" Y="768"/>
+		<buttonPosition X="768" Y="768"/>
 	</Door>	
 	
 	Charlotte buttons
