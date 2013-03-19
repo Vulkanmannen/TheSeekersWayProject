@@ -483,7 +483,7 @@ void Dialogue::playNext()
 	{
 		if(!isbuttonpressed)
 		{
-			if(currentLetter >= dialogs[currentText]->text.getString().toAnsiString().size())
+			if(currentLetter >= dialogs[currentText]->text.getString().toAnsiString().size() - 1 )
 			{
 				currentText++;
 				currentLetter = 0;
