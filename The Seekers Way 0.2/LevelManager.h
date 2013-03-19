@@ -6,12 +6,14 @@
 
 struct Level 
 {
-	Level(std::string blockMap, std::string objectMap, std::string XmlMap, 
+	Level(std::string blockMap, std::string objectMap, std::string XmlMap, std::string music, 
 		 int MapRight = 61, int MapBottom = 28, Entity::EntityKind entityKind = Entity::KIBA)
 	{
 		mblockMap = blockMap;
 		mobjectMap = objectMap;
 		mXmlMap = XmlMap;
+
+		mMusic = music;
 
 		mPrimaryCharacter = entityKind;
 
@@ -21,6 +23,8 @@ struct Level
 	std::string mblockMap;
 	std::string mobjectMap;
 	std::string mXmlMap;
+
+	std::string mMusic;
 
 	Entity::EntityKind mPrimaryCharacter;
 
