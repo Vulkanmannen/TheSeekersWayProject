@@ -70,10 +70,10 @@ void DialogState::fade()
 			mSprite.setColor(sf::Color(0, 0, 0, 255 - timeTemp));
 		}
 	}
-	else if(Dialogue::getInstance()->getStartDialogue())
-	{
-		mSprite.setColor(sf::Color(0, 0, 0, 255));
-	}
+	//else if(Dialogue::getInstance()->getStartDialogue())
+	//{
+	//	mSprite.setColor(sf::Color(0, 0, 0, 255));
+	//}
 
 	mSprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(256, 120));
 	ImageManager::render(&mSprite);
