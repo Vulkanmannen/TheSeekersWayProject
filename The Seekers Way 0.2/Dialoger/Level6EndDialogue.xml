@@ -1,6 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
   <Body>
+<<<<<<< HEAD
+	KIBA
+=======
+
 	KIBA
 	<Dialog name="DoorsLevel1">
 		<speech text="Kiba: Wait, you're not gonna fight before we go through here?" speaker="0" bild="dialog0.png" emotion="0"/>
@@ -35,5 +39,57 @@
 		/>
 	</Dialog>
 
+
+
 	
   </Body>
+
+KIBA SMILES
+>>>>>>> vulkanmannen
+	<Dialog name="DoorsLevel1">
+		<speech text="Kiba: Wait, you're not gonna fight before we go through here?" speaker="0" bild="dialog0.png" emotion="0"/>
+	</Dialog>
+
+	FENRIR
+	<Dialog name="DoorsLevel1">
+		<speech text="Fenrir: ..." speaker="2" bild="dialog2.png" emotion="0"/>
+	</Dialog>
+
+	SHEEKA
+	<Dialog name="DoorsLevel1">
+		<speech text="Sheeka: ..." speaker="3" bild="dialog3.png" emotion="0"/>
+	</Dialog>
+
+	CHARLOTTE
+	<Dialog name="DoorsLevel1">
+		<speech text="Charlotte: Don't encourage them, Kiba. Let's just go." speaker="1" bild="dialog1.png" emotion="2"/>
+	</Dialog>
+	
+<<<<<<< HEAD
+	  Kiba’s journal
+	<Dialog name="DoorsLevel1">
+		<speech text="We had no idea what awaited us at the end of that passage..."
+		bild="dialog4.png"
+		bildX="365" bildY="0"
+		textX="415" textY="10"
+		textboxWidth="540" textboxHeight="110"
+		font="journal.ttf" size="30"
+		colorR="0"
+		colorG="0"
+		colorB="0"
+		/>
+	</Dialog>
+
+	
+  </Body>
+=======
+	FENRIR SMILES
+	<Dialog name="DoorsLevel1">
+		<speech text="Fenrir: Let's hope so." speaker="2" bild="dialog2.png" emotion="2"/>
+	</Dialog>
+
+	KIBA
+	<Dialog name="DoorsLevel1">
+		<speech text="Kiba: Hurry up, already!" speaker="0" bild="dialog0.png" emotion="0"/>
+	</Dialog>
+>>>>>>> vulkanmannen

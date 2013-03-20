@@ -36,6 +36,8 @@ private:
 	sf::Sprite mStartSprite;	
 	sf::Texture mHowToPlay;
 	sf::Sprite mHowToPlaySprite;
+	sf::Texture mBackgroundTexture;
+	sf::Sprite mBackgroundSprite;
 
 	std::vector<Animation> mButtons;
 };

@@ -6,7 +6,7 @@
 #include "Animation.h"
 #include "StartMenu.h"
 #include "IntroScreen.h"
-
+#include "LevelManager.h"
 #include <string>
 
 #include "State.h"
@@ -62,14 +62,24 @@ int main()
    while (window.isOpen())
     {
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		{Sounds::getInstance()->UnPauseAll();}
+		{
+			Sounds::getInstance()->UnPauseAll();
+		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		{Sounds::getInstance()->PauseAll();}
+		{
+			Sounds::getInstance()->PauseAll();
+		}
 		sf::Listener::setPosition(view.getCenter().x, view.getCenter().y, 0);
 		sf::Event event;
 
 		if (State::getInstance()->getExit())
 		{	
+			//std::string
+				int text = 0;
+			text = LevelManager::getInstance()->getCurrentLevel();
+			std::ofstream f2("Level.txt");
+			f2 << text;
+			f2.close();
 			window.close();
 		}
 

@@ -18,7 +18,7 @@ private:
 
 	sf::Clock mVideoClock;
 	sftheora::Video	mSplashVid;
-	
+
 	sf::Texture mIntroText;
 	sf::Sprite mIntroSprite;
 }; 

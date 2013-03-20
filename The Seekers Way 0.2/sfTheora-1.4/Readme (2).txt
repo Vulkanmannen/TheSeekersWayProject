@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ************************************************************
 ** sfTheora                                               **
 ************************************************************
@@ -41,6 +40,3 @@
 ------------------------------------------------------------
   Discussion for sfTheora is available on the SFML forum:
     http://www.sfml-dev.org/forum/viewtopic.php?t=4448
-=======
-libtheoraplayer_d.dll is only needed if you're using debug configuration.
->>>>>>> master

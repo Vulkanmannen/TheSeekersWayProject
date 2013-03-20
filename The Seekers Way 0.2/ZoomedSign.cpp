@@ -79,6 +79,9 @@ ZoomedSign::ZoomedSign(sf::Vector2f &position, unsigned char spriteNumber):
 		case 13:
 			mZoomedSignTexture.loadFromImage(*ImageManager::getImage("Sign14.png"));
 			break;
+
+		case 14:
+			mZoomedSignTexture.loadFromImage(*ImageManager::getImage("Sign15.png"));
 	}
 }
 
