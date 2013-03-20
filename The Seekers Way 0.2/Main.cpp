@@ -58,9 +58,11 @@ int main()
 
 	EntityManager::getInstance()->setView(&view, &videoMode);
 	{
-		int assa;
-		std::ifstream("Level.txt") >> assa;
-		LevelManager::getInstance()->setCurrentLevel(assa);
+		int loadlevel = -1, initLevel = -1;
+		std::ifstream("Level.txt") >> loadlevel;
+		LevelManager::getInstance()->setCurrentLevel(loadlevel != initLevel? loadlevel : 0);
+		loadlevel = LevelManager::getInstance()->getCurrentLevel();
+		loadlevel = loadlevel;
 	}
 	
 	while (window.isOpen())
