@@ -3,8 +3,7 @@
 
 #include "State.h"
 #include "Animation.h"
-
-//#include "sfeMovie-1.0-windows-vs2010\include\sfeMovie\Movie.hpp"
+#include "sfTheora.h"
 
 class IntroScreen
 {
@@ -17,8 +16,9 @@ public:
 
 private:
 
-	//sfe::Movie mMovie;
-
+	sf::Clock mVideoClock;
+	sftheora::Video	mSplashVid;
+	
 	sf::Texture mIntroText;
 	sf::Sprite mIntroSprite;
 }; 

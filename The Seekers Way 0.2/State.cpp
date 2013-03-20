@@ -41,6 +41,7 @@ void State::update()
 	//The Splashscreen
 		case Intro:
 			IntroSplash->render();
+			IntroSplash->update();
 			if(mIntroClock.getElapsedTime().asSeconds() > 6.7)
 			{
 				Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() - 1);
