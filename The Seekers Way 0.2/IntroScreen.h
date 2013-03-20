@@ -3,7 +3,6 @@
 
 #include "State.h"
 #include "Animation.h"
-
 #include "sfTheora.h"
 
 class IntroScreen
@@ -18,7 +17,7 @@ public:
 private:
 
 	sf::Clock mVideoClock;
-	sftheora::Video mSplashVid;
+	sftheora::Video	mSplashVid;
 
 	sf::Texture mIntroText;
 	sf::Sprite mIntroSprite;

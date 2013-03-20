@@ -13,6 +13,9 @@ public:
 	void render();
 
 	void restartClock();
+	void reset();
+	void setToBlack();
+	bool getStartDialogue();
 private:
 	bool mEndOfDialouge;
 	bool mFadedIn;
@@ -21,7 +24,7 @@ private:
 	sf::Clock mTimeToFadeIn;
 
 	void fade();
-	void reset();
+
 
 	sf::Texture mTexture;
 	sf::Sprite mSprite;

@@ -437,7 +437,7 @@ void Fenrir::snowMist()
 		mStatus = ACTION3;
 		mMovementSpeed = sf::Vector2f(0, 0);
 
-		Sounds::getInstance()->Play("snowmist.wav");
+		Sounds::getInstance()->Play("snowmist.wav",60);
 	}
 	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 	{
