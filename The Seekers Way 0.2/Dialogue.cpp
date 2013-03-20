@@ -116,7 +116,7 @@ void Dialogue::render()
 			std::string tempString;
 			if(dialogs[currentText]->text.getString().toAnsiString().size() != 0)
 			{
-				tempString = dialogs[currentText]->text.getString().toAnsiString().substr(0, currentLetter);
+					tempString = dialogs[currentText]->text.getString().toAnsiString().substr(0, currentLetter);
 			}
 			else
 			{
@@ -484,16 +484,19 @@ void Dialogue::playNext()
 	{
 		if(!isbuttonpressed)
 		{
-			if(currentLetter >= dialogs[currentText]->text.getString().toAnsiString().size() - 1 )
+			if(currentText < dialogs.size())
 			{
-				currentText++;
-				currentLetter = 0;
+				if(currentLetter >= dialogs[currentText]->text.getString().toAnsiString().size() - 1 )
+				{
+					currentText++;
+					currentLetter = 0;
+				}
+				else
+				{
+					currentLetter = dialogs[currentText]->text.getString().toAnsiString().size() - 1;
+				}
+				isbuttonpressed = true;
 			}
-			else
-			{
-				currentLetter = dialogs[currentText]->text.getString().toAnsiString().size() - 1;
-			}
-			isbuttonpressed = true;
 		}
 	}
 	/*if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
