@@ -22,24 +22,38 @@ LevelManager::~LevelManager()
 
 void LevelManager::LoadLevel(int level)
 {
-	EntityManager::getInstance()->ClearAll();
-	MapGenerator::generateMap(mLevels[level].mblockMap, mLevels[level].mobjectMap, mLevels[level].mXmlMap);
-	currentLevel = level;
+	if(mLevels.size() > level)
+	{
+		EntityManager::getInstance()->ClearAll();
+		MapGenerator::generateMap(mLevels[level].mblockMap, mLevels[level].mobjectMap, mLevels[level].mXmlMap);
 
-	Sounds::getInstance()->StopAll();
-	Sounds::getInstance()->setMasterVolume(100);
-	Sounds::getInstance()->Loop(mLevels[level].mMusic, 50);
+		currentLevel = level;
 
-	Dialogue::getInstance()->startDialogue(mStartDialogues[level]);
-	Dialogue::getInstance()->setStartDialogue(true);
+		Sounds::getInstance()->StopAll();
+		Sounds::getInstance()->setMasterVolume(100);
+		if(level < 2)
+		{
+			Sounds::getInstance()->Loop(mLevels[level].mMusic, 100);
+		}
+		else
+		{
+			Sounds::getInstance()->Loop(mLevels[level].mMusic, 50);
+		}
+		Dialogue::getInstance()->startDialogue(mStartDialogues[level]);
+		Dialogue::getInstance()->setStartDialogue(true);
 
-	EntityManager::getInstance()->setPrimaryCharacter(mLevels[level].mPrimaryCharacter);
+		EntityManager::getInstance()->setPrimaryCharacter(mLevels[level].mPrimaryCharacter);
 
-	EntityManager::getInstance()->setMapSize(mLevels[level].mMapRight, mLevels[level].mMapBottom);
-	EntityManager::getInstance()->setCameraSpeedToChangePos();
-	
+		EntityManager::getInstance()->setMapSize(mLevels[level].mMapRight, mLevels[level].mMapBottom);
+		EntityManager::getInstance()->setCameraSpeedToChangePos();
+		
 
-	EntityManager::getInstance()->setPlayerLifeMax();
+		EntityManager::getInstance()->setPlayerLifeMax();
+	}
+	else
+	{
+		currentLevel = 0;
+	}
 }
 
 void LevelManager::LoadEndLevel()
@@ -91,8 +105,11 @@ int LevelManager::getCurrentLevel()
 	return currentLevel;
 }
 
+
 void LevelManager::setCurrentLevel(int level)
 {
 	currentLevel = level;
 }
+
+
 

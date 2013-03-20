@@ -52,7 +52,8 @@ void DialogState::fade()
 		mSprite.setColor(sf::Color(0, 0, 0, timeTemp));
 	}
 
-	if(mTimeToFadeIn.getElapsedTime().asSeconds() > 3 && Dialogue::getInstance()->getStartDialogue())
+
+	if(mTimeToFadeIn.getElapsedTime().asSeconds() > 3 && Dialogue::getInstance()->getStartDialogue()/* && !EntityManager::getInstance()->getMovingCamera()*/)
 	{
 		if(!mFadedIn && Dialogue::getInstance()->getStartDialogue())
 		{
@@ -61,6 +62,7 @@ void DialogState::fade()
 			if(timeTemp > 249)
 			{
 				timeTemp = 255;
+				mFadedIn = true;
 			}
 
 			mSprite.setColor(sf::Color(0, 0, 0, 255 - timeTemp));
@@ -87,12 +89,12 @@ void DialogState::update()
 	if(Dialogue::getInstance()->getendofDialogue() && Dialogue::getInstance()->getStartDialogue())
 	{
 		EntityManager::getInstance()->updateCameraLastpos();
-		State::getInstance()->setState(State::GameState);
 		reset();
+		State::getInstance()->setState(State::GameState);
 	}
 	else if(Dialogue::getInstance()->getendofDialogue() && !Dialogue::getInstance()->getStartDialogue())
 	{
-		mEndOfDialouge = true;	
+		mEndOfDialouge = true;
 	}
 
 	if(mEndOfDialouge)
@@ -102,16 +104,16 @@ void DialogState::update()
 		{
 			LevelManager::getInstance()->LoadLevel(LevelManager::getInstance()->getCurrentLevel() + 1);
 			//State::getInstance()->setState(State::MyVideoState);
+			State::getInstance()->setState(State::DialogueState);
 			reset();
 		}
 	}
 
-	if(mTimeToFadeIn.getElapsedTime().asSeconds() > 3 && !mFadedIn && Dialogue::getInstance()->getStartDialogue() && !EntityManager::getInstance()->getMovingCamera())
+	if(mTimeToFadeIn.getElapsedTime().asSeconds() > 3 && !mFadedIn && Dialogue::getInstance()->getStartDialogue()/* && !EntityManager::getInstance()->getMovingCamera()*/)
 	{
 		mFadeCount += 1;
 		if(mFadeCount > 50)
 		{
-			mFadedIn = true;
 			mFadeCount = 0;	
 			mFadedThisTime = true;
 		}
@@ -129,4 +131,14 @@ void DialogState::reset()
 void DialogState::restartClock()
 {
 	mTimeToFadeIn.restart();
+}
+
+void DialogState::setToBlack()
+{
+	mSprite.setColor(sf::Color(0, 0, 0, 255));
+}
+
+bool DialogState::getStartDialogue()
+{
+	return Dialogue::getInstance()->getStartDialogue();
 }

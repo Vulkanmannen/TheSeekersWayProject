@@ -36,8 +36,17 @@ private:
 	sf::Sprite mStartSprite;	
 	sf::Texture mHowToPlay;
 	sf::Sprite mHowToPlaySprite;
+
 	sf::Texture mBackgroundTexture;
 	sf::Sprite mBackgroundSprite;
+
+	sf::Texture mBlackTexture;
+	sf::Sprite mBlackSprite;
+	int mFadeCount;
+
+	bool mNewGame;
+	bool mResume;
+
 
 	std::vector<Animation> mButtons;
 };
