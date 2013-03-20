@@ -78,8 +78,7 @@ int main()
 
 		if (State::getInstance()->getExit())
 		{	
-			//std::string
-				int text = 0;
+			int text = 0;
 			text = LevelManager::getInstance()->getCurrentLevel();
 			std::ofstream f2("Level.txt");
 			f2 << text;

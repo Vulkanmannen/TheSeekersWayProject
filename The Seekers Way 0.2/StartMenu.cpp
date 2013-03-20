@@ -19,6 +19,9 @@ StartMenu::StartMenu():
 	mStartSprite.setTexture(mStartText);
 	mHowToPlay.loadFromImage(*ImageManager::getImage("HowToPlayinst.png"));
 	mHowToPlaySprite.setTexture(mHowToPlay);
+	mBackgroundTexture.loadFromImage(*ImageManager::getImage("Mainmenujournal.png"));
+	mBackgroundSprite.setTexture(mBackgroundTexture);
+
 	generateButtons();
 }
 
@@ -47,6 +50,8 @@ void StartMenu::render()
 	updateButtons();
 	if(HowToPlay == true)
 	{
+		mBackgroundSprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(512, 360));
+		ImageManager::render(&mBackgroundSprite);
 		mHowToPlaySprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(400, 300));
 		ImageManager::render(&mHowToPlaySprite);
 
@@ -143,17 +148,15 @@ void StartMenu::buttonActivate()
 			case 0:
 				if(Resumedraw == false)
 				{
-					Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() - 1);
-					LevelManager::getInstance()->LoadLevel();
 					Sounds::getInstance()->StopAll();
+					LevelManager::getInstance()->LoadLevel();
 					State::getInstance()->setState(State::GameState);
 				}
 				break;
 
 			case 1:
-				Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() - 1);
-				LevelManager::getInstance()->LoadLevel(0);
 				Sounds::getInstance()->StopAll();
+				LevelManager::getInstance()->LoadLevel(0);
 				//State::getInstance()->setState(State::MyVideoState);
 				State::getInstance()->setState(State::DialogueState);
 				Resumedraw = false;
