@@ -39,9 +39,12 @@ void DialogState::fade()
 
 	if(mEndOfDialouge)
 	{
-		timeTemp = 5 + mFadeCount * 5;
+		if(timeTemp < 255)
+		{
+			timeTemp = 5 + mFadeCount * 5;
+		}
 
-		if(timeTemp > 255)
+		else
 		{
 			timeTemp = 255;
 		}
@@ -49,7 +52,7 @@ void DialogState::fade()
 		mSprite.setColor(sf::Color(0, 0, 0, timeTemp));
 	}
 
-	if(/*mTimeToFadeIn.getElapsedTime().asSeconds() > 2 && */Dialogue::getInstance()->getStartDialogue())
+	if(mTimeToFadeIn.getElapsedTime().asSeconds() > 3 && Dialogue::getInstance()->getStartDialogue())
 	{
 		if(!mFadedIn && Dialogue::getInstance()->getStartDialogue())
 		{
@@ -103,7 +106,7 @@ void DialogState::update()
 		}
 	}
 
-	if(!mFadedIn && Dialogue::getInstance()->getStartDialogue() && !EntityManager::getInstance()->getMovingCamera())
+	if(mTimeToFadeIn.getElapsedTime().asSeconds() > 3 && !mFadedIn && Dialogue::getInstance()->getStartDialogue() && !EntityManager::getInstance()->getMovingCamera())
 	{
 		mFadeCount += 1;
 		if(mFadeCount > 50)

@@ -52,7 +52,11 @@ void State::update()
 				Sounds::getInstance()->StopAll();
 				mEsc = false;
 				Sounds::getInstance()->setMasterVolume(100);
+<<<<<<< HEAD
 				Sounds::getInstance()->Loop("Meny.wav");
+=======
+				Sounds::getInstance()->Loop("Meny.wav", 20);
+>>>>>>> e3dc32a8d424f4e7adddae7b50a096fa320a997b
 			}
 			break;
 
