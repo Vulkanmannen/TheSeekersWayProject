@@ -47,7 +47,7 @@ public:
 	static LevelManager* getInstance();
 
 	int getCurrentLevel();
-
+	void setCurrentLevel(int level);
 
 private:
 	typedef std::vector<std::string> StringVector;
@@ -65,6 +65,7 @@ private:
 	
 	StringVector mStartDialogues;
 	StringVector mEndDialogues;
+	
 };
 
 #endif

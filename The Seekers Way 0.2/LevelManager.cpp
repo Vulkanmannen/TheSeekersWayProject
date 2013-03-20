@@ -91,3 +91,8 @@ int LevelManager::getCurrentLevel()
 	return currentLevel;
 }
 
+void LevelManager::setCurrentLevel(int level)
+{
+	currentLevel = level;
+}
+
