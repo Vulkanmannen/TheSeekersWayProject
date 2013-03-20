@@ -13,9 +13,8 @@ Arrow::Arrow(sf::Vector2f &position, bool dirleft):
 	mAlive = true;
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
-	mEntityKind = Entity::ARROW;
 	mPosition = position;
-	
+
 	mTexture.loadFromImage(*ImageManager::getImage("arrow.png"));
 	mSprite.setTexture(mTexture);
 	mSprite.setPosition(position);
@@ -30,7 +29,7 @@ Arrow::~Arrow()
 
 void Arrow::update(EntityKind &currentEntity)
 {	
-	mPosition	+= mMovementSpeed;
+	mPosition	+= mMovementSpeed;	
 	mSprite.setPosition(mPosition);
 }
 

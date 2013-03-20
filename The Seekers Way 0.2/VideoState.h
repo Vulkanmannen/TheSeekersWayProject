@@ -1,7 +1,7 @@
 #ifndef INCLUDED_VIDEOSTATE
 #define INCLUDED_VIDEOSTATE
 
-#include "sfeMovie\Movie.hpp"
+#include "sfeMovie-1.0-windows-vs2010\include\sfeMovie\Movie.hpp"
 #include "SFML\System.hpp"
 #include "State.h"
 #include <vector>
