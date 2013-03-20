@@ -26,6 +26,10 @@ void LevelManager::LoadLevel(int level)
 	MapGenerator::generateMap(mLevels[level].mblockMap, mLevels[level].mobjectMap, mLevels[level].mXmlMap);
 	currentLevel = level;
 
+	Sounds::getInstance()->StopAll();
+	Sounds::getInstance()->setMasterVolume(100);
+	Sounds::getInstance()->Loop(mLevels[level].mMusic, 50);
+
 	Dialogue::getInstance()->startDialogue(mStartDialogues[level]);
 	Dialogue::getInstance()->setStartDialogue(true);
 
@@ -34,9 +38,6 @@ void LevelManager::LoadLevel(int level)
 	EntityManager::getInstance()->setMapSize(mLevels[level].mMapRight, mLevels[level].mMapBottom);
 	EntityManager::getInstance()->setCameraSpeedToChangePos();
 	
-	Sounds::getInstance()->StopAll();
-	Sounds::getInstance()->setMasterVolume(100);
-	Sounds::getInstance()->Loop(mLevels[level].mMusic, 50);
 
 	EntityManager::getInstance()->setPlayerLifeMax();
 }

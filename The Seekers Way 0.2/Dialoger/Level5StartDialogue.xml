@@ -15,15 +15,7 @@
 
 	FENRIR
 	<Dialog name="DoorsLevel1">
-<<<<<<< HEAD
-<<<<<<< HEAD
-		<speech text="Fenrir: If you get stuck behind one of those magical walls, I'm not coming to fetch you." speaker="2" bild="dialog2.png" emotion="0"/>
-=======
 		<speech text="Fenrir: Where do you get that energy, seriously?" speaker="2" bild="dialog2.png" emotion="0"/>
->>>>>>> origin/master
-=======
-		<speech text="Fenrir: Where do you get that energy, seriously?" speaker="2" bild="dialog2.png" emotion="0"/>
->>>>>>> origin/master
 	</Dialog>
 
 	CHARLOTTE SIGHS

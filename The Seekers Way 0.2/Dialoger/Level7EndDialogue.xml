@@ -19,7 +19,7 @@
 
 	SHEEKA
 	<Dialog name="DoorsLevel1">
-		<speech text="Sheeka: I'm just glad we’re done here. Can we go now?\I really want to see your faces when we find out that our treasure is just a regular necklace." speaker="3" bild="dialog3.png" emotion="0"/>
+		<speech text="Sheeka: I'm just glad we're done here. Can we go now?\I really want to see your faces when we find out that our treasure is just a regular\necklace." speaker="3" bild="dialog3.png" emotion="0"/>
 	</Dialog>
 	
 	KIBA SIGHS
