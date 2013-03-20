@@ -209,6 +209,7 @@ void Dialogue::empthyDialogue()
 	while(!dialogs.empty())
 	{
 		//delete dialogs.back()->text;
+
 		delete dialogs.back();
 		dialogs.pop_back();
 	}

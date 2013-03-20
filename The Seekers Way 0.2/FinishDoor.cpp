@@ -22,7 +22,7 @@ FinishDoor::FinishDoor(sf::Vector2f &position):
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = FINISHDOOR;
-	mLayer = BACKGROUND;
+	mLayer = MIDDLE;
 
 	mTexture.loadFromImage(*ImageManager::getImage("FinishDoor.png"));
 	mSprite.setTexture(mTexture);
