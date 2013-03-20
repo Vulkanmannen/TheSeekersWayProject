@@ -27,26 +27,12 @@
 #include <LTBL\Light\Light_Point.h>
 #include <LTBL\Utils.h>
 
-#include "sfeMovie/Movie.hpp"
 #include <iostream>
 
 int main()
 {
-
-	
-	//IntroScreen intro;
 	sf::VideoMode videoMode(1024, 720);
 	sf::RenderWindow window(videoMode, "The Seekers Way"/*, sf::Style::Fullscreen*/);
-	
-	//sfe::Movie movie;	
-	//if (!movie.openFromFile("Intro.wmv"))		
-	//	return 1;
-
-	//sfe::Movie mMovie;
-	//mMovie = new sfe::Movie();
-	//mMovie.openFromFile("Intro.wmv");
-	
-	std::cout << "yey" <<std::endl;
 
 	ImageManager::setWindow(&window);
 
