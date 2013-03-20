@@ -28,7 +28,6 @@ void VideoState::update()
 {
 	//if(mMovieTimer.getElapsedTime().asSeconds() > mVideos[mCurrentLevel]->mMovieLength)
 	//{
-		//LevelManager::getInstance()->lastMovie();
 		//State::getInstance()->setState(mVideos[mCurrentLevel]->mNextState);
 	//	
 	//}

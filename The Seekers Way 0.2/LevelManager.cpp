@@ -27,6 +27,8 @@ void LevelManager::LoadLevel(int level)
 		EntityManager::getInstance()->ClearAll();
 		MapGenerator::generateMap(mLevels[level].mblockMap, mLevels[level].mobjectMap, mLevels[level].mXmlMap);
 
+		currentLevel = level;
+
 		Sounds::getInstance()->StopAll();
 		Sounds::getInstance()->setMasterVolume(100);
 		if(level < 2)
@@ -48,7 +50,10 @@ void LevelManager::LoadLevel(int level)
 
 		EntityManager::getInstance()->setPlayerLifeMax();
 	}
-	currentLevel = level;
+	else
+	{
+		currentLevel = 0;
+	}
 }
 
 void LevelManager::LoadEndLevel()
@@ -100,11 +105,4 @@ int LevelManager::getCurrentLevel()
 	return currentLevel;
 }
 
-void LevelManager::lastMovie()
-{
-	if(currentLevel >= mLevels.size())
-	{
-		currentLevel = 0;
-	}
-}
 

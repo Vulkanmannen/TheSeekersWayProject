@@ -53,7 +53,7 @@ void DialogState::fade()
 	}
 
 
-	if(mTimeToFadeIn.getElapsedTime().asSeconds() > 5 && Dialogue::getInstance()->getStartDialogue()/* && !EntityManager::getInstance()->getMovingCamera()*/)
+	if(mTimeToFadeIn.getElapsedTime().asSeconds() > 3 && Dialogue::getInstance()->getStartDialogue()/* && !EntityManager::getInstance()->getMovingCamera()*/)
 	{
 		if(!mFadedIn && Dialogue::getInstance()->getStartDialogue())
 		{
@@ -89,8 +89,8 @@ void DialogState::update()
 	if(Dialogue::getInstance()->getendofDialogue() && Dialogue::getInstance()->getStartDialogue())
 	{
 		EntityManager::getInstance()->updateCameraLastpos();
-		State::getInstance()->setState(State::GameState);
 		reset();
+		State::getInstance()->setState(State::GameState);
 	}
 	else if(Dialogue::getInstance()->getendofDialogue() && !Dialogue::getInstance()->getStartDialogue())
 	{
@@ -104,11 +104,12 @@ void DialogState::update()
 		{
 			LevelManager::getInstance()->LoadLevel(LevelManager::getInstance()->getCurrentLevel() + 1);
 			//State::getInstance()->setState(State::MyVideoState);
+			State::getInstance()->setState(State::DialogueState);
 			reset();
 		}
 	}
 
-	if(mTimeToFadeIn.getElapsedTime().asSeconds() > 5 && !mFadedIn && Dialogue::getInstance()->getStartDialogue()/* && !EntityManager::getInstance()->getMovingCamera()*/)
+	if(mTimeToFadeIn.getElapsedTime().asSeconds() > 3 && !mFadedIn && Dialogue::getInstance()->getStartDialogue()/* && !EntityManager::getInstance()->getMovingCamera()*/)
 	{
 		mFadeCount += 1;
 		if(mFadeCount > 50)

@@ -13,12 +13,18 @@ StartMenu::StartMenu():
 	exit(false),
 	HowToPlay(false),
 	Resumedraw(true),
-	currentButton(1)
+	currentButton(1),
+	mNewGame(false),
+	mResume(false),
+	mFadeCount(0)
 {	
 	mStartText.loadFromImage(*ImageManager::getImage("StartMenurelease.PNG"));
 	mStartSprite.setTexture(mStartText);
 	mHowToPlay.loadFromImage(*ImageManager::getImage("HowToPlayinst.png"));
 	mHowToPlaySprite.setTexture(mHowToPlay);
+	mBlackTexture.loadFromImage(*ImageManager::getImage("black.png"));
+	mBlackSprite.setTexture(mBlackTexture);
+
 	generateButtons();
 }
 
@@ -35,6 +41,15 @@ void StartMenu::update()
 		changeButton();
 	}
 
+	if(LevelManager::getInstance()->getCurrentLevel() > 0)
+	{
+		Resumedraw = false;	
+	}
+	else
+	{
+		Resumedraw = true;
+	}
+
 	updateButtons();
 	buttonActivate();
 }
@@ -42,6 +57,7 @@ void StartMenu::update()
 void StartMenu::render()
 { 	
 	mStartSprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(512, 360));
+	mBlackSprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(512, 360));
 	ImageManager::render(&mStartSprite);
 	renderButtons();
 	updateButtons();
@@ -55,6 +71,11 @@ void StartMenu::render()
 			HowToPlay = false;
 		}
 	} 
+
+	if(mNewGame || mResume)
+	{
+		ImageManager::render(&mBlackSprite);
+	}
 }
 
 
@@ -143,20 +164,22 @@ void StartMenu::buttonActivate()
 			case 0:
 				if(Resumedraw == false)
 				{
-					Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() - 1);
-					LevelManager::getInstance()->LoadLevel();
-					Sounds::getInstance()->StopAll();
-					State::getInstance()->setState(State::GameState);
+					mResume = true;
+					//Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() - 1);
+					//LevelManager::getInstance()->LoadLevel();
+					//Sounds::getInstance()->StopAll();
+					//State::getInstance()->setState(State::GameState);
 				}
 				break;
 
 			case 1:
-				Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() - 1);
-				LevelManager::getInstance()->LoadLevel(0);
-				Sounds::getInstance()->StopAll();
-				//State::getInstance()->setState(State::MyVideoState);
-				State::getInstance()->setState(State::DialogueState);
-				Resumedraw = false;
+				mNewGame = true;
+				//Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() - 1);
+				//LevelManager::getInstance()->LoadLevel(0);
+				//Sounds::getInstance()->StopAll();
+				////State::getInstance()->setState(State::MyVideoState);
+				//State::getInstance()->setState(State::DialogueState);
+				////Resumedraw = false;
 				break;
 
 			case 2:
@@ -174,6 +197,36 @@ void StartMenu::buttonActivate()
 	else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 	{
 		canPressReturn = true;
+	}
+
+	if(mNewGame)
+	{
+		mFadeCount += 5;
+		if(mFadeCount > 255)
+		{
+			mFadeCount = 0;
+			Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() - 1);
+			LevelManager::getInstance()->LoadLevel(0);
+			Sounds::getInstance()->StopAll();
+			State::getInstance()->setState(State::DialogueState);
+			mNewGame = false;
+		}
+		mBlackSprite.setColor(sf::Color(mBlackSprite.getColor().r, mBlackSprite.getColor().r, mBlackSprite.getColor().r, mFadeCount));
+	}
+
+	if(mResume)
+	{
+		mFadeCount += 5;
+		if(mFadeCount > 255)
+		{
+			mFadeCount = 0;
+			Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() - 1);
+			LevelManager::getInstance()->LoadLevel();
+			Sounds::getInstance()->StopAll();
+			State::getInstance()->setState(State::GameState);
+			mResume = false;
+		}
+		mBlackSprite.setColor(sf::Color(mBlackSprite.getColor().r, mBlackSprite.getColor().r, mBlackSprite.getColor().r, mFadeCount));
 	}
 }
 
