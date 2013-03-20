@@ -27,7 +27,7 @@ Fenrir::Fenrir(sf::Vector2f &position):
 	mMaxMoveSpeedInMist(2),
 	mCanSnowMist(true)
 	{
-		mAnimation.init("fenrir.png", 60, 7);
+		mAnimation.init("fenrir.png", 60, 8);
 
 		mHeight = HEIGHT;
 		mWidth = WIDTH;
@@ -403,7 +403,7 @@ bool Fenrir::hitWall()
 
 				if(mHeight == HEIGHT && mWidth == WIDTH)
 				{
-					mPosition.y -= 5;
+					mPosition.y -= 30;
 				}
 
 				mHeight = WALLHEIGHT;

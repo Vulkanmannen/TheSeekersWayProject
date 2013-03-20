@@ -16,7 +16,7 @@ Kiba::Kiba(sf::Vector2f &position):
 	mCanPressSlash(true)
 {	
 	EntityManager::getInstance()->addEntity(mTelekinesisBox);
-	mAnimation.init("Kiba.png", 60, 6);
+	mAnimation.init("Kiba.png", 60, 12);
 	mHeight = HEIGHT;
 	mWidth = WIDTH;
 	mEntityKind = KIBA;

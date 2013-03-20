@@ -8,6 +8,12 @@
 VideoState::VideoState()
 	//:mCurrentLevel(0)
 {
+	//mVideoVector.push_back(new sftheora::Video("Intro.ogv"));
+	//mVideoVector.push_back(new sftheora::Video("Intro.ogv"));
+	//mVideoVector.push_back(new sftheora::Video("Intro.ogv"));
+	//mVideoVector.push_back(new sftheora::Video("Intro.ogv"));
+	//mVideoVector.push_back(new sftheora::Video("Intro.ogv"));
+
 	/*mVideos.push_back(new Video(std::string("Kim_1.wmv"), 8));
 	mVideos.push_back(new Video(std::string("Kim_1.wmv"), 8));
 	mVideos.push_back(new Video(std::string("Kim_1.wmv"), 8));
@@ -18,6 +24,11 @@ VideoState::VideoState()
 
 VideoState::~VideoState()
 {
+	//while(!mVideoVector.empty())
+	//{
+	//	mVideoVector.pop_back();
+	//}
+
 	//while(!mVideos.empty())
 	//{
 	//	mVideos.pop_back();
