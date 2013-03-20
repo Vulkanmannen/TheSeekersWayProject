@@ -12,7 +12,7 @@
 State* State::sInstance = 0;
 
 State::State():
-	mMenuStates(Intro),
+	mMenuStates(MyVideoState),
 	mEsc()
 {
 	IntroSplash = new IntroScreen();
@@ -136,14 +136,22 @@ State* State::getInstance()
 
 void State::setState(MenuStates menustate)
 {
+	MenuStates lastState = mMenuStates;
 	mMenuStates = menustate;
 	mStartMenu->SetCanPressToFalse();
 	mPauseMenu->SetCanPressToFalse();
 
 	if(menustate == MyVideoState)
 	{
-		//mVideoState->restartClock();
-		//mVideoState->setVideo(LevelManager::getInstance()->getCurrentLevel());
+		if(lastState == StartState)
+		{
+			mVideoState->newMovie(1);
+		}
+		else
+		{
+			mVideoState->newMovie(LevelManager::getInstance()->getCurrentLevel() + 2);
+		}
+			//mVideoState->setVideo(LevelManager::getInstance()->getCurrentLevel());
 	}
 
 	if(menustate == DialogueState)
