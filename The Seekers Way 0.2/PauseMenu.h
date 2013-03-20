@@ -37,6 +37,8 @@ private:
 
 	sf::Texture mPauseText;
 	sf::Sprite mPauseSprite;
+	sf::Texture mMapTexture;
+	sf::Sprite mMapSprite;
 
 	sf::Texture mHowToPlayKiba;
 	sf::Sprite mHowToPlaySpriteKiba;

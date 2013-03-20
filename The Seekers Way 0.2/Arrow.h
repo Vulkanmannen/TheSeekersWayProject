@@ -14,6 +14,7 @@ public:
 private:
 	sf::Clock mShottingTime;
 	sf::Vector2f mMovementSpeed;
+
 	bool mDirLeft;
 };
 
