@@ -4,7 +4,7 @@
 #include "State.h"
 #include "Animation.h"
 
-//#include "sfeMovie\Movie.hpp"
+//#include "sfeMovie-1.0-windows-vs2010\include\sfeMovie\Movie.hpp"
 
 class IntroScreen
 {
@@ -17,7 +17,7 @@ public:
 
 private:
 
-	//sfe::Movie *mMovie;
+	//sfe::Movie mMovie;
 
 	sf::Texture mIntroText;
 	sf::Sprite mIntroSprite;

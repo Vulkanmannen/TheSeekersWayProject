@@ -143,13 +143,17 @@ void StartMenu::buttonActivate()
 			case 0:
 				if(Resumedraw == false)
 				{
+					Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() - 1);
 					LevelManager::getInstance()->LoadLevel();
+					Sounds::getInstance()->StopAll();
 					State::getInstance()->setState(State::GameState);
 				}
 				break;
 
 			case 1:
+				Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() - 1);
 				LevelManager::getInstance()->LoadLevel(0);
+				Sounds::getInstance()->StopAll();
 				//State::getInstance()->setState(State::MyVideoState);
 				State::getInstance()->setState(State::DialogueState);
 				Resumedraw = false;

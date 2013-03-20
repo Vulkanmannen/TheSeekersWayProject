@@ -3,6 +3,7 @@
 #include "State.h"
 #include "EntityManager.h"
 #include "LevelManager.h"
+#include "Sounds.h"
 
 
 PauseMenu::PauseMenu():
@@ -187,7 +188,9 @@ void PauseMenu::buttonActivate()
 			//	break;
 
 			case 3:
+				Sounds::getInstance()->StopAll();
 				State::getInstance()->setState(State::StartState);
+				Sounds::getInstance()->Loop("Meny.wav", 20);
 				break;
 		}
 	}

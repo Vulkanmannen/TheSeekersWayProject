@@ -11,19 +11,11 @@ public:
 	void interact(Entity* e);
 	void update(EntityKind &currentEntity);
 
-	void killArrow();
-
 private:
-	Animation mAnimation;
-
 	sf::Clock mShottingTime;
 	sf::Vector2f mMovementSpeed;
 
-	sf::Clock mArrowBrokenClock;
-
 	bool mDirLeft;
-	bool mWhole;
-	bool mArrowBroken;
 };
 
 #endif

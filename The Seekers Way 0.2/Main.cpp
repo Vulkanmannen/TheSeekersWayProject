@@ -27,7 +27,6 @@
 #include <LTBL\Light\Light_Point.h>
 #include <LTBL\Utils.h>
 
-#include "sfeMovie/Movie.hpp"
 #include <iostream>
 
 int main()
