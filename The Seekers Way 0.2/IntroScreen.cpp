@@ -5,9 +5,8 @@
 
 IntroScreen::IntroScreen()
 {
-	/*mAnimation.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(256, 220));*/
-	mSplashVid.load("INTRO.ogg");
-	mSplashVid.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(512, 360));
+	mSplashVid.load("Intro2.ogv");
+	mSplashVid.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(640, 360));
 	mSplashVid.play();
 } 
 
@@ -23,7 +22,4 @@ void IntroScreen::update()
 void IntroScreen::render()
 {
 	ImageManager::render(&mSplashVid);
-
-	//mAnimation.update(0);
-	//ImageManager::render(&mAnimation.getSprite());
 }
