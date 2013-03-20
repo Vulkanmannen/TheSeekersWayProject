@@ -148,6 +148,11 @@ void State::setState(MenuStates menustate)
 	if(menustate == DialogueState)
 	{
 		mDialogState->restartClock();
+		if(mDialogState->getStartDialogue())
+		{
+			mDialogState->setToBlack();
+			mDialogState->reset();
+		}
 	}
 }
 

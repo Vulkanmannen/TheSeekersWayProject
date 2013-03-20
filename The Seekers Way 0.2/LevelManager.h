@@ -48,6 +48,7 @@ public:
 
 	int getCurrentLevel();
 
+	void lastMovie();
 
 private:
 	typedef std::vector<std::string> StringVector;

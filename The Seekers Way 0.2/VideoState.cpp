@@ -3,6 +3,7 @@
 #include "State.h"
 #include "EntityManager.h"
 #include "SFML\Graphics.hpp"
+#include "LevelManager.h"
 
 VideoState::VideoState()
 	//:mCurrentLevel(0)
@@ -11,7 +12,7 @@ VideoState::VideoState()
 	mVideos.push_back(new Video(std::string("Kim_1.wmv"), 8));
 	mVideos.push_back(new Video(std::string("Kim_1.wmv"), 8));
 	mVideos.push_back(new Video(std::string("Kim_1.wmv"), 8));
-	mVideos.push_back(new Video(std::string("Kim_1.wmv"), 8));*/
+	mVideos.push_back(new Video(std::string("Kim_1.wmv"), 8, State::StartState));*/
 }
 
 
@@ -27,7 +28,9 @@ void VideoState::update()
 {
 	//if(mMovieTimer.getElapsedTime().asSeconds() > mVideos[mCurrentLevel]->mMovieLength)
 	//{
-	//	State::getInstance()->setState(mVideos[mCurrentLevel]->mNextState);
+		//LevelManager::getInstance()->lastMovie();
+		//State::getInstance()->setState(mVideos[mCurrentLevel]->mNextState);
+	//	
 	//}
 }
 
