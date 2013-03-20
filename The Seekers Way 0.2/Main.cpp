@@ -57,9 +57,13 @@ int main()
 	Sounds::getInstance();
 
 	EntityManager::getInstance()->setView(&view, &videoMode);
-
-
-   while (window.isOpen())
+	{
+		int assa;
+		std::ifstream("Level.txt") >> assa;
+		LevelManager::getInstance()->setCurrentLevel(assa);
+	}
+	
+	while (window.isOpen())
     {
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
@@ -74,8 +78,7 @@ int main()
 
 		if (State::getInstance()->getExit())
 		{	
-			//std::string
-				int text = 0;
+			int text = 0;
 			text = LevelManager::getInstance()->getCurrentLevel();
 			std::ofstream f2("Level.txt");
 			f2 << text;
