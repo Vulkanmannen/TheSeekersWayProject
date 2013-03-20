@@ -83,6 +83,10 @@ TutorialSign::TutorialSign(sf::Vector2f &position, unsigned char spriteNumber)
 		case 13:
 			mCharacterSign = Entity::FENRIR;
 			break;
+		
+		case 14:
+			mBaseKind = Entity::CHARACTER;
+			break;
 	}
 }
 
