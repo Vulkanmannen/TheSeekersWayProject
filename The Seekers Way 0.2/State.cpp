@@ -52,7 +52,7 @@ void State::update()
 				Sounds::getInstance()->StopAll();
 				mEsc = false;
 				Sounds::getInstance()->setMasterVolume(100);
-				Sounds::getInstance()->Loop("fireball.wav", 20);
+				Sounds::getInstance()->Loop("Meny.wav", 20);
 			}
 			break;
 

@@ -51,10 +51,6 @@ void DialogState::fade()
 
 		mSprite.setColor(sf::Color(0, 0, 0, timeTemp));
 	}
-	else
-	{
-		mFadeCount = 50;
-	}
 
 	if(/*mTimeToFadeIn.getElapsedTime().asSeconds() > 2 && */Dialogue::getInstance()->getStartDialogue())
 	{
