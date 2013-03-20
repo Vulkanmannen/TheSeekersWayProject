@@ -33,7 +33,8 @@ EntityManager::EntityManager():
 	mParalax(false),
 	mMovingCamera(true),
 	mCantMoveCharacters(false),
-	mCameraDist(0,0)
+	mCameraDist(0,0),
+	mFadeCount(0)
 {		
 		emote[0] = 0;
 		emote[1] = 0;
@@ -57,6 +58,7 @@ EntityManager::EntityManager():
 		//mLifeFrameSprite.setTexture(mLifeFrameTexture);
 		mDeathTexture.loadFromImage(*ImageManager::getImage("DieScreen.png"));
 		mDeathSprite.setTexture(mDeathTexture);
+		mDeathSprite.setColor(sf::Color(mDeathSprite.getColor().r, mDeathSprite.getColor().r, mDeathSprite.getColor().r, 0));
 		mMaskTexture.loadFromImage(*ImageManager::getImage("mask.png"));
 		mMaskSprite.setTexture(mMaskTexture);
 		mBackgroundTexture.loadFromImage(*ImageManager::getImage("background.png"));
@@ -160,6 +162,12 @@ void EntityManager::killPlayers()
 {
 	if(mPlayerLife <= 0)
 	{
+		mFadeCount += 5;
+		if(mFadeCount > 255)
+		{
+			mFadeCount = 255;
+		}
+		mDeathSprite.setColor(sf::Color(mDeathSprite.getColor().r, mDeathSprite.getColor().r, mDeathSprite.getColor().r, mFadeCount));
 		ImageManager::render(&mDeathSprite);
 		mDeathSprite.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(512, 360));
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
@@ -167,6 +175,8 @@ void EntityManager::killPlayers()
 			LevelManager::getInstance()->LoadLevel();
 			State::getInstance()->setState(State::GameState);
 			mPlayerLife = mMaxPlayerLife;
+			mFadeCount = 0;
+			mDeathSprite.setColor(sf::Color(mDeathSprite.getColor().r, mDeathSprite.getColor().r, mDeathSprite.getColor().r, 0));
 		}
 	}
 }
@@ -581,7 +591,7 @@ void EntityManager::updateView()
 		{
 			if(length > 20)
 			{
-				mCameraSpeed = 6;
+				mCameraSpeed = 6.5;
 			}
 			else
 			{

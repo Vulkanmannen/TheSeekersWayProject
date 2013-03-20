@@ -96,6 +96,7 @@ private:
 	sf::Sprite mLifeFrameSprite;
 	void updatePlayerLife();
 	void killPlayers();
+	int mFadeCount;
 
 	//---------- mask
 	sf::Texture mMaskTexture;

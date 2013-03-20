@@ -7,7 +7,7 @@ static const float HEIGHT = 64;
 static const float WIDTH = 64;
 
 FireRune::FireRune(sf::Vector2f &position):
-	mAnimation("FireRune.png", 60, 7, HEIGHT, WIDTH)
+	mAnimation("FireRune.png", 90, 7, HEIGHT, WIDTH)
 {
 	mPosition = position;
 	mWidth = WIDTH;
