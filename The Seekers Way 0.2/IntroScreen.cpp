@@ -5,7 +5,7 @@
 
 IntroScreen::IntroScreen()
 {
-	mSplashVid.load("Intro2.ogv");
+	mSplashVid.load("Intro.ogv");
 	mSplashVid.setPosition(EntityManager::getInstance()->getView()->getCenter() - sf::Vector2f(640, 360));
 	mSplashVid.play();
 } 

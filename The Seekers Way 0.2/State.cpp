@@ -42,11 +42,11 @@ void State::update()
 		case Intro:
 			IntroSplash->render();
 			IntroSplash->update();
-			if(mIntroClock.getElapsedTime().asSeconds() > 6.7)
+			if(mIntroClock.getElapsedTime().asSeconds() > 10.7)
 			{
 				Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() - 1);
 			}
-			if(mIntroClock.getElapsedTime().asSeconds() > 8 
+			if(mIntroClock.getElapsedTime().asSeconds() > 12 
 				|| (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || sf::Keyboard::isKeyPressed(sf::Keyboard::Return)))
 			{
 				mMenuStates = StartState;
