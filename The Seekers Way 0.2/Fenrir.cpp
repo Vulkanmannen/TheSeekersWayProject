@@ -353,7 +353,7 @@ void Fenrir::wallJump()
 
 				mMovementSpeed = sf::Vector2f(0,0);
 				
-				mMovementSpeed.y = -(mJump + 0.5);
+				mMovementSpeed.y = -(mJump + 0.4);
 				
 				playJumpSound();
 
@@ -401,9 +401,9 @@ bool Fenrir::hitWall()
 				mMovementSpeed.y = 0.3;
 				mStatus = ACTION2;
 
-   				if(mHeight == HEIGHT && mWidth == WIDTH)
+   				if(mHeight != WALLHEIGHT && mWidth != WALLWIDTH)
 				{
-					mPosition.y -= 5;
+					mPosition.y -= 10;
 				}
 
 				mHeight = WALLHEIGHT;

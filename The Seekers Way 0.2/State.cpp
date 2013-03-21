@@ -57,8 +57,6 @@ void State::update()
 				mMenuStates = StartState;
 				Sounds::getInstance()->StopAll();
 				mEsc = false;
-				/*Sounds::getInstance()->setMasterVolume(100);
-				Sounds::getInstance()->Loop("Meny.wav");*/
 			}
 			break;
 
@@ -212,7 +210,7 @@ void State::changeState()
 
 			if(mMenuStates == DialogueState)
 			{
-				Sounds::getInstance()->Loop("Dialog.wav");
+				Sounds::getInstance()->Loop("Dialog.ogg");
 				mDialogState->restartClock();
 				if(mDialogState->getStartDialogue())
 				{
@@ -223,7 +221,7 @@ void State::changeState()
 
 			if(mMenuStates == StartState)
 			{
-				Sounds::getInstance()->Loop("Meny.wav");
+				Sounds::getInstance()->Loop("Meny.ogg");
 			}
 
 			if(mMenuStates == GameState)
