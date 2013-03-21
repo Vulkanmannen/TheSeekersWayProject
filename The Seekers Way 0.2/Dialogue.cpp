@@ -176,19 +176,11 @@ void Dialogue::render()
 
 bool Dialogue::getendofDialogue()
 {
-	if(mEndofDialogue)
-	{
-		//Sounds::getInstance()->Stop("Dialog.wav");
-		//Sounds::getInstance()->UnPauseAll();
-	}
 	return mEndofDialogue;
 }
 
 void Dialogue::startDialogue(std::string dialogueName)
 {
-	//Sounds::getInstance()->Stop("Dialog.wav");
-	//Sounds::getInstance()->PauseAll();
-	//Sounds::getInstance()->Loop("Dialog.wav");
 	currentText = 0;
 	currentLetter = 0;
 	empthyDialogue();

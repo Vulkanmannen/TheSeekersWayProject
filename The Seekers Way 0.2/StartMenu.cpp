@@ -24,7 +24,7 @@ StartMenu::StartMenu():
 	mHowToPlaySprite.setTexture(mHowToPlay);
 	mBackgroundTexture.loadFromImage(*ImageManager::getImage("Mainmenujournal.png"));
 	mBackgroundSprite.setTexture(mBackgroundTexture);
-	mBlackTexture.loadFromImage(*ImageManager::getImage("black.png"));
+	mBlackTexture.loadFromImage(*ImageManager::getImage("Loading.png"));
 	mBlackSprite.setTexture(mBlackTexture);
 
 
@@ -214,15 +214,19 @@ void StartMenu::buttonActivate()
 			Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() - 1);
 			LevelManager::getInstance()->LoadLevel(0);
 			Sounds::getInstance()->StopAll();
+			mBlackSprite.setColor(sf::Color(mBlackSprite.getColor().r, mBlackSprite.getColor().r, mBlackSprite.getColor().r, 255));
 			
 			mNewGame = false;
 		}
-		mBlackSprite.setColor(sf::Color(mBlackSprite.getColor().r, mBlackSprite.getColor().r, mBlackSprite.getColor().r, mFadeCount));
+		else 
+		{
+			mBlackSprite.setColor(sf::Color(mBlackSprite.getColor().r, mBlackSprite.getColor().r, mBlackSprite.getColor().r, mFadeCount));
+		}
 	}
 
 	if(mResume)
 	{
-		mFadeCount += 5;
+		mFadeCount +=5;
 		if(mFadeCount > 255)
 		{
 			mFadeCount = 0;
@@ -230,9 +234,14 @@ void StartMenu::buttonActivate()
 			LevelManager::getInstance()->LoadLevel();
 			Sounds::getInstance()->StopAll();
 			State::getInstance()->setState(State::GameState);
+			mBlackSprite.setColor(sf::Color(mBlackSprite.getColor().r, mBlackSprite.getColor().r, mBlackSprite.getColor().r, 255));
+
 			mResume = false;
 		}
-		mBlackSprite.setColor(sf::Color(mBlackSprite.getColor().r, mBlackSprite.getColor().r, mBlackSprite.getColor().r, mFadeCount));
+		else
+		{
+			mBlackSprite.setColor(sf::Color(mBlackSprite.getColor().r, mBlackSprite.getColor().r, mBlackSprite.getColor().r, mFadeCount));
+		}
 	}
 }
 

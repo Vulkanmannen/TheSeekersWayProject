@@ -12,8 +12,8 @@ fireball.wav
 teleport.wav
 errorsound.wav
 snowmist.wav
-Level1Music.wav
-Level2Music.wav
+Level1Music.ogg
+Level2Music.ogg
 crazykoncept.wav
 shadowbolt.wav
 switch char 1.1.wav
@@ -27,6 +27,6 @@ lever.wav
 magicdoor.wav
 changestone.wav
 levitate.wav
-Dialog.wav
+Dialog.ogg
 shieldbreak.wav
-Meny.wav
+Meny.ogg

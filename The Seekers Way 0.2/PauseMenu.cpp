@@ -190,7 +190,6 @@ void PauseMenu::buttonActivate()
 			case 3:
 				Sounds::getInstance()->StopAll();
 				State::getInstance()->setState(State::StartState);
-				//Sounds::getInstance()->Loop("Meny.wav", 20);
 				break;
 		}
 	}

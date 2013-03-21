@@ -85,7 +85,7 @@ TutorialSign::TutorialSign(sf::Vector2f &position, unsigned char spriteNumber)
 			break;
 		
 		case 14:
-			mBaseKind = Entity::CHARACTER;
+			mBaseSign = Entity::CHARACTER;
 			break;
 	}
 }

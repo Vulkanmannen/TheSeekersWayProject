@@ -73,13 +73,13 @@ LevelManager* LevelManager::getInstance()
 
 void LevelManager::generateLevels()
 {
-	mLevels.push_back(Level("Level1.png", "Level1Object.png", "Level1Xml.xml", "Level1Music.wav"));
-	mLevels.push_back(Level("Level2.png", "Level2Object.png", "Level2Xml.xml", "Level1Music.wav", 61, 28, Entity::FENRIR));	
-	mLevels.push_back(Level("Level3.png", "Level3Object.png", "Level3Xml.xml", "Level2Music.wav"));
-	mLevels.push_back(Level("Level4.png", "Level4Object.png", "Level4Xml.xml", "Level2Music.wav"));
-	mLevels.push_back(Level("Level5.png", "Level5Object.png", "Level5Xml.xml", "Level2Music.wav"));
-	mLevels.push_back(Level("Level6.png", "Level6Object.png", "Level6Xml.xml", "Level2Music.wav", 76, 34));
-	mLevels.push_back(Level("Level7.png", "Level7Object.png", "Level7Xml.xml", "Level2Music.wav", 73, 34));
+	mLevels.push_back(Level("Level1.png", "Level1Object.png", "Level1Xml.xml", "Level1Music.ogg"));
+	mLevels.push_back(Level("Level2.png", "Level2Object.png", "Level2Xml.xml", "Level1Music.ogg", 61, 28, Entity::FENRIR));	
+	mLevels.push_back(Level("Level3.png", "Level3Object.png", "Level3Xml.xml", "Level2Music.ogg"));
+	mLevels.push_back(Level("Level4.png", "Level4Object.png", "Level4Xml.xml", "Level2Music.ogg"));
+	mLevels.push_back(Level("Level5.png", "Level5Object.png", "Level5Xml.xml", "Level2Music.ogg"));
+	mLevels.push_back(Level("Level6.png", "Level6Object.png", "Level6Xml.xml", "Level2Music.ogg", 76, 34));
+	mLevels.push_back(Level("Level7.png", "Level7Object.png", "Level7Xml.xml", "Level2Music.ogg", 73, 34));
 }
 
 void LevelManager::generateDialogues()
