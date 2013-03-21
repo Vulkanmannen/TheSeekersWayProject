@@ -736,3 +736,8 @@ bool EntityManager::getMovingCamera()const
 {
 	return mMovingCamera;
 }
+
+void EntityManager::setCameraToPrimaryCharacer()
+{
+	mView->setCenter(getCharacterPos());
+}

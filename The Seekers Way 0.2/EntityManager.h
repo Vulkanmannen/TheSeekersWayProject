@@ -54,6 +54,7 @@ public:
 	sf::Vector2f getBackgroundPos()const;
 	bool getMovingCamera()const;
 	void updateCameraLastpos();
+	void setCameraToPrimaryCharacer();
 private:
 	EntityManager();
 	EntityManager(const EntityManager &e);
@@ -84,6 +85,7 @@ private:
 	sf::Clock mParalaxClock;
 	void updateMovingCamera();
 	
+
 	//--------------life
 	int mZeroPlayerLife;
 	int mMaxPlayerLife;

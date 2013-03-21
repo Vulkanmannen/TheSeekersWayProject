@@ -25,7 +25,8 @@ Fenrir::Fenrir(sf::Vector2f &position):
 	mInSnowMist(false),
 	mMoveSpeedInMist(0.5),
 	mMaxMoveSpeedInMist(2),
-	mCanSnowMist(true)
+	mCanSnowMist(true),
+	mFallFenrir(false)
 	{
 		mAnimation.init("fenrir.png", 60, 8);
 
@@ -93,6 +94,7 @@ void Fenrir::update(EntityKind &currentEntity)
 	}
 
 	mHitVine = false;
+	mFallFenrir = true;
 }
 
 void Fenrir::render()
@@ -244,6 +246,14 @@ void Fenrir::interact(Entity *e)
 //
 //-----------------------------------------------------------omdefinitioner
 //
+
+void Fenrir::falling()
+{
+	if(mFalling && mFallFenrir) 
+	{
+		mMovementSpeed.y += mDecrease;
+	}
+}
 
 void Fenrir::onblock()
 {
@@ -397,8 +407,8 @@ bool Fenrir::hitWall()
 		if(!mWallJumping)
 		{
 			if(!mIsJumping && (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) ||sf::Keyboard::isKeyPressed(sf::Keyboard::Right)))
-			{
-				mMovementSpeed.y = 0.3;
+			{   
+ 	 			mMovementSpeed.y = 0.3 ;
 				mStatus = ACTION2;
 
    				if(mHeight == HEIGHT && mWidth == WIDTH)
@@ -410,11 +420,14 @@ bool Fenrir::hitWall()
 				mWidth = WALLWIDTH;
 
 				mVerticalHitbox = true;
+				
 			}
 			mWallJumping = false;
 			mHitWall = true;
+			
 		}
 		return true;
+		mFallFenrir = false;
 	}
 	return false;
 }

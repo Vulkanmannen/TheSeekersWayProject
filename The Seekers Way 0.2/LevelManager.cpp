@@ -49,6 +49,7 @@ void LevelManager::LoadLevel(int level)
 		
 
 		EntityManager::getInstance()->setPlayerLifeMax();
+		EntityManager::getInstance()->setCameraToPrimaryCharacer();
 	}
 	else
 	{

@@ -41,9 +41,12 @@ private:
 	bool mWallJumpDirLeft;
 	JumpStatus mLastJumpDir;
 	sf::Clock mCanHitWallClock;
+	void falling();
 
 	int mWallJumpCount;
 	int mWallJumpTime;
+
+	bool mFallFenrir;
 
 	// snowmist
 
