@@ -399,16 +399,18 @@ void Fenrir::canWallJump()
 // kollar om fenrir träffat en vägg
 bool Fenrir::hitWall()
 {
+	mFallFenrir = false;
 	if(mStatus != WALK && mStatus != IDLE&& mCanHitWallClock.getElapsedTime().asSeconds() > 0.1 && !mInSnowMist)
 	{
 		mFalling = false;
 		mFenrirCanJump = false;
-
+		
+		
 		if(!mWallJumping)
 		{
 			if(!mIsJumping && (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) ||sf::Keyboard::isKeyPressed(sf::Keyboard::Right)))
 			{   
- 	 			mMovementSpeed.y = 0.3 ;
+ 	 			mMovementSpeed.y = 0.5 ;
 				mStatus = ACTION2;
 
    				if(mHeight != WALLHEIGHT && mWidth != WALLWIDTH)
@@ -426,8 +428,8 @@ bool Fenrir::hitWall()
 			mHitWall = true;
 			
 		}
+		
 		return true;
-		mFallFenrir = false;
 	}
 	return false;
 }

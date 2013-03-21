@@ -32,7 +32,7 @@
 int main()
 {
 	sf::VideoMode videoMode(1024, 720);
-	sf::RenderWindow window(videoMode, "The Seekers Way"/*, sf::Style::Fullscreen*/);
+	sf::RenderWindow window(videoMode, "The Seekers Way", sf::Style::Fullscreen);
 
 	ImageManager::setWindow(&window);
 

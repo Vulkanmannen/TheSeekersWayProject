@@ -8,15 +8,15 @@
 VideoState::VideoState()
 	:mCurrentMovie(0)
 {	
-	mVideos.push_back(Video("Intro.ogv", 12, State::StartState));
-	mVideos.push_back(Video("Intro.ogv", 12));
-	mVideos.push_back(Video("Intro.ogv", 12));
-	mVideos.push_back(Video("Intro.ogv", 12));
-	mVideos.push_back(Video("Intro.ogv", 12));
-	mVideos.push_back(Video("Intro.ogv", 12));
-	mVideos.push_back(Video("Intro.ogv", 12));
-	mVideos.push_back(Video("Intro.ogv", 12));
-	mVideos.push_back(Video("Intro.ogv", 12, State::StartState));
+	mVideos.push_back(Video("splashscreen.ogv", 12, State::StartState));
+	mVideos.push_back(Video("intro.ogv", 75));
+	mVideos.push_back(Video("TransitionKC.ogv", 6));
+	mVideos.push_back(Video("TransitionMEET.ogv", 9.5));
+	mVideos.push_back(Video("Transition.ogv", 6));
+	mVideos.push_back(Video("Transition.ogv", 6));
+	mVideos.push_back(Video("Transition.ogv", 6));
+	mVideos.push_back(Video("Transition.ogv", 6));
+	mVideos.push_back(Video("Transition.ogv", 6, State::StartState));
 
 	mMovie.load(mVideos[mCurrentMovie].mMovie);
 }
@@ -29,7 +29,7 @@ VideoState::~VideoState()
 
 void VideoState::update()
 {
-	mMovie.update(/*mVideoClock.restart()*/sf::seconds(1.0f / 25.0f));
+	mMovie.update(mVideoClock.restart()/*sf::seconds(1.0f / 26.0f)*/);
 
 	if(mStartingMovie)
 	{
