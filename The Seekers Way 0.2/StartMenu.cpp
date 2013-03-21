@@ -22,10 +22,8 @@ StartMenu::StartMenu():
 	mStartSprite.setTexture(mStartText);
 	mHowToPlay.loadFromImage(*ImageManager::getImage("HowToPlayinst.png"));
 	mHowToPlaySprite.setTexture(mHowToPlay);
-
 	mBackgroundTexture.loadFromImage(*ImageManager::getImage("Mainmenujournal.png"));
 	mBackgroundSprite.setTexture(mBackgroundTexture);
-
 	mBlackTexture.loadFromImage(*ImageManager::getImage("black.png"));
 	mBlackSprite.setTexture(mBlackTexture);
 

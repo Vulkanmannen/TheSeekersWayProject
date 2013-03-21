@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+//#include "sfTheora.h"
 
 
 class VideoState
@@ -16,14 +17,14 @@ public:
 
 	void update();
 	void render();
-//
+
 	void setVideo(int currentLevel);
 //	void restartClock();
 //
 //private:
 //	struct Video
 //	{
-//		Video(std::string &name, float movieLength, State::MenuStates nextState = State::DialogueState):
+		//Video(std::string &name, float movieLength, State::MenuStates nextState = State::DialogueState):
 //		mMovieLength(movieLength),
 //		mNextState(nextState)
 //		{
@@ -41,6 +42,12 @@ public:
 //
 //	sf::Clock mMovieTimer;
 //	int mCurrentLevel;
+
+	//sf::Clock mvideoClock;
+	//sftheora::Video mVideo;
+
+	//typedef std::vector<sftheora::Video*> VideoVector;
+	//VideoVector mVideoVector;
 };
 
 #endif
