@@ -29,16 +29,16 @@ void LevelManager::LoadLevel(int level)
 
 		currentLevel = level;
 
-		Sounds::getInstance()->StopAll();
-		Sounds::getInstance()->setMasterVolume(100);
-		if(level < 2)
-		{
-			Sounds::getInstance()->Loop(mLevels[level].mMusic, 100);
-		}
-		else
-		{
-			Sounds::getInstance()->Loop(mLevels[level].mMusic, 50);
-		}
+		//Sounds::getInstance()->StopAll();
+		//Sounds::getInstance()->setMasterVolume(100);
+		//if(level < 2)
+		//{
+		//	Sounds::getInstance()->Loop(mLevels[level].mMusic, 100);
+		//}
+		//else
+		//{
+		//	Sounds::getInstance()->Loop(mLevels[level].mMusic, 50);
+		//}
 		Dialogue::getInstance()->startDialogue(mStartDialogues[level]);
 		Dialogue::getInstance()->setStartDialogue(true);
 
@@ -109,6 +109,11 @@ int LevelManager::getCurrentLevel()
 void LevelManager::setCurrentLevel(int level)
 {
 	currentLevel = level;
+}
+
+std::string LevelManager::getMusic()const
+{
+	return mLevels[currentLevel].mMusic;
 }
 
 

@@ -209,11 +209,12 @@ void StartMenu::buttonActivate()
 		mFadeCount += 5;
 		if(mFadeCount > 255)
 		{
+			State::getInstance()->setState(State::MyVideoState);
 			mFadeCount = 0;
 			Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() - 1);
 			LevelManager::getInstance()->LoadLevel(0);
 			Sounds::getInstance()->StopAll();
-			State::getInstance()->setState(State::DialogueState);
+			
 			mNewGame = false;
 		}
 		mBlackSprite.setColor(sf::Color(mBlackSprite.getColor().r, mBlackSprite.getColor().r, mBlackSprite.getColor().r, mFadeCount));

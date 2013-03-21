@@ -12,8 +12,11 @@
 State* State::sInstance = 0;
 
 State::State():
-	mMenuStates(Intro),
-	mEsc()
+	mMenuStates(MyVideoState),
+	mLastState(MyVideoState),
+	mCommingState(MyVideoState),
+	mEsc(),
+	mMusicCount(100)
 {
 	IntroSplash = new IntroScreen();
 	mStartMenu = new StartMenu();
@@ -21,6 +24,8 @@ State::State():
 	mPauseMenu = new PauseMenu();
 	mDialogState = new DialogState();
 	mVideoState = new VideoState();
+
+	Sounds::getInstance()->setMasterVolume(0);
 }
 
 
@@ -52,23 +57,29 @@ void State::update()
 				mMenuStates = StartState;
 				Sounds::getInstance()->StopAll();
 				mEsc = false;
-				Sounds::getInstance()->setMasterVolume(100);
-				Sounds::getInstance()->Loop("Meny.wav");
+				/*Sounds::getInstance()->setMasterVolume(100);
+				Sounds::getInstance()->Loop("Meny.wav");*/
 			}
 			break;
 
 	//The StartMenu State
 		case StartState:
-			if(Sounds::getInstance()->getMasterVolume() < 100)
+			if(Sounds::getInstance()->getMasterVolume() < 100 && mCommingState == mMenuStates)
 			{
 				Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() + 1);
 			}
+
 			mStartMenu->render();
 			mStartMenu->update();
 			break;
 
 	//The Game state
 		case GameState:
+			if(Sounds::getInstance()->getMasterVolume() < 100)
+			{
+				Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() + 1);
+			}
+
 			mGameMenu->render();
 			mGameMenu->update();
 			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && mEsc == true)
@@ -96,6 +107,10 @@ void State::update()
 	// dialogstate
 		case DialogueState:
 			//mGameMenu->render();
+			if(Sounds::getInstance()->getMasterVolume() < 100)
+			{
+				Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() + 1);
+			}
 
 			mDialogState->render();
 			mDialogState->update();
@@ -118,6 +133,8 @@ void State::update()
 	{
 		mEsc = true;
 	}
+
+	changeState();
 }
 
 void State::render()
@@ -136,25 +153,17 @@ State* State::getInstance()
 
 void State::setState(MenuStates menustate)
 {
-	mMenuStates = menustate;
+	mLastState = mMenuStates;
+	mCommingState = menustate;
+
 	mStartMenu->SetCanPressToFalse();
 	mPauseMenu->SetCanPressToFalse();
 
-	if(menustate == MyVideoState)
+	if(mLastState == PauseState || mCommingState == PauseState)
 	{
-		//mVideoState->restartClock();
-		//mVideoState->setVideo(LevelManager::getInstance()->getCurrentLevel());
+		mMenuStates = mCommingState;
 	}
-
-	if(menustate == DialogueState)
-	{
-		mDialogState->restartClock();
-		if(mDialogState->getStartDialogue())
-		{
-			mDialogState->setToBlack();
-			mDialogState->reset();
-		}
-	}
+	changeState();
 }
 
 bool State::getExit()
@@ -165,4 +174,62 @@ bool State::getExit()
 void State::setmEsc(bool bol)
 {
 	mEsc = bol;
+}
+
+void State::changeState()
+{
+	if(mCommingState != mMenuStates)
+	{
+		//if(Sounds::getInstance()->getMasterVolume() > 0)
+		//{
+		//	Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() - 1);
+		//	if(Sounds::getInstance()->getMasterVolume() < 0)
+		//	{
+		//		Sounds::getInstance()->setMasterVolume(0);
+		//	}
+		//}
+		//mMusicCount--;
+		//Sounds::getInstance()->setMasterVolume(mMusicCount);
+		if(/*mMusicCount <= 0*/true)
+		{
+			mMusicCount = 100;
+			Sounds::getInstance()->StopAll();
+			Sounds::getInstance()->setMasterVolume(0);
+
+			mMenuStates = mCommingState;
+
+			if(mMenuStates == MyVideoState)
+			{
+				if(mLastState == StartState)
+				{
+					mVideoState->newMovie(1);
+				}
+				else
+				{
+					mVideoState->newMovie(LevelManager::getInstance()->getCurrentLevel() + 2);
+				}
+			}
+
+			if(mMenuStates == DialogueState)
+			{
+				Sounds::getInstance()->Loop("Dialog.wav");
+				mDialogState->restartClock();
+				if(mDialogState->getStartDialogue())
+				{
+					mDialogState->setToBlack();
+					mDialogState->reset();
+				}
+			}
+
+			if(mMenuStates == StartState)
+			{
+				Sounds::getInstance()->Loop("Meny.wav");
+			}
+
+			if(mMenuStates == GameState)
+			{
+				Sounds::getInstance()->Loop(LevelManager::getInstance()->getMusic());
+			}
+		}
+	}
 }
