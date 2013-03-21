@@ -401,9 +401,9 @@ bool Fenrir::hitWall()
 				mMovementSpeed.y = 0.3;
 				mStatus = ACTION2;
 
-				if(mHeight == HEIGHT && mWidth == WIDTH)
+   				if(mHeight == HEIGHT && mWidth == WIDTH)
 				{
-					mPosition.y -= 30;
+					mPosition.y -= 5;
 				}
 
 				mHeight = WALLHEIGHT;
