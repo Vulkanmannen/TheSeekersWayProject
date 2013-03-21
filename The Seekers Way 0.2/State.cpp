@@ -84,7 +84,8 @@ void State::update()
 			mGameMenu->update();
 			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && mEsc == true)
 			{
-				mMenuStates = PauseState;
+				//mMenuStates = PauseState;
+				setState(PauseState);
 				mEsc = false;
 			}
 			break;
@@ -97,7 +98,8 @@ void State::update()
 			{
 				if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && mEsc == true)
 				{
-					mMenuStates = GameState;
+					//mMenuStates = GameState;
+					setState(GameState);
 					mEsc = false;
 					mPauseMenu->setCurrentButton();
 				}
@@ -188,8 +190,11 @@ void State::changeState()
 		//		Sounds::getInstance()->setMasterVolume(0);
 		//	}
 		//}
-		//mMusicCount--;
-		//Sounds::getInstance()->setMasterVolume(mMusicCount);
+		//while(mMusicCount > 0)
+		//{
+		//	mMusicCount -= 0.001;
+		//	Sounds::getInstance()->setMasterVolume(mMusicCount);
+		//}
 		if(/*mMusicCount <= 0*/true)
 		{
 			mMusicCount = 100;

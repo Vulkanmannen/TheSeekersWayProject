@@ -57,6 +57,6 @@ private:
 	bool mEsc;
 
 	void changeState();
-	int mMusicCount;
+	float mMusicCount;
 };
 #endif
