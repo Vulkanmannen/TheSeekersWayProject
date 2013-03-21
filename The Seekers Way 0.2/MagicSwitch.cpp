@@ -45,12 +45,12 @@ void MagicSwitch::interact(Entity *e)
 // öppnar dörren
 void MagicSwitch::Activate()
 {
-	if(mIsPressed == false)
-	{
+	//if(mIsPressed == false)
+	//{
 		mBlock->Activate();
 		mClockOpen.restart();
 		mIsPressed = true;
-	}
+	//}
 	
 }
 

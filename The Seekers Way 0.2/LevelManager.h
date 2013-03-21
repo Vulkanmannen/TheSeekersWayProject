@@ -49,6 +49,8 @@ public:
 	int getCurrentLevel();
 	void setCurrentLevel(int level);
 
+	std::string getMusic()const;
+
 private:
 	typedef std::vector<std::string> StringVector;
 
