@@ -102,8 +102,9 @@ void DialogState::update()
 		mFadeCount += 1;
 		if(mFadeCount > 50)
 		{
-			LevelManager::getInstance()->LoadLevel(LevelManager::getInstance()->getCurrentLevel() + 1);
 			State::getInstance()->setState(State::MyVideoState);
+			LevelManager::getInstance()->LoadLevel(LevelManager::getInstance()->getCurrentLevel() + 1);
+			
 			//State::getInstance()->setState(State::DialogueState);
 			reset();
 		}

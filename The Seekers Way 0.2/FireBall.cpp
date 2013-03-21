@@ -21,12 +21,13 @@ FireBall::FireBall(sf::Vector2f &position):
 	mEntityKind = FIREBALL;
 	mAnimation.setPosition(sf::Vector2f(mPosition.x - SPRITEWIDTH/ 2, mPosition.y - SPRITEHEIGHT/ 2));
 
-	Sounds::getInstance()->Loop("fireball.wav", 50);
+	Sounds::getInstance()->Loop("fireball.wav", 30);
 }
 
 
 FireBall::~FireBall()
 {
+	Sounds::getInstance()->Stop("fireball.wav");
 }
 
 void FireBall::update(EntityKind &currentEntity)

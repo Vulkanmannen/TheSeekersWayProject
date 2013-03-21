@@ -14,6 +14,8 @@ VideoState::VideoState()
 	mVideos.push_back(Video("Intro.ogv", 12));
 	mVideos.push_back(Video("Intro.ogv", 12));
 	mVideos.push_back(Video("Intro.ogv", 12));
+	mVideos.push_back(Video("Intro.ogv", 12));
+	mVideos.push_back(Video("Intro.ogv", 12));
 	mVideos.push_back(Video("Intro.ogv", 12, State::StartState));
 
 	mMovie.load(mVideos[mCurrentMovie].mMovie);
@@ -27,23 +29,27 @@ VideoState::~VideoState()
 
 void VideoState::update()
 {
-	mMovie.update(sf::seconds(1.0f / 25.0f));
+	mMovie.update(/*mVideoClock.restart()*/sf::seconds(1.0f / 25.0f));
 
 	if(mStartingMovie)
 	{
 		setVideo();
 	}
 
-	if(mMovieTimer.getElapsedTime().asSeconds() > mVideos[mCurrentMovie].mMovieLength && mNextMovie)
+	if((mMovieTimer.getElapsedTime().asSeconds() > mVideos[mCurrentMovie].mMovieLength && mNextMovie) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		State::getInstance()->setState(mVideos[mCurrentMovie].mNextState);	
+		mMovie.stop();
 		mNextMovie = false;
 	}
 }
 
 void VideoState::render()
 {
-	ImageManager::render(&mMovie);
+	if(!mStartingMovie)
+	{
+		ImageManager::render(&mMovie);
+	}
 }
 
 void VideoState::setVideo()

@@ -42,6 +42,9 @@ private:
 
 	MenuStates mMenuStates;
 
+	MenuStates mLastState;
+	MenuStates mCommingState;
+
 	IntroScreen *IntroSplash;
 	StartMenu *mStartMenu;
 	GameMenu *mGameMenu;
@@ -52,5 +55,8 @@ private:
 	sf::Clock mIntroClock;
 
 	bool mEsc;
+
+	void changeState();
+	int mMusicCount;
 };
 #endif
