@@ -206,7 +206,7 @@ void StartMenu::buttonActivate()
 
 	if(mNewGame)
 	{
-		mFadeCount += 10;
+		mFadeCount += 5;
 		if(mFadeCount > 255)
 		{
 			State::getInstance()->setState(State::MyVideoState);

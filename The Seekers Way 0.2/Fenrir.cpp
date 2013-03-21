@@ -353,7 +353,7 @@ void Fenrir::wallJump()
 
 				mMovementSpeed = sf::Vector2f(0,0);
 				
-				mMovementSpeed.y = -(mJump);
+				mMovementSpeed.y = -(mJump + 0.5);
 				
 				playJumpSound();
 
