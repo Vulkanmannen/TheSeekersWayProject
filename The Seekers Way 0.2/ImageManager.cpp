@@ -61,3 +61,9 @@ sf::RenderWindow& ImageManager::getWindow()
 {
 	return *sWindow;
 }
+
+void ImageManager::setFrameRateAndSync(int frameRate, bool verticalSync)
+{
+	sWindow->setFramerateLimit(frameRate);
+	sWindow->setVerticalSyncEnabled(verticalSync);
+}

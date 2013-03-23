@@ -8,15 +8,15 @@
 VideoState::VideoState()
 	:mCurrentMovie(0)
 {	
-	mVideos.push_back(Video("splashscreen.ogv", 12, State::StartState));
-	mVideos.push_back(Video("intro.ogv", 75));
-	mVideos.push_back(Video("TransitionKC.ogv", 6));
-	mVideos.push_back(Video("TransitionMEET.ogv", 9.5));
-	mVideos.push_back(Video("Transition.ogv", 6));
-	mVideos.push_back(Video("Transition.ogv", 6));
-	mVideos.push_back(Video("Transition.ogv", 6));
-	mVideos.push_back(Video("Transition.ogv", 6));
-	mVideos.push_back(Video("Transition.ogv", 6, State::StartState));
+	mVideos.push_back(Video("splashscreen.ogv", "Meny.ogg", State::StartState));
+	mVideos.push_back(Video("intro.ogv", "Meny.ogg"));
+	mVideos.push_back(Video("TransitionKC.ogv", "Meny.ogg"));
+	mVideos.push_back(Video("TransitionMEET.ogv", "Meny.ogg"));
+	mVideos.push_back(Video("Transition.ogv", "Meny.ogg"));
+	mVideos.push_back(Video("Transition.ogv", "Meny.ogg"));
+	mVideos.push_back(Video("Transition.ogv", "Meny.ogg"));
+	mVideos.push_back(Video("Transition.ogv", "Meny.ogg"));
+	mVideos.push_back(Video("Transition.ogv", "Meny.ogg", State::StartState));
 
 	mMovie.load(mVideos[mCurrentMovie].mMovie);
 }
@@ -36,7 +36,7 @@ void VideoState::update()
 		setVideo();
 	}
 
-	if((mMovieTimer.getElapsedTime().asSeconds() > mVideos[mCurrentMovie].mMovieLength && mNextMovie) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	if(( mMovie.isDone() /*mMovieTimer.getElapsedTime().asSeconds() > mVideos[mCurrentMovie].mMovieLength*/ && mNextMovie) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		State::getInstance()->setState(mVideos[mCurrentMovie].mNextState);	
 		mMovie.stop();
@@ -76,4 +76,10 @@ void VideoState::newMovie(int currentMovie)
 {
 	mCurrentMovie = currentMovie;
 	mStartingMovie = true;
+}
+
+
+std::string VideoState::getMusic(int movie)const
+{
+	return mVideos[movie].mMusic;
 }

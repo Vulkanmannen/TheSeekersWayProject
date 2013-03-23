@@ -8,6 +8,7 @@
 #include "Dialogue.h"
 #include "LevelManager.h"
 #include "VideoState.h"
+#include "ImageManager.h"
 
 State* State::sInstance = 0;
 
@@ -121,6 +122,11 @@ void State::update()
 			}
 			break;
 		case MyVideoState:
+			if(Sounds::getInstance()->getMasterVolume() < 100)
+			{
+				Sounds::getInstance()->setMasterVolume(Sounds::getInstance()->getMasterVolume() + 1);
+			}
+
 
 			mVideoState->render();
 			mVideoState->update();
@@ -134,7 +140,7 @@ void State::update()
 		mEsc = true;
 	}
 
-	changeState();
+	//changeState();
 }
 
 void State::render()
@@ -206,11 +212,19 @@ void State::changeState()
 				if(mLastState == StartState)
 				{
 					mVideoState->newMovie(1);
+					//Sounds::getInstance()->Loop(mVideoState->getMusic(1));
 				}
 				else
 				{
 					mVideoState->newMovie(LevelManager::getInstance()->getCurrentLevel() + 2);
+					//Sounds::getInstance()->Loop(mVideoState->getMusic(LevelManager::getInstance()->getCurrentLevel() + 2));
 				}
+
+				ImageManager::setFrameRateAndSync(false, false);
+			}
+			else if(mMenuStates != MyVideoState)
+			{
+				ImageManager::setFrameRateAndSync(60, true);
 			}
 
 			if(mMenuStates == DialogueState)

@@ -22,18 +22,20 @@ public:
 
 
 	void newMovie(int currentMovie);
+	std::string getMusic(int movie)const;
 
 private:
 	struct Video
 	{
-		Video(std::string name, float movieLength, State::MenuStates nextState = State::DialogueState):
-		mMovieLength(movieLength),
+		Video(std::string name, std::string music, State::MenuStates nextState = State::DialogueState):
 		mNextState(nextState),
-		mMovie(name)
+		mMovie(name),
+		mMusic(music)
 		{}
 
-		std::string mMovie;	
-		float mMovieLength;
+		std::string mMovie;
+		std::string mMusic;
+
 		State::MenuStates mNextState;
 	};
 

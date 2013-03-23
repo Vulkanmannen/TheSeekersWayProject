@@ -17,6 +17,8 @@ public:
 
 	static void	setWindow(sf::RenderWindow *window);
 	static sf::RenderWindow& getWindow();
+
+	static void setFrameRateAndSync(int frameRate, bool verticalSync);
 private:
 	static sf::RenderWindow *sWindow;
 

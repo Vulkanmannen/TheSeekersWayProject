@@ -32,12 +32,15 @@
 int main()
 {
 	sf::VideoMode videoMode(1024, 720);
-	sf::RenderWindow window(videoMode, "The Seekers Way", sf::Style::Fullscreen);
+	sf::RenderWindow window(videoMode, "The Seekers Way"/*, sf::Style::Fullscreen*/);
 
 	ImageManager::setWindow(&window);
 
-	window.setVerticalSyncEnabled(true);
-	window.setFramerateLimit(60);
+	window.setVerticalSyncEnabled(false);
+	window.setFramerateLimit(false);
+	//window.setFramerateLimit(false);
+	////window.setVerticalSyncEnabled(false);
+	//window.setFramerateLimit(true);
 
 	sf::View view;
 	view.setCenter(512, 360);
