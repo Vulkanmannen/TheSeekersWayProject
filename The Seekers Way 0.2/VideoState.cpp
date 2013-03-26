@@ -16,7 +16,7 @@ VideoState::VideoState()
 	mVideos.push_back(Video("Transition.ogv", "Meny.ogg"));
 	mVideos.push_back(Video("Transition.ogv", "Meny.ogg"));
 	mVideos.push_back(Video("Transition.ogv", "Meny.ogg"));
-	mVideos.push_back(Video("Transition.ogv", "Meny.ogg", State::StartState));
+	mVideos.push_back(Video("Outrocredits.ogv", "Meny.ogg", State::StartState));
 
 	mMovie.load(mVideos[mCurrentMovie].mMovie);
 }
