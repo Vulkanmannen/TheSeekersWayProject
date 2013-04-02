@@ -197,12 +197,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\TheSeekersWayProject\The Seekers Way 0.2\sfTheora-1.4\include;C:\SFML-2.0-rc\include;C:\TheSeekersWayProject\The Seekers Way 0.2\Source</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\TheSeekersWayProject\The Seekers Way 0.2\sfTheora-1.4\include;C:\TheSeekersWayProject\The Seekers Way 0.2\SFML-2.0-rc\include;C:\TheSeekersWayProject\The Seekers Way 0.2\Source</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\TheSeekersWayProject\The Seekers Way 0.2\sfTheora-1.4\lib;C:\SFML-2.0-rc\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\TheSeekersWayProject\The Seekers Way 0.2\sfTheora-1.4\lib;C:\TheSeekersWayProject\The Seekers Way 0.2\SFML-2.0-rc\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-system-d.lib;sfml-window-d.lib;glut32.lib;sfTheora_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
