@@ -54,8 +54,9 @@ void EmissiveLight::Render()
 	glPushMatrix();
 
 	const Vec2f &center = m_aabb.GetCenter();
-
-	m_texture->bind();
+	
+	//this one should propably not be null
+	m_texture->bind(NULL);
 
 	glTranslatef(center.x, center.y, 0.0f);
 	glRotatef(m_angleDegs, 0.0f, 0.0f, 1.0f);

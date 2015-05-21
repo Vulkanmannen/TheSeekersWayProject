@@ -263,8 +263,9 @@ namespace ltbl
 
 		// Render shadow fins
 		glEnable(GL_TEXTURE_2D);
-
-		m_softShadowTexture.bind();
+		
+		//this one should propably not be null
+		m_softShadowTexture.bind(NULL);
 
 		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -714,7 +715,8 @@ namespace ltbl
 
 				if(pLight->m_shaderAttenuation)
 				{
-					m_lightAttenuationShader.bind();
+					//this one should propably not be null
+					m_lightAttenuationShader.bind(NULL);
 
 					if(pLight->AlwaysUpdate())
 						m_lightAttenuationShader.setParameter("lightPos", pLight->m_center.x - m_viewAABB.m_lowerBound.x, pLight->m_center.y - m_viewAABB.m_lowerBound.y);
@@ -729,7 +731,8 @@ namespace ltbl
 					// Render the current light
 					pLight->RenderLightSolidPortion();
 
-					m_lightAttenuationShader.unbind();
+					//m_lightAttenuationShader.unbind();
+					m_lightAttenuationShader.bind(NULL);
 				}
 				else
 					// Render the current light
@@ -773,8 +776,9 @@ namespace ltbl
 
 					SwitchComposition();
 					glLoadIdentity();
-
-					m_lightTempTexture.getTexture().bind();
+					
+					//this one should propably not be null
+					m_lightTempTexture.getTexture().bind(NULL);
 
 					glBlendFunc(GL_ONE, GL_ONE);
 
@@ -791,8 +795,9 @@ namespace ltbl
 					{
 						SwitchBloom();
 						glLoadIdentity();
-
-						m_lightTempTexture.getTexture().bind();
+						
+						//this one should propably not be null
+						m_lightTempTexture.getTexture().bind(NULL);
 
 						glBlendFunc(GL_ONE, GL_ONE);
 	
@@ -816,8 +821,9 @@ namespace ltbl
 
 					SwitchComposition();
 					CameraSetup();
-
-					pLight->m_pStaticTexture->getTexture().bind();
+					
+					//this one should propably not be null
+					pLight->m_pStaticTexture->getTexture().bind(NULL);
 
 					glTranslatef(pLight->m_center.x - staticTextureOffset.x, pLight->m_center.y - staticTextureOffset.y, 0.0f);
 
@@ -841,8 +847,9 @@ namespace ltbl
 						CameraSetup();
 
 						glTranslatef(pLight->m_center.x - staticTextureOffset.x, pLight->m_center.y - staticTextureOffset.y, 0.0f);
-
-						pLight->m_pStaticTexture->getTexture().bind();
+						
+						//this one should propably not be null
+						pLight->m_pStaticTexture->getTexture().bind(NULL);
 
 						glBlendFunc(GL_ONE, GL_ONE);
 	
@@ -867,7 +874,8 @@ namespace ltbl
 				SwitchComposition();
 
 				// Render existing texture
-				pLight->m_pStaticTexture->getTexture().bind();
+				//this one should propably not be null
+				pLight->m_pStaticTexture->getTexture().bind(NULL);
 
 				Vec2f staticTextureOffset(pLight->m_center - pLight->m_aabb.m_lowerBound);
 
@@ -894,8 +902,9 @@ namespace ltbl
 					CameraSetup();
 
 					glTranslatef(pLight->m_center.x - staticTextureOffset.x, pLight->m_center.y - staticTextureOffset.y, 0.0f);
-
-					pLight->m_pStaticTexture->getTexture().bind();
+					
+					//this one should propably not be null
+					pLight->m_pStaticTexture->getTexture().bind(NULL);
 
 					glBlendFunc(GL_ONE, GL_ONE);
 	
@@ -961,8 +970,9 @@ namespace ltbl
 		// Translate by negative camera coordinates. glLoadIdentity will not work, probably
 		// because SFML stores view transformations in the projection matrix
 		glTranslatef(m_viewAABB.GetLowerBound().x, -m_viewAABB.GetLowerBound().y, 0.0f);
-
-		m_compositionTexture.getTexture().bind();
+		
+		//this one should propably not be null
+		m_compositionTexture.getTexture().bind(NULL);
 
 		// Set up color function to multiply the existing color with the render texture color
 		glBlendFunc/*(GL_DST_COLOR*/(GL_DST_COLOR, GL_ZERO);// GL_ZERO); // Seperate allows you to set color and alpha functions seperately
@@ -976,7 +986,8 @@ namespace ltbl
 
 		if(m_useBloom)
 		{
-			m_bloomTexture.getTexture().bind();
+			//this one should propably not be null
+			m_bloomTexture.getTexture().bind(NULL);
 
 			glBlendFunc(GL_ONE, GL_ONE);// GL_ONE);
 
