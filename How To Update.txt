@@ -1,0 +1,9 @@
+
+Install Visual studio 2010 c++
+Klicka på "The Seekers way.sln"
+Update code
+
+Update files
+
+Commit in github or github program and sync
+
